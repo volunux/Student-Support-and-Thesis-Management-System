@@ -24,14 +24,14 @@ export class AuthenticationService {
 
   public getToken() : string {
 
-  	return this.storage.getItem('rsis-token');
+    if (this.storage.getItem('rsis-token') != null) return this.storage.getItem('rsis-token');
   }
 
   public redirectAddress : string = '';
 
   public getUserId() : string {
 
-     return this.storage.getItem('s_id');
+    if (this.storage.getItem('s_id')) return this.storage.getItem('s_id');
   }
 
   get userMinorDetails() : User {
@@ -107,12 +107,12 @@ export class AuthenticationService {
 
   public saveUserId(payload : Payload) : void {
 
-    return this.storage.setItem('s_id' , payload.s_id);
+    if (this.storage != null) return this.storage.setItem('s_id' , payload.s_id);
   }
 
   public saveToken(payload : Payload) : void {
 
-  	this.storage.setItem('rsis-token' , payload.token);
+  	if (this.storage != null) this.storage.setItem('rsis-token' , payload.token);
   }
 
   public signUp(user : User) : any {
@@ -145,9 +145,9 @@ export class AuthenticationService {
 
   public logout() : void {
 
-  		this.storage.removeItem('rsis-token');
+  		if (this.storage != null) this.storage.removeItem('rsis-token');
 
-      this.storage.removeItem('s_id');
+      if (this.storage != null) this.storage.removeItem('s_id');
   }
 
   public isLoggedIn() : boolean { const token : string = this.getToken();

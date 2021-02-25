@@ -16,6 +16,7 @@ import { PageNotFoundComponent } from './all/page-not-found/page-not-found.compo
 import { UnauthorizedComponent } from './all/unauthorized/unauthorized.component';
 import { NavigationBarComponent } from './all/navigation-bar/navigation-bar.component';
 import { MemberDashboardComponent } from './all/member-dashboard/member-dashboard.component';
+import { LoginDetailsComponent } from './all/login-details/login-details.component';
 
 @NgModule({
 
@@ -27,6 +28,7 @@ import { MemberDashboardComponent } from './all/member-dashboard/member-dashboar
     UnauthorizedComponent,
     NavigationBarComponent,
     MemberDashboardComponent,
+    LoginDetailsComponent,
   ],
 
   imports: [

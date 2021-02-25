@@ -5,7 +5,7 @@ import { HttpClient , HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from '../../authentication.service';
 import { Api , Api_Token } from '../../../configuration';
 import { DataService } from '../../data.service';
-import { User , UserFormModel } from '../../user';
+import { Payload , User , UserFormModel } from '../../user';
 import { UserOther } from '../../user-other';
 import { General } from '../../general';
 import { AuthenticationFormService } from '../../authentication-form.service';
@@ -125,7 +125,7 @@ export class UserSignUpComponent extends UserAccountFormService implements OnIni
 
     this.ds.addUser$(body)
 
-      .subscribe((result : General) => {
+      .subscribe((result : Payload) => {
 
         if (result == null) {
 
@@ -141,7 +141,11 @@ export class UserSignUpComponent extends UserAccountFormService implements OnIni
 
         	this.isError = true; }
 
-       else if (result != null && result.created == true) {
+       else if (result != null) {
+
+          this.auth.saveToken(result);
+
+          this.auth.saveUserId(result);
 
        		this.isFormSubmitted = false;
 
@@ -156,7 +160,7 @@ export class UserSignUpComponent extends UserAccountFormService implements OnIni
 
     this.entryChangesT = setTimeout(() => {
 
-      return this.router.navigate(data && data.user && data.user._id ? 
+      return this.router.navigate(data != null ? 
 
        ['user' , 'dashboard'] : ['system' , 'internal' , this.link , 'entries']); } 
 

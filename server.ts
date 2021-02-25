@@ -34,6 +34,11 @@ export function app(): express.Express {
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
   });
 
+// TODO: implement data requests securely
+server.get('/api/**', (req, res) => {
+  res.status(404).send('data requests are not yet supported');
+});
+
   return server;
 }
 

@@ -4,7 +4,8 @@ import { WelcomeComponent } from './all/welcome/welcome.component';
 import { UnauthorizedComponent } from './all/unauthorized/unauthorized.component';
 import { PageNotFoundComponent } from './all/page-not-found/page-not-found.component';
 import { UnauthorizedGuard } from './general/unauthorized-guard.guard';
-import { MemberDashboardComponent } from './all/member-dashboard/member-dashboard.component'
+import { MemberDashboardComponent } from './all/member-dashboard/member-dashboard.component';
+import { LoginDetailsComponent } from './all/login-details/login-details.component';
 
 import { SelectivePreloadingStrategyService } from './all/selective-preloading-strategy.service';
 
@@ -13,6 +14,8 @@ const routes: Routes = [
 	{'path' : '' , 'component' : WelcomeComponent } ,
 
 	{'path' : 'user/dashboard' , 'component' : MemberDashboardComponent } ,
+
+	{'path' : 'login-details' , 'component' : LoginDetailsComponent } ,
 
 	{'path' : 'sign-in' , 'loadChildren' : () => import('./authentication/user-sign-in/user-sign-in.module').then(m => m.UserSignInModule) } ,
 
