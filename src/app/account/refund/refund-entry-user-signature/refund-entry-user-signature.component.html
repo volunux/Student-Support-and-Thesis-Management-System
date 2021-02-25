@@ -1,0 +1,11 @@
+	<ng-container *ngIf ='entry != null && entry?.signature != null && entry?.signature.length > 0'>
+
+		<h2> List of Signature </h2>
+
+		<ng-container *ngFor ='let sign of entry?.signature'>
+
+			<li> Name : {{sign?.full_name}} </li>
+
+		</ng-container>
+
+	</ng-container>

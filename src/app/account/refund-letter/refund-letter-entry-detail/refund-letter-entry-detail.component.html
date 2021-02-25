@@ -1,0 +1,25 @@
+<div id ='entry-view'>
+
+<app-resource-unavailable *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
+
+<div id ='rf-entry'>
+
+	<div id ='letter-content'>
+
+			<div #datacontainer> </div>
+
+			<div *ngIf = 'entry?.letter?.main_body'> 
+
+				<p> Yours faithfully , </p>
+
+				<p> <img [src] ='entry.signature' title ='User Signature' alt ='User Signature' /> </p>
+
+				<p> {{entry?.full_name}} </p>
+
+			</div>	
+
+	</div>
+
+</div>
+
+</div>

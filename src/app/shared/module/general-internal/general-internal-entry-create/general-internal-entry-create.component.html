@@ -1,0 +1,22 @@
+
+<app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
+
+<app-view-description *ngIf ='view' [view-type] ='view' [system-type] ='systemType' > </app-view-description>
+
+<ng-container *ngIf ='entryForm'>
+
+		<div [formGroup] ='entryForm'>
+
+			<app-general-internal-form-input [system-type] ='systemType' [entry-form] ='entryForm' [e-others] ='eothers' [placeholder] ='placeholder' [no-edit] ='noEdit' > </app-general-internal-form-input> 
+
+		<ng-content> </ng-content>
+
+			<button *ngIf ='!isFormProcessing' class ='btn-submit' [class] ='{"disabled" : !isFormValid }' [disabled] ='!isFormValid'
+
+			(click) ='createEntry(entryForm.value)' > Submit </button> 
+
+			<p *ngIf ='isFormSubmitted'> Your form is being processed. Please kindly be patient and wait while it completes. </p>
+
+		</div>
+
+</ng-container>

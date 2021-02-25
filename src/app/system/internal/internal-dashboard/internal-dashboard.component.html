@@ -1,0 +1,31 @@
+<h2 *ngIf ='title'> {{title}} </h2>
+
+<p> Only Administrators and Moderators are allowed to perform an action within this part of the system. Anybody with a privilege less than an Administrator and Moderator are not allowed or permitted to make 
+
+permanent or temporary changes to the records available in the system. In this dashboard, the Administrator and Moderator will be able to monitor and evaluate entries that are specifically meant for internal 
+
+decision making to drive the development of the system and entries that have been made by the user for the purpose the system have been created for. </p> 
+
+<div id ='dashboard'>
+
+<ul>
+
+	<ng-container *ngIf ='entries'>
+
+		<li *ngFor ='let entry of entries | keyvalue'> 
+
+		<a [routerLink] ='["./" , entry.key]' class ='center'> {{entry.value}} </a>
+
+		</li>
+
+	</ng-container>
+
+	<li>
+
+		<a [routerLink] ='["/account/" , "profile"]' class ='center'> Profile </a>
+
+	</li>
+
+</ul>
+
+</div>

@@ -1,0 +1,47 @@
+<h2 *ngIf ='title'> {{title}} </h2>
+
+<p>Only Administrators and Moderators are allowed to perform an action within this part of the system. Anybody with a privilege less than an Administrator and Moderator are not allowed or permitted to make permanent or temporary changes to the records available in the system. In this dashboard, the Administrator and Moderator will be able to monitor and evaluate entries that are specifically meant for internal decision making to drive the system development and entries that have been made by the user for the purpose the system have been created for.</p> 
+
+<div id ='dashboard'>
+
+<ul>
+
+	<li>
+
+		<a [routerLink] ='["internal" , "user"]' class ='center'>Manage Users</a>
+
+	</li>
+
+	<li>
+
+		<a [routerLink] ='["/general-request"]' class ='center'>Manage Request</a>
+
+	</li>
+
+	<li>
+
+		<a [routerLink] ='["/general-payment"]' class ='center'>Manage Payment</a>
+
+	</li>
+
+	<li>
+
+		<a [routerLink] ='["/refund"]' class ='center'>Manage Refund</a>
+
+	</li>
+
+	<li>
+
+		<a [routerLink] ='["internal"]' class ='center'>Manage Internals</a>
+
+	</li>
+
+	<li>
+
+		<a [routerLink] ='["statistics"]' class ='center'>Manage Statistics</a>
+
+	</li>	
+
+</ul>
+
+</div>

@@ -1,0 +1,15 @@
+<ng-container *ngIf ='unit'>
+
+	<div @fadeAnimation *ngIf ='unit.invalid && (unit.touched || unit.dirty)' class ='validation-error'>
+
+		<ul>
+
+			<li *ngIf ='unit.errors?.required'> Unit of {{systemType}} should be provided and cannot be empty </li>			
+			<li *ngIf ='unit.errors?.required || unit.errors?.max'> Unit of {{systemType}} cannot be greater than specified length </li>
+			<li *ngIf ='unit.errors?.Unit'> Unit of {{systemType}} should be available from existing record before it can be considered valid </li>
+
+		</ul>
+
+	</div>
+
+</ng-container>

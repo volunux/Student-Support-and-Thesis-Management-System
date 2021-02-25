@@ -1,0 +1,15 @@
+<ng-container *ngIf ='word'>
+
+<div @fadeAnimation *ngIf ='word.invalid && (word.touched || word.dirty)' class ='validation-error'>
+
+	<ul>
+
+		<li *ngIf ='word.errors?.required'> Word of {{systemType}} should be provided and cannot be empty </li>
+		<li *ngIf ='word.errors?.required || word.errors?.minlength'> Word of {{systemType}} cannot be less than 3 characters in length </li>
+		<li *ngIf ='word.errors?.required || word.errors?.maxLength'> Word of {{systemType}} cannot be greater than 20 characters in length </li>
+
+	</ul>
+
+</div>
+
+	</ng-container>

@@ -1,0 +1,91 @@
+<div *ngIf ='entry' id ='entry-view'>
+
+	<div id ='entry-detail'>
+
+	<table>
+
+		<colgroup>
+
+			<col class ='parameter'>
+			<col class ='data'>
+
+		</colgroup>
+
+		<tbody>
+
+			<ng-container *ngIf ='entry?.name'>
+
+			<tr>
+
+				<th class ='bold left'> Name : </th>
+				<td> {{entry?.name}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.created_on'>
+
+			<tr>
+
+				<th class ='bold left'> Created At : </th>
+				<td> {{entry?.created_on | date : 'fullDate'}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.updated_on'>
+
+			<tr>
+
+				<th class ='bold left'> Updated At : </th>
+				<td> {{entry?.updated_on | date : 'fullDate'}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.description'>
+
+			<tr>
+
+				<th class ='bold left'> Description : </th>
+				<td> {{entry?.description}} </td>
+
+			</tr>
+
+		</ng-container>
+
+
+		<ng-content> </ng-content>
+
+
+			<ng-container *ngIf ='entry?.status'>
+
+			<tr>
+
+				<th class ='bold left'> Status : </th>
+				<td> {{entry?.status}} </td>
+
+			</tr>
+
+		</ng-container>
+
+		</tbody>
+
+	</table>
+
+			<div class ='entry-options'>
+
+				<h3> Entry Options </h3>
+
+			<a [routerLink] ="['../../../' , 'entry' , entry?.slug , 'update']" class ='entry-option center'> {{systemType}} Update </a>
+
+			<a [routerLink] ="['../../../' , 'entry' , entry?.slug , 'delete']" class ='entry-option center'> {{systemType}} Delete </a>
+
+		</div>
+
+</div>
+
+</div>

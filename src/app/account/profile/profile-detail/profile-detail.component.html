@@ -1,0 +1,234 @@
+<h2 *ngIf ='title'> {{title}} </h2>
+
+<app-view-description *ngIf ='view' [view-type] ='view'> </app-view-description>
+
+<app-resource-unavailable *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
+
+<div *ngIf ='entry' id ='entry-view'>
+
+	<div id ='entry-detail'>
+
+	<table>
+
+		<colgroup>
+
+			<col class ='parameter'>
+			<col class ='data'>
+
+		</colgroup>
+
+		<tbody>
+
+			<ng-container *ngIf ='entry?.profile_photo'>
+
+			<tr>
+
+				<th class ='bold left'> Profile Photo : </th>
+				<td class ='profilePhoto'> <img src ='{{entry?.profile_photo}}' alt ='{{systemType}}' [title] ='systemType' > </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?._id'>
+
+			<tr>
+
+				<th class ='bold left'> Unique Number : </th>
+				<td> {{entry?._id}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.first_name'>
+
+			<tr>
+
+				<th class ='bold left'> First Name : </th>
+				<td> {{entry?.first_name}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.last_name'>
+
+			<tr>
+
+				<th class ='bold left'> Last Name : </th>
+				<td> {{entry?.last_name}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.email_address'>
+
+			<tr>
+
+				<th class ='bold left'> Email Address : </th>
+				<td> {{entry?.email_address}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.department'>
+
+			<tr>
+
+				<th class ='bold left'> Department : </th>
+				<td> {{entry?.department}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.faculty'>
+
+			<tr>
+
+				<th class ='bold left'> Faculty : </th>
+				<td> {{entry?.faculty}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.level'>
+
+			<tr>
+
+				<th class ='bold left'> Level : </th>
+				<td> {{entry?.level}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.unit'>
+
+			<tr>
+
+				<th class ='bold left'> Unit : </th>
+				<td> {{entry?.unit}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.country'>
+
+			<tr>
+
+				<th class ='bold left'> Country : </th>
+				<td> {{entry?.country}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.role'>
+
+			<tr>
+
+				<th class ='bold left'> Role : </th>
+				<td> {{entry?.role}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.status'>
+
+			<tr>
+
+				<th class ='bold left'> Status : </th>
+				<td> {{entry?.status}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.matriculation_number'>
+
+			<tr>
+
+				<th class ='bold left'> Matriculation Number : </th>
+				<td> {{entry?.matriculation_number}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.jamb_registration_number'>
+
+			<tr>
+
+				<th class ='bold left'> Jamb Registration Number : </th>
+				<td> {{entry?.jamb_registration_number}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.identity_number'>
+
+			<tr>
+
+				<th class ='bold left'> Student Identity Number : </th>
+				<td> {{entry?.identity_number}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.updated_on'>
+
+			<tr>
+
+				<th class ='bold left'> Updated On : </th>
+				<td> {{entry?.updated_on | date : 'fullDate'}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.about'>
+
+			<tr>
+
+				<th class ='bold left'> About : </th>
+				<td> {{entry?.about}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.signature'>
+
+			<tr>
+
+				<th class ='bold left'> Signature : </th>
+				<td class ='signature' > <img src ='{{entry?.signature}}' alt ='{{systemType}}' [title] ='systemType' > </td>
+
+			</tr>
+
+		</ng-container>
+
+		</tbody>
+
+	</table>
+
+			<div class ='entry-options'>
+
+				<h3> Entry Options </h3>
+
+			<a [routerLink] ='["../../../" , "account" , "profile" , "update"]' class ='entry-option center'> Profile Update </a>
+
+		</div>
+
+</div>
+
+</div>

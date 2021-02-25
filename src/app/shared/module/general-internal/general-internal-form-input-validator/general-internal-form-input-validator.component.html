@@ -1,0 +1,49 @@
+
+<ng-container *ngIf ='name'>
+
+	<div @fadeAnimation *ngIf ='name.invalid && (name.touched || name.dirty)' class ='validation-error'>
+
+		<ul>
+
+			<li *ngIf ='name.errors?.required'> Name of {{systemType}} should be provided and cannot be empty </li>			
+			<li *ngIf ='name.errors?.required || name.errors?.minlength'> Name of {{systemType}} cannot be less than 3 characters in length </li>
+			<li *ngIf ='name.errors?.required || name.errors?.maxlength'> Name of {{systemType}} cannot be greater than 150 characters in length </li>
+
+		</ul>
+
+	</div>
+
+</ng-container>
+
+
+<ng-container *ngIf ='status'>
+
+	<div @fadeAnimation *ngIf ='status.invalid && (status.touched || status.dirty)' class ='validation-error'>
+
+		<ul>
+
+			<li *ngIf ='status.errors?.required'> Status of {{systemType}} should be provided and cannot be empty </li>			
+			<li *ngIf ='status.errors?.max'> Status of {{systemType}} cannot be greater than specified length </li>
+			<li *ngIf ='status.errors?.Status'> Status of {{systemType}} should be available from existing record before it can be considered valid </li>
+
+		</ul>
+
+	</div>
+
+</ng-container>
+
+<ng-container *ngIf ='description'>
+
+<div @fadeAnimation *ngIf ='description.invalid && (description.touched || description.dirty)' class ='validation-error'>
+
+	<ul>
+
+		<li *ngIf ='description.errors?.required'> Description of {{systemType}} should be provided and cannot be empty </li>
+		<li *ngIf ='description.errors?.required || description.errors?.minlength'> Description of {{systemType}} cannot be less than 10 characters in length </li>
+		<li *ngIf ='description.errors?.required || description.errors?.maxlength'> Description of {{systemType}} cannot be greater than 250 characters in length </li>
+
+	</ul>
+
+</div>
+
+</ng-container>

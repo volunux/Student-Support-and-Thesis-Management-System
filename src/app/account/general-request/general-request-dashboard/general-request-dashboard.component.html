@@ -1,0 +1,29 @@
+<h2 *ngIf ='title'> {{title}} </h2>
+
+<app-view-description *ngIf ='view' [system-type] ='systemType' [view-type] ='view'> </app-view-description>
+
+<app-resource-unavailable *ngIf ='isError' [error] ='error'> </app-resource-unavailable>
+
+<div *ngIf ='systemType' id ='dashboard'>
+
+<ul>
+
+	<ng-container *ngIf ='entries != null && entries?.length > 0'>
+
+		<li *ngFor ='let entry of entries'> 
+
+		<a [routerLink] ='["./" , "t" , entry?.slug]' class ='center'> {{entry?.name}} </a>
+
+		</li>
+
+	</ng-container>
+
+	<li>
+
+		<a [routerLink] ='["/account" , "profile"]' class ='center'> Profile </a>
+
+	</li>
+
+</ul>
+
+</div>

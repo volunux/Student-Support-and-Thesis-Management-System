@@ -1,0 +1,15 @@
+<ng-container *ngIf ='text'>
+
+	<div @fadeAnimation *ngIf ='text.invalid && (text.touched || text.dirty)' class ='validation-error'>
+
+		<ul>
+
+			<li *ngIf ='text.errors?.required'> Body of Comment or Reply should be provided and cannot be empty </li>			
+			<li *ngIf ='text.errors?.required || text.errors?.minlength'> Body of Comment or Reply cannot be less than 10 characters in length </li>
+			<li *ngIf ='text.errors?.required || text.errors?.maxlength'> Body of Comment or Reply cannot be greater than 500 characters in length </li>
+
+		</ul>
+
+	</div>
+
+</ng-container>

@@ -1,0 +1,18 @@
+<h2 *ngIf ='title'> {{title}} </h2>
+
+<div id ='update-profile'>
+
+<app-view-description *ngIf ='view' [view-type] ='view'> </app-view-description>
+
+<div id ='guidelines'>
+
+	<app-request-entry-create-file-guideline [system-guideline] ='systemGuideline' > </app-request-entry-create-file-guideline>
+
+</div>
+
+		<app-attachment-upload [theControl] ='props.key' [theForm] ='entryForm' [myProps] ='props' [myNumber] ='i + 1' [attachment-name] ='attachmentConfig.name' [attachment-type] ='attachmentConfig.type' 
+
+		(myFile) ='pushFile($event)' *ngFor ='let props of $controls; let i =index;' [end-points] ='uploadConfigU' #attachments> </app-attachment-upload>
+
+
+</div>

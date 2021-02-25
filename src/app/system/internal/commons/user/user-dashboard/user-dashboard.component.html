@@ -1,0 +1,41 @@
+<h2 *ngIf ='title'> {{title}} </h2>
+
+<app-view-description *ngIf ='view' [system-type] ='systemType' [view-description] ='view'> </app-view-description>
+
+<div id ='dashboard' *ngIf ='systemType'>
+
+<ul>
+
+	<li>
+
+		<a [routerLink] ="['entry' , 'create']" class ='center'> Add a {{systemType}} </a>
+
+	</li>
+
+	<li>
+
+		<a [routerLink] ="['entries']" class ='center'> Manage {{systemType}} </a>
+
+	</li>
+
+	<li>
+
+		<a [routerLink] ="['account-request' , 'entries']" class ='center'> Manage {{systemType}} Request </a>
+
+	</li>
+
+	<li>
+
+		<a [routerLink] ="['entry' , 'delete' , 'all']" class ='center'> Delete All {{systemType}} </a>
+
+	</li>
+
+	<li>
+
+		<a href ='#' class ='center'> {{systemType}} Statistics </a>
+
+	</li>
+
+</ul>
+
+</div>

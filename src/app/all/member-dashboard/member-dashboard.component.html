@@ -1,0 +1,43 @@
+<h2 *ngIf ='title'> {{title}} </h2>
+
+<app-view-description *ngIf ='view' [view-type] ='view'> </app-view-description>
+
+<div *ngIf ='isLoggedIn' id ='dashboard'>
+
+<ul>
+
+	<li *ngIf ='canManage'>
+
+		<a [routerLink] ='["/system"]' class ='center'> Manage System </a>
+
+	</li>
+
+	<li>
+
+		<a [routerLink] ='["/general-request"]' class ='center'> Manage Request </a>
+
+	</li>
+
+	<li>
+
+		<a [routerLink] ='["/refund"]' class ='center'> Manage Refund </a>
+
+	</li>
+
+	<li >
+
+		<a [routerLink] ='["/general-payment"]' class ='center'> Manage Payment </a>
+
+	</li>
+
+	<li>
+
+		<a [routerLink] ="['/account' , 'profile']" class ='center'> Manage Profile </a>
+
+	</li>
+
+
+
+</ul>
+
+</div>

@@ -1,0 +1,86 @@
+<ng-container *ngIf ='entry'>
+
+	<h3 class ='center' > Request Options  </h3>
+
+<div [formGroup] ='entryForm'>
+
+			<div id ='entry-detail-options'>
+
+				<a *ngIf ='!isOtherColAvailable' (click) ='otherCol()' class ='center'> Update Application </a>
+
+		</div>
+
+<ng-container *ngIf ='isOtherColAvailable == true'>
+
+<div class ='form-group' *ngIf ='status'>
+
+	<label for ='status' class ='form-label bold'> Entry Status </label>
+
+	<select name ='status' id ='status' class ='form-control' formControlName ='status'>
+
+		<ng-container *ngIf ='estatuses != null'>
+
+			<ng-container *ngIf ='entry?.status'>
+
+				<option [value] =''> </option> 
+
+				<option *ngFor ='let status of estatuses' [value] ='status._id'> {{status.name}} </option> 
+
+			</ng-container>
+
+		</ng-container>
+
+	</select>
+
+	<app-request-entry-update-validator *ngIf ='status' [system-type] ='systemType' [status] ='status'> </app-request-entry-update-validator>
+
+</div>
+
+
+	<div class ='form-group' *ngIf ='text'>
+
+		<label for ='text' class ='form-label bold'> Message </label>
+
+		<textarea name ='text' id ='text' formControlName ='text'> </textarea>
+
+	<app-request-entry-update-validator *ngIf ='text' [system-type] ='systemType' [text] ='text'> </app-request-entry-update-validator>
+
+	</div>
+
+		<div class ='form-group' *ngIf ='text'>
+
+		<label for ='addition-input' class ='form-label bold'> Additional Input </label>
+
+	<select name ='other-options' id ='addition-input' class ='form-control' [formControl] ='otherOptions'>
+
+				<option value = ''> </option>
+
+				<option value ='1'> Add Username and Password </option> 
+
+				<option value ='2'> Add Password </option> 
+
+	</select>
+
+</div>
+
+	<ng-container [ngSwitch] ='otherOptions.value'>
+
+		<ng-container *ngSwitchCase ='1'>
+
+		<app-general-request-entry-generate-username-password *ngIf ='entry' [system-type] ='systemType' [entry] ='entry' [entry-form] ='entryForm'> </app-general-request-entry-generate-username-password>
+
+	</ng-container>
+
+		<ng-container *ngSwitchCase ='2'>
+
+		<app-general-request-entry-generate-password *ngIf ='entry' [system-type] ='systemType' [entry] ='entry' [entry-form] ='entryForm'> </app-general-request-entry-generate-password>
+
+	</ng-container>
+
+</ng-container>
+
+	</ng-container>
+		
+</div>
+
+</ng-container>

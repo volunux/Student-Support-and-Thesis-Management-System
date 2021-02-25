@@ -1,0 +1,34 @@
+<ng-container *ngIf ='email_address'>
+
+	<div @fadeAnimation *ngIf ='email_address.invalid && (email_address.touched || email_address.dirty)' class ='validation-error'>
+
+		<ul>
+
+			<li *ngIf ='email_address.errors?.required'> Email Address of {{systemType}} should be provided and cannot be empty </li>			
+			<li *ngIf ='email_address.errors?.required || email_address.errors?.minlength'> Email Address of {{systemType}} cannot be less than 7 characters in length </li>
+			<li *ngIf ='email_address.errors?.required || email_address.errors?.maxlength'> Email Address of {{systemType}} cannot be greater than 50 characters in length </li>
+			<li *ngIf ='email_address.errors?.required || email_address.errors?.email_address'> Email Address must be valid and should conform to standards for example david@gmail.com </li>
+			<li *ngIf ='email_address.errors?.emailAddressService'> Email Address cannot be used at the moment because it is already taken by another user. Please input another email address </li>
+
+		</ul>
+
+	</div>
+
+</ng-container>
+
+<ng-container *ngIf ='password'>
+
+	<div @fadeAnimation *ngIf ='password.invalid && (password.touched || password.dirty)' class ='validation-error'>
+
+		<ul>
+
+			<li *ngIf ='password.errors?.required'> Password of {{systemType}} should be provided and cannot be empty </li>			
+			<li *ngIf ='password.errors?.required || password.errors?.minlength'> Password of {{systemType}} cannot be less than 7 characters in length </li>
+			<li *ngIf ='password.errors?.required || password.errors?.maxlength'> Password of {{systemType}} cannot be greater than 35 characters in length </li>
+			<li *ngIf ='password.errors?.simplePassword'> Password of {{systemType}} is too simple and will not be allowed in this system. Please input another type of password </li>
+
+		</ul>
+
+	</div>
+
+</ng-container>

@@ -1,0 +1,33 @@
+<app-view-description *ngIf ='view' [view-type] ='view' [system-type] ='systemType' > </app-view-description>
+
+<app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
+
+	<div id ='reply-comment-entry' *ngIf ='entry'>
+
+		<app-reply-comment-detail *ngIf ='comment' [system-type] ='systemType' [comment] ='comment'> </app-reply-comment-detail>
+
+</div>
+
+	<div id ='reply-form' *ngIf ='entry'>
+
+			<div [formGroup] ='entryCreateForm'>
+
+				<div class ='form-group'>
+
+				<label for ='text' class ='form-label bold'> Message </label>
+
+				<textarea name ='text' id ='text' required ='required' autocomplete ='new-text' formControlName ='text'> </textarea>
+
+				<app-reply-validator *ngIf ='text' [text] ='text'> </app-reply-validator>
+
+						</div>
+
+			<button *ngIf ='!isFormProcessing' class ='btn-submit' [class] ='{"disabled" : !isFormValid }' [disabled] ='!isFormValid'
+
+			(click) ='createEntry(entryCreateForm.value)' > Submit </button> 
+
+			<p *ngIf ='isFormSubmitted'> Your form is being processed. Please kindly be patient and wait while it completes. </p>
+
+				</div>
+
+			</div>

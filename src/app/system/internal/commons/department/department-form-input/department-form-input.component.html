@@ -1,0 +1,37 @@
+		<div [formGroup] ='entryForm'>
+
+			<ng-container *ngIf ='abbreviation'>
+
+			<div class ='form-group'>
+
+				<label for ='abbreviation' class ='form-label bold'> Abbreviation * : </label>
+
+			<input type ='text' id ='abbreviation' required ='required' name ='abbreviation' [placeholder] ='placeholder?.abbreviation' formControlName ='abbreviation' class ='form-control' [readOnly] ='noEdit'>
+
+				<app-department-entry-validator *ngIf ='abbreviation' [system-type] ='systemType' [abbreviation] ='abbreviation'> </app-department-entry-validator>
+
+			</div>
+
+		</ng-container>
+
+			<ng-container *ngIf ='faculty && eothers && eothers.Faculty && eothers.Faculty.length > 0'>
+
+			<div class ='form-group'>
+
+				<label for ='faculty' class ='form-label bold'> Faculty * : </label>
+
+				<select name ='faculty' id ='faculty' required ='required' class ='form-control' formControlName ='faculty' [readOnly] ='noEdit' >
+
+					<option [value] =''> </option> 
+
+					<option *ngFor ='let faculty of eothers.Faculty' [value] ='faculty._id'> {{faculty.name}} </option> 
+
+				</select>
+
+				<app-department-entry-validator *ngIf ='faculty' [system-type] ='systemType' [faculty] ='faculty'> </app-department-entry-validator>
+
+			</div>
+
+		</ng-container>
+
+			</div>

@@ -1,0 +1,43 @@
+<h2 *ngIf ='entry && entry?.name'> {{entry.name}} Payment </h2>
+
+<app-view-description *ngIf ='view' [system-type] ='systemType' [view-type] ='view'> </app-view-description>
+
+<app-resource-unavailable *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
+
+<div *ngIf ='entry' id ='dashboard'>
+
+<ul>
+
+	<li>
+
+		<a [routerLink] ="['entries']" class ='center'> Manage {{entry.name}} Entry </a>
+
+	</li>
+
+	<li *ngIf ='canCreate'>
+
+		<a [routerLink] ="['entry' , 'create']" class ='center'> Create {{entry.name}} Entry </a>
+
+	</li>
+
+	<li>
+
+		<a [routerLink] ='["../../"]' class ='center'> Other Payments </a>
+
+	</li>
+
+	<li *ngIf ='canDeleteAll'>
+
+		<a [routerLink] ="['entry' , 'delete' , 'all']" class ='center'> Delete All {{entry.name}} Entry </a>
+
+	</li>
+
+	<li>
+
+		<a [routerLink] ="['/account' , 'profile']" class ='center'> Profile </a>
+
+	</li>
+
+</ul>
+
+</div>

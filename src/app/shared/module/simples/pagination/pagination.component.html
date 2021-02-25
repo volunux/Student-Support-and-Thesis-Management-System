@@ -1,0 +1,35 @@
+<ng-container *ngIf ='pageNumber'>
+
+<td colspan ='3'>
+
+<ng-container *ngIf ='pageNumber && pageNumber > 1'>
+
+<button class ='pagination prev center' (click) ='prevPage(pageNumber)' > Prev Entries </button>
+
+</ng-container>
+
+<ng-template #entriesBegin>
+
+<button class ='pagination prev center' (click) ='homePage(pageNumber)' > Prev Entries </button>
+
+</ng-template>
+
+</td>
+
+<td colspan ='9'>
+
+<ng-container *ngIf ='!($entryRef) && $entriesLength > 10; else entriesEnd'>
+
+<button class ='pagination next center' (click) ='nextPage(pageNumber)' > Next Entries </button>
+
+</ng-container>
+
+<ng-template #entriesEnd>
+
+<button *ngIf ='$entriesLength >= 1' class ='pagination-end float-right center' [disabled] ='true' [class.disabled] ='true' > End of Entries </button>
+
+</ng-template>
+
+</td>
+
+</ng-container>

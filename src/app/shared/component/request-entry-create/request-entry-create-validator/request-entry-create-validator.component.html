@@ -1,0 +1,15 @@
+<ng-container *ngIf ='message'>
+
+	<div @fadeAnimation *ngIf ='message.invalid && (message.touched || message.dirty)' class ='validation-error'>
+
+		<ul>
+
+			<li *ngIf ='message.errors?.required'> Message of {{systemType}} should be provided and cannot be empty </li>			
+			<li *ngIf ='message.errors?.required || message.errors?.minlength'> Message of {{systemType}} cannot be less than 10 characters in length </li>
+			<li *ngIf ='message.errors?.required || message.errors?.maxlength'> Message of {{systemType}} cannot be greater than 1000 characters in length </li>
+
+		</ul>
+
+	</div>
+
+</ng-container>

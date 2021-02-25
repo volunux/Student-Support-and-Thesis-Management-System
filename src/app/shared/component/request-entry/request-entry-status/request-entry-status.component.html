@@ -1,0 +1,15 @@
+<ng-container *ngIf ='entry != null'>
+
+<ng-container *ngIf ='entry?.message'>
+
+	<p> <b class ='bold'> Message : </b> {{entry?.message}} </p>
+
+</ng-container>
+
+<ng-container *ngIf ='entry?.status'>
+
+	<p> <b class ='bold'> Request Status : </b> {{entry?.status}} </p>
+
+</ng-container>
+
+</ng-container>

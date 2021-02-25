@@ -1,0 +1,112 @@
+<ng-container *ngIf ='entry'>
+
+		<h3> Request Options </h3>
+
+<div [formGroup] ='entryForm'>
+
+
+
+<div class ='form-group' *ngIf ='status'>
+
+	<label for ='status' class ='form-label bold'> Entry Status </label>
+
+	<select name ='status' id ='status' class ='form-control' formControlName ='status'>
+
+		<ng-container *ngIf ='estatuses != null'>
+
+			<ng-container *ngIf ='entry?.status'>
+
+				<option [value] =''> </option> 
+
+				<option *ngFor ='let status of estatuses' [value] ='status._id'> {{status.name}} </option> 
+
+			</ng-container>
+
+		</ng-container>
+
+	</select>
+
+	<app-request-entry-update-validator *ngIf ='status' [system-type] ='systemType' [status] ='status'> </app-request-entry-update-validator>
+
+</div>
+
+
+
+	<div class ='form-group' *ngIf ='text'>
+
+		<label for ='text' class ='form-label bold'> Message </label>
+
+		<textarea name ='text' id ='text' formControlName ='text'> </textarea>
+
+	<app-request-entry-update-validator *ngIf ='text' [system-type] ='systemType' [text] ='text'> </app-request-entry-update-validator>
+
+	</div>
+
+
+
+	<ng-container [ngSwitch] ='currentStage'>
+
+		<ng-container *ngSwitchCase ='2'>
+
+		<div class ='form-group'>
+
+			<p> <b class ='bold'> By clicking on the submit , the request will be forwarded to the Office of the Bursary for Resolution 
+
+			<br/>	Note: Application can be set to only Fulfill or Reject at this stage. </b> 
+
+			</p>
+
+		</div>
+
+	</ng-container>
+
+		<ng-container *ngSwitchCase ='3'>
+
+		<div class ='form-group'>
+
+			<p> <b class ='bold'> By clicking on the "Submit" button , the request will be forwarded to the Student to write an application letter on the subject matter "Refund of Fees" for resolution. 
+
+				<br/>
+
+				Note: Application can be set to only Fulfill or Reject at this stage.
+
+			</b> </p>
+
+		</div>
+
+	</ng-container>
+
+			<ng-container *ngSwitchCase ='4'>
+
+		<div class ='form-group'>
+
+			<p> <b class ='bold'> By clicking on the "Submit" button , You are agreeing to sign and endorse the student application letter the request will be forwarded to the destinated office for 
+
+				resolution on the subject matter "Refund of Fees". 
+
+			</b> </p>
+
+		</div>
+
+	</ng-container>
+
+			<ng-container *ngSwitchCase ='6'>
+
+		<div class ='form-group'>
+
+			<p> <b class ='bold'> This is the last stage of the application. You can only fulfill or reject the application which would mean the Student would or not get a refund. 
+
+			</b> </p>
+
+		</div>
+
+	</ng-container>
+
+
+
+	</ng-container>
+
+
+		</div>
+
+	</ng-container>

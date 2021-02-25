@@ -1,0 +1,16 @@
+<div id ='general-entry'>
+
+	<h2 *ngIf ='title'> {{title}} </h2>
+
+<app-resource-unavailable *ngIf ='isError' [error] ='error'> </app-resource-unavailable>
+
+<ng-container *ngIf ='entryCreateForm'>
+
+	<app-entry-reply-create [system-type] ='systemType' [view] ='view' [entry] ='entry' [comment] ='comment' [entry-create-form] ='entryCreateForm' (processEntry) ='createEntry($event)' >
+
+	</app-entry-reply-create>
+
+</ng-container>
+
+</div>
+

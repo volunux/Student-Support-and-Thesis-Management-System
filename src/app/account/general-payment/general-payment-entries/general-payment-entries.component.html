@@ -1,0 +1,135 @@
+<div id ='entry-main'>
+
+<h2 *ngIf ='title'> {{title}}</h2>
+
+<app-view-description *ngIf ='view' [system-type] ='systemType' [view-type] ='view'> </app-view-description>
+
+<app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
+
+<app-list-entry-options> </app-list-entry-options>
+
+		<div class ='search-bar'>
+
+			<app-search *ngIf ='systemType' [system-type] ='systemType' [$link] ='$link' [search-filters] ='searchFilters'> </app-search>
+
+		<a class ='entry-option entry-option-small center' [class.hide] ='esdl.length < 2' (click) ='deleteManyEntry()'> Delete Many </a>
+
+</div>
+
+<div *ngIf ='$entriesLength > 0'>
+
+<table class ='entries'>
+
+	<caption class ='bold left'> Entries </caption>
+
+	<colgroup>
+
+		<col class ='index'>
+		<col class ='payment-reference'>
+		<col class ='full-name'>
+		<col class ='amount'>
+		<col class ='fee-department'>
+		<col class ='paid-on'>		
+		<col class ='status'>
+		<col class ='changes'>
+
+	</colgroup>
+
+	<thead>
+
+		<tr>
+			<th class ='bold center'> Index </th>
+			<th class ='bold center'> Payment Reference No. </th>
+			<th class ='bold center'> Full Name </th>
+			<th class ='bold center'> Session </th>
+			<th class ='bold center'> Department </th>
+			<th class ='bold center'> Paid On </th>
+			<th class ='bold center'> Status </th>
+			<th class ='bold center'> Changes </th>
+		</tr>
+
+	</thead>
+
+	<tbody [@listAnimation] ='entries.length'>
+
+		<tr *ngFor ='let entry of entries , let i = index , trackBy : trackByPaymentRef'>
+
+			<td class ='center'> {{i + 1}}. </td>
+
+			<ng-template #nilValue>
+
+				<td class ='center'> Nil </td>
+
+			</ng-template>
+			
+			<td class ='center bold payment-ref' *ngIf ='entry?.payment_reference; else nilValue'> {{entry?.payment_reference}} </td>
+
+			<td class ='center' *ngIf ='entry?.full_name; else nilValue'> {{entry?.full_name}} </td>
+
+			<td class ='center' *ngIf ='entry?.payment_session; else nilValue'> {{entry?.payment_session}} </td>
+
+			<td class ='center' *ngIf ='entry?.department; else nilValue'> {{entry?.department}} </td>
+
+			<td class ='center' *ngIf ='entry?.paid_on; else nilValue'> {{entry?.paid_on | date : 'longDate'}} </td>
+
+<td class ='center' *ngIf ='entry?.status; else nilValue' [ngClass] ="{}"> {{entry?.status}} </td>
+
+			<td class =''>
+
+				<a class ='center changes-option changes-option-full' [routerLink] ="['../' , 'entry' , entry?.slug , 'detail']"> View </a>
+
+				<label *ngIf ='canUpdateEntry' class='changes-mark'>
+
+					<ng-container *ngIf ='esdl.length; else normalChecks' >
+
+					<ng-container *ngFor ='let $ed of esdl'>
+
+						<input [checked] ='$ed == entry?.num' type ='checkbox' #checked (click) ='addEntryToDeleteList(entry?.num , checked.checked , i)'>
+
+				  	<span class='checkmark'> </span>
+
+					</ng-container>
+
+				</ng-container>
+
+				<ng-template #normalChecks>
+
+				  <input type ='checkbox' #checked  (click) ='addEntryToDeleteList(entry?.num , checked.checked , i)'>
+
+				  <span class ='checkmark'> </span>
+
+				 </ng-template>
+
+				</label>
+			
+			</td>
+
+		</tr>
+
+		</tbody>
+
+		<tfoot>
+
+			<tr>
+				<td></td>
+			</tr>
+
+			<tr>
+				<td></td>
+			</tr>
+
+			<tr>
+
+			<app-pagination *ngIf ='pageNumber' [entries-length] ='$entriesLength' [entry-ref] ='$entryRef' [page-number] ='pageNumber'> </app-pagination>
+
+			</tr>
+
+		</tfoot>
+
+	</table>
+
+</div>
+
+<app-resource-unavailable *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
+
+</div>

@@ -1,0 +1,48 @@
+<ng-container *ngIf ='text'>
+
+	<div @fadeAnimation *ngIf ='text.invalid && (text.touched || text.dirty)' class ='validation-error'>
+
+		<ul>
+
+			<li *ngIf ='text.errors?.required'> Body of Comment or Reply should be provided and cannot be empty </li>			
+			<li *ngIf ='text.errors?.required || text.errors?.minlength'> Body of Comment or Reply cannot be less than 10 characters in length </li>
+			<li *ngIf ='text.errors?.required || text.errors?.maxlength'> Body of Comment or Reply cannot be greater than 500 characters in length </li>
+
+		</ul>
+
+	</div>
+
+</ng-container>
+
+
+<ng-container *ngIf ='status'>
+
+<div @fadeAnimation *ngIf ='status.invalid && (status.touched || status.dirty)' class ='validation-error'>
+
+	<ul>
+
+		<li *ngIf ='status.errors?.required'> Status of {{systemType}} should be provided and cannot be empty </li>
+		<li *ngIf ='status.errors?.max'> Status of {{systemType}} cannot be greater than specified length </li>
+		<li *ngIf ='status.errors?.Status'> Status of {{systemType}} should be available from existing record before it can be considered valid </li>
+
+	</ul>
+
+</div>
+
+</ng-container>
+
+<ng-container *ngIf ='stage'>
+
+	<div @fadeAnimation *ngIf ='stage.invalid && (stage.touched || stage.dirty)' class ='validation-error'>
+
+		<ul>
+
+			<li *ngIf ='stage.errors?.required'> Stage of {{systemType}} should be provided and cannot be empty </li>			
+			<li *ngIf ='stage.errors?.required || stage.errors?.minlength'> Stage of {{systemType}} cannot be less than 1 characters in length </li>
+			<li *ngIf ='stage.errors?.required || stage.errors?.maxlength'> Stage of {{systemType}} cannot be greater than 30 characters in length </li>
+
+		</ul>
+
+	</div>
+
+</ng-container>

@@ -1,0 +1,13 @@
+<h2 *ngIf ='title' > {{title}} </h2>
+
+<app-view-description *ngIf ='view' [view-type] ='view' [system-type] ='systemType' > </app-view-description>
+
+<app-resource-unavailable *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
+
+<app-general-internal-conversation-entry-detail [entry] ='entry'> 
+
+
+
+		<ng-content> </ng-content>
+
+</app-general-internal-conversation-entry-detail>

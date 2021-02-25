@@ -1,0 +1,36 @@
+
+<app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
+
+<app-view-description *ngIf ='view' [view-type] ='view' [system-type] ='systemType' > </app-view-description>
+
+<ng-container *ngIf ='entryForm'>
+
+	<div id ='entry-delete' [formGroup] ='entryForm' >
+
+		<div id ='entry-detail'>
+
+			<app-general-internal-conversation-form-input [system-type] ='systemType' [entry-form] ='entryForm' [e-others] ='eothers' [placeholder] ='placeholder' [no-edit] ='noEdit' > 
+
+			</app-general-internal-conversation-form-input> 
+
+		<ng-content> </ng-content>
+
+			<button *ngIf ='!isFormProcessing' class ='btn-submit' [class] ='{"disabled" : !isFormValid }' [disabled] ='!isFormValid'
+
+			(click) ='changeEntry(entryForm.value)' > Submit </button> 
+
+			<p *ngIf ='isFormSubmitted'> Your form is being processed. Please kindly be patient and wait while it completes. </p>
+
+		</div>
+
+		</div>
+
+</ng-container>
+
+		<div *ngIf ='systemType' class ='entry-options'>
+
+			<h3> Entry Options </h3>
+
+			<a [routerLink] ="['../../../' , 'entry' , entry?.slug , 'detail']" class ='entry-option center'> {{systemType}} Detail </a>
+
+		</div>

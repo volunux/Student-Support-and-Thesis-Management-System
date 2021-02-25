@@ -1,0 +1,67 @@
+	<ng-container *ngIf ='entry != null'>
+
+		<div id ='entry-detail-options'>
+
+<app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
+
+
+			<ng-container *ngIf ='entry?.status != "Pending"'>
+
+				<a [routerLink] ="[isAdmin , 'entry' , entry?.slug , 'timeline']" class ='center'> Timeline </a>
+
+			</ng-container>
+
+
+<ng-container *ngIf ='entry?.stage != null'>
+
+	<ng-container *ngIf ="entry?.stage._id == 3">
+
+	<ng-container *ngIf ='canUpdateEntry3'>
+
+				<a (click) ='writeLetter($event)' class ='center'> Write Letter </a>
+
+	</ng-container>
+
+	</ng-container>
+
+</ng-container>
+
+
+		<ng-container *ngIf ="entry?.status == 'Pending'">
+
+			<ng-container *ngIf ="canUpdateEntry">
+
+				<a class ='center' (click) ='setEntryOnReview($event)'> Set Application on Review </a>
+
+				</ng-container>
+
+
+			<ng-container *ngIf ='isProcessingReview'>
+
+				<p> Your request is being processed. Please kindly be patient and wait while it completes. </p>
+
+			</ng-container>
+
+		</ng-container>
+
+
+
+		<ng-container *ngIf ='entry?.letter'>
+
+			<a (click) ='viewLetter($event)' class ='center'> View Application Letter </a>
+
+		</ng-container>
+
+
+
+			<ng-container *ngIf ='entry?.status == "Review"'>
+
+				<a [routerLink] ="[isAdmin , 'entry' , entry?.slug , 'comment' , 'add']" class ='center'> Add a Comment </a>
+
+			</ng-container>
+
+
+
+	</div>
+
+	</ng-container>

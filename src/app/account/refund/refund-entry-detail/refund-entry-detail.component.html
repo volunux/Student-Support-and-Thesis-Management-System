@@ -1,0 +1,200 @@
+<div id ='entry-view'>
+
+	<h2 *ngIf ='title' > {{title}} Entry </h2> 
+
+<app-view-description *ngIf ='view' [system-type] ='systemType' [view-type] ='view'> </app-view-description>
+
+<app-resource-unavailable *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
+
+<app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
+
+
+<div *ngIf ='entry' id ='request-entry-detail'>
+
+	<app-request-entry-detail *ngIf ='entry' [entry] ='entry'> </app-request-entry-detail>
+
+	<app-request-entry-student-detail *ngIf ='entry' [entry] ='entry' > </app-request-entry-student-detail>
+
+	<app-refund-entry-user-signature *ngIf ='entry != null' [entry] ='entry'> </app-refund-entry-user-signature>
+
+	<app-refund-entry-option *ngIf ='entry != null' [view] ='view' [link] ='link' [entry] ='entry' [system-type] ='systemType' (onReviewEntry) ='$confirmEntryOnReview($event)'> </app-refund-entry-option>
+
+	<app-file-attachments-two *ngIf ='entry != null' [entry] ='entry'> </app-file-attachments-two>
+
+
+
+
+<ng-container *ngIf ='entry?.stage != null'>
+
+	<ng-container *ngIf ="entry?.stage._id == 1 && (entry?.status != 'Rejected' && entry?.status != 'Fulfilled')">
+
+	<ng-container *ngIf ='canUpdateEntry'>
+
+		<div id ='entry-detail-form'>
+
+			<div id ='entry-detail-options'>
+
+				<a *ngIf ='!isOtherColAvailable' (click) ='otherCol()' class ='center'> Update Application </a>
+
+		</div>
+
+			<form method ='post' [formGroup] ='entryForm' (ngSubmit) ='updateEntry(entryForm.value)'>
+
+				<ng-container *ngIf ='eother != null'>
+
+				<app-stage-one-two-five  [entry] ='entry' [entry-other] ='eother' [entry-form] ='entryForm' [current-stage] ='currentStage' [system-type] ='systemType'> </app-stage-one-two-five>
+
+			<button *ngIf ='!isFormProcessing' type ='submit' class ='btn-submit' [class] ='{"disabled" : !isFormValid }' [disabled] ='!isFormValid'> Submit </button> 
+
+			<p *ngIf ='isFormSubmitted'> Your form is being processed. Please kindly be patient and wait while it completes. </p>
+
+		</ng-container>
+
+			</form>
+
+		</div>
+
+	</ng-container>
+
+	</ng-container>
+
+</ng-container>
+
+
+<ng-container *ngIf ='entry?.stage != null'>
+
+	<ng-container *ngIf ="entry?.stage._id == 2 && (entry?.status != 'Rejected' && entry?.status != 'Fulfilled')">
+
+	<ng-container *ngIf ='canUpdateEntry2'>
+
+		<div id ='entry-detail-form'>
+
+			<div id ='entry-detail-options'>
+
+				<a *ngIf ='!isOtherColAvailable' (click) ='otherCol()' class ='center'> Update Application </a>
+
+		</div>
+
+			<form method ='post' [formGroup] ='entryForm' (ngSubmit) ='updateEntry(entryForm.value)'>
+
+				<ng-container *ngIf ='eother != null'>
+
+					<app-stage-one-two-five [entry] ='entry' [entry-other] ='eother' [entry-form] ='entryForm' [current-stage] ='currentStage' [system-type] ='systemType'> </app-stage-one-two-five>
+
+			<button *ngIf ='!isFormProcessing' type ='submit' class ='btn-submit' [class] ='{"disabled" : !isFormValid }' [disabled] ='!isFormValid'> Submit </button> 
+
+			<p *ngIf ='isFormSubmitted'> Your form is being processed. Please kindly be patient and wait while it completes. </p>
+
+		</ng-container>
+
+			</form>
+
+		</div>
+
+	</ng-container>
+
+	</ng-container>
+
+</ng-container>	
+
+
+<ng-container *ngIf ='entry?.stage'>
+
+	<ng-container *ngIf ='canUpdateEntry4'>
+
+		<ng-container *ngIf ='entry?.signature != null && entry?.signature.length > 0; else noSignature'>
+
+			<ng-container *ngIf ='entry?.signature.length < 2'>
+
+			<ng-container *ngFor ='let sign of entry?.signature'>
+
+				<ng-container *ngIf ='sign._id != userId'>
+
+		<div id ='entry-detail-form'>
+
+			<form method ='post' [formGroup] ='entryForm' (ngSubmit) ='updateEntry(entryForm.value)'>
+
+					<app-stage-four *ngIf ='entry' [entry] ='entry' [entry-form] ='entryForm' [current-stage] ='currentStage' [system-type] ='systemType'> </app-stage-four>
+
+			<button *ngIf ='!isFormProcessing' type ='submit' class ='btn-submit' [class] ='{"disabled" : !isFormValid }' [disabled] ='!isFormValid'> Sign & Endorse </button> 
+
+			<p *ngIf ='isFormSubmitted'> Your form is being processed. Please kindly be patient and wait while it completes. </p>
+
+			</form>
+
+		</div>
+
+	</ng-container>
+
+	</ng-container>
+
+</ng-container>
+
+	</ng-container>
+
+
+	<ng-template #noSignature>
+
+				<div id ='entry-detail-form'>
+
+			<form method ='post' [formGroup] ='entryForm' (ngSubmit) ='updateEntry(entryForm.value)'>
+
+					<app-stage-four *ngIf ='entry' [entry] ='entry' [entry-form] ='entryForm' [current-stage] ='currentStage' [system-type] ='systemType'> </app-stage-four>
+
+			<button *ngIf ='!isFormProcessing' type ='submit' class ='btn-submit' [class] ='{"disabled" : !isFormValid }' [disabled] ='!isFormValid'> Sign & Endorse </button> 
+
+			<p *ngIf ='isFormSubmitted'>Your form is being processed. Please kindly be patient and wait while it completes. </p>
+
+			</form>
+
+		</div>
+
+	</ng-template>
+
+
+	</ng-container>
+
+</ng-container>	
+
+
+
+
+<ng-container *ngIf ='entry?.stage'>
+
+	<ng-container *ngIf ="entry?.stage._id == 5 && (entry?.status != 'Rejected' && entry?.status != 'Fulfilled')">
+
+	<ng-container *ngIf ='canUpdateEntry5'>
+
+		<div id ='entry-detail-form'>
+
+			<div id ='entry-detail-options'>
+
+				<a *ngIf ='!isOtherColAvailable' (click) ='otherCol()' class ='center'> Update Application </a>
+
+		</div>
+
+			<form method ='post' [formGroup] ='entryForm' (ngSubmit) ='updateEntry(entryForm.value)'>
+
+			<ng-container *ngIf ='eother != null'>
+
+			<app-stage-one-two-five [entry] ='entry' [entry-form] ='entryForm' [entry-other] ='eother' [current-stage] ='currentStage' [system-type] ='systemType'> </app-stage-one-two-five>
+
+			<button *ngIf ='!isFormProcessing' type ='submit' class ='btn-submit' [class] ='{"disabled" : !isFormValid }' [disabled] ='!isFormValid'> Submit </button> 
+
+			<p *ngIf ='isFormSubmitted'> Your form is being processed. Please kindly be patient and wait while it completes. </p>
+
+		</ng-container>
+
+			</form>
+
+		</div>
+
+	</ng-container>
+
+	</ng-container>
+
+</ng-container>
+
+	</div>
+
+</div>

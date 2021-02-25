@@ -1,0 +1,37 @@
+		<div [formGroup] ='entryForm'>
+
+			<ng-container *ngIf ='abbreviation'>
+
+			<div class ='form-group'>
+
+				<label for ='abbreviation' class ='form-label bold'> Abbreviation * : </label>
+
+			<input type ='text' id ='abbreviation' required ='required' name ='abbreviation' [placeholder] ='placeholder?.abbreviation' formControlName ='abbreviation' class ='form-control' [readOnly] ='noEdit'>
+
+				<app-request-type-entry-validator *ngIf ='abbreviation' [system-type] ='systemType' [abbreviation] ='abbreviation'> </app-request-type-entry-validator>
+
+			</div>
+
+		</ng-container>
+
+			<ng-container *ngIf ='unit && eothers && eothers.Unit && eothers.Unit.length > 0'>
+
+			<div class ='form-group'>
+
+				<label for ='unit' class ='form-label bold'> Unit * : </label>
+
+				<select name ='unit' id ='unit' required ='required' class ='form-control' formControlName ='unit' [readOnly] ='noEdit' >
+
+					<option [value] =''> </option> 
+
+					<option *ngFor ='let unit of eothers.Unit' [value] ='unit._id'> {{unit.name}} </option> 
+
+				</select>
+
+				<app-department-entry-validator *ngIf ='unit' [system-type] ='systemType' [unit] ='unit'> </app-department-entry-validator>
+
+			</div>
+
+		</ng-container>
+
+			</div>

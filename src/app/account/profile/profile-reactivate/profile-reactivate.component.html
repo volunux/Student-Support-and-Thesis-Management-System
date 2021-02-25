@@ -1,0 +1,21 @@
+<h2 *ngIf ='title'> {{title}} </h2>
+
+<app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
+
+<app-resource-unavailable *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
+
+<app-view-description *ngIf ='view' [view-type] ='view'> </app-view-description>
+
+	<div *ngIf ='entry' id ='entry-detail'>
+
+		<form method ='post' autocomplete ='off' [formGroup] ='entryForm' (ngSubmit) ='reactivateEntry(entryForm.value)'>
+
+			<app-profile-input-fields *ngIf ='systemType' [system-type] ='systemType' [entry] ='entry' [entry-form] ='entryForm'> </app-profile-input-fields>
+
+			<button *ngIf ='!isFormProcessing' type ='submit' class ='btn-submit' [class] ='{"disabled" : !isFormValid }' [disabled] ='!isFormValid' > Submit </button> 
+
+			<p *ngIf ='isFormSubmitted'> Your form is being processed. Please kindly be patient and wait while it completes. </p>
+
+		</form>
+
+	</div>

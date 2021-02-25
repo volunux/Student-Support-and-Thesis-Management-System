@@ -1,0 +1,145 @@
+<div *ngIf ='entry' id ='entry-view'>
+
+	<div id ='entry-detail'>
+
+	<table>
+
+		<colgroup>
+
+			<col class ='parameter'>
+			<col class ='data'>
+
+		</colgroup>
+
+		<tbody>
+
+			<ng-container *ngIf ='entry?.text'>
+
+			<tr>
+
+				<th class ='bold left'> Text : </th>
+				<td> {{entry?.text}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.created_on'>
+
+			<tr>
+
+				<th class ='bold left'> Created At : </th>
+				<td> {{entry?.created_on | date : 'fullDate'}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.updated_on'>
+
+			<tr>
+
+				<th class ='bold left'> Updated At : </th>
+				<td> {{entry?.updated_on | date : 'fullDate'}} </td>
+
+			</tr>
+
+		</ng-container>
+
+
+			<ng-container *ngIf ='entry?.entry_id'>
+
+			<tr>
+
+				<th class ='bold left'> Main Entry ID : </th>
+				<td> {{entry?.entry_id}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.comment_id'>
+
+			<tr>
+
+				<th class ='bold left'> Main Comment ID : </th>
+				<td> {{entry?.comment_id}} </td>
+
+			</tr>
+
+		</ng-container>
+
+	<ng-container *ngIf ='entry?.author && (entry?.author?.full_name)'>
+
+			<tr>
+
+				<th class ='bold left'> Author Name : </th>
+				<td> {{entry?.author?.full_name}} </td>
+
+			</tr>
+
+	</ng-container>
+
+	<ng-container *ngIf ='entry?.unit'>
+
+			<tr>
+
+				<th class ='bold left'> Unit : </th>
+				<td> {{entry?.unit}} </td>
+
+			</tr>
+
+	</ng-container>
+
+	<ng-container *ngIf ='entry?.request_type'>
+
+			<tr>
+
+				<th class ='bold left'> Request Type : </th>
+				<td> {{entry?.request_type}} </td>
+
+			</tr>
+
+	</ng-container>
+
+		<ng-container *ngIf ='entry?.comment_author_name'>
+
+			<tr>
+
+				<th class ='bold left'> Comment Author Name : </th>
+				<td> {{entry?.comment_author_name}} </td>
+
+			</tr>
+
+	</ng-container>
+
+
+		<ng-content> </ng-content>
+
+
+			<ng-container *ngIf ='entry?.status'>
+
+			<tr>
+
+				<th class ='bold left'> Status : </th>
+				<td> {{entry?.status}} </td>
+
+			</tr>
+
+		</ng-container>
+
+		</tbody>
+
+	</table>
+
+			<div class ='entry-options'>
+
+				<h3> Entry Options </h3>
+
+			<a [routerLink] ="['../../../' , 'entry' , entry?.slug , 'delete']" class ='entry-option center'> {{systemType}} Delete </a>
+
+		</div>
+
+</div>
+
+</div>

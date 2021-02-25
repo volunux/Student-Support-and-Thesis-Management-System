@@ -1,0 +1,35 @@
+<h2 *ngIf ='title'> {{title}} </h2>
+
+<app-view-description *ngIf ='view' [view-type] ='view'> </app-view-description>
+
+<div *ngIf ='systemType' id ='dashboard'>
+
+<ul>
+
+	<li>
+
+		<a [routerLink] ='["/system"]' class ='center'> Manage System </a>
+
+	</li>
+
+	<li>
+
+		<a [routerLink] ='["/general-request"]' class ='center'> Manage General Request </a>
+
+	</li>
+
+	<li>
+
+		<a [routerLink] ='["/general-payment"]' class ='center'> Manage General Payment </a>
+
+	</li>
+
+	<li>
+
+		<a [routerLink] ='["/refund"]' class ='center'> Manage Refund </a>
+
+	</li>
+
+</ul>
+
+</div>

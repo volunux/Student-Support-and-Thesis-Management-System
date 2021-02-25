@@ -1,0 +1,52 @@
+<div id ='entry-view'>
+
+	<h2 *ngIf ='title' > {{title}} </h2> 
+
+<app-view-description *ngIf ='view' [system-type] ='systemType' [view-type] ='view'> </app-view-description>
+
+<app-resource-unavailable *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
+
+<app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
+
+<ng-container *ngIf ='entry?.stage != null && entry?.stage == 3'>
+
+	<ng-container *ngIf ='canUpdateEntry3'>
+
+		<div id ='entry-detail-form'>			
+
+			<form method ='post' [formGroup] ='entryForm' (ngSubmit) ='updateEntry(entryForm.value)'>
+
+				<div id ='letter-writing' class ='form-group' *ngIf ='main_body'>
+
+						<label for ='text' class ='form-label bold'> Letter </label>
+
+				<div [froalaEditor] formControlName ='main_body' appFroalaInitializer> </div>
+
+					<app-refund-letter-validator *ngIf ='main_body' [system-type] ='systemType' [main-body] ='main_body'> </app-refund-letter-validator>
+
+				</div>
+
+		<div class ='form-group'>
+
+			<p> <b class ='bold'> By clicking on the "Submit" button , the request will be forwarded to the HOD and Dean for endorsement on whether the fees paid will be reverted to the student 
+
+				account. 
+
+			</b> </p>
+
+		</div>
+
+			<button *ngIf ='!isFormProcessing' type ='submit' class ='btn-submit' [class] ='{"disabled" : !isFormValid }' [disabled] ='!isFormValid'> Submit </button> 
+
+			<p *ngIf ='isFormSubmitted'> Your form is being processed. Please kindly be patient and wait while it completes. </p>
+
+			</form>
+
+		</div>
+
+	</ng-container>
+
+</ng-container>	
+
+
+</div>

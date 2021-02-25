@@ -1,0 +1,28 @@
+
+<ng-container *ngIf ='entry'>
+
+<h3> Request Options </h3>
+
+<div [formGroup] ='entryForm'>
+
+	<div class ='form-group' *ngIf ='text'>
+
+		<label for ='text' class ='form-label bold'> Message </label>
+
+		<textarea name ='text' id ='text' formControlName ='text'> </textarea>
+
+	<app-request-entry-update-validator *ngIf ='text' [system-type] ='systemType' [text] ='text'> </app-request-entry-update-validator>
+
+	</div>
+
+		<div class ='form-group'>
+
+			<p> <b class ='bold'> By clicking on the "Submit" button , You are agreeing to sign and endorse the student application letter which will be forwarded to the destinated office for 
+
+			resolution on the subject matter "Refund of Fees". </b> </p>
+
+		</div>
+
+		</div>
+
+	</ng-container>

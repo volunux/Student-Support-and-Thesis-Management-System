@@ -1,0 +1,22 @@
+<h2 *ngIf ='title' > {{title}} </h2>
+
+<app-view-description *ngIf ='view' [view-type] ='view' [system-type] ='systemType' > </app-view-description>
+
+<app-resource-unavailable *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
+
+<app-general-internal-entry-detail [entry] ='entry'> 
+
+			<ng-container *ngIf ='entry?.abbreviation;'>
+
+			<tr>
+
+				<th class ='bold left'> Abbreviation : </th>
+				<td> {{entry?.abbreviation}} </td>
+
+			</tr>
+
+		</ng-container>
+
+		<ng-content> </ng-content>
+
+</app-general-internal-entry-detail>

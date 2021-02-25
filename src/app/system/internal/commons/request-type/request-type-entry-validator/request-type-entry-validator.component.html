@@ -1,0 +1,31 @@
+<ng-container *ngIf ='abbreviation'>
+
+<div @fadeAnimation *ngIf ='abbreviation.invalid && (abbreviation.touched || abbreviation.dirty)' class ='validation-error'>
+
+	<ul>
+
+		<li *ngIf ='abbreviation.errors?.required'> Abbreviation of {{systemType}} should be provided and cannot be empty </li>
+		<li *ngIf ='abbreviation.errors?.required || abbreviation.errors?.minlength'> Abbreviation of {{systemType}} cannot be less than 2 characters in length </li>
+		<li *ngIf ='abbreviation.errors?.required || abbreviation.errors?.maxLength'> Abbreviation of {{systemType}} cannot be greater than 8 characters in length </li>
+
+	</ul>
+
+</div>
+
+	</ng-container>
+
+<ng-container *ngIf ='unit'>
+
+<div @fadeAnimation *ngIf ='unit.invalid && (unit.touched || unit.dirty)' class ='validation-error'>
+
+	<ul>
+
+			<li *ngIf ='unit.errors?.required'> Unit of {{systemType}} should be provided and cannot be empty </li>
+			<li *ngIf ='unit.errors?.max'> Unit of {{systemType}} cannot be greater than specified length </li>
+			<li *ngIf ='unit.errors?.Unit'> Unit of {{systemType}} should be available from existing record before it can be considered valid </li>
+
+	</ul>
+
+</div>
+
+</ng-container>

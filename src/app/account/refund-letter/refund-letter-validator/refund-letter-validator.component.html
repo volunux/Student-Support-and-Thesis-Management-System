@@ -1,0 +1,15 @@
+<ng-container *ngIf ='main_body'>
+
+	<div @fadeAnimation *ngIf ='main_body.invalid && (main_body.touched || main_body.dirty)' class ='validation-error'>
+
+		<ul>
+
+			<li *ngIf ='main_body.errors?.required'> Body of Letter should be provided and cannot be empty </li>			
+			<li *ngIf ='main_body.errors?.required || main_body.errors?.minlength'> Body of Letter cannot be less than 30 characters in length </li>
+			<li *ngIf ='main_body.errors?.required || main_body.errors?.maxlength'> Body of Letter cannot be greater than 8000 characters in length </li>
+
+		</ul>
+
+	</div>
+
+</ng-container>

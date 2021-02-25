@@ -1,0 +1,59 @@
+		<div [formGroup] ='entryForm'>
+
+			<ng-container *ngIf ='name'>
+
+			<div class ='form-group'>
+
+				<label for ='name' class ='form-label bold'> Name * : </label>
+
+				<input type ='text' id ='name' required ='required' name ='name' [placeholder] ='placeholder?.name' formControlName ='name' class ='form-control' [readOnly] ='noEdit'>
+
+				<app-general-internal-form-input-validator *ngIf ='name' [system-type] ='systemType' [name] ='name'> </app-general-internal-form-input-validator>
+
+			</div>
+
+		</ng-container>
+
+			<ng-container *ngIf ='description'>
+
+			<div class ='form-group'>
+
+				<label for ='description' class ='form-label bold'> Description * : </label>
+
+				<textarea id ='description' name ='description' [placeholder] ='placeholder?.description' required ='required' formControlName ='description' class ='form-control form-textarea' [readOnly] ='noEdit' >
+					
+				</textarea>
+
+				<app-general-internal-form-input-validator *ngIf ='description' [system-type] = 'systemType' [description] ='description'> </app-general-internal-form-input-validator>
+
+			</div>
+
+		</ng-container>
+
+
+		<ng-content> </ng-content>
+
+
+			<ng-container *ngIf ='status && eothers && eothers.Status && eothers.Status.length > 0'>
+
+			<div class ='form-group'>
+
+				<label for ='status' class ='form-label bold'> Status * : </label>
+
+				<select name ='status' id ='status' required ='required' class ='form-control' formControlName ='status' [readOnly] ='noEdit' >
+
+					<option [value] =''> </option> 
+
+					<option *ngFor ='let status of eothers.Status' [value] ='status._id'> {{status.word}} </option> 
+
+				</select>
+
+				<app-general-internal-form-input-validator *ngIf ='status' [system-type] = 'systemType' [status] ='status'> </app-general-internal-form-input-validator>
+
+			</div>
+
+		</ng-container>
+
+
+		</div>
+

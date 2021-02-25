@@ -1,0 +1,17 @@
+		<div [formGroup] ='entryForm'>
+
+			<ng-container *ngIf ='abbreviation'>
+
+			<div class ='form-group'>
+
+				<label for ='abbreviation' class ='form-label bold'> Abbreviation * : </label>
+
+			<input type ='text' id ='abbreviation' required ='required' name ='abbreviation' [placeholder] ='placeholder?.abbreviation' formControlName ='abbreviation' class ='form-control' [readOnly] ='noEdit'>
+
+				<app-internal-one-entry-validator *ngIf ='abbreviation' [system-type] ='systemType' [abbreviation] ='abbreviation'> </app-internal-one-entry-validator>
+
+			</div>
+
+		</ng-container>
+
+			</div>

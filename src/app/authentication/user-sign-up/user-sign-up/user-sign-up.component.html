@@ -1,0 +1,35 @@
+<div id ='entry-create'>
+
+	<h2 *ngIf ='title'> {{title}} </h2>
+
+<app-view-description *ngIf ='view' [view-type] ='view' [system-type] ='systemType' > </app-view-description>
+
+<app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
+
+<app-resource-unavailable id ='error' *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
+
+	<div *ngIf ='generalOthers' id ='entry-detail'>
+
+		<form [formGroup] ='entryForm' method ='post' (ngSubmit) ='addEntry(entryForm.value)'>
+
+			<div *ngIf ='(entryForm.touched || entryForm.dirty)'>
+
+					<ul>
+
+						<li *ngIf ='entryForm.errors && entryForm.errors.bothNames'> First and Last Name cannot be equal </li>
+
+					</ul>
+
+			</div>
+
+<app-user-account-form-inputs *ngIf ='systemType' [system-type] ='systemType' [entry-form] ='entryForm' [general-others] ='generalOthers' [no-edit] ='noEdit' > </app-user-account-form-inputs>
+
+			<button *ngIf ='!isFormProcessing' type ='submit' class ='btn-submit' [class] ='{"disabled" : !isFormValid }' [disabled] ='!isFormValid' > Submit </button> 
+
+			<p *ngIf ='isFormSubmitted'> Your form is being processed. Please kindly be patient and wait while it completes. </p>
+
+		</form>
+
+	</div>
+
+</div>

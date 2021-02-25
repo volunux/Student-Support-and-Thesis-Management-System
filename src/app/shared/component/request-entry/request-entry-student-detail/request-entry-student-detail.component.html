@@ -1,0 +1,35 @@
+<ng-container *ngIf ='entry'>
+
+	<h2> Student Detail </h2>
+
+	<hr/>
+
+		<ng-container *ngIf ='entry?.author'>
+
+			<ng-container *ngIf ='entry?.author?.full_name'>
+
+				<p> <b class ='bold'> Name : </b> {{entry?.author?.full_name}} </p>
+
+			</ng-container>
+
+		<ng-container *ngIf ='entry?.author?.faculty'>
+
+			<p> <b class ='bold'> Faculty : </b> {{entry?.author?.faculty}} </p>
+
+		</ng-container>
+
+		<ng-container *ngIf ='entry?.author?.department'>
+
+			<p> <b class ='bold'> Department : </b> {{entry?.author?.department}} </p>
+
+		</ng-container>
+
+		<ng-container *ngIf ='entry?.author?.level'>
+
+			<p> <b class ='bold'> Level : </b> {{entry?.author?.level}} </p>
+
+		</ng-container>
+
+	</ng-container>
+
+	</ng-container>

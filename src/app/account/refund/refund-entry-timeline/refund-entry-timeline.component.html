@@ -1,0 +1,132 @@
+<div id ='general-timeline'>
+
+	<div id ='general-entry-details'>
+
+		<h2> Request Details </h2>
+
+<app-view-description *ngIf ='view' [view-type] ='view' [system-type] ='systemType' > </app-view-description>
+
+<app-resource-unavailable *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
+
+<app-request-entry-status *ngIf ='entry' [system-type] ='systemType' [entry] ='entry'> </app-request-entry-status>
+
+	<ng-container *ngIf ='comments != null && comments?.length > 0; else noComments'>
+
+		<div class ='comments'>
+
+			<h3> Timeline </h3>
+
+			<ng-container *ngFor ='let comment of comments; let i =index'>
+
+				<div class ='comment'>
+
+					<p> <b class ='bold'> {{i + 1}} </b> <small class ='timestamp'> {{comment?.updated_on | date : 'longDate'}} </small> </p>
+
+					<ng-container *ngIf ='comment?.author; else anonymousTemplate'>
+
+						<p class ='author'> <small> <b class ='bold'> {{comment?.author.full_name}} </b> </small> </p>
+
+					</ng-container>
+
+					<ng-template #anonymousTemplate>
+
+						<p class ='author'> <small> <b class ='bold'> Anonymous </b> </small> </p>
+
+					</ng-template>
+
+					<ng-container *ngIf ='comment?.text'>
+
+						<p class ='text'> <b class ='bold'> Message : </b> {{comment?.text}} </p>
+
+					</ng-container>
+
+					<ng-container *ngIf ="entry?.status != 'Fulfilled' && entry?.status != 'Rejected'">
+
+						<ng-container *ngIf ='(comment.replies == null || comment?.replies.length < 1) && i != 0'>
+
+							<a id ='{{comment?.slug}}' class ='reply-add' [routerLink] ="[isAdmin , 'entry' , entry?.slug , 'comment' , comment?.slug , 'reply' , 'add']"> Reply </a>
+
+						</ng-container> 						
+
+					</ng-container>
+
+					<ng-container *ngIf ='comment?.replies != null && comment?.replies?.length != 0'>
+
+						<div class ='replies'>
+
+							<ng-container *ngFor ='let reply of comment?.replies; let j =index'>
+
+								<div class ='reply'>
+
+									<ng-container *ngIf ='comment.updated_on'>
+
+									<p> <b class ='bold'> {{j + 1}} </b> <small class ='timestamp'> {{comment?.updated_on | date : 'longDate'}} </small> </p>
+
+								</ng-container>
+
+									<ng-container *ngIf ='reply?.author; else anonymousTemplate1'>
+
+										<p class ='author'> <small> <b class ='bold'> Author : {{reply?.author.full_name}} </	b> </small> </p>
+
+									</ng-container>
+
+									<ng-template #anonymousTemplate1>
+
+										<p class ='author'> <small> <b class ='bold'> Anonymous </b> </small> </p>
+
+									</ng-template>
+
+									<ng-container *ngIf ='reply?.text'>
+
+										<p class ='text'> <b class ='bold'> Message : {{(reply?.comment_author_name ? '@' + reply?.comment_author_name.split(' ').join('') : '')}} </b>  
+
+										{{reply?.text | replaceLineBreak}} </p>
+
+									</ng-container>
+
+								</div>
+
+							</ng-container>
+
+						</div>
+
+					</ng-container>
+
+				</div>
+
+			</ng-container>
+
+		</div>
+
+	</ng-container>
+
+	<ng-template #noComments>
+
+		<div class ='comments'>
+
+			<p> Comments entries not available for this entry. </p>
+
+		</div>
+
+	</ng-template>
+
+</div>
+
+		<div id ='entry-detail-options' *ngIf ='entry'>
+
+			<ng-container *ngIf ="entry?.status == 'Review'">
+
+				<a [routerLink] ="[isAdmin , 'entry' , entry?.slug , 'comment' , 'add']" class ='center'> Add a Comment </a>
+
+			</ng-container>
+
+			<ng-container *ngIf ='view'>
+
+					<a [routerLink] ="[isAdmin , 'entry' , entry?.slug , 'detail']" class ='center'> Entry Detail </a>
+
+			</ng-container>
+
+		</div>
+
+</div>
+

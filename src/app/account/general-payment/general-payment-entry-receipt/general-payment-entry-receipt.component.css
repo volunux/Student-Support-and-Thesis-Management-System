@@ -1,0 +1,26 @@
+.payment-status * {
+
+	font-size : 18px;
+	font-family : Arial;
+}
+
+.pending {
+
+	color : blue;
+}
+
+.failed {
+
+	color : red;
+}
+
+.success {
+
+	color : green;
+}
+
+.refunded {
+
+	color : purple;
+}
+

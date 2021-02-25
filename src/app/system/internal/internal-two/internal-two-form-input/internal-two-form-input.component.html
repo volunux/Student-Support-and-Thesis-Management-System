@@ -1,0 +1,17 @@
+		<div [formGroup] ='entryForm'>
+
+			<ng-container *ngIf ='word'>
+
+			<div class ='form-group'>
+
+				<label for ='word' class ='form-label bold'> Word * : </label>
+
+			<input type ='text' id ='word' required ='required' name ='word' [placeholder] ='placeholder?.word' formControlName ='word' class ='form-control' [readOnly] ='noEdit'>
+
+				<app-internal-two-entry-validator *ngIf ='word' [system-type] ='systemType' [word] ='word'> </app-internal-two-entry-validator>
+
+			</div>
+
+		</ng-container>
+
+			</div>

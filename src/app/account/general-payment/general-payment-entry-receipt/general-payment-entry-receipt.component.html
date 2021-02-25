@@ -1,0 +1,61 @@
+<div id ='general-payment'>
+
+<h2 *ngIf ='title'> {{title}} </h2>
+
+<app-view-description *ngIf ='view' [view-type] ='view' [system-type] ='systemType' > </app-view-description>
+
+<app-resource-unavailable *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
+
+<div *ngIf ='entryForm'>
+
+<form [formGroup] ='entryForm' autocomplete ='new-payment-verification' (ngSubmit) ='verifyPayment(entryForm.value)'>
+
+	<div class ='form-group'>
+
+		<label for ='payment-reference' class ='form-label bold' > Payment Reference * : </label>
+
+		<input type ='text' id ='payment-reference' name ='payment_reference' placeholder ='abczyxxyzaslkj' class ='form-control' formControlName ='payment_reference' autocomplete ='new-payment_reference'/>
+
+<ng-container *ngIf ='payment_reference'>
+
+	<div @fadeAnimation *ngIf ='payment_reference.invalid && (payment_reference.touched || payment_reference.dirty)' class ='validation-error'>
+
+		<ul>
+
+			<li *ngIf ='payment_reference.errors?.required'> Payment Reference of {{systemType}} should be provided and cannot be empty </li>			
+			<li *ngIf ='payment_reference.errors?.required || payment_reference.errors?.minlength'> Payment Reference of {{systemType}} cannot be less than 4 characters in length </li>
+			<li *ngIf ='payment_reference.errors?.required || payment_reference.errors?.maxlength'> Payment Reference of {{systemType}} cannot be greater than 30 characters in length </li>
+
+		</ul>
+
+	</div>
+
+</ng-container>
+
+	</div>
+
+			<button *ngIf ='!isFormProcessing' type ='submit' class ='btn-submit' [class] ='{"disabled" : !isFormValid }' [disabled] ='!isFormValid' > Verify Payment </button> 
+
+			<p *ngIf ='isFormSubmitted'> Your form is being processed. Please kindly be patient and wait while it completes. </p>
+</form>
+
+</div>
+
+<div *ngIf ='entry != null'> 
+
+	<div class ='payment-status'>
+
+	<p class =''> <span class =''> Status : </span> 
+
+		<span [ngClass] ="{'pending' : entry?.status == 'Pending' , 'success' : entry?.status == 'Success' , 'failed' : entry?.status == 'Failed' , 'refunded' : entry?.status == 'Refunded' }">
+
+			{{entry.status}} </span> </p>
+
+	<p class =''> Payment Type : {{entry.payment_type_name}} </p>
+
+</div>
+
+
+	</div>
+
+</div>

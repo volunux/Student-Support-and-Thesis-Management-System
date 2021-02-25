@@ -1,0 +1,91 @@
+<ng-container *ngIf ='entry'>
+
+		<h2> Entry Detail </h2>
+
+		<hr/> 
+
+		<ng-container *ngIf ='entry?.message'>
+
+			<p> <b class ='bold'> Message : </b> {{entry?.message}} </p>
+
+		</ng-container>
+
+		<ng-container *ngIf ='entry?.application_number'>
+
+			<p> <b class ='bold'> Application Unique Identification Number : </b> {{entry?.application_number}} </p>
+
+		</ng-container>
+
+		<ng-container *ngIf ='entry?.updated_on'>
+
+			<p> <b class ='bold'> Updated On : </b> {{entry?.updated_on | date : 'longDate'}} </p>
+
+		</ng-container>
+
+		<ng-container *ngIf ='entry?.unit_name'>
+
+			<p> <b class ='bold'> Unit : </b> {{entry?.unit_name}} </p>
+
+		</ng-container>
+
+		<ng-container *ngIf ='entry?.status'>
+
+			<p> <b class ='bold'> Status : </b> {{entry?.status}} </p>
+
+		</ng-container>
+
+		<ng-container *ngIf ='entry?.entry_handler'>
+
+			<p> <b class ='bold'> Handler : </b> {{entry?.entry_handler?.full_name}}</p>
+
+		</ng-container>
+
+	<ng-container *ngIf ='entry?.stage; else noStage'>
+
+		<h2> Stage Detail </h2>
+
+		<hr/> 
+
+		<ng-container *ngIf ='entry?.stage?._id'>
+
+			<p> <b class ='bold'> Number </b> : {{entry?.stage?._id}} </p>
+
+		</ng-container>
+
+		<ng-container *ngIf ='entry?.stage?.name'>
+
+			<p> <b class ='bold'> Name </b> : {{entry?.stage?.name}} </p>
+
+		</ng-container>
+
+	</ng-container>
+
+	<ng-template #noStage>
+
+			<p> <b class ='bold'> Stage </b> : "Not yet in Stage" </p>
+
+	</ng-template> 
+
+		<ng-container *ngIf ='entry?.username || entry?.password'>
+
+		<h3> Request Credential </h3>
+
+		<hr/>
+
+		<ng-container *ngIf ='entry?.username'>
+
+			<p> <b class ='bold'> Username : </b> {{entry?.username}} </p>
+
+		</ng-container>
+
+		<ng-container *ngIf ='entry?.password'>
+
+			<p> <b class ='bold'> Password : </b> {{entry?.password}} </p>
+
+		</ng-container>
+
+	</ng-container>
+
+	
+
+</ng-container>

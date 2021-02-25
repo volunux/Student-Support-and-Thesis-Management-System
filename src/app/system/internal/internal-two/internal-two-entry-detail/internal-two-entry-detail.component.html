@@ -1,0 +1,20 @@
+<h2 *ngIf ='title' > {{title}} </h2>
+
+<app-view-description *ngIf ='view' [view-type] ='view' [system-type] ='systemType' > </app-view-description>
+
+<app-resource-unavailable *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
+
+<app-general-internal-entry-detail [entry] ='entry'> 
+
+			<ng-container *ngIf ='entry?.word;'>
+
+			<tr>
+
+				<th class ='bold left'> Word : </th>
+				<td> {{entry?.word}} </td>
+
+			</tr>
+
+		</ng-container>
+
+</app-general-internal-entry-detail>

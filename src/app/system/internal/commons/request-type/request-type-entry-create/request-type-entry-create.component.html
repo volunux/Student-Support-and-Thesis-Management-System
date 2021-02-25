@@ -1,0 +1,24 @@
+<div id ='entry-create'>
+
+	<h2 *ngIf ='title'> {{title}} </h2>
+
+<app-resource-unavailable *ngIf ='isError' [error] ='error'> </app-resource-unavailable>
+
+<ng-container *ngIf ='entryForm'>
+
+		<div [formGroup] ='entryForm'>
+
+	<app-general-internal-entry-delete [system-type] ='systemType' [view] ='view' [entry-form] ='entryForm' [e-others] = 'eothers' [placeholder] ='placeholder' [no-edit] ='noEdit'
+
+	[system-guideline] ='systemGuideline' (processEntry) ='changeEntry($event)' > 
+
+		<app-request-type-form-input [system-type] ='systemType' [entry-form] ='entryForm' [e-others] = 'eothers' [placeholder] ='placeholder' [no-edit] = 'noEdit' > </app-request-type-form-input>
+
+	</app-general-internal-entry-delete>
+
+</div>
+
+</ng-container>
+
+</div>
+
