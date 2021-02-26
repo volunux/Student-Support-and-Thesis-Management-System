@@ -9,8 +9,8 @@ import { InternalOne } from '../internal-one';
 import { InternalOneService } from '../internal-one.service';
 import { InternalOneFormService } from '../internal-one-form.service';
 
-import { GeneralInternalFormService } from '../../../../shared/module/general-internal/general-internal-form.service';
-import { GeneralInternalEntryChangeService } from '../../../../shared/module/general-internal/general-internal-entry-change.service';
+import { GeneralInternalFormService } from '../../../../shared/module/general-internal/gi-form.service';
+import { GeneralInternalEntryChangeService } from '../../../../shared/module/general-internal/gi-entry-change.service';
 import { ErrorMessagesService } from '../../../../shared/services/error-messages.service';
 
 @Component({

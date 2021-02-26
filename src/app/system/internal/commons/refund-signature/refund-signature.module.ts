@@ -12,7 +12,7 @@ import { SimplesModule } from '../../../../shared/module/simples/simples.module'
 import { RefundSignatureService } from './refund-signature.service';
 import { RefundSignatureFormService } from './refund-signature-form.service';
 
-import { RefundSignatureEntryDeleteAllComponent } from './refund-signature-entry-delete-all/refund-signature-entry-delete-all.component';
+import { RefundSignatureEntryDeleteAllComponent } from './refund-s-entry-delete-all/refund-s-entry-delete-all.component';
 import { RefundSignatureHomepageComponent } from './refund-signature-homepage/refund-signature-homepage.component';
 import { RefundSignatureDashboardComponent } from './refund-signature-dashboard/refund-signature-dashboard.component';
 

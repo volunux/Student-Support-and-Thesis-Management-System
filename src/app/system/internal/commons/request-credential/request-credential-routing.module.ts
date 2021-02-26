@@ -6,7 +6,7 @@ import { EntryDeleteAllGuard } from '../../../../shared/guards/entry-delete-all.
 import { RequestCredentialHomepageComponent } from './request-credential-homepage/request-credential-homepage.component';
 import { RequestCredentialDashboardComponent } from './request-credential-dashboard/request-credential-dashboard.component';
 import { RequestCredentialEntriesComponent } from './request-credential-entries/request-credential-entries.component';
-import { RequestCredentialEntryDeleteAllComponent } from './request-credential-entry-delete-all/request-credential-entry-delete-all.component';
+import { RequestCredentialEntryDeleteAllComponent } from './req-cred-entry-delete-all/req-cred-entry-delete-all.component';
 
 import { RouteConfigData } from './request-credential-route-data';
 

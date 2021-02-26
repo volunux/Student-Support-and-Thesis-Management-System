@@ -1,0 +1,265 @@
+<div id ='general-payment'>
+
+<h2 *ngIf ='title' > {{title}} Detail </h2>
+
+<app-view-description *ngIf ='view' [view-type] ='view' [system-type] ='systemType' > </app-view-description>
+
+<app-resource-unavailable *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
+
+<app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
+
+
+<div id ='gp-details' *ngIf ='entry'>
+
+	<table>
+
+		<colgroup>
+
+			<col class ='payment-parameters' />
+			<col/>
+
+		</colgroup>
+
+		<tbody>
+
+			<ng-container *ngIf ='entry?.payment_reference'>
+
+				<tr>
+
+					<th class ='left bold' > Reference Number : </th>
+
+					<td> <b class ='bold'> {{entry?.payment_reference}} </b> </td>
+
+				</tr>
+
+			</ng-container>
+
+			<ng-container *ngIf ='entry?.paid_on'>
+
+				<tr>
+
+					<th class ='left bold' > Paid Date : </th>
+
+					<td> {{entry?.paid_on | date : 'fullDate'}} </td>
+
+				</tr>
+
+			</ng-container>
+
+			<ng-container *ngIf ='entry?.amount'>
+
+				<tr>
+
+					<th class ='left bold' > Amount </th>
+
+					<td> N = {{entry?.amount}} </td>
+
+				</tr>
+
+			</ng-container>
+
+			<tr>
+
+				<th colspan ='2'> 
+
+					<h3 class ='left'> Payer Detail </h3>
+
+					<hr/>
+
+				</th>
+
+			</tr>
+
+			<ng-container *ngIf ='entry?.full_name'>
+
+				<tr>
+
+					<th class ='left bold' > Name </th>
+
+					<td> {{entry?.full_name}} </td>
+
+				</tr>
+
+			</ng-container>
+
+			<ng-container *ngIf ='entry?.email_address'>
+
+				<tr>
+
+					<th class ='left bold' > Email Address </th>
+
+					<td> {{entry?.email_address}} </td>
+
+				</tr>
+
+			</ng-container>
+
+			<ng-container *ngIf ='entry?.phone_number'>
+
+				<tr>
+
+					<th class ='left bold' > Phone Number </th>
+
+					<td> {{entry?.phone_number}} </td>
+
+				</tr>
+
+			</ng-container>
+
+
+			<ng-container *ngIf ='entry?.description'>
+
+				<tr>
+
+						<th class ='left bold' > Payment Description </th>
+
+						<td> {{entry?.description}} </td>
+
+				</tr>
+
+			</ng-container>
+
+			<tr>
+
+				<th colspan ='2'> 
+
+					<h3 class ='left'> Student Detail </h3>
+
+					<hr/>
+
+				</th>
+
+			</tr>
+
+			<ng-container *ngIf ='entry?.author?.full_name'>
+
+				<tr>
+
+					<th class ='left bold' > Full Name : </th>
+
+					<td> {{entry?.author?.full_name}} </td>
+
+				</tr>
+
+			</ng-container>
+
+
+			<ng-container *ngIf ='entry?.author && entry?.author?.matriculation_number'>
+
+				<tr>
+
+					<th class ='left bold' > Matriculation Number : </th>
+
+					<td> {{entry?.author?.matriculation_number}} </td>
+
+				</tr>
+
+			</ng-container>
+
+			<ng-container *ngIf ='entry?.author && entry?.author?.identity_number'>
+
+				<tr>
+
+					<th class ='left bold' > Identification Number : </th>
+
+					<td> {{entry?.author?.identity_number}} </td>
+
+				</tr>
+
+			</ng-container>
+
+			<ng-container *ngIf ='entry?.department_name'>
+
+				<tr>
+
+					<th class ='left bold' > Department </th>
+
+					<td> {{entry?.department_name}} </td>
+
+				</tr>
+
+			</ng-container>
+
+			<ng-container *ngIf ='entry?.faculty_name'>
+
+				<tr>
+
+					<th class ='left bold' > Faculty </th>
+
+					<td> {{entry?.faculty_name}} </td>
+
+				</tr>
+
+			</ng-container>
+
+
+			<ng-container *ngIf ='entry?.author?.level'>
+
+				<tr>
+
+					<th class ='left bold' > Level : </th>
+
+					<td> {{entry?.author?.level}} </td>
+
+				</tr>
+
+			</ng-container>
+
+			<ng-container *ngIf ='entry?.status'>
+
+				<tr>
+
+					<th class ='left bold' > Status : </th>
+
+					<td> {{entry?.status | titlecase }} </td>
+
+				</tr>
+
+			</ng-container>
+
+			<ng-container *ngIf ='true'>
+
+				<td colspan ='2'>
+
+					<button href ='#' class ='entry-option center' onclick ='print()'> Print </button>
+
+				</td>
+
+			</ng-container>
+
+		</tbody>
+
+			<ng-container *ngIf ='canRefundDepartmentPayment && entry.paymentType == "department_name" && !entry.refunded && userDepartment == entry?.department_name'>
+
+				<tfoot class ='refund option'>
+
+					<td colspan ='2'>
+
+							<button class ='entry-option center' (click) ='refundEntry()' > Refund </button>
+
+					</td>
+
+				</tfoot>
+
+			</ng-container>
+
+			<ng-container *ngIf ='canRefundFacultyPayment && entry.paymentType == "faculty_name" && !entry.refunded && userFaculty == entry?.faculty_name'>
+
+				<tfoot class ='refund option'>
+
+					<td colspan ='2'>
+
+							<button class ='entry-option center' (click) ='refundEntry()'> Refund </button>
+
+					</td>
+
+				</tfoot>
+
+			</ng-container>
+
+	</table>
+
+
+</div>
+
+</div>

@@ -8,13 +8,13 @@
 
 		<div [formGroup] ='entryForm'>
 
-	<app-general-internal-entry-delete [system-type] ='systemType' [view] ='view' [entry-form] ='entryForm' [e-others] = 'eothers' [placeholder] ='placeholder' [no-edit] ='noEdit'
+	<app-gi-entry-delete [system-type] ='systemType' [view] ='view' [entry-form] ='entryForm' [e-others] = 'eothers' [placeholder] ='placeholder' [no-edit] ='noEdit'
 
 	[system-guideline] ='systemGuideline' (processEntry) ='changeEntry($event)' > 
 
 		<app-internal-two-form-input [system-type] ='systemType' [entry-form] ='entryForm' [placeholder] ='placeholder' [no-edit] = 'noEdit' > </app-internal-two-form-input>
 
-	</app-general-internal-entry-delete>
+	</app-gi-entry-delete>
 
 </div>
 

@@ -10,27 +10,27 @@ import { ReplyModule } from '../../shared/component/reply/reply.module';
 import { GeneralAllModule } from '../../shared/module/general-all/general-all.module';
 import { GeneralServicesModule } from '../../shared/services/general-services.module';
 
-import { GeneralRequestRoutingModule } from './general-request-routing.module';
-import { GeneralRequestHomepageComponent } from './general-request-homepage/general-request-homepage.component';
-import { GeneralRequestDashboardComponent } from './general-request-dashboard/general-request-dashboard.component';
-import { GeneralRequestEntryDashboardComponent } from './general-request-entry-dashboard/general-request-entry-dashboard.component';
-import { GeneralRequestEntriesComponent } from './general-request-entries/general-request-entries.component';
-import { GeneralRequestEntryDetailComponent } from './general-request-entry-detail/general-request-entry-detail.component';
-import { GeneralRequestEntryTimelineComponent } from './general-request-entry-timeline/general-request-entry-timeline.component';
-import { GeneralRequestCreateCommentComponent } from './general-request-create-comment/general-request-create-comment.component';
-import { GeneralRequestCreateReplyComponent } from './general-request-create-reply/general-request-create-reply.component';
-import { GeneralRequestEntryTransferComponent } from './general-request-entry-transfer/general-request-entry-transfer.component';
-import { GeneralRequestEntryDeleteAllComponent } from './general-request-entry-delete-all/general-request-entry-delete-all.component';
-import { GeneralRequestEntryOptionComponent } from './general-request-entry-option/general-request-entry-option.component';
-import { GeneralRequestEntryUpdateFieldComponent } from './general-request-entry-update-field/general-request-entry-update-field.component';
-import { GeneralRequestEntryGeneratePasswordComponent } from './general-request-entry-generate-password/general-request-entry-generate-password.component';
-import { GeneralRequestEntryGenerateUsernamePasswordComponent } from './general-request-entry-generate-username-password/general-request-entry-generate-username-password.component';
-import { GeneralRequestEntryCredentialValidatorComponent } from './general-request-entry-credential-validator/general-request-entry-credential-validator.component';
-import { GeneralRequestEntryTransferValidatorComponent } from './general-request-entry-transfer-validator/general-request-entry-transfer-validator.component';
+import { GeneralRequestRoutingModule } from './gr-routing.module';
+import { GeneralRequestHomepageComponent } from './gr-homepage/gr-homepage.component';
+import { GeneralRequestDashboardComponent } from './gr-dashboard/gr-dashboard.component';
+import { GeneralRequestEntryDashboardComponent } from './gr-entry-dashboard/gr-entry-dashboard.component';
+import { GeneralRequestEntriesComponent } from './gr-entries/gr-entries.component';
+import { GeneralRequestEntryDetailComponent } from './gr-entry-detail/gr-entry-detail.component';
+import { GeneralRequestEntryTimelineComponent } from './gr-entry-timeline/gr-entry-timeline.component';
+import { GeneralRequestCreateCommentComponent } from './gr-create-comment/gr-create-comment.component';
+import { GeneralRequestCreateReplyComponent } from './gr-create-reply/gr-create-reply.component';
+import { GeneralRequestEntryTransferComponent } from './gr-entry-transfer/gr-entry-transfer.component';
+import { GeneralRequestEntryDeleteAllComponent } from './gr-entry-delete-all/gr-entry-delete-all.component';
+import { GeneralRequestEntryOptionComponent } from './gr-entry-option/gr-entry-option.component';
+import { GeneralRequestEntryUpdateFieldComponent } from './gr-entry-update-field/gr-entry-update-field.component';
+import { GeneralRequestEntryGeneratePasswordComponent } from './gr-entry-gen-password/gr-entry-gen-password.component';
+import { GeneralRequestEntryGenerateUsernamePasswordComponent } from './gr-entry-generate-u-p/gr-entry-generate-u-p.component';
+import { GeneralRequestEntryCredentialValidatorComponent } from './gr-entry-cred-validator/gr-entry-cred-validator.component';
+import { GeneralRequestEntryTransferValidatorComponent } from './gr-entry-transfer-validator/gr-entry-transfer-validator.component';
 
 import { GenerateUsernamePasswordService } from './generate-username-password.service';
 import { GeneralRequestService } from './general-request.service';
-import { GeneralRequestFormService } from './general-request-form.service';
+import { GeneralRequestFormService } from './gr-form.service';
 
 @NgModule({
 

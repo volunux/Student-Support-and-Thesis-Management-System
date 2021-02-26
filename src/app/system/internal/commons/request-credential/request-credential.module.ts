@@ -12,7 +12,7 @@ import { SimplesModule } from '../../../../shared/module/simples/simples.module'
 import { RequestCredentialService } from './request-credential.service';
 import { RequestCredentialFormService } from './request-credential-form.service';
 
-import { RequestCredentialEntryDeleteAllComponent } from './request-credential-entry-delete-all/request-credential-entry-delete-all.component';
+import { RequestCredentialEntryDeleteAllComponent } from './req-cred-entry-delete-all/req-cred-entry-delete-all.component';
 import { RequestCredentialHomepageComponent } from './request-credential-homepage/request-credential-homepage.component';
 import { RequestCredentialDashboardComponent } from './request-credential-dashboard/request-credential-dashboard.component';
 

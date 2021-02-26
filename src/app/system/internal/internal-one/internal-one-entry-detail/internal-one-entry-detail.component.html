@@ -4,7 +4,7 @@
 
 <app-resource-unavailable *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
 
-<app-general-internal-entry-detail [entry] ='entry'> 
+<app-gi-entry-detail [entry] ='entry'> 
 
 			<ng-container *ngIf ='entry?.abbreviation;'>
 
@@ -19,4 +19,4 @@
 
 		<ng-content> </ng-content>
 
-</app-general-internal-entry-detail>
+</app-gi-entry-detail>

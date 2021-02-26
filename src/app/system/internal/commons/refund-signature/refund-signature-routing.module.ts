@@ -6,7 +6,7 @@ import { EntryDeleteAllGuard } from '../../../../shared/guards/entry-delete-all.
 import { RefundSignatureHomepageComponent } from './refund-signature-homepage/refund-signature-homepage.component';
 import { RefundSignatureDashboardComponent } from './refund-signature-dashboard/refund-signature-dashboard.component';
 import { RefundSignatureEntriesComponent } from './refund-signature-entries/refund-signature-entries.component';
-import { RefundSignatureEntryDeleteAllComponent } from './refund-signature-entry-delete-all/refund-signature-entry-delete-all.component';
+import { RefundSignatureEntryDeleteAllComponent } from './refund-s-entry-delete-all/refund-s-entry-delete-all.component';
 
 import { RouteConfigData } from './refund-signature-route-data';
 

@@ -6,7 +6,7 @@ import { InternalThreeRoutingModule } from './internal-three-routing.module';
 import { GeneralModule } from '../../../general/general.module';
 import { GeneralServicesModule } from '../../../shared/services/general-services.module';
 import { GeneralAllModule } from '../../../shared/module/general-all/general-all.module';
-import { GeneralInternalConversationModule } from '../../../shared/module/general-internal-conversation/general-internal-conversation.module';
+import { GeneralInternalConversationModule } from '../../../shared/module/gi-chat/gi-chat.module';
 import { SimplesModule } from '../../../shared/module/simples/simples.module';
 
 import { InternalThreeService } from './internal-three.service';

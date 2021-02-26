@@ -1,0 +1,105 @@
+<div id ='general-payment'>
+
+<h2> {{title}} </h2>
+
+<app-view-description *ngIf ='view' [view-description] ='view' [system-type] ='systemType' > </app-view-description>
+
+<app-guidelines *ngIf ='systemGuideline' [view] ='view' [system-guideline] ='systemGuideline'> </app-guidelines>
+
+<app-resource-unavailable *ngIf ='error' [error] ='error' > </app-resource-unavailable>
+
+<app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
+
+			<ng-container *ngIf ='paymentSession != null && paymentSession?.length > 0'>
+
+			<div class ='form-group'>
+
+				<label for ='paymentSession' class ='form-label bold'> Payment Session * : </label>
+
+				<select name ='paymentSession' id ='paymentSession' class ='form-control' required ='required' (change) ='verifyPaymentSession($event.target)' [readOnly] ='noEdit'
+
+				[formControl] ='paymentSessionCtrl'>
+
+					<option [value] =''> </option> 
+
+					<option *ngFor ='let session of paymentSession' [value] ='session._id' > {{session.name}} </option> 
+
+				</select>
+
+			</div>
+
+		</ng-container>
+
+<ng-container *ngIf ='entryForm'>
+
+	<div id ='gp-form' >
+
+		<form method ='post' autocomplete ='off' enctype ='application/x-www-form-urlencoded' 
+
+			[formGroup] ='entryForm' (ngSubmit) ='createEntry(entryForm.value)'>
+
+			<h3> Payment Form </h3>
+
+			<div class ='form-group'>
+
+				<label for ='payer-name' class ='form-label bold' > Full Name * : </label>
+
+				<input type ='text' id ='payer-name' name ='payerName' placeholder ='David Muller' class ='form-control' formControlName ='payerName' autocomplete ='new-payerName'/>
+
+				<app-gp-entry-create-validator *ngIf ='payerName' [system-type] ='systemType' [payer-name] ='payerName'> </app-gp-entry-create-validator>
+
+			</div>
+
+			<div class ='form-group'>
+
+				<label for ='payer-email' class ='form-label bold' > Email Address * : </label>
+
+				<input type ='text' id ='payer-email' name ='payerEmail' placeholder ='david@example.com' class ='form-control' formControlName ='payerEmail' autocomplete ='new-payerEmail'/>
+
+				<app-gp-entry-create-validator *ngIf ='payerEmail' [system-type] ='systemType' [payer-email] ='payerEmail'> </app-gp-entry-create-validator>
+
+			</div>
+
+			<div class ='form-group'>
+
+				<label for ='payer-phone' class ='form-label bold' > Phone Number * : </label>
+
+				<input type ='text' id ='payer-phone' name ='payerPhone' placeholder ='09022035587 or +2349022035587' class ='form-control' formControlName ='payerPhone' autocomplete ='new-payerPhone'/>
+
+				<app-gp-entry-create-validator *ngIf ='payerPhone' [system-type] ='systemType' [payer-phone] ='payerPhone'> </app-gp-entry-create-validator>
+
+			</div>
+
+			<div class ='form-group'>
+
+				<label for ='description' class ='form-label bold' > Description of Payment * : </label>
+
+				<input type ='text' id ='description' name ='description' class ='form-control' readonly ='readonly' value ='Departmental Fee Payment' 
+
+				formControlName ='description' autocomplete ='new-description'/>
+
+				<app-gp-entry-create-validator *ngIf ='description' [system-type] ='systemType' [description] ='description'> </app-gp-entry-create-validator>
+
+			</div>
+
+			<div class ='form-group'>
+
+				<label for ='amount' class ='form-label bold' > Amount * : </label>
+
+				<input type ='text' id ='amount' name ='amount' class ='form-control' readonly ='readonly' formControlName ='amount' autocomplete ='new-amount'/>
+
+				<app-gp-entry-create-validator *ngIf ='amount' [system-type] ='systemType' [amount] ='amount'> </app-gp-entry-create-validator>
+
+			</div>
+
+			<button *ngIf ='!isFormProcessing' type ='submit' class ='btn-submit' [class] ='{"disabled" : !isFormValid }' [disabled] ='!isFormValid' > Submit </button> 
+
+			<p *ngIf ='isFormSubmitted'> Your form is being processed. Please kindly be patient and wait while it completes. </p>
+
+		</form>
+
+		</div>
+
+	</ng-container>
+
+</div>

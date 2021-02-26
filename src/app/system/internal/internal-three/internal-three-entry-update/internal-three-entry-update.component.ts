@@ -9,8 +9,8 @@ import { InternalThree } from '../internal-three';
 import { InternalThreeService } from '../internal-three.service';
 import { InternalThreeFormService } from '../internal-three-form.service';
 
-import { GeneralInternalConversationFormService } from '../../../../shared/module/general-internal-conversation/general-internal-conversation-form.service';
-import { GeneralInternalConversationEntryChangeService } from '../../../../shared/module/general-internal-conversation/general-internal-conversation-entry-change.service';
+import { GeneralInternalConversationFormService } from '../../../../shared/module/gi-chat/gi-chat-form.service';
+import { GeneralInternalConversationEntryChangeService } from '../../../../shared/module/gi-chat/gi-chat-entry-change.service';
 import { ErrorMessagesService } from '../../../../shared/services/error-messages.service';
 
 @Component({

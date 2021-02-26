@@ -1,0 +1,42 @@
+		<div [formGroup] ='entryForm'>
+
+			<ng-container *ngIf ='text'>
+
+			<div class ='form-group'>
+
+				<label for ='text' class ='form-label bold'> Text * : </label>
+				
+				<textarea id ='text' name ='text' [placeholder] ='placeholder?.text' required ='required' formControlName ='text' class ='form-control form-textarea' [readOnly] ='noEdit' ></textarea>
+
+				<app-gi-chat-form-input-validator *ngIf ='text' [system-type] = 'systemType' [text] ='text'> </app-gi-chat-form-input-validator>
+
+			</div>
+
+		</ng-container>
+
+		<ng-content> </ng-content>
+
+
+			<ng-container *ngIf ='status && eothers && eothers.Status && eothers.Status.length > 0'>
+
+			<div class ='form-group'>
+
+				<label for ='status' class ='form-label bold'> Status * : </label>
+
+				<select name ='status' id ='status' required ='required' class ='form-control' formControlName ='status' [readOnly] ='noEdit' >
+
+					<option [value] =''> </option> 
+
+					<option *ngFor ='let status of eothers.Status' [value] ='status._id'> {{status.word}} </option> 
+
+				</select>
+
+				<app-gi-chat-form-input-validator *ngIf ='status' [system-type] = 'systemType' [status] ='status'> </app-gi-chat-form-input-validator>
+
+			</div>
+
+		</ng-container>
+
+
+		</div>
+

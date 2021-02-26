@@ -5,16 +5,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { GeneralModule } from '../../../general/general.module';
 import { GeneralServicesModule } from '../../services/general-services.module';
 
-import { GeneralInternalFormInputValidatorComponent } from './general-internal-form-input-validator/general-internal-form-input-validator.component';
-import { GeneralInternalFormInputComponent } from './general-internal-form-input/general-internal-form-input.component';
-import { GeneralInternalEntryCreateComponent } from './general-internal-entry-create/general-internal-entry-create.component';
+import { GeneralInternalFormInputValidatorComponent } from './gi-form-input-validator/gi-form-input-validator.component';
+import { GeneralInternalFormInputComponent } from './gi-form-input/gi-form-input.component';
+import { GeneralInternalEntryCreateComponent } from './gi-entry-create/gi-entry-create.component';
 
 import { GeneralInternalService } from './general-internal.service';
-import { GeneralInternalEntryChangeService } from './general-internal-entry-change.service';
-import { GeneralInternalFormService } from './general-internal-form.service';
-import { GeneralInternalEntryDetailComponent } from './general-internal-entry-detail/general-internal-entry-detail.component';
-import { GeneralInternalEntryUpdateComponent } from './general-internal-entry-update/general-internal-entry-update.component';
-import { GeneralInternalEntryDeleteComponent } from './general-internal-entry-delete/general-internal-entry-delete.component';
+import { GeneralInternalEntryChangeService } from './gi-entry-change.service';
+import { GeneralInternalFormService } from './gi-form.service';
+import { GeneralInternalEntryDetailComponent } from './gi-entry-detail/gi-entry-detail.component';
+import { GeneralInternalEntryUpdateComponent } from './gi-entry-update/gi-entry-update.component';
+import { GeneralInternalEntryDeleteComponent } from './gi-entry-delete/gi-entry-delete.component';
 
 @NgModule({
 

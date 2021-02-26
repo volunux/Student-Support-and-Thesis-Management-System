@@ -5,7 +5,7 @@ import { AuthenticationGuard } from '../../../shared/guards/authentication.guard
 import { EntryDeleteAllGuard } from '../../../shared/guards/entry-delete-all.guard';
 import { IsStudentGuard } from '../../../shared/guards/is-student.guard';
 
-import { ProfileEntryUpdatePhotoHomepageComponent } from './profile-entry-update-photo-homepage/profile-entry-update-photo-homepage.component';
+import { ProfileEntryUpdatePhotoHomepageComponent } from './p-entry-update-p-home/p-entry-update-p-home.component';
 import { ProfileEntryUpdatePhotoComponent } from './profile-entry-update-photo/profile-entry-update-photo.component';
 
 import { RouteConfigData } from './profile-entry-update-photo-route-data';

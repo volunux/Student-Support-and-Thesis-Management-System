@@ -35,7 +35,7 @@ const routes: Routes = [
 
 						{ 'path' : 'entry-type' , 'component' : ProfileEntryTypeDashboardComponent , 'canActivate' : [IsAdminGuard] , } ,
 
-						{ 'path' : 'update-signature' , 'loadChildren' : () => import('./profile-entry-update-signature/profile-entry-update-signature.module').then(m => m.ProfileEntryUpdateSignatureModule) } ,
+						{ 'path' : 'update-signature' , 'loadChildren' : () => import('./p-entry-update-s/p-entry-update-s.module').then(m => m.ProfileEntryUpdateSignatureModule) } ,
 
 						{ 'path' : 'update-photo' , 'loadChildren' : () => import('./profile-entry-update-photo/profile-entry-update-photo.module').then(m => m.ProfileEntryUpdatePhotoModule) } ,
 

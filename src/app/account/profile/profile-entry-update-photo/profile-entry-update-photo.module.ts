@@ -8,7 +8,7 @@ import { ProfileEntryUpdatePhotoRoutingModule } from './profile-entry-update-pho
 import { ProfileEntryUpdatePhotoComponent } from './profile-entry-update-photo/profile-entry-update-photo.component';
 
 import { ProfileEntryUpdatePhotoFileControlService } from './profile-entry-update-photo-file-control.service';
-import { ProfileEntryUpdatePhotoHomepageComponent } from './profile-entry-update-photo-homepage/profile-entry-update-photo-homepage.component';
+import { ProfileEntryUpdatePhotoHomepageComponent } from './p-entry-update-p-home/p-entry-update-p-home.component';
 
 @NgModule({
   declarations: [
