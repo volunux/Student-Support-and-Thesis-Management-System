@@ -2,13 +2,21 @@
 
 <h1><img src ='/assets/images/logo.png' id ='logo-sris'></h1>
 
-<div [@routeAnimation] ='getAnimationData(routerOutlet)'>
+<app-navigation-bar> </app-navigation-bar>
+
+<div [@routeAnimationFader] ='getAnimationData(routerOutlet)' >
+
+<router-outlet #routerOutlet ='outlet' > </router-outlet>
+
+</div>
+
+<!-- <div [@fadeAnimationRoute]="o.isActivated ? o.activatedRoute : ''">
 
 <app-navigation-bar> </app-navigation-bar>
 
-<router-outlet #routerOutlet ='outlet' ></router-outlet>
+  <router-outlet #o="outlet"></router-outlet>
 
-</div>
+</div> -->
 
 <div *ngIf='isShowingRouteLoadIndicator' class='router-load-indicator'> Please wait </div>
 

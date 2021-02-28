@@ -1,6 +1,6 @@
 import { Injectable , Inject } from '@angular/core';
 import { Observable , of } from 'rxjs';
-import { catchError , delay , map , tap } from 'rxjs/operators';
+import { catchError , delay , map , tap , timeout } from 'rxjs/operators';
 import { HttpClient , HttpErrorResponse } from '@angular/common/http';
 import { GeneralRequest } from './general-request';
 import { General } from './general';
@@ -289,7 +289,9 @@ export class GeneralRequestService {
 
   private handleError<T>(operation = 'operation' , result? : T) {
 
-      return (error : HttpErrorResponse) : Observable<T> => { this.ems.message = error;
+      return (error : any) : Observable<T> => { this.ems.message = error;
+
+        console.log(error);
 
                 return of(result as T);
 

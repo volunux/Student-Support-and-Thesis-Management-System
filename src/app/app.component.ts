@@ -1,11 +1,7 @@
 import { Component , OnInit } from '@angular/core';
-
 import { RouterOutlet , Router , RouterEvent , RouteConfigLoadEnd , RouteConfigLoadStart } from '@angular/router';
-
-import { slideInAnimation } from './animations';
-
+import { slideInAnimation , fader , stepper } from './animations';
 import { FormControl , FormGroup } from '@angular/forms';
-
 import { AuthenticationService } from './authentication/authentication.service';
 
 
@@ -17,7 +13,7 @@ import { AuthenticationService } from './authentication/authentication.service';
   
   'styleUrls' : ['./app.component.css'] ,
 
-  'animations' : [slideInAnimation] ,
+  'animations' : [slideInAnimation , fader , stepper] ,
 
 })
 
@@ -46,7 +42,9 @@ export class AppComponent implements OnInit {
         // --
         // CAUTION: I'm using CSS to include a small delay such that this loading
         // indicator won't be seen by people with sufficiently fast connections.
-        this.isShowingRouteLoadIndicator = !!asyncLoadCount;  });
+        this.isShowingRouteLoadIndicator = !!asyncLoadCount;  
+
+      });
 
   }
 
@@ -55,13 +53,15 @@ export class AppComponent implements OnInit {
 
   public myDetails : any;
 
+  public showFooter : boolean = false;
+
   public ngOnInit() : void {
 
   }
 
    getAnimationData(outlet: RouterOutlet) {
 
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
+    return outlet && outlet.activatedRouteData
   }
 
 }

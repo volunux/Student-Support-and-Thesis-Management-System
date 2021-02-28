@@ -159,7 +159,7 @@ export class GeneralPaymentEntryCreateComponent implements OnInit {
 
 		body.email = body.payerEmail;
 
-		body.callback_url = `http://localhost:4200/general-payment/t/${this.pslug}/validation`;
+		body.callback_url = `https://volunux.github.io/Student-Support-and-Thesis-Management-System/general-payment/t/${this.pslug}/validation`;
 
   	body.metadata = {
 

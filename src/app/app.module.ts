@@ -17,6 +17,8 @@ import { UnauthorizedComponent } from './all/unauthorized/unauthorized.component
 import { NavigationBarComponent } from './all/navigation-bar/navigation-bar.component';
 import { MemberDashboardComponent } from './all/member-dashboard/member-dashboard.component';
 import { LoginDetailsComponent } from './all/login-details/login-details.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
 
@@ -38,6 +40,7 @@ import { LoginDetailsComponent } from './all/login-details/login-details.compone
     BrowserAnimationsModule,
     MatProgressBarModule,
     AppRoutingModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   
   providers: [ {'provide' : Api_Token , 'useValue' : Api_Config , 'multi' : false } ,

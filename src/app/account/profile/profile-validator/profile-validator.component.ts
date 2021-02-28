@@ -1,5 +1,6 @@
 import { Component , Input , OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
   
@@ -7,7 +8,9 @@ import { FormControl } from '@angular/forms';
   
   'templateUrl' : './profile-validator.component.html',
   
-  'styleUrls' : ['./profile-validator.component.css']
+  'styleUrls' : ['./profile-validator.component.css'] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

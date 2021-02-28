@@ -16,6 +16,13 @@ font-family: 'Libre';
 src : url(/assets/fonts/Libre/LibreBaskerville-Bold.ttf) format('truetype');
 }
 
+/*router-outlet ~ * {
+  position: absolute;
+  height: 100%;
+  width: 98.5%;
+}*/
+
+
 * {
 
 	font-family : 'RobotoRegular';
@@ -169,7 +176,12 @@ hr {
 
 	clear : both;
 	margin-top : 20px;
+	bottom : 0px;
+	text-align : center;
+	border : 2px solid black;
+	width : 98.5%;
 }
+
 
 .get-started {
 

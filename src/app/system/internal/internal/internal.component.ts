@@ -1,8 +1,6 @@
 import { Component , OnInit } from '@angular/core';
-
 import { RouterOutlet } from '@angular/router';
-
-import { slideInAnimation } from '../../../animations';
+import { fader } from '../../../animations';
 
 @Component({
 
@@ -12,7 +10,7 @@ import { slideInAnimation } from '../../../animations';
 
   'styleUrls' : ['./internal.component.css'] ,
 
-  'animations' : [slideInAnimation]
+  'animations' : [fader]
 
 })
 
@@ -28,7 +26,7 @@ export class InternalComponent implements OnInit {
 
    getAnimationData(outlet: RouterOutlet) {
 
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
+    return outlet && outlet.activatedRouteData;
   }
 
 
