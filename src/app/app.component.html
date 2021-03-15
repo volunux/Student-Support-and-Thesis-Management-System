@@ -1,22 +1,14 @@
+<div @fadeAnimation>
+
 <mat-progress-bar class ='loading-bar' [color] ='"purple"' [mode] ='"buffer"' *ngIf='isShowingRouteLoadIndicator'> </mat-progress-bar>
 
-<h1><img src ='/assets/images/logo.png' id ='logo-sris'></h1>
+<h1> <img src ='/assets/images/logo.png' id ='logo-sris'> </h1>
 
 <app-navigation-bar> </app-navigation-bar>
-
-<div [@routeAnimationFader] ='getAnimationData(routerOutlet)' >
 
 <router-outlet #routerOutlet ='outlet' > </router-outlet>
 
 </div>
-
-<!-- <div [@fadeAnimationRoute]="o.isActivated ? o.activatedRoute : ''">
-
-<app-navigation-bar> </app-navigation-bar>
-
-  <router-outlet #o="outlet"></router-outlet>
-
-</div> -->
 
 <div *ngIf='isShowingRouteLoadIndicator' class='router-load-indicator'> Please wait </div>
 

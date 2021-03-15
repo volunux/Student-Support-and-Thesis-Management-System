@@ -6,6 +6,7 @@ import { canUpdate } from '../roles';
 import { RefundService } from '../refund.service';
 import { AuthenticationService } from '../../../authentication/authentication.service';
 import { NotificationService } from '../../../shared/services/notification.service';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -15,7 +16,9 @@ import { NotificationService } from '../../../shared/services/notification.servi
 
   'styleUrls' : ['./refund-entry-option.component.css'] ,
 
-  'providers' : [NotificationService]
+  'providers' : [NotificationService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

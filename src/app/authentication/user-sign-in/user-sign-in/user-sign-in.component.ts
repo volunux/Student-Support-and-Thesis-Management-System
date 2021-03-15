@@ -9,6 +9,7 @@ import { General } from '../../general';
 import { UserSignInFormService } from '..//user-sign-in-form.service';
 import { ErrorMessagesService } from '../../../shared/services/error-messages.service';
 import { NotificationService } from '../../../shared/services/notification.service';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -18,9 +19,12 @@ import { NotificationService } from '../../../shared/services/notification.servi
 
   'styleUrls' : ['./user-sign-in.component.css'] ,
 
-  'providers' : [ErrorMessagesService , NotificationService]
+  'providers' : [ErrorMessagesService , NotificationService] ,
+
+  'animations' : [fadeAnimation]
 
 })
+
 export class UserSignInComponent implements OnInit {
 
   constructor(private route : ActivatedRoute , public router : Router , private ds : DataService , public ns : NotificationService ,

@@ -1,6 +1,6 @@
 import { Injectable , Inject } from '@angular/core';
 import { Observable , of } from 'rxjs';
-import { catchError , map , tap } from 'rxjs/operators';
+import { catchError , delay , map , tap } from 'rxjs/operators';
 import { HttpClient , HttpErrorResponse } from '@angular/common/http';
 import { User } from './user';
 import { General } from './general';
@@ -30,6 +30,8 @@ export class ProfileService {
 
   				tap((value) => console.log(value)) ,
 
+          delay(3000) ,
+
   				catchError(this.handleError<User>(`${this.systemType} Entry` , null))
   			)
 
@@ -45,6 +47,8 @@ export class ProfileService {
 
   				tap((value) => console.log(value)) ,
 
+          delay(3000) ,
+
   				catchError(this.handleError<User>(`${this.systemType} Entry` , null))
   			)
 
@@ -59,6 +63,8 @@ export class ProfileService {
   		.pipe(
 
   				tap((value) => console.log(value)) ,
+
+          delay(3000) ,
 
   				catchError(this.handleError<User>(`${this.systemType} Entry` , null))
   			)
@@ -109,6 +115,8 @@ export class ProfileService {
 
   				tap((value) => console.log(value)) ,
 
+          delay(3000) ,
+
   				catchError(this.handleError<User>(`${this.systemType} Entry` , null))
   			)
 
@@ -141,6 +149,8 @@ export class ProfileService {
   		.pipe(
 
   				tap((value) => console.log(value)) ,
+
+          delay(3000) ,
 
   				catchError(this.handleError<User>(`${this.systemType} Entry` , null))
   			)

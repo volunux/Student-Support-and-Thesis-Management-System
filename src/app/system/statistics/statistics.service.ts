@@ -1,19 +1,11 @@
 import { Injectable , Inject } from '@angular/core';
-
 import { HttpClient , HttpErrorResponse , HttpParams } from '@angular/common/http';
-
 import { General } from './general';
-
 import { Statistics } from './statistics';
-
 import { Observable , of } from 'rxjs';
-
 import { delay , map , catchError , tap } from 'rxjs/operators';
-
 import { Api_Token , Api } from '../../configuration';
-
 import { SearchQuery } from '../../shared/interfaces/search-query';
-
 import { ErrorMessagesService } from '../../shared/services/error-messages.service';
 
 @Injectable()
@@ -37,7 +29,9 @@ export class StatisticsService {
 			.pipe(
 							tap((value) => console.log(value)) ,
 
-							catchError(this.handleError<Statistics[]>(`${this.$systemType} Entries` , []))
+							delay(3000) ,
+
+							catchError(this.handleError<Statistics[]>(`${this.$systemType} Entries` , null))
 				)
 		}
 

@@ -30,42 +30,6 @@ export class RefundEntryCreateComponent implements OnInit {
 
   }
 
-  ngOnInit() : void {
-
-    let data = this.route.snapshot.data;
-
-    this.systemType = data.create.systemType;
-
-    this.systemGuideline = data.create.systemGuideline;
-
-    this.title = data.create.title;
-
-    this.view = data.create.view;
-
-    this.link = data.create.link;
-
-    this.rfecs.$systemType = this.systemType;
-
-    this.rfecs.addEntry()
-
-    	.subscribe((result : { [key : string] : any}) => {
-
-  			if (result == null) { this.isError = true;
-
-  				this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); }
-
-  			else if (result != null && result.permitted == true) {
-
-					this.entryCreateForm = this.recfs.entryCreateForm(); } });
-  
-  }
-
-  ngOnDestroy() : void {
-
-    clearTimeout(this.entryCreateT);
-
-  }
-
   public systemType : string;
 
   public systemGuideline : string;
@@ -75,7 +39,6 @@ export class RefundEntryCreateComponent implements OnInit {
   public view : string;
 
   public link : string;
-
 
   public isError : boolean = false;
 
@@ -95,6 +58,52 @@ export class RefundEntryCreateComponent implements OnInit {
   };
 
   public entryCreateT : any;
+
+  public isLoading : boolean = false;
+
+  ngOnInit() : void {
+
+    let data = this.route.snapshot.data;
+
+    this.systemType = data.create.systemType;
+
+    this.systemGuideline = data.create.systemGuideline;
+
+    this.title = data.create.title;
+
+    this.view = data.create.view;
+
+    this.link = data.create.link;
+
+    this.rfecs.$systemType = this.systemType;
+
+    this.isLoading = true;
+
+    this.rfecs.addEntry()
+
+      .subscribe((result : { [key : string] : any}) => {
+
+        if (result == null) { 
+
+          this.isLoading = false;
+
+          this.isError = true;
+
+          this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); }
+
+        else if (result != null && result.permitted == true) {
+
+          this.isLoading = false;
+
+          this.entryCreateForm = this.recfs.entryCreateForm(); } });
+  
+  }
+
+  ngOnDestroy() : void {
+
+    clearTimeout(this.entryCreateT);
+
+  }
 
   public createEntry(body : { [key : string] : any }) : void {
 

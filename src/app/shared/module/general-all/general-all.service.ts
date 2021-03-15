@@ -28,10 +28,11 @@ export class GeneralAllService {
 
       .pipe(
 
+        delay(3000) ,
+
         catchError(this.handleError<GeneralAll[]>(`${this.$systemType} Entry or Entries Delete` , null))
 
-        );
-  }
+        ); }
 
   public $deleteAllEntry() : Observable<General> {
 
@@ -45,9 +46,7 @@ export class GeneralAllService {
 
         catchError(this.handleError<GeneralAll[]>(`${this.$systemType} Entry or Entries Delete` , null))
 
-        );
-  }
-
+        ); }
 
 
   public deleteManyEntry(this$ , dls : { [key : string] : any }) : void | boolean { let confirmDeletion = confirm('Are you sure you want to perform this action?');

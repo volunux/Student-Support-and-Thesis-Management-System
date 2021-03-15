@@ -1,4 +1,5 @@
 import { Component , OnInit } from '@angular/core';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -6,7 +7,9 @@ import { Component , OnInit } from '@angular/core';
 
   'templateUrl' : './statistics-dashboard.component.html',
 
-  'styleUrls' : ['./statistics-dashboard.component.css']
+  'styleUrls' : ['./statistics-dashboard.component.css'] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -24,19 +27,21 @@ export class StatisticsDashboardComponent implements OnInit {
 
 	public entries : { [key : string] : string } = {
 
-		'request' : 'Request' ,
-
-		'payment' : 'Payment' ,
-
-		'internal' : 'Internal' ,
+		'user-entries' : 'User Entries' ,
 
 		'user' : 'User' ,
 
-		'reply' : 'Reply' ,
+    'internal-one' : 'Internal One' ,
 
-		'comment-reply' : 'Comment & Reply'	}
+    'internal-two' : 'Internal Two' ,
 
-  ngOnInit(): void {
+    'internal-three' : 'Internal Three' ,
+
+    'internal-four' : 'Internal Four' ,
+
+    'other' : 'Other' }
+
+  ngOnInit() : void {
   
   }
 

@@ -5,6 +5,7 @@ import { General } from '../../../interfaces/general';
 import { GeneralAllService } from '../general-all.service';
 import { ErrorMessagesService } from '../../../services/error-messages.service';
 import { NotificationService } from '../../../services/notification.service';
+import { fadeAnimation } from '../../../../animations';
 
 @Component({
 
@@ -14,7 +15,9 @@ import { NotificationService } from '../../../services/notification.service';
 
   'styleUrls' : ['./general-all-entry-delete-all.component.css'] ,
 
-  'providers' : [NotificationService , ErrorMessagesService]
+  'providers' : [NotificationService , ErrorMessagesService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -50,6 +53,8 @@ export class GeneralAllEntryDeleteAllComponent implements OnInit {
 
   public deleteAllT : any;
 
+  public isLoading : boolean = false;
+
   ngOnInit() : void {
 
     this.gas.$sa = this.$link;
@@ -58,11 +63,15 @@ export class GeneralAllEntryDeleteAllComponent implements OnInit {
 
       switchMap((params : ParamMap) => {
 
+        this.isLoading = true;
+
           return this.gas.deleteAllEntry(); })
       )
         .subscribe((result : { [key : string] : any }[]) => { 
 
         if (result == null) {
+
+          this.isLoading = false;
 
           this.canDelete = false;
 
@@ -71,6 +80,8 @@ export class GeneralAllEntryDeleteAllComponent implements OnInit {
           this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); }
 
         if (result != null && result.length > 0) {
+
+          this.isLoading = false;
 
         this.canDelete = true; } });
 

@@ -1,4 +1,5 @@
 import { Component , OnInit } from '@angular/core';
+import { fadeAnimation } from '../../animations';
 
 @Component({
 
@@ -6,7 +7,9 @@ import { Component , OnInit } from '@angular/core';
 
   'templateUrl' : './list-entry-options.component.html',
 
-  'styleUrls' : ['./list-entry-options.component.css']
+  'styleUrls' : ['./list-entry-options.component.css'] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

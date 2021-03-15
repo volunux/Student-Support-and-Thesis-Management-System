@@ -115,6 +115,8 @@ export class GeneralRequestEntriesComponent implements OnInit {
 
   public entriesSearchedOb : Subscription;
 
+  public isLoading : boolean = false;
+
   public searchErr$(err) {
 
     this.error = null;
@@ -133,6 +135,8 @@ export class GeneralRequestEntriesComponent implements OnInit {
     this.location.replaceState(`/general-request/t/${this.rslug}/entries`);
 
     this.gss.searchCleared.next(true);
+
+    this.isLoading = true;
 
     this.getAllEntry({}); }
 
@@ -170,6 +174,8 @@ export class GeneralRequestEntriesComponent implements OnInit {
 
        this.grs.rtype = this.rslug;
 
+       this.isLoading = true;
+
         return this.getAllEntry($q); });
 
   }
@@ -191,6 +197,8 @@ export class GeneralRequestEntriesComponent implements OnInit {
 
       if (result == null) {
 
+        this.isLoading = false;
+
         this.entries = [];
 
         this.$entriesLength = 0;
@@ -200,6 +208,8 @@ export class GeneralRequestEntriesComponent implements OnInit {
         this.error = Object.assign({'resource' : `${this.systemType} Entry or Entries`} , this.ems.message); }
 
       else if (result != null && result.length > 0) {
+
+        this.isLoading = false;
 
          this.error = null;
 

@@ -5,7 +5,7 @@ import { User , Payload } from './user';
 import { General } from './general';
 import { AuthResponse } from './authresponse';
 import { Observable , of , throwError } from 'rxjs';
-import { catchError , tap } from 'rxjs/operators';
+import { catchError , delay , tap } from 'rxjs/operators';
 import { ErrorMessagesService1 } from './error-messages.service1';
 
 @Injectable({
@@ -40,6 +40,9 @@ export class DataService {
     return this.http.get<Payload>(link)
 
       .pipe(
+
+            delay(3000) ,
+
               catchError(this.handleError<AuthResponse>(`${this.$systemType} Entry` , null))
           )
   }
@@ -84,6 +87,8 @@ export class DataService {
     return this.http.get<General>(link)
 
       .pipe(
+            delay(3000) ,
+
               catchError(this.handleError<General>(`${this.$systemType} Entry` , null))
             )
     }

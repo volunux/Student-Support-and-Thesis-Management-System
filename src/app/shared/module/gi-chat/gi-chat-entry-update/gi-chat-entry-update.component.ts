@@ -6,6 +6,7 @@ import { GeneralInternalConversation } from '../gi-chat';
 import { nullRemover , checkFormChanges } from '../../../services/others';
 import { GeneralInternalConversationEntryChangeService } from '../gi-chat-entry-change.service';
 import { NotificationMessageService } from '../../../component/notification/notification-message.service';
+import { fadeAnimation } from '../../../../animations';
 
 @Component({
 
@@ -15,7 +16,9 @@ import { NotificationMessageService } from '../../../component/notification/noti
 
   'styleUrls' : ['./gi-chat-entry-update.component.css'] ,
 
-  'providers' : [NotificationMessageService]
+  'providers' : [NotificationMessageService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

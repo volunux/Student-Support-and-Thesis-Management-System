@@ -62,6 +62,8 @@ export class GeneralPaymentEntryReceiptComponent implements OnInit {
 
   public payment_ref_checked : string;
 
+  public isLoading : boolean = false;
+
   ngOnInit() : void {
 
     let data = this.route.snapshot.data;
@@ -86,17 +88,23 @@ export class GeneralPaymentEntryReceiptComponent implements OnInit {
 
           switchMap((params : ParamMap) => {
 
+            this.isLoading = true;
+
           	return this.gps.getStatus(); })
         )
           .subscribe((result : { [key : string] : any }) => {
 
   					if (result == null) { 
 
+              this.isLoading = false;
+
               this.isError = true;
 
               this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); }
 
             else if (result != null) {
+
+              this.isLoading = false;
 
             	this.entryForm = new FormGroup({
 

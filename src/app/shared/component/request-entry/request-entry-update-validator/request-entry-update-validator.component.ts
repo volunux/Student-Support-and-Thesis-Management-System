@@ -21,7 +21,10 @@ export class RequestEntryUpdateValidatorComponent implements OnInit {
   }
 
   ngOnInit() : void {
-  
+   
+  }
+
+  ngDoCheck() {
   }
 
   @Input('system-type') systemType : string;
@@ -32,5 +35,6 @@ export class RequestEntryUpdateValidatorComponent implements OnInit {
 
   @Input() stage : FormControl;
 
+  @Input('request-message-template') request_message_template : FormControl;
 
 }

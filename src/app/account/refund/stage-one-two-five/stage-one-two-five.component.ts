@@ -1,6 +1,7 @@
 import { Component , Input , OnInit } from '@angular/core';
 import { FormControl , FormGroup } from '@angular/forms';
 import { Refund } from '../refund';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -8,7 +9,9 @@ import { Refund } from '../refund';
 
   'templateUrl' : './stage-one-two-five.component.html',
 
-  'styleUrls' : ['./stage-one-two-five.component.css']
+  'styleUrls' : ['./stage-one-two-five.component.css'] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -32,22 +35,9 @@ export class StageOneTwoFiveComponent implements OnInit {
 
   @Input() public entry : Refund;
 
-  @Input('entry-other') set eother (entries : {[key : string] : any[]}) {
+  @Input() public $link : string;
 
-   if (entries != null) {
-
-     this.estatuses = entries.Status;
-   }
-
-  };
-
-  public estatuses : { [key : string] : any }[];
-
-
-  get status() : FormControl {
-
-    return this.entryForm.get('status') as FormControl;
-  }
+  @Input('entry-other') public eother : {[key : string] : any[]};
 
   get text() : FormControl {
 

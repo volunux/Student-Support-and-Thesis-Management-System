@@ -4,7 +4,7 @@
 
 <div *ngIf ='isLoggedIn' id ='dashboard'>
 
-<ul>
+<ul *ngIf ='entries != null && entries.length > 0' [@listAnimation] ='entries.length'>
 
 	<li *ngIf ='canManage'>
 
@@ -12,30 +12,17 @@
 
 	</li>
 
-	<li>
+		<li *ngFor ='let entry of entries'> 
 
-		<a [routerLink] ='["/general-request"]' class ='center'> Manage Request </a>
+		<a [routerLink] ='[entry.slug]' class ='center'> {{entry.title}} </a>
 
-	</li>
-
-	<li>
-
-		<a [routerLink] ='["/refund"]' class ='center'> Manage Refund </a>
-
-	</li>
-
-	<li >
-
-		<a [routerLink] ='["/general-payment"]' class ='center'> Manage Payment </a>
-
-	</li>
+		</li>
 
 	<li>
 
 		<a [routerLink] ="['/account' , 'profile']" class ='center'> Manage Profile </a>
 
 	</li>
-
 
 
 </ul>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 
   'templateUrl' : './internal-dashboard.component.html',
 
-  'styleUrls' : ['./internal-dashboard.component.css']
+  'styleUrls' : ['./internal-dashboard.component.css'] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

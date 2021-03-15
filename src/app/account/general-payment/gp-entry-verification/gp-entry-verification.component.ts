@@ -7,6 +7,7 @@ import { General } from '../general';
 import { ErrorMessagesService } from '../../../shared/services/error-messages.service';
 import { NotificationService } from '../../../shared/services/notification.service';
 import { GeneralPaymentService } from '../general-payment.service';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -16,7 +17,9 @@ import { GeneralPaymentService } from '../general-payment.service';
 
   'styleUrls' : ['./gp-entry-verification.component.css'] ,
 
-  'providers' : [NotificationService , ErrorMessagesService ]
+  'providers' : [NotificationService , ErrorMessagesService ] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -48,6 +51,8 @@ export class GeneralPaymentEntryVerificationComponent implements OnInit {
 
   public entryChangesT : any;
 
+  public isLoading : boolean = false;
+
   ngOnInit() : void {
 
     this.gps.$systemType = this.systemType;
@@ -66,17 +71,23 @@ export class GeneralPaymentEntryVerificationComponent implements OnInit {
 
           	this.pslug = $ps.get('payment');
 
+            this.isLoading = true;
+
           	return this.gps.$verifyPayment($e); })
         )
           .subscribe((result : General) => {
 
   					if (result == null) { 
 
+              this.isLoading = false;
+
   						this.isError = true;
 
   						this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); }
 
              else if (result != null && result.verified == true) {
+
+               this.isLoading = false;
         
               this.ns.setNotificationStatus(true);
 

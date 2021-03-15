@@ -1,3 +1,5 @@
+<div @fadeAnimation>
+
 <h2 *ngIf ='title'> {{title}} </h2>
 
 <app-view-description *ngIf ='view' [view-description] ='view'> </app-view-description>
@@ -16,13 +18,9 @@
 
 	</ng-container>
 
-	<li>
-
-		<a [routerLink] ='["/account/profile"]' class ='center'> Profile </a>
-
-	</li>
-
 
 </ul>
+
+</div>
 
 </div>

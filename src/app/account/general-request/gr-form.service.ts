@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormControl , FormGroup , FormBuilder , Validators } from '@angular/forms';
 import { dynamicDataValidator } from '../../shared/services/dynamic-control-validator';
 import { General } from './general';
+import { DynamicFormValidators } from '../../shared/misc/dynamic-form-validators';
 
 @Injectable()
 
@@ -21,11 +22,17 @@ export class GeneralRequestFormService {
 
   };
 
+  public commonValidators : { [key : string] : any[] } = {
+
+    'text' : [Validators.required , Validators.minLength(10) , Validators.maxLength(500)]
+
+  }
+
   public otherCtrls : { [key : string] : any } = {
 
-  'request_type' : [Validators.required , Validators.max(10000000)] ,
+  'request_type' : [Validators.required , Validators.max(90000000)] ,
 
-  'unit' : [Validators.required , Validators.max(10000000)] ,
+  'unit' : [Validators.required , Validators.max(90000000)] ,
 
   'username' : [Validators.minLength(5) , Validators.maxLength(100)] ,
 
@@ -38,31 +45,28 @@ export class GeneralRequestFormService {
     return this.permanentProps[prop];
   }
 
-  public removeControls(controls : string[] , form) : void {
+  public getMyData(prop : string) : string[] {
 
-    if (controls != null && controls.length > 0) {
+    return this.permanentData[prop];
 
-    controls.forEach((control) => { let ctrl = form.get(control);
-
-      return ctrl ? form.removeControl(control) : null; }); }
   }
 
   public entryUpdateForm() : FormGroup {
 
     let form = this.fb.group({
 
-      'text' : ['' , {'validators' : [Validators.required , Validators.minLength(10) , Validators.maxLength(500)] } ] ,
+      'text' : ['' , {'validators' : this.commonValidators.text } ] ,
 
       'status' : ['' , {'validators' : [...this.getPermanentProp('status')] } ] });
 
       return form;
   }
 
-    public entryTransferForm() : FormGroup {
+  public entryTransferForm() : FormGroup {
 
       let form = this.fb.group({
 
-        'text' : ['' , {'validators' : [Validators.required , Validators.minLength(10) , Validators.maxLength(500)] } ] ,
+        'text' : ['' , {'validators' : this.commonValidators.text } ] ,
 
         'unit' : ['' , {'validators' : [...this.getPermanentProp('unit')] } ] });
 
@@ -71,28 +75,15 @@ export class GeneralRequestFormService {
 
   public createPermanent(datas : General , form : FormGroup) : void {
 
-    if (datas != null) {
-
-    for (let $prop in datas) {
-
-      let propVal = $prop.toLowerCase();
-
-      this.permanentData[propVal] = datas[$prop];
-
-      form.get(propVal) ? form.get(propVal).setValidators([...this.permanentProps[propVal] , dynamicDataValidator(this.getMyData(propVal) , $prop)]) : null;
-
-      form.get(propVal) ? form.get(propVal).updateValueAndValidity() : null;
-    }
-
-    form.updateValueAndValidity(); }
+    DynamicFormValidators.createPermanent(this , datas , form);
 
   }
 
-  public getMyData(prop : string) : string[] {
+  public removeControls(controls : string[] , form : FormGroup) : void {
 
-    return this.permanentData[prop];
-
+    DynamicFormValidators.removeControls(controls , form);
   }
+
 
 }
 

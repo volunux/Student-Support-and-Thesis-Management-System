@@ -12,6 +12,7 @@ import { DepartmentFormService } from '../department-form.service';
 import { GeneralInternalFormService } from '../../../../../shared/module/general-internal/gi-form.service';
 import { GeneralInternalEntryChangeService } from '../../../../../shared/module/general-internal/gi-entry-change.service';
 import { ErrorMessagesService } from '../../../../../shared/services/error-messages.service';
+import { fadeAnimation } from '../../../../../animations';
 
 @Component({
 
@@ -21,7 +22,9 @@ import { ErrorMessagesService } from '../../../../../shared/services/error-messa
 
   'styleUrls' : ['./department-entry-create.component.css'] ,
 
-  'providers' : [ErrorMessagesService]
+  'providers' : [ErrorMessagesService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -61,6 +64,8 @@ export class DepartmentEntryCreateComponent implements OnInit {
 
   public entryChangesT : any;
 
+  public isLoading : boolean = false;
+
   ngOnInit() : void {
 
     let data = this.route.snapshot.data;
@@ -85,17 +90,23 @@ export class DepartmentEntryCreateComponent implements OnInit {
 
     this.dps.$sa = this.$link;
 
+    this.isLoading = true;
+
     this.dps.addEntry()
 
     .subscribe((result : { [key : string] : any }) => {
 
       if (result == null) {
 
+        this.isLoading = false;
+
         this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); 
 
         this.isError = true; }
 
       else if (result != null && result.permitted == true) {
+
+        this.isLoading = false;
 
         let data = result.$data;
 

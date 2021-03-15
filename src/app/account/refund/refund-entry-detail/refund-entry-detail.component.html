@@ -9,7 +9,7 @@
 <app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
 
 
-<div *ngIf ='entry' id ='request-entry-detail'>
+<div @fadeAnimation *ngIf ='entry' id ='request-entry-detail'>
 
 	<app-request-entry-detail *ngIf ='entry' [entry] ='entry'> </app-request-entry-detail>
 
@@ -42,7 +42,7 @@
 
 				<ng-container *ngIf ='eother != null'>
 
-				<app-stage-one-two-five  [entry] ='entry' [entry-other] ='eother' [entry-form] ='entryForm' [current-stage] ='currentStage' [system-type] ='systemType'> </app-stage-one-two-five>
+				<app-stage-one-two-five  [entry] ='entry' [entry-other] ='eother' [entry-form] ='entryForm' [current-stage] ='currentStage' [system-type] ='systemType' [$link] ='$link' > </app-stage-one-two-five>
 
 			<button *ngIf ='!isFormProcessing' type ='submit' class ='btn-submit' [class] ='{"disabled" : !isFormValid }' [disabled] ='!isFormValid'> Submit </button> 
 
@@ -198,3 +198,5 @@
 	</div>
 
 </div>
+
+<app-loading-menu [is-loading] ='isLoading'> </app-loading-menu>

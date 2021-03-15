@@ -10,7 +10,7 @@ import { GeneralSearchService } from '../../../../../shared/services/general-sea
 import { ErrorMessagesService } from '../../../../../shared/services/error-messages.service';
 import { NotificationService } from '../../../../../shared/services/notification.service';
 import { GeneralAllService } from '../../../../../shared/module/general-all/general-all.service';
-import { listAnimation } from '../../../../../animations';
+import { listAnimation , fadeAnimation } from '../../../../../animations';
 
 @Component({
 
@@ -22,7 +22,7 @@ import { listAnimation } from '../../../../../animations';
 
   'providers' : [ErrorMessagesService , NotificationService , GeneralSearchService , GeneralAllService] ,
 
-  'animations' : [listAnimation]
+  'animations' : [listAnimation , fadeAnimation]
 
 })
 
@@ -114,6 +114,8 @@ export class UserListComponent implements OnInit {
 
   public entriesSearchedOb : Subscription;
 
+  public isLoading : boolean = false;
+
   public trackById(idx : number , entry : User) : number {
 
       return entry._id;
@@ -147,6 +149,8 @@ export class UserListComponent implements OnInit {
 
        let $q = this.gas.paramProcessor(params , this);
 
+        this.isLoading = true;
+
         this.getAllEntry($q); });
 
   }
@@ -168,6 +172,8 @@ export class UserListComponent implements OnInit {
 
       if (result == null) {
 
+        this.isLoading = false;
+
         this.entries = [];
 
         this.$entriesLength = 0;
@@ -177,6 +183,8 @@ export class UserListComponent implements OnInit {
         this.isError = true; }
 
       else if (result != null && result.length > 0) {
+
+         this.isLoading = false;
 
          this.error = null;
 

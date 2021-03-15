@@ -3,6 +3,7 @@ import { FormControl , FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { GeneralInternalEntryChangeService } from '../gi-entry-change.service';
 import { NotificationMessageService } from '../../../component/notification/notification-message.service';
+import { fadeAnimation } from '../../../../animations';
 
 @Component({
 
@@ -12,7 +13,9 @@ import { NotificationMessageService } from '../../../component/notification/noti
 
   'styleUrls' : ['./gi-entry-create.component.css'] ,
 
-  'providers' : [NotificationMessageService]
+  'providers' : [NotificationMessageService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

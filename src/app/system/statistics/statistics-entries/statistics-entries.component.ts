@@ -1,24 +1,10 @@
-import { Component , Input , OnInit } from '@angular/core';
-
-import { Location } from '@angular/common';
-
-import { ActivatedRoute , Router , ParamMap } from '@angular/router';
-
-import { FormControl } from '@angular/forms';
-
-import { Subject } from 'rxjs';
-
-import { debounceTime , distinctUntilChanged , switchMap } from 'rxjs/operators';
-
+import { Component , OnInit } from '@angular/core';
+import { ActivatedRoute , ParamMap } from '@angular/router';
 import { General } from '../../../shared/interfaces/general';
-
 import { Statistics } from '../statistics';
-
 import { StatisticsService } from '../statistics.service';
-
 import { ErrorMessagesService } from '../../../shared/services/error-messages.service';
-
-import { NotificationService } from '../../../shared/services/notification.service';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -28,15 +14,15 @@ import { NotificationService } from '../../../shared/services/notification.servi
 
   'styleUrls' : ['./statistics-entries.component.css'] ,
 
-  'providers' : [ErrorMessagesService , NotificationService]
+  'providers' : [ErrorMessagesService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
 export class StatisticsEntriesComponent implements OnInit {
 
-  constructor(private route : ActivatedRoute , private router : Router , private location : Location ,
-
-              private us : StatisticsService , private ems : ErrorMessagesService , private ns : NotificationService ) { 
+  constructor(private route : ActivatedRoute , private sts : StatisticsService , private ems : ErrorMessagesService) { 
 
   }
 
@@ -50,30 +36,17 @@ export class StatisticsEntriesComponent implements OnInit {
 
   public link : string;
 
-  public link2 : boolean;
-
   public $link : string;
 
   public entries : General;
 
-  public error : General | boolean = false;
-
-  public pageNumber : number = 1;
-
-  public $entriesLength : number = 0;
-
-  public $entryRef : any;
+  public error : { [key : string] : any };
 
   public $entryType : string;
 
-  public $records : General;
+  public isError : boolean = false;
 
-
-
-  public trackById(idx : number , entry : Statistics) : string {
-
-      return entry._id;
-  }
+  public isLoading : boolean = false;
 
   ngOnInit() : void {
 
@@ -89,51 +62,41 @@ export class StatisticsEntriesComponent implements OnInit {
 
     this.link = data.entries.link;
 
-    this.link2 = data.link2;
-
     this.$link = data.entries.$link;
 
-    this.$entryType = data.entryType;
+    this.$entryType = data.entries.entryType;
 
-    this.$records = data.entries.records;
+    this.sts.$systemType = this.systemType;
 
-    this.us.$systemType = this.systemType;
+    this.sts.$sa = this.$link;
 
-    this.us.$sa = this.$link;
+    this.route.queryParamMap.subscribe((params : ParamMap) => {
 
-     this.route.queryParamMap.subscribe((params : ParamMap) => {
+      this.isLoading = true;
 
-       let whichPage = params.get('page') , whichRef = params.get('name');
-
-       this.$entryRef = whichRef ? true : 0;
-
-       this.pageNumber = +whichPage ? +whichPage : 1;
-
-      let paramsRegister = params , paramKeys = paramsRegister.keys , paramsObject = {};
-
-      for (let key of paramKeys) { let param = paramsRegister.get(key);
-
-        if (param) paramsObject[key] = param; }
-
-        return this.getAllEntry();  });
+        return this.getAllEntry(); });
 
    }
 
-
   public getAllEntry() {
 
-   this.us.getAllEntry(this.$entryType)
+   this.sts.getAllEntry(this.$entryType)
   
-    .subscribe(($entries : General) => {
+    .subscribe((result : General) => {
 
-      if (!$entries) {
+      if (result == null) {
 
-        return this.error = Object.assign({'resource' : `${this.systemType} Entry or Entries`} , this.ems.message);  }
+        this.isLoading = false;
 
-         this.error = null;
+        this.isError = true;
 
-         this.entries = $entries;		});
+        this.error = Object.assign({'resource' : `${this.systemType} Entry or Entries`} , this.ems.message); }
+
+      else if (result != null) {
+
+        this.isLoading = false;
+
+       this.entries = Object.values(result); } });
   }
-
 
 }

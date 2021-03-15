@@ -2,7 +2,7 @@
 
 	<ng-container *ngIf ='entry'>
 
-		<div id ='entry-detail-options'>
+		<div @fadeAnimation id ='entry-detail-options'>
 
 		<ng-container *ngIf ="entry?.status == 'Review' || entry?.status == 'Update' || entry?.status == 'Fulfilled' || entry?.status == 'Rejected'">
 

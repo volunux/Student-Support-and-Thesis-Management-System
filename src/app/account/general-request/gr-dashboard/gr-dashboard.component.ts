@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { GeneralRequestService } from '../general-request.service';
 import { ErrorMessagesService } from '../../../shared/services/error-messages.service';
 import { General } from '../general';
+import { listAnimation } from '../../../animations';
 
 @Component({
 
@@ -12,7 +13,9 @@ import { General } from '../general';
 
   'styleUrls' : ['./gr-dashboard.component.css'] ,
 
-  'providers' : [ErrorMessagesService]
+  'providers' : [ErrorMessagesService] ,
+
+  'animations' : [listAnimation]
 
 })
 
@@ -34,6 +37,8 @@ export class GeneralRequestDashboardComponent implements OnInit {
 
   public isError : boolean = false
 
+  public isLoading : boolean = false;
+
   ngOnInit() : void {
 
     let data = this.route.snapshot.data;
@@ -44,17 +49,23 @@ export class GeneralRequestDashboardComponent implements OnInit {
 
     this.view = data.dashboard.view;
 
+    this.isLoading = true;
+
   	this.grs.manageRequest()
 
   		.subscribe((result) => {
 
         if (result == null) {
 
+          this.isLoading = false;
+
           this.isError = true;
 
           this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); }
 
         else if (result != null && result.length > 0) {
+
+         this.isLoading = false;
 
          this.entries = result; } }); }
 }

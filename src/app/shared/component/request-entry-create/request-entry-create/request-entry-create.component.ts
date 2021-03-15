@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { RequestEntryCreateService } from '../request-entry-create.service';
 import { NotificationMessageService } from '../../../component/notification/notification-message.service';
 import { AttachmentUploadComponent } from '../../../module/attachment/attachment-upload/attachment-upload.component';
+import { fadeAnimation } from '../../../../animations';
 
 @Component({
 
@@ -13,7 +14,9 @@ import { AttachmentUploadComponent } from '../../../module/attachment/attachment
 
   'styleUrls' : ['./request-entry-create.component.css'] ,
 
-  'providers' : [NotificationMessageService]
+  'providers' : [NotificationMessageService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

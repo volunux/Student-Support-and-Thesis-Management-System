@@ -14,6 +14,7 @@ import { nullRemover , checkFormChanges } from '../../../../../shared/services/o
 import { UserAccountFormService } from '../../../../../shared/user-account/user-account-form.service'; 
 import { ErrorMessagesService } from '../../../../../shared/services/error-messages.service';
 import { NotificationService } from '../../../../../shared/services/notification.service';
+import { fadeAnimation } from '../../../../../animations';
 
 @Component({
 
@@ -23,7 +24,9 @@ import { NotificationService } from '../../../../../shared/services/notification
 	
 	'styleUrls' : ['./user-update.component.css'] ,
 
-  'providers' : [NotificationService , ErrorMessagesService]
+  'providers' : [NotificationService , ErrorMessagesService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -75,6 +78,8 @@ export class UserUpdateComponent extends UserAccountFormService implements OnIni
 
 	public entryChangesT : any;
 
+	public isLoading : boolean = false;
+
 
 	ngOnInit() : void {
 
@@ -114,11 +119,15 @@ export class UserUpdateComponent extends UserAccountFormService implements OnIni
 
 					this.eslug = $e;
 
+					this.isLoading = true;
+
           return this.us.updateEntry($e , this.link2); })
         )
 				.subscribe((result : General) => { 
 
 					if (result == null) {
+
+						this.isLoading = false;
 
 						this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); 
 
@@ -126,9 +135,11 @@ export class UserUpdateComponent extends UserAccountFormService implements OnIni
 
 					else if (result != null) {
 
+					this.isLoading = false;
+
 					this.entry = nullRemover(result.Entry);
 
-         this.generalOthers = new UserOther(result);
+         	this.generalOthers = new UserOther(result);
 
           this.createPermanent(result);
 

@@ -4,6 +4,7 @@ import { FormControl , FormGroup , Validators } from '@angular/forms';
 import { General } from '../../general';
 import { ProfileEntryUpdateSignatureFileControlService } from '../p-entry-update-s-file-control.service';
 import { AttachmentUploadComponent } from '../../../../shared/module/attachment/attachment-upload/attachment-upload.component';
+import { fadeAnimation } from '../../../../animations';
 
 @Component({
 
@@ -12,6 +13,8 @@ import { AttachmentUploadComponent } from '../../../../shared/module/attachment/
   'templateUrl' : './p-entry-update-s.component.html',
 
   'styleUrls' : ['./p-entry-update-s.component.css'],
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -47,6 +50,8 @@ export class ProfileEntryUpdateSignatureComponent implements OnInit {
   };
 
   public entryForm : FormGroup = new FormGroup({ 'upload': new FormControl('', [Validators.required]) });
+
+  public isLoading : boolean = false;
 
   ngOnInit() : void {
 

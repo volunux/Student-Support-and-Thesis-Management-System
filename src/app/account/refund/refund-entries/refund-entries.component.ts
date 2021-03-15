@@ -112,6 +112,8 @@ export class RefundEntriesComponent implements OnInit {
 
   public entriesSearchedOb : Subscription;
 
+  public isLoading : boolean = false;
+
   public searchErr$(err) {
 
     this.error = null;
@@ -159,6 +161,8 @@ export class RefundEntriesComponent implements OnInit {
 
      this.route.queryParamMap.subscribe((params : ParamMap) => {
 
+       this.isLoading = true;
+
        let $q = this.gas.paramProcessor(params , this)
 
         return this.getAllEntry($q); });
@@ -182,6 +186,8 @@ export class RefundEntriesComponent implements OnInit {
 
       if (result == null) {
 
+        this.isLoading = false;
+
         this.entries = [];
 
         this.$entriesLength = 0;
@@ -191,6 +197,8 @@ export class RefundEntriesComponent implements OnInit {
         this.error = Object.assign({'resource' : `${this.systemType} Entry or Entries`} , this.ems.message); }
 
       else if (result != null && result.length > 0) {
+
+          this.isLoading = false;
 
          this.error = null;
 

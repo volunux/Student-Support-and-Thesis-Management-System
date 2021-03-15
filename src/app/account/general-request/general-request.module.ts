@@ -9,6 +9,7 @@ import { CommentModule } from '../../shared/component/comment/comment.module';
 import { ReplyModule } from '../../shared/component/reply/reply.module';
 import { GeneralAllModule } from '../../shared/module/general-all/general-all.module';
 import { GeneralServicesModule } from '../../shared/services/general-services.module';
+import { RequestEntryMessageTemplateModule } from '../../shared/component/request-entry-message-template/request-entry-message-template.module';
 
 import { GeneralRequestRoutingModule } from './gr-routing.module';
 import { GeneralRequestHomepageComponent } from './gr-homepage/gr-homepage.component';
@@ -73,7 +74,8 @@ import { GeneralRequestFormService } from './gr-form.service';
     ReplyModule,
     SimplesModule,
     PipesModule,
-    GeneralServicesModule
+    GeneralServicesModule,
+    RequestEntryMessageTemplateModule
   ]
 
 })

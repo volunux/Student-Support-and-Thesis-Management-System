@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-
+import { fadeAnimation } from '../../animations';
 @Component({
 
   'selector' : 'app-welcome',
 
   'templateUrl' : './welcome.component.html',
 
-  'styleUrls' : ['./welcome.component.css']
+  'styleUrls' : ['./welcome.component.css'] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

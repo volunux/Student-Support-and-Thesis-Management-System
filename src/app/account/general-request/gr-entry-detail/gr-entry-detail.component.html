@@ -8,7 +8,7 @@
 
 <app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
 
-	<div *ngIf ='entry' id ='request-entry-detail'>
+	<div @fadeAnimation *ngIf ='entry' id ='request-entry-detail'>
 
 		<app-request-entry-detail *ngIf ='entry' [entry] ='entry' [view] ='view' > </app-request-entry-detail>
 
@@ -26,7 +26,7 @@
 
 						<form method ='post' [formGroup] ='entryForm' (ngSubmit) ='updateEntry(entryForm.value)'>
 
-		<app-gr-entry-update-field *ngIf ='entry' (on-submit-btn) ='openSubBtn($event)' [entry] ='entry' [entry-form] ='entryForm' [system-type] ='systemType'> </app-gr-entry-update-field>
+		<app-gr-entry-update-field *ngIf ='entry' (on-submit-btn) ='openSubBtn($event)' [entry] ='entry' [entry-form] ='entryForm' [system-type] ='systemType' [$link] ='$link' > </app-gr-entry-update-field>
 
 		<ng-container *ngIf ='readyToSubmit == true'>
 
@@ -47,3 +47,5 @@
 </div>
 
 </div>
+
+<app-loading-menu [is-loading] ='isLoading'> </app-loading-menu>

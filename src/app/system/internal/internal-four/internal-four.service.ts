@@ -31,6 +31,8 @@ export class InternalFourService {
       .pipe(
               tap((value : InternalFour[]) => console.log(value)) ,
 
+              delay(3000) ,
+
               catchError(this.handleError<InternalFour[]>(`${this.$systemType} Entries` , null))
         )
 
@@ -46,6 +48,8 @@ export class InternalFourService {
 
           tap((entry : InternalFour) => console.log(entry)) ,
 
+          delay(3000) ,
+
           catchError(this.handleError<InternalFour>(`${this.$systemType} Entry` , null))
         )
   }
@@ -59,6 +63,8 @@ export class InternalFourService {
       .pipe(
 
           tap((entry : General) => console.log(entry)) ,
+
+          delay(3000) ,
 
           map((data : General) => { return { 'permitted' : true , '$data' : data }; }) ,
 
@@ -90,6 +96,8 @@ export class InternalFourService {
 
       .pipe(
 
+        delay(3000) ,
+
          map((entry : General) => { return { 'permitted' : true , '$data' : entry }; }) ,
 
         catchError(this.handleError<InternalFour>(`${this.$systemType} Entry` , null))
@@ -119,6 +127,8 @@ export class InternalFourService {
     return this.http.get<InternalFour>(link)
 
       .pipe(
+
+        delay(3000) ,
 
          map((entry : General) => { return { 'permitted' : true , '$data' : entry }; }) ,
 
@@ -166,6 +176,8 @@ export class InternalFourService {
     return this.http.get(link)
 
       .pipe(
+
+        delay(3000) ,
 
         catchError(this.handleError<InternalFour[]>(`${this.$systemType} Entry or Entries Delete` , null))
 

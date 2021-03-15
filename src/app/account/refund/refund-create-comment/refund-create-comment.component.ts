@@ -54,19 +54,27 @@ export class RefundCreateCommentComponent implements OnInit {
 
           this.eslug = $e;
 
+          this.isLoading = true;
+
           return this.rfs.addComment($e); })
         )
           .subscribe((result : General) => {
 
-            if (result == null) { this.isError = true;
+            if (result == null) {
+
+              this.isLoading = false;
+
+              this.isError = true;
 
             	this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); }
 
             else if (result != null && result.permitted == true) {
 
-            this.entry = result.$data;
+              this.isLoading = false;
 
-            this.entryCreateForm = this.ccfs.entryCreateForm(); } });
+              this.entry = result.$data;
+
+              this.entryCreateForm = this.ccfs.entryCreateForm(); } });
   }
 
   ngOnDestroy() : void {
@@ -95,6 +103,8 @@ export class RefundCreateCommentComponent implements OnInit {
   public entryCreateT : any;
 
   public entryCreateForm : FormGroup;
+
+  public isLoading : boolean = false;
 
 
   public createEntry(body : { [key : string] : any }) : void {

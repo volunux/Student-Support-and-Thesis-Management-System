@@ -30,6 +30,8 @@ export class RefundEntryCreateService {
 
           tap((entry : General) => console.log(entry)) ,
 
+          delay(3000) ,
+
           map((permitted : General) => { return { 'permitted' : true }; }) ,
 
           catchError(this.handleError<General>(`${this.$systemType} Entry` , null))

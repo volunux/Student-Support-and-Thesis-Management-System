@@ -1,4 +1,5 @@
 import { Component , Input , OnInit } from '@angular/core';
+import { fadeAnimation } from '../../../../animations';
 
 @Component({
 
@@ -7,6 +8,8 @@ import { Component , Input , OnInit } from '@angular/core';
   'templateUrl' : './request-entry-detail.component.html',
 
   'styleUrls' : ['./request-entry-detail.component.css'] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

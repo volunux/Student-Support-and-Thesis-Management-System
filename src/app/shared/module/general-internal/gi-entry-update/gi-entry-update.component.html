@@ -1,3 +1,4 @@
+<div @fadeAnimation *ngIf ='true'>
 
 <app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
 
@@ -36,3 +37,5 @@
 			<a [routerLink] ="['../../../' , 'entry' , entry?.slug , 'delete']" class ='entry-option center'> {{systemType}} Delete </a>
 
 		</div>
+
+</div>

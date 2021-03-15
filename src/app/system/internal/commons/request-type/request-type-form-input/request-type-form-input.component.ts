@@ -1,5 +1,6 @@
 import { Component , Input , OnInit } from '@angular/core';
 import { FormControl , FormGroup } from '@angular/forms';
+import { fadeAnimation } from '../../../../../animations';
 
 @Component({
 
@@ -7,7 +8,9 @@ import { FormControl , FormGroup } from '@angular/forms';
 
   'templateUrl' : './request-type-form-input.component.html',
 
-  'styleUrls' : ['./request-type-form-input.component.css']
+  'styleUrls' : ['./request-type-form-input.component.css'] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

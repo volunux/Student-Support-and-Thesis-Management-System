@@ -5,6 +5,7 @@ import { RefundLetterService } from '../refund-letter.service';
 import { General } from '../general';
 import { RefundLetter } from '../refund-letter';
 import { ErrorMessagesService } from '../../../shared/services/error-messages.service';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -14,7 +15,9 @@ import { ErrorMessagesService } from '../../../shared/services/error-messages.se
 
   'styleUrls' : ['./refund-letter-entry-detail.component.css'] ,
 
-  'providers' : [ErrorMessagesService]
+  'providers' : [ErrorMessagesService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -44,6 +47,8 @@ export class RefundLetterEntryDetailComponent implements OnInit {
 
   private eslug : string;
 
+  public isLoading : boolean = false;
+
   @ViewChild('datacontainer') dataContainer : ElementRef;
 
   ngOnInit() : void {
@@ -72,11 +77,15 @@ export class RefundLetterEntryDetailComponent implements OnInit {
 
           	let $e = params.get('entry');
 
+            this.isLoading = true;
+
             return this.rls.getEntryLetter($e); })
         )
           .subscribe((result : RefundLetter) => {
 
             if (result == null) {
+
+              this.isLoading = false;
 
             	this.isError = true;
 
@@ -84,11 +93,13 @@ export class RefundLetterEntryDetailComponent implements OnInit {
 
             else if (result != null) {
 
-            this.entry = result;
+              this.isLoading = false;
 
-            if (result.letter != null && result.letter.main_body) this.dataContainer.nativeElement.innerHTML = result.letter.main_body;
+              this.entry = result;
 
-            this.eslug = this.entry.slug; } });  
+              if (result.letter != null && result.letter.main_body) this.dataContainer.nativeElement.innerHTML = result.letter.main_body;
+
+              this.eslug = this.entry.slug; } });  
   }
 
 

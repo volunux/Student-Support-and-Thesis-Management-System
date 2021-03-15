@@ -1,6 +1,7 @@
 import { Component , Input , OnInit } from '@angular/core';
 import { FormControl , FormGroup } from '@angular/forms';
 import { User } from '../user';
+import { fadeAnimation } from '../../../animations';
 
 
 @Component({
@@ -9,7 +10,9 @@ import { User } from '../user';
 
   'templateUrl' : './profile-input-fields.component.html',
 
-  'styleUrls' : ['./profile-input-fields.component.css']
+  'styleUrls' : ['./profile-input-fields.component.css'] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

@@ -4,7 +4,6 @@ import { ActivatedRoute , Router , ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { General } from '../general';
 import { GeneralRequest } from '../general-request';
-
 import { GeneralRequestService } from '../general-request.service';
 import { CommentCreateFormService } from '../../../shared/component/comment/comment-create-form.service';
 import { CommentCreateService } from '../../../shared/component/comment/comment-create.service';
@@ -18,7 +17,7 @@ import { ErrorMessagesService } from '../../../shared/services/error-messages.se
 
   'styleUrls' : ['./gr-create-comment.component.css'],
 
-  'providers' : [ErrorMessagesService]
+  'providers' : [ErrorMessagesService] ,
 
 })
 
@@ -52,6 +51,8 @@ export class GeneralRequestCreateCommentComponent implements OnInit {
 
   public entryCreateForm : FormGroup;
 
+  public isLoading : boolean = false;
+
 
   ngOnInit() : void {
 
@@ -81,15 +82,23 @@ export class GeneralRequestCreateCommentComponent implements OnInit {
 
             this.eslug = $e;
 
+            this.isLoading = true;
+
             return this.grs.addComment($r , $e); })
         )
           .subscribe((result : General) => {
 
-            if (result == null) { this.isError = true;
+            if (result == null) {
+
+              this.isLoading = false;
+
+              this.isError = true;
 
               this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); }
 
             else if (result != null && result.permitted == true) {
+
+            this.isLoading = false;
 
             this.entry = result.$data;
 

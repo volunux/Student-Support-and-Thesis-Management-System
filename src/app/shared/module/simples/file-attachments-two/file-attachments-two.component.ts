@@ -1,5 +1,6 @@
 import { Component , Input , OnInit } from '@angular/core';
 import { General } from '../../../interfaces/general';
+import { fadeAnimation } from '../../../../animations';
 
 @Component({
 
@@ -7,7 +8,9 @@ import { General } from '../../../interfaces/general';
   
   'templateUrl' : './file-attachments-two.component.html',
 
-  'styleUrls' : ['./file-attachments-two.component.css']
+  'styleUrls' : ['./file-attachments-two.component.css'] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

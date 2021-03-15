@@ -4,7 +4,7 @@
 
 <app-resource-unavailable *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
 
-<div *ngIf ='entry' id ='dashboard'>
+<div @fadeAnimation *ngIf ='entry' id ='dashboard'>
 
 <ul>
 
@@ -41,3 +41,5 @@
 </ul>
 
 </div>
+
+<app-loading-menu [is-loading] ='isLoading'> </app-loading-menu>

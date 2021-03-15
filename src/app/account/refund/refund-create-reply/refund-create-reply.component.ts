@@ -59,25 +59,33 @@ export class RefundCreateReplyComponent implements OnInit {
 
           this.cslug = $c;
 
+          this.isLoading = true;
+
           return this.rfs.addReply($e , $c); })
         )
           .subscribe((result : General) => {
 
-            if (result == null) { this.isError = true;
+            if (result == null) {
+
+              this.isLoading = false;
+
+              this.isError = true;
 
             	this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); }
 
             else if (result != null && result.permitted == true) {
 
-            this.entry = result.$data.Entry;
+              this.isLoading = false;
 
-            this.comment = result.$data.Comment;
+              this.entry = result.$data.Entry;
 
-            this.entryCreateForm = this.rcfs.entryCreateForm();
+              this.comment = result.$data.Comment;
 
-            let authorName = this.comment.author.full_name;
+              this.entryCreateForm = this.rcfs.entryCreateForm();
 
-            this.entryCreateForm.patchValue({'comment_author_name' : authorName }); } });
+              let authorName = this.comment.author.full_name;
+
+              this.entryCreateForm.patchValue({'comment_author_name' : authorName }); } });
   }
 
   ngOnDestroy() : void {
@@ -109,6 +117,8 @@ export class RefundCreateReplyComponent implements OnInit {
   public entryCreateForm : FormGroup;
 
   public entryCreatedT : any;
+
+  public isLoading : boolean = false;
 
 
   public createEntry(body : { [key : string] : any }) : void {

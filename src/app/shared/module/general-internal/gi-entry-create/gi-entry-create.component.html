@@ -1,3 +1,4 @@
+<div @fadeAnimation *ngIf ='true'>
 
 <app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
 
@@ -20,3 +21,5 @@
 		</div>
 
 </ng-container>
+
+</div>

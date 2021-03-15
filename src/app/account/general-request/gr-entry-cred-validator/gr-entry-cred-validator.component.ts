@@ -20,7 +20,7 @@ export class GeneralRequestEntryCredentialValidatorComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  ngOnInit() : void {
   
   }
 

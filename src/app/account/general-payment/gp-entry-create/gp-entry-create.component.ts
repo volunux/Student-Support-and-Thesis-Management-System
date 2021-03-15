@@ -8,6 +8,7 @@ import { ErrorMessagesService } from '../../../shared/services/error-messages.se
 import { NotificationService } from '../../../shared/services/notification.service';
 import { GeneralPaymentService } from '../general-payment.service';
 import { GeneralPaymentFormService } from '../gp-form.service';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -17,7 +18,9 @@ import { GeneralPaymentFormService } from '../gp-form.service';
 
   'styleUrls' : ['./gp-entry-create.component.css'] ,
 
-  'providers' : [NotificationService , ErrorMessagesService]
+  'providers' : [NotificationService , ErrorMessagesService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -68,6 +71,8 @@ export class GeneralPaymentEntryCreateComponent implements OnInit {
 
   public prev_psession : number;
 
+  public isLoading : boolean = false;
+
   public paymentSessionCtrl : FormControl = new FormControl();
 
   ngOnInit() : void {
@@ -104,11 +109,15 @@ export class GeneralPaymentEntryCreateComponent implements OnInit {
 
             this.pslug = $p;
 
-            return this.gps.addEntry($p);  })
+            this.isLoading = true;
+
+            return this.gps.addEntry($p); })
       )
       .subscribe((result : { [key : string] : any } ) => {
 
       if (result == null) {
+
+        this.isLoading = false;
 
         this.isError = true;
 
@@ -116,9 +125,13 @@ export class GeneralPaymentEntryCreateComponent implements OnInit {
 
       else if (result.permitted == true && result.$data != null && result.$data.status != null) {
 
+          this.isLoading = false;
+
           this.router.navigate(['/general-payment' , this.link , 'entry' , 'detail' , result.$data._id ]); }
 
       else if (result.permitted == true) {
+
+        this.isLoading = false;
 
         this.paymentSession = result.$data.payment_session;
 
@@ -136,15 +149,21 @@ export class GeneralPaymentEntryCreateComponent implements OnInit {
 
     let confirmPayment : { [key : string] : any } = {'payment_type' : this.paymentType , 'payment_session' : evt.value };
 
+    this.isLoading = true;
+
     this.gps.checkPayment(this.pslug , confirmPayment)
 
       .subscribe((value) => { let payload = value.$data;
 
-        if (payload.slug != null) { 
+        if (payload.slug != null) {
+
+          this.isLoading = false;
 
           this.router.navigate(['general-payment' , 't' , this.pslug , 'entry' , payload.slug , 'detail']) }
 
         else {
+
+        this.isLoading = false;
 
         this.entry = payload;
 

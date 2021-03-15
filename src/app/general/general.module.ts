@@ -9,6 +9,7 @@ import { ListEntryOptionsComponent } from './list-entry-options/list-entry-optio
 import { DeleteAllEntryComponent } from './delete-all-entry/delete-all-entry.component';
 import { ViewDescriptionComponent } from './view-description/view-description.component';
 import { SearchComponent } from './search/search.component';
+import { LoadingMenuComponent } from './loading-menu/loading-menu.component';
 
 import { GeneralFormService } from './general-form.service';
 import { GeneralServicesModule } from '../shared/services/general-services.module';
@@ -26,6 +27,7 @@ import { GeneralFormValidatorsComponent } from './general-form-validators/genera
       ViewDescriptionComponent,
       SearchComponent,
       GeneralFormValidatorsComponent,
+      LoadingMenuComponent
 		],
 
   imports: [
@@ -41,7 +43,8 @@ import { GeneralFormValidatorsComponent } from './general-form-validators/genera
     ListEntryOptionsComponent,
     DeleteAllEntryComponent,
     ViewDescriptionComponent,
-    SearchComponent
+    SearchComponent,
+    LoadingMenuComponent
 
   ] ,
 

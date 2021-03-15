@@ -1,36 +1,14 @@
-<ng-container *ngIf ='entry'>
+<div @fadeAnimation *ngIf ='entry'>
 
-		<h3> Request Options </h3>
+		<h3 class ='center'> Request Options </h3>
+
+<app-request-entry-message-template [system-type] ='systemType' [$link] ='$link' [entry-form] ='entryForm' > </app-request-entry-message-template>
 
 <div [formGroup] ='entryForm'>
 
+<app-request-entry-message-template [system-type] ='systemType' [$link] ='$link' [entry-form] ='entryForm' [entry] ='entry' > </app-request-entry-message-template>
 
-
-<div class ='form-group' *ngIf ='status'>
-
-	<label for ='status' class ='form-label bold'> Entry Status </label>
-
-	<select name ='status' id ='status' class ='form-control' formControlName ='status'>
-
-		<ng-container *ngIf ='estatuses != null'>
-
-			<ng-container *ngIf ='entry?.status'>
-
-				<option [value] =''> </option> 
-
-				<option *ngFor ='let status of estatuses' [value] ='status._id'> {{status.name}} </option> 
-
-			</ng-container>
-
-		</ng-container>
-
-	</select>
-
-	<app-request-entry-update-validator *ngIf ='status' [system-type] ='systemType' [status] ='status'> </app-request-entry-update-validator>
-
-</div>
-
-
+<app-request-entry-update-status [entries] ='eother' [entry-form] ='entryForm' [entry] ='entry' > </app-request-entry-update-status>
 
 	<div class ='form-group' *ngIf ='text'>
 
@@ -109,4 +87,4 @@
 
 		</div>
 
-	</ng-container>
+	</div>

@@ -13,9 +13,9 @@ import { GeneralPaymentEntryDashboardComponent } from './gp-entry-dashboard/gp-e
 import { GeneralPaymentEntriesComponent } from './gp-entries/gp-entries.component';
 import { GeneralPaymentEntryCreateComponent } from './gp-entry-create/gp-entry-create.component';
 import { GeneralPaymentEntryDetailComponent } from './gp-entry-detail/gp-entry-detail.component';
-import { GeneralPaymentEntryDeleteAllComponent } from './gp-entry-delete-all/gp-entry-delete-all.component';
 import { GeneralPaymentEntryCreateValidatorComponent } from './gp-entry-create-validator/gp-entry-create-validator.component';
 import { GeneralPaymentEntryVerificationComponent } from './gp-entry-verification/gp-entry-verification.component';
+import { GeneralPaymentEntryDeleteAllComponent } from './gp-entry-delete-all/gp-entry-delete-all.component';
 
 import { GeneralPaymentService } from './general-payment.service';
 import { GeneralPaymentFormService } from './gp-form.service';
@@ -31,10 +31,10 @@ import { GeneralPaymentEntryReceiptComponent } from './gp-entry-receipt/gp-entry
   	GeneralPaymentEntriesComponent,
   	GeneralPaymentEntryCreateComponent,
   	GeneralPaymentEntryDetailComponent,
-  	GeneralPaymentEntryDeleteAllComponent,
   	GeneralPaymentEntryCreateValidatorComponent,
   	GeneralPaymentEntryVerificationComponent,
-  	GeneralPaymentEntryReceiptComponent
+  	GeneralPaymentEntryReceiptComponent,
+    GeneralPaymentEntryDeleteAllComponent
 
   	],
   

@@ -1,5 +1,6 @@
 import { Component , EventEmitter , Input , OnInit , Output } from '@angular/core';
 import { FormControl , FormGroup } from '@angular/forms';
+import { fadeAnimation } from '../../../../animations';
 
 @Component({
 
@@ -7,7 +8,9 @@ import { FormControl , FormGroup } from '@angular/forms';
 
   'templateUrl' : './gi-form-input.component.html',
 
-  'styleUrls' : ['./gi-form-input.component.css']
+  'styleUrls' : ['./gi-form-input.component.css'] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

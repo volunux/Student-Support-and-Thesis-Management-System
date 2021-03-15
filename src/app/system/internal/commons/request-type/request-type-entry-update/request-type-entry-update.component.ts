@@ -12,6 +12,7 @@ import { RequestTypeFormService } from '../request-type-form.service';
 import { GeneralInternalFormService } from '../../../../../shared/module/general-internal/gi-form.service';
 import { GeneralInternalEntryChangeService } from '../../../../../shared/module/general-internal/gi-entry-change.service';
 import { ErrorMessagesService } from '../../../../../shared/services/error-messages.service';
+import { fadeAnimation } from '../../../../../animations';
 
 @Component({
 
@@ -21,7 +22,9 @@ import { ErrorMessagesService } from '../../../../../shared/services/error-messa
 
   'styleUrls' : ['./request-type-entry-update.component.css'] ,
 
-  'providers' : [ErrorMessagesService]
+  'providers' : [ErrorMessagesService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -63,6 +66,8 @@ export class RequestTypeEntryUpdateComponent implements OnInit {
 
   public entryChangesT : any;
 
+  public isLoading : boolean = false;
+
   private eslug : string;
 
   ngOnInit() : void {
@@ -99,6 +104,8 @@ export class RequestTypeEntryUpdateComponent implements OnInit {
 
             this.eslug = $e;
 
+            this.isLoading = true;
+
             return this.rts.updateEntry($e); })
         )
 
@@ -106,11 +113,15 @@ export class RequestTypeEntryUpdateComponent implements OnInit {
 
       if (result == null) {
 
+        this.isLoading = false;
+
         this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); 
 
         this.isError = true; }
 
       else if (result != null && result.permitted == true) {
+
+        this.isLoading = false;
 
         this.entry = result.$data.Entry;
 

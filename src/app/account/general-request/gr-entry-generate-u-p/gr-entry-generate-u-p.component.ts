@@ -4,6 +4,7 @@ import { GeneralRequest } from '../general-request';
 import { Credentials } from '../credentials';
 import { GeneralRequestFormService } from '../gr-form.service';
 import { GenerateUsernamePasswordService } from '../generate-username-password.service';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -11,7 +12,9 @@ import { GenerateUsernamePasswordService } from '../generate-username-password.s
 
   'templateUrl' : './gr-entry-generate-u-p.component.html',
 
-  'styleUrls' : ['./gr-entry-generate-u-p.component.css']
+  'styleUrls' : ['./gr-entry-generate-u-p.component.css'] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

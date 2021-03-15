@@ -12,7 +12,7 @@
 
 	<ng-container *ngIf ='comments != null && comments?.length > 0; else noComments'>
 
-		<div class ='comments'>
+		<div @fadeAnimation class ='comments'>
 
 			<h3> Timeline </h3>
 
@@ -146,3 +146,4 @@
 
 </div>
 
+<app-loading-menu [is-loading] ='isLoading'> </app-loading-menu>

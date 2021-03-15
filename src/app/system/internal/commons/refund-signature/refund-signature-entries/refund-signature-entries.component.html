@@ -1,4 +1,4 @@
-<div id ='entry-main'>
+<div @fadeAnimation id ='entry-main'>
 
 <h2 *ngIf ='title' > {{title}} </h2>
 
@@ -6,7 +6,7 @@
 
 <app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
 
-<app-list-entry-options> </app-list-entry-options>
+<app-list-entry-options *ngIf ='$entriesLength > 0'> </app-list-entry-options>
 
 		<div class ='search-bar'>
 
@@ -122,3 +122,5 @@
 <app-resource-unavailable id ='error' *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
 
 </div>
+
+<app-loading-menu [is-loading] ='isLoading'> </app-loading-menu>

@@ -9,6 +9,7 @@ import { CommentModule } from '../../shared/component/comment/comment.module';
 import { ReplyModule } from '../../shared/component/reply/reply.module';
 import { GeneralAllModule } from '../../shared/module/general-all/general-all.module';
 import { GeneralServicesModule } from '../../shared/services/general-services.module';
+import { RequestEntryMessageTemplateModule } from '../../shared/component/request-entry-message-template/request-entry-message-template.module';
 
 
 import { RefundRoutingModule } from './refund-routing.module';
@@ -62,6 +63,7 @@ import { RefundEntryOptionComponent } from './refund-entry-option/refund-entry-o
 		SimplesModule,
     PipesModule,
     GeneralServicesModule,
+    RequestEntryMessageTemplateModule,
     RefundRoutingModule
   ] ,
 

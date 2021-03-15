@@ -29,9 +29,11 @@ export class RequestCredentialService {
     return this.http.get<RequestCredential[]>(link , httpOptions)
 
       .pipe(
-              tap((value : RequestCredential[]) => console.log(value)) ,
+            tap((value : RequestCredential[]) => console.log(value)) ,
 
-              catchError(this.handleError<RequestCredential[]>(`${this.$systemType} Entries` , null))
+            delay(3000) ,
+
+            catchError(this.handleError<RequestCredential[]>(`${this.$systemType} Entries` , null))
         )
 
   }
@@ -46,6 +48,8 @@ export class RequestCredentialService {
 
           tap((entry : RequestCredential) => console.log(entry)) ,
 
+         delay(3000) ,
+
           catchError(this.handleError<RequestCredential>(`${this.$systemType} Entry` , null))
         )
   }
@@ -59,6 +63,8 @@ export class RequestCredentialService {
       .pipe(
 
           tap((entry : General) => console.log(entry)) ,
+
+          delay(3000) ,
 
           map((data : General) => { return { 'permitted' : true , '$data' : data }; }) ,
 
@@ -90,6 +96,8 @@ export class RequestCredentialService {
 
       .pipe(
 
+        delay(3000) ,
+
          map((entry : General) => { return { 'permitted' : true , '$data' : entry }; }) ,
 
         catchError(this.handleError<RequestCredential>(`${this.$systemType} Entry` , null))
@@ -119,6 +127,8 @@ export class RequestCredentialService {
     return this.http.get<RequestCredential>(link)
 
       .pipe(
+
+        delay(3000) ,
 
          map((entry : General) => { return { 'permitted' : true , '$data' : entry }; }) ,
 
@@ -167,6 +177,8 @@ export class RequestCredentialService {
 
       .pipe(
 
+        delay(3000) ,
+ 
         catchError(this.handleError<RequestCredential[]>(`${this.$systemType} Entry or Entries Delete` , null))
 
         );

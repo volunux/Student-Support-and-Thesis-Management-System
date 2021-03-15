@@ -11,7 +11,7 @@ import { GeneralAllService } from '../../../../shared/module/general-all/general
 import { ErrorMessagesService } from '../../../../shared/services/error-messages.service';
 import { NotificationService } from '../../../../shared/services/notification.service';
 import { AuthenticationService } from '../../../../authentication/authentication.service';
-import { listAnimation } from '../../../../animations';
+import { listAnimation , fadeAnimation } from '../../../../animations';
 
 @Component({
 
@@ -23,7 +23,7 @@ import { listAnimation } from '../../../../animations';
 
   'providers' : [NotificationService , ErrorMessagesService , GeneralSearchService] ,
 
-  'animations' : [listAnimation] ,
+  'animations' : [listAnimation , fadeAnimation ] ,
 
 })
 
@@ -111,6 +111,8 @@ export class InternalThreeEntriesComponent implements OnInit {
 
   public entriesSearchedOb : Subscription;
 
+  public isLoading : boolean = false;
+
   public searchErr$(err) {
 
     this.error = null;
@@ -160,7 +162,9 @@ export class InternalThreeEntriesComponent implements OnInit {
 
      this.route.queryParamMap.subscribe((params : ParamMap) => {
 
-       let $q = this.gas.paramProcessor(params , this)
+       let $q = this.gas.paramProcessor(params , this);
+
+       this.isLoading = true;
 
         return this.getAllEntry($q); });
 
@@ -183,6 +187,8 @@ export class InternalThreeEntriesComponent implements OnInit {
 
       if (result == null) {
 
+        this.isLoading = false;
+
         this.entries = [];
 
         this.$entriesLength = 0;
@@ -192,6 +198,8 @@ export class InternalThreeEntriesComponent implements OnInit {
         this.error = Object.assign({'resource' : `${this.systemType} Entry or Entries`} , this.ems.message); }
 
       else if (result != null && result.length > 0) {
+
+         this.isLoading = false;
 
          this.error = null;
 

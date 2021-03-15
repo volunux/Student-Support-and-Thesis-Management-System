@@ -11,6 +11,7 @@ import { ErrorMessagesService } from '../../../shared/services/error-messages.se
 import { NotificationService } from '../../../shared/services/notification.service';
 import { AuthenticationService } from '../../../authentication/authentication.service';
 import { canUpdate } from '../roles';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -20,7 +21,9 @@ import { canUpdate } from '../roles';
 
   'styleUrls' : ['./gr-entry-detail.component.css'] ,
 
-  'providers' : [NotificationService , ErrorMessagesService]
+  'providers' : [NotificationService , ErrorMessagesService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -46,6 +49,8 @@ export class GeneralRequestEntryDetailComponent implements OnInit {
 
   public link : string;
 
+  public $link : string;
+
   public entry : GeneralRequest;
 
   public error : { [key : string] : any };
@@ -68,6 +73,8 @@ export class GeneralRequestEntryDetailComponent implements OnInit {
 
   public readyToSubmit : boolean;
 
+  public isLoading : boolean = false;
+
   ngOnInit() : void {
 
     let data = this.route.snapshot.data;
@@ -81,6 +88,8 @@ export class GeneralRequestEntryDetailComponent implements OnInit {
     this.viewWord = data.detail.viewWord;
 
     this.link = data.detail.link;
+
+    this.$link = data.detail.$link;
 
     this.generateCred = data.detail.generateCred;
 
@@ -100,17 +109,23 @@ export class GeneralRequestEntryDetailComponent implements OnInit {
 
             this.eslug = $e;
 
+            this.isLoading = true;
+
           	return this.grs.getEntry($r , $e); })
         )
           .subscribe((result : GeneralRequest) => {
 
   					if (result == null) { 
 
+              this.isLoading = false;
+
               this.isError = true;
 
               this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); }
 
             else if (result != null) {
+
+              this.isLoading = false;
 
     					this.entry = result;
 

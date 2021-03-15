@@ -1,11 +1,13 @@
-<div id ='general-payment'>
+<div @fadeAnimation id ='general-payment'>
 
 <h2 *ngIf ='title' > {{title}} </h2>
 
-<p> Kindly be patient while the payment is being processed </p>
+<p> Kindly be patient while the payment is being processed. </p>
 
 <app-view-description *ngIf ='view' [view-type] ='view'> </app-view-description>
 
 <app-resource-unavailable *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
 
 </div>
+
+<app-loading-menu [is-loading] ='isLoading'> </app-loading-menu>

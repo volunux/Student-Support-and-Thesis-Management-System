@@ -1,4 +1,4 @@
-<ng-container *ngIf ='comment'>
+<div @fadeAnimation *ngIf ='comment'>
 
 <h2> Comment Detail </h2>
 
@@ -10,7 +10,7 @@
 
 	<ng-container *ngIf ='comment?.text'>
 
-		<div class ='comment'>   
+		<div class ='comment'>
 
 			<p> <b class ='bold'> Text : </b> {{comment?.text}} </p>
 
@@ -18,4 +18,4 @@
 
 	</ng-container>
 
-</ng-container>
+</div>

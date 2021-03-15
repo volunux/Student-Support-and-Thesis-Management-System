@@ -1,6 +1,7 @@
 import { Component , Input , OnInit } from '@angular/core';
 import { FormControl , FormGroup } from '@angular/forms';
 import { Refund } from '../refund';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -8,7 +9,9 @@ import { Refund } from '../refund';
 
   'templateUrl' : './stage-four.component.html',
 
-  'styleUrls' : ['./stage-four.component.css']
+  'styleUrls' : ['./stage-four.component.css'] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

@@ -1,5 +1,6 @@
 import { Component , OnInit } from '@angular/core';
 import { AuthenticationService } from '../../../authentication/authentication.service';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -7,7 +8,9 @@ import { AuthenticationService } from '../../../authentication/authentication.se
 
   'templateUrl' : './profile-dashboard.component.html',
 
-  'styleUrls' : ['./profile-dashboard.component.css']
+  'styleUrls' : ['./profile-dashboard.component.css'] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

@@ -5,7 +5,7 @@
 
 <app-comment-entry-status *ngIf ='entry' [entry] ='entry' [system-type] ='systemType'> </app-comment-entry-status>
 
-	<div id ='comment-form' *ngIf ='entry'>
+	<div @fadeAnimation id ='comment-form' *ngIf ='entry'>
 
 		<div [formGroup] ='entryCreateForm'>
 

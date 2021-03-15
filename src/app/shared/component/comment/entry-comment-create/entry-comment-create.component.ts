@@ -3,6 +3,7 @@ import { FormControl , FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { CommentCreateService } from '../comment-create.service';
 import { NotificationMessageService } from '../../../component/notification/notification-message.service';
+import { fadeAnimation } from '../../../../animations';
 
 @Component({
 
@@ -12,7 +13,9 @@ import { NotificationMessageService } from '../../../component/notification/noti
 
   'styleUrls' : ['./entry-comment-create.component.css'] ,
 
-  'providers' : [NotificationMessageService]
+  'providers' : [NotificationMessageService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

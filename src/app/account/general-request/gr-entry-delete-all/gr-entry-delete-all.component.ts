@@ -5,6 +5,7 @@ import { General } from '../general';
 import { GeneralRequestService } from '../general-request.service';
 import { ErrorMessagesService } from '../../../shared/services/error-messages.service';
 import { NotificationService } from '../../../shared/services/notification.service';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -14,7 +15,9 @@ import { NotificationService } from '../../../shared/services/notification.servi
 
   'styleUrls' : ['./gr-entry-delete-all.component.css'] ,
 
-  'providers' : [NotificationService , ErrorMessagesService]
+  'providers' : [NotificationService , ErrorMessagesService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -50,6 +53,8 @@ export class GeneralRequestEntryDeleteAllComponent implements OnInit {
 
   public canDelete : boolean = false;
 
+  public isLoading : boolean = false;
+
   ngOnInit() : void {
 
     let data = this.route.snapshot.data;
@@ -72,17 +77,25 @@ export class GeneralRequestEntryDeleteAllComponent implements OnInit {
 
       	this.rslug = $r;
 
+        this.isLoading = true;
+
         return this.grs.deleteAllEntry($r); })
       )
         .subscribe((result : { [key : string] : any }[]) => {
 
-        if (result == null) { this.canDelete = false;
+        if (result == null) { 
+
+          this.isLoading = false;
+
+          this.canDelete = false;
 
           this.isError = true;
 
           this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); }
 
         else if (result != null && result.length > 0) {
+
+          this.isLoading = false;
 
           this.canDelete = true; } });
   }

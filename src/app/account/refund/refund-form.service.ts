@@ -3,6 +3,7 @@ import { FormControl , FormGroup , FormBuilder , Validators , ValidatorFn } from
 import { searchValidator } from '../../shared/services/form-validators.service';
 import { dynamicDataValidator } from '../../shared/services/dynamic-control-validator';
 import { General } from './general';
+import { DynamicFormValidators } from '../../shared/misc/dynamic-form-validators';
 
 @Injectable()
 
@@ -14,21 +15,23 @@ export class RefundFormService {
 
   public permanentData : any = {};
 
-  public removeControls(controls : string[] , form) : void {
-
-    if (controls != null && controls.length > 0) {
-
-    controls.forEach((control) => { let ctrl = form.get(control);
-
-      return ctrl ? form.removeControl(control) : null; }); }
-  }
-
   public permanentProps : General = {
 
     'status' : [Validators.required , Validators.max(90000000)]
 
   };
 
+
+  public getMyData(prop : string) : string[] {
+
+    return this.permanentData[prop];
+
+  }
+
+  public getPermanentProp(prop : string) : any {
+
+    return this.permanentProps[prop];
+  }
 
   public entryUpdateForm() : FormGroup {
 
@@ -45,37 +48,17 @@ export class RefundFormService {
 
   public createPermanent(datas : General , form : FormGroup) : void {
 
-    for (let $prop in datas) {
-
-      let propVal = $prop.toLowerCase();
-
-      this.permanentData[propVal] = datas[$prop];
-
-      form.get(propVal) ? form.get(propVal).setValidators([...this.permanentProps[propVal] , dynamicDataValidator(this.getMyData(propVal) , $prop)]) : null;
-
-      form.get(propVal) ? form.get(propVal).updateValueAndValidity() : null;
-    }
-
-    form.updateValueAndValidity();
-
+    DynamicFormValidators.createPermanent(this , datas , form);
   }
 
-  public getMyData(prop : string) : string[] {
+  public removeControls(controls : string[] , form : FormGroup) : void {
 
-    return this.permanentData[prop];
-
-  }
-
-  public getPermanentProp(prop : string) : any {
-
-    return this.permanentProps[prop];
+    DynamicFormValidators.removeControls(controls , form);
   }
 
   public searchForm(searchFilters? : General ) : FormControl {
 
     return new FormControl('' , [searchValidator(searchFilters)]);
-
   }
-
 
 }

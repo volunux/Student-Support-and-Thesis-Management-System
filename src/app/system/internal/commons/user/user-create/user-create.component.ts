@@ -11,7 +11,7 @@ import { UserOther } from '../user-other';
 import { UserAccountFormService } from '../../../../../shared/user-account/user-account-form.service'; 
 import { ErrorMessagesService } from '../../../../../shared/services/error-messages.service';
 import { NotificationService } from '../../../../../shared/services/notification.service';
-
+import { fadeAnimation } from '../../../../../animations';
 
 @Component({
 
@@ -21,7 +21,9 @@ import { NotificationService } from '../../../../../shared/services/notification
 
   'styleUrls' : ['./user-create.component.css'] ,
 
-  'providers' : [NotificationService , ErrorMessagesService]
+  'providers' : [NotificationService , ErrorMessagesService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -63,6 +65,8 @@ export class UserCreateComponent extends UserAccountFormService implements OnIni
 
   public entryChangesT : any;
 
+  public isLoading : boolean = false;
+
   ngOnInit() : void {
 
     let data = this.route.snapshot.data;
@@ -89,17 +93,25 @@ export class UserCreateComponent extends UserAccountFormService implements OnIni
 
     this.us.$sa = this.$link;
 
+    this.isLoading = true;
+
       this.us.addEntry()
 
     .subscribe((result : General) => {
 
-      if (result == null) { 
+      if (result == null) {
+
+        this.isLoading = false; 
 
         this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message);
 
         this.isError = true; }
 
-      else if (result != null) { this.generalOthers = new UserOther(result);
+      else if (result != null) {
+
+        this.isLoading = false;
+
+        this.generalOthers = new UserOther(result);
 
         this.createPermanent(result); } });
 

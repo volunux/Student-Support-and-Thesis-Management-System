@@ -9,6 +9,7 @@ import { ProfileFormService } from '../profile-form.service';
 import { AuthenticationService } from '../../../authentication/authentication.service';
 import { ErrorMessagesService } from '../../../shared/services/error-messages.service';
 import { NotificationService } from '../../../shared/services/notification.service';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -18,7 +19,9 @@ import { NotificationService } from '../../../shared/services/notification.servi
 
   'styleUrls' : ['./change-password.component.css'] ,
 
-  'providers' : [NotificationService , ErrorMessagesService]
+  'providers' : [NotificationService , ErrorMessagesService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -52,6 +55,8 @@ export class ChangePasswordComponent implements OnInit {
 
   public entryChangesT : any; 
 
+  public isLoading : boolean = false;
+
   ngOnInit() : void {
 
     this.route.paramMap
@@ -60,6 +65,8 @@ export class ChangePasswordComponent implements OnInit {
 
           switchMap((params : ParamMap) => { 
 
+            this.isLoading = true;
+
             return this.ps.entryExist(); })
         )
 
@@ -67,11 +74,15 @@ export class ChangePasswordComponent implements OnInit {
 
           if (result == null) { 
 
+            this.isLoading = false;
+
             this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); 
 
             this.isError = true; }
 
           else if (result != null) {
+
+            this.isLoading = false;
 
             this.eidx = result._id;
 

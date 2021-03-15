@@ -31,6 +31,8 @@ export class RefundLetterService {
 
           tap((entry : RefundLetter) => console.log(entry)) ,
 
+          delay(3000) ,
+
           catchError(this.handleError<RefundLetter>(`${this.$systemType} Entry` , null))
         )
   }
@@ -44,6 +46,8 @@ export class RefundLetterService {
        .pipe(
 
           tap((entry : RefundLetter) => console.log(entry)) ,
+
+          delay(3000) ,
 
           catchError(this.handleError<RefundLetter>(`${this.$systemType} Entry` , null))
         )

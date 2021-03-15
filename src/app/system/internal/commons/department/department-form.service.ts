@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormControl , FormGroup , FormBuilder , Validators } from '@angular/forms';
 import { dynamicDataValidator } from '../../../../shared/services/dynamic-control-validator';
 import { General } from './general';
+import { DynamicFormValidators } from '../../../../shared/misc/dynamic-form-validators';
 
 @Injectable()
 
@@ -34,37 +35,21 @@ export class DepartmentFormService {
     return this.permanentProps[prop];
   }
 
-  public removeControls(controls : string[] , form) : void {
+  public getMyData(prop : string) : string[] {
 
-    if (controls != null && controls.length > 0) {
+    return this.permanentData[prop];
 
-    controls.forEach((control) => { let ctrl = form.get(control);
+  }
 
-      return ctrl ? form.removeControl(control) : null; }); }
+  public removeControls(controls : string[] , form : FormGroup) : void {
+
+    DynamicFormValidators.removeControls(controls , form);
+
   }
 
   public createPermanent(datas : General , form : FormGroup) : void {
 
-    if (datas != null) {
-
-    for (let $prop in datas) {
-
-      let propVal = $prop.toLowerCase();
-
-      this.permanentData[propVal] = datas[$prop];
-
-      form.get(propVal) ? form.get(propVal).setValidators([...this.permanentProps[propVal] , dynamicDataValidator(this.getMyData(propVal) , $prop)]) : null;
-
-      form.get(propVal) ? form.get(propVal).updateValueAndValidity() : null;
-    }
-
-    form.updateValueAndValidity(); }
-
-  }
-
-  public getMyData(prop : string) : string[] {
-
-    return this.permanentData[prop];
+    DynamicFormValidators.createPermanent(this , datas , form);
 
   }
 

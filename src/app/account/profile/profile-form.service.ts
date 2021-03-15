@@ -10,6 +10,7 @@ import { emailAddressValidator } from '../../shared/services/email-address-valid
 import { simplePasswordValidator , confirmPasswordValidator , currentAndNewPasswordValidator } from '../../shared/services/password-validators.service';
 import { usernameVerification } from '../../shared/services/verify-username.service';
 import { emailAddressVerification } from '../../shared/services/verify-email.service';
+import { DynamicFormValidators } from '../../shared/misc/dynamic-form-validators';
 
 @Injectable()
 
@@ -106,47 +107,18 @@ export class ProfileFormService {
 
   public createPermanent(datas : General , form : FormGroup) : void {
 
-    if (datas != null) {
-
-    for (let $prop in datas) {
-
-      let propVal = $prop.toLowerCase();
-
-      this.permanentData[propVal] = datas[$prop];
-
-      form.get(propVal) ? form.get(propVal).setValidators([...this.permanentProps[propVal] , dynamicDataValidator(this.getMyData(propVal) , $prop)]) : null;
-
-      form.get(propVal) ? form.get(propVal).updateValueAndValidity() : null;
-    }
-
-    form.updateValueAndValidity(); }
+    DynamicFormValidators.createPermanent(this , datas , form);
 
   }
 
-
   public removeControls(controls : string[] , form : FormGroup) : void {
 
-    if (controls != null && controls.length > 0) {
-
-    controls.forEach((control) => { let ctrl = form.get(control);
-
-      return ctrl ? form.removeControl(control) : null; }); }
+    DynamicFormValidators.removeControls(controls , form);
   }
 
   public removeAsyncValidators(controls : string[] , form : FormGroup) : void {
 
-    if (controls != null && controls.length > 0) {
-
-    controls.forEach((control) => { 
-
-      if (form.get(control)) {
-
-        form.get(control).clearAsyncValidators();
-
-        form.get(control).updateValueAndValidity(); } });
-
-        form.updateValueAndValidity(); }
-
+    DynamicFormValidators.removeAsyncValidators(controls , form);
   }
 
   public getMyData(prop : string) : string[] {

@@ -12,6 +12,7 @@ import { AuthenticationService } from '../../../../../authentication/authenticat
 import { UserAccountFormService } from '../../../../../shared/user-account/user-account-form.service'; 
 import { ErrorMessagesService } from '../../../../../shared/services/error-messages.service';
 import { NotificationService } from '../../../../../shared/services/notification.service';
+import { fadeAnimation } from '../../../../../animations';
 
 @Component({
 
@@ -21,7 +22,9 @@ import { NotificationService } from '../../../../../shared/services/notification
   
   'styleUrls' : ['./user-delete.component.css'] ,
 
-  'providers' : [ErrorMessagesService , NotificationService]
+  'providers' : [ErrorMessagesService , NotificationService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -69,6 +72,8 @@ export class UserDeleteComponent extends UserAccountFormService implements OnIni
 
   public entryChangesT : any;
 
+  public isLoading : boolean = false;
+
   ngOnInit(): void {
 
     let data = this.route.snapshot.data;
@@ -109,11 +114,15 @@ export class UserDeleteComponent extends UserAccountFormService implements OnIni
 
           let $e = params.get('entry');
 
+          this.isLoading = true;
+
           return this.us.deleteEntry($e); })
         )
         .subscribe((result : User) => { 
 
-          if (result == null) { 
+          if (result == null) {
+
+            this.isLoading = false;
 
             this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); 
 
@@ -121,11 +130,13 @@ export class UserDeleteComponent extends UserAccountFormService implements OnIni
 
           else if (result != null) {
 
-          this.eslug = result.slug;
+            this.isLoading = false;
 
-          this.entry = result;  
+            this.eslug = result.slug;
 
-          this.entryForm.patchValue(this.entry); } }); 
+            this.entry = result;  
+
+            this.entryForm.patchValue(this.entry); } }); 
 
   }
 

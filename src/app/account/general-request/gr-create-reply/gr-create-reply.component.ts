@@ -3,10 +3,8 @@ import { ActivatedRoute , ParamMap , Router } from '@angular/router';
 import { FormGroup , FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-
 import { GeneralRequest } from '../general-request';
 import { General } from '../general';
-
 import { GeneralRequestService } from '../general-request.service';
 import { ReplyCreateFormService } from '../../../shared/component/reply/reply-create-form.service';
 import { ReplyCreateService } from '../../../shared/component/reply/reply-create.service';
@@ -59,6 +57,8 @@ export class GeneralRequestCreateReplyComponent implements OnInit {
 
   public entryCreatedT : any;
 
+  public isLoading : boolean = false;
+
   ngOnInit() : void {
 
     let data = this.route.snapshot.data;
@@ -91,15 +91,23 @@ export class GeneralRequestCreateReplyComponent implements OnInit {
 
             this.cslug = $c;
 
+            this.isLoading = true;
+
             return this.grs.addReply($r , $e , $c); })
         )
           .subscribe((result : General) => {
 
-            if (result == null) { this.isError = true;
+            if (result == null) { 
+
+              this.isLoading = false;
+
+              this.isError = true;
 
               this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); }
 
             else if (result != null && result.permitted == true) {
+
+            this.isLoading = false;
 
             this.entry = result.$data.Entry;
 

@@ -1,4 +1,5 @@
 import { Component , Input , OnInit } from '@angular/core';
+import { fadeAnimation } from '../../../../animations';
 
 @Component({
 
@@ -6,7 +7,9 @@ import { Component , Input , OnInit } from '@angular/core';
 
   'templateUrl' : './reply-comment-detail.component.html',
 
-  'styleUrls' : ['./reply-comment-detail.component.css']
+  'styleUrls' : ['./reply-comment-detail.component.css'] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

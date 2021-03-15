@@ -2,7 +2,7 @@
 
 	<h3 class ='center' > Request Options  </h3>
 
-<div [formGroup] ='entryForm'>
+<div @fadeAnimation [formGroup] ='entryForm'>
 
 			<div id ='entry-detail-options'>
 
@@ -12,30 +12,9 @@
 
 <ng-container *ngIf ='isOtherColAvailable == true'>
 
-<div class ='form-group' *ngIf ='status'>
+<app-request-entry-message-template [system-type] ='systemType' [$link] ='$link' [entry-form] ='entryForm' [entry] ='entry' > </app-request-entry-message-template>
 
-	<label for ='status' class ='form-label bold'> Entry Status </label>
-
-	<select name ='status' id ='status' class ='form-control' formControlName ='status'>
-
-		<ng-container *ngIf ='estatuses != null'>
-
-			<ng-container *ngIf ='entry?.status'>
-
-				<option [value] =''> </option> 
-
-				<option *ngFor ='let status of estatuses' [value] ='status._id'> {{status.name}} </option> 
-
-			</ng-container>
-
-		</ng-container>
-
-	</select>
-
-	<app-request-entry-update-validator *ngIf ='status' [system-type] ='systemType' [status] ='status'> </app-request-entry-update-validator>
-
-</div>
-
+<app-request-entry-update-status [entries] ='eother' [entry-form] ='entryForm' [entry] ='entry' > </app-request-entry-update-status>
 
 	<div class ='form-group' *ngIf ='text'>
 
@@ -84,3 +63,5 @@
 </div>
 
 </ng-container>
+
+<app-loading-menu [is-loading] ='isLoading'> </app-loading-menu>

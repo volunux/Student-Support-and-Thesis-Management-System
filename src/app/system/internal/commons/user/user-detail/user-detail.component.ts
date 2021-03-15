@@ -5,6 +5,7 @@ import { User } from '../user';
 import { General } from '../general';
 import { UserService } from '../user.service';
 import { ErrorMessagesService } from '../../../../../shared/services/error-messages.service';
+import { fadeAnimation } from '../../../../../animations';
 
 @Component({
 
@@ -14,7 +15,9 @@ import { ErrorMessagesService } from '../../../../../shared/services/error-messa
 
   'styleUrls' : ['./user-detail.component.css'] ,
 
-  'providers' : [ErrorMessagesService]
+  'providers' : [ErrorMessagesService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -43,6 +46,8 @@ export class UserDetailComponent implements OnInit {
   public error : General;
 
   public isError : boolean = false;
+
+  public isLoading : boolean = false;
 
   ngOnInit() : void {
 
@@ -74,11 +79,15 @@ export class UserDetailComponent implements OnInit {
 
           let $e = params.get('entry');
 
+          this.isLoading = true;
+
           return this.us.getUser($e , this.link2); })
         )
           .subscribe((result : User) => {
 
-          if (result == null) { 
+          if (result == null) {
+
+            this.isLoading = false;
 
             this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message);
 
@@ -86,7 +95,9 @@ export class UserDetailComponent implements OnInit {
 
           else if (result != null) {
 
-          this.entry = result; } })
+            this.isLoading = false;
+
+            this.entry = result; } })
 
   }
 

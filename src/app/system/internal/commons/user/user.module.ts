@@ -25,6 +25,7 @@ import { UserHomepageComponent } from './user-homepage/user-homepage.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 @NgModule({
+
   declarations: [
 
   UserListComponent,

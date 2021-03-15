@@ -4,6 +4,7 @@ import { Subject , Subscription } from 'rxjs';
 import { debounceTime , distinctUntilChanged , switchMap } from 'rxjs/operators'; 
 import { GeneralSearchService } from '../../shared/services/general-search.service';
 import { GeneralFormService } from '../general-form.service';
+import { fadeAnimation } from '../../animations';
 
 @Component({
 
@@ -11,7 +12,9 @@ import { GeneralFormService } from '../general-form.service';
 
   'templateUrl' : './search.component.html',
 
-  'styleUrls' : ['./search.component.css']
+  'styleUrls' : ['./search.component.css'] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

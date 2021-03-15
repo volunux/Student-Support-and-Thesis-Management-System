@@ -12,6 +12,8 @@ import { RequestEntryDetailComponent } from './request-entry-detail/request-entr
 
 import { RequestEntryStudentDetailComponent } from './request-entry-student-detail/request-entry-student-detail.component';
 import { RequestEntryStatusComponent } from './request-entry-status/request-entry-status.component';
+import { RequestEntryUpdateStatusComponent } from './request-entry-update-status/request-entry-update-status.component';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { RequestEntryStatusComponent } from './request-entry-status/request-entr
 	  RequestEntryUpdateValidatorComponent,
 	  RequestEntryStudentDetailComponent,
     RequestEntryDetailComponent,
-    RequestEntryStatusComponent
+    RequestEntryStatusComponent,
+    RequestEntryUpdateStatusComponent,
   ],
   
   imports: [
@@ -35,7 +38,8 @@ import { RequestEntryStatusComponent } from './request-entry-status/request-entr
     RequestEntryDetailComponent,
     RequestEntryStudentDetailComponent,
     RequestEntryUpdateValidatorComponent,
-    RequestEntryStatusComponent
+    RequestEntryStatusComponent,
+    RequestEntryUpdateStatusComponent
   ]
 
 })

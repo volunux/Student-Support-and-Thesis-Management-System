@@ -34,6 +34,40 @@ export class GeneralRequestEntryCreateComponent implements OnInit {
 
   }
 
+  public systemType : string;
+
+  public systemGuideline : string;
+
+  public title : string;
+
+  public view : string;
+
+  public link : string;
+
+  public rslug : string;
+
+
+  public isError : boolean = false;
+
+  public error : { [key : string] : any };
+
+  public entryCreateForm : FormGroup;
+
+  public fileControl : { [key : string] : string }[] = inputFileControl;
+
+  public uploadConfig : { [key : string] : string } = uploadConfigUrl;
+
+  public attachmentConfig : { [key : string] : string } = {
+
+    'name' : 'Image' ,
+
+    'type' : 'image'
+  };
+
+  public entryCreateT : any;
+
+  public isLoading : boolean = false;
+
   ngOnInit() : void {
 
     let data = this.route.snapshot.data;
@@ -60,16 +94,24 @@ export class GeneralRequestEntryCreateComponent implements OnInit {
 
             this.rslug = $r;
 
+            this.isLoading = true;
+
             return this.grs.addEntry($r); })
       )
 
     .subscribe((result : { [key : string] : any }) => {
 
-      if (result == null) { this.isError = true;
+      if (result == null) { 
+
+        this.isLoading = false;
+
+        this.isError = true;
 
         this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); }
 
       else if (result != null && result.permitted == true) {
+
+        this.isLoading = false;
 
         let data = result.$data;
 
@@ -93,38 +135,6 @@ export class GeneralRequestEntryCreateComponent implements OnInit {
     clearTimeout(this.entryCreateT);
 
   }
-
-  public systemType : string;
-
-  public systemGuideline : string;
-
-  public title : string;
-
-  public view : string;
-
-  public link : string;
-
-  public rslug : string;
-
-
-  public isError : boolean = false;
-
-  public error : { [key : string] : any };
-
-  public entryCreateForm : FormGroup;
-
-  public fileControl : { [key : string] : string }[] = inputFileControl;
-
-  public uploadConfig : { [key : string] : string } = uploadConfigUrl;
-
-  public attachmentConfig : { [key : string] : string } = {
-
-  	'name' : 'Image' ,
-
-  	'type' : 'image'
-  };
-
-  public entryCreateT : any;
 
   public createEntry(body : { [key : string] : any }) : void {
 

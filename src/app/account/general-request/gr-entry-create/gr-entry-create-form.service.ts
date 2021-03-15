@@ -15,9 +15,9 @@ export class GeneralRequestEntryCreateFormService {
 
   public otherCtrls : { [key : string] : any } = {
 
-  'request_type' : [Validators.required , Validators.max(10000000)] ,
+  'request_type' : [Validators.required , Validators.max(90000000)] ,
 
-  'unit' : [Validators.required , Validators.max(10000000)] ,
+  'unit' : [Validators.required , Validators.max(90000000)] ,
 
   'username' : [Validators.minLength(5) , Validators.maxLength(100)] ,
 
@@ -28,7 +28,6 @@ export class GeneralRequestEntryCreateFormService {
   public getMyData(prop : string) : string[] {
 
     return this.permanentData[prop];
-
   }
 
 }

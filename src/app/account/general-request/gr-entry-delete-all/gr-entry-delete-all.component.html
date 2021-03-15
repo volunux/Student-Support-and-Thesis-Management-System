@@ -8,7 +8,7 @@
 
 <app-resource-unavailable *ngIf ='error' [error] ='error'> </app-resource-unavailable>
 
-	<div id ='entry-detail' *ngIf ='canDelete'>
+	<div @fadeAnimation id ='entry-detail' *ngIf ='canDelete'>
 
 		<app-delete-all-entry *ngIf ='systemType' [system-type] ='systemType' > </app-delete-all-entry>
 
@@ -19,3 +19,5 @@
 </div>
 
 </div>
+
+<app-loading-menu [is-loading] ='isLoading'> </app-loading-menu>

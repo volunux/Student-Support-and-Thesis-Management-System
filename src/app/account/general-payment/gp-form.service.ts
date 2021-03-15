@@ -25,9 +25,9 @@ export class GeneralPaymentFormService {
 
   		'description' : ['' , {'validators' : [Validators.required , Validators.minLength(9) , Validators.maxLength(200)] } ] ,
 
-      'payment_type' : ['' , {'validators' : [Validators.required , Validators.max(100000000) ] } ] ,
+      'payment_type' : ['' , {'validators' : [Validators.required , Validators.max(900000000) ] } ] ,
 
-      'payment_session' : ['' , {'validators' : [Validators.required , Validators.max(100000000) ] } ] ,
+      'payment_session' : ['' , {'validators' : [Validators.required , Validators.max(900000000) ] } ] ,
 
   		'amount' : ['' , {'validators' : [Validators.required , Validators.minLength(2) , Validators.maxLength(8)] } ]
   	

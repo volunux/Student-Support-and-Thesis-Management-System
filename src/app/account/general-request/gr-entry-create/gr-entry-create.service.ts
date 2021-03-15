@@ -29,6 +29,8 @@ export class GeneralRequestEntryCreateService {
 
           tap((entry : General) => console.log(entry)) ,
 
+          delay(3000) ,
+
           map((entry : General) => { return { 'permitted' : true , '$data' : entry }; }) ,
 
           catchError(this.handleError<General>(`${this.$systemType} Entry` , null))

@@ -1,3 +1,5 @@
+<div @fadeAnimation *ngIf ='true'>
+
 <h2 *ngIf ='title'> {{title}} </h2>
 
 <div id ='update-profile'>
@@ -14,5 +16,7 @@
 
 		(myFile) ='pushFile($event)' *ngFor ='let props of $controls; let i =index;' [end-points] ='uploadConfigU' #attachments> </app-attachment-upload>
 
+
+</div>
 
 </div>

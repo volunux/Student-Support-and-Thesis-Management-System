@@ -1,3 +1,5 @@
+<div @fadeAnimation *ngIf ='true'>
+
 <h2 *ngIf ='title' > {{title}} </h2>
 
 <app-view-description *ngIf ='view' [view-type] ='view' [system-type] ='systemType' > </app-view-description>
@@ -11,3 +13,7 @@
 		<ng-content> </ng-content>
 
 </app-gi-chat-entry-detail>
+
+</div>
+
+<app-loading-menu [is-loading] ='isLoading'> </app-loading-menu>

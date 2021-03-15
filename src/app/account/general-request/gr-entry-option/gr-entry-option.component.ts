@@ -5,6 +5,7 @@ import { AuthenticationService } from '../../../authentication/authentication.se
 import { NotificationService } from '../../../shared/services/notification.service';
 import { GeneralRequestService } from '../general-request.service';
 import { canUpdate } from '../roles';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -14,7 +15,9 @@ import { canUpdate } from '../roles';
 
   'styleUrls' : ['./gr-entry-option.component.css'] ,
 
-  'providers' : [NotificationService]
+  'providers' : [NotificationService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

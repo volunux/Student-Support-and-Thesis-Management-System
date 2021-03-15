@@ -9,6 +9,7 @@ import { ErrorMessagesService } from '../../../shared/services/error-messages.se
 import { NotificationService } from '../../../shared/services/notification.service';
 import { RefundLetter } from '../refund-letter';
 import { General } from '../general';
+import { fadeAnimation } from '../../../animations';
 
 import "../../../../assets/js/froala_editor.min.js";
 import "../../../../assets/js/plugins/align.min.js";
@@ -35,7 +36,9 @@ import "../../../../assets/js/plugins/quote.min.js";
 
   'styleUrls' : ['./refund-letter-entry-create.component.css'] ,
 
-  'encapsulation' : ViewEncapsulation.None
+  'encapsulation' : ViewEncapsulation.None ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -79,6 +82,8 @@ export class RefundLetterEntryCreateComponent implements OnInit {
 
   public eother : { [key : string] : any };
 
+  public isLoading : boolean = false;
+
   ngOnInit() : void {
 
     let data = this.route.snapshot.data;
@@ -103,29 +108,39 @@ export class RefundLetterEntryCreateComponent implements OnInit {
 
             let $e = params.get('entry');
 
+            this.isLoading = true;
+
           	return this.rfls.getEntry($e); })
         )
           .subscribe((result : RefundLetter) => {
 
-    					if (result == null) { this.isError = true;
+    					if (result == null) {
 
-                return this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); }
+                this.isLoading = false;
 
-    					this.entry = result;
+                this.isError = true;
 
-    					this.eslug = this.entry.slug;
+                this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); }
 
-              this.entryForm = this.rflfs.entryUpdateForm();
+              else if (result != null) {
 
-              if (this.entry.stage != null && this.entry.stage == 3) {
+                this.isLoading = false;
 
-              this.currentStage = 4; 
+      					this.entry = result;
 
-					    this.entryForm.patchValue({'stage' : this.currentStage , 'text' : 'Content of the Letter' , 'status' : this.entry.other_status_id});
+      					this.eslug = this.entry.slug;
 
-					    this.entryForm.addControl('main_body' , new FormControl('' , {'validators' : this.rflfs.mainBodyV }));
+                this.entryForm = this.rflfs.entryUpdateForm();
 
-					    this.entryForm.updateValueAndValidity(); } });
+                if (this.entry.stage != null && this.entry.stage == 3) {
+
+                this.currentStage = 4; 
+
+  					    this.entryForm.patchValue({'stage' : this.currentStage , 'text' : 'Content of the Letter' , 'status' : this.entry.other_status_id});
+
+  					    this.entryForm.addControl('main_body' , new FormControl('' , {'validators' : this.rflfs.mainBodyV }));
+
+  					    this.entryForm.updateValueAndValidity(); } } });
   }
 
   ngOnDestroy() : void {

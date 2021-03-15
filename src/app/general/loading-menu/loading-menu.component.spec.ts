@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserUploadHomepageComponent } from './user-upload-homepage.component';
+import { LoadingMenuComponent } from './loading-menu.component';
 
-describe('UserUploadHomepageComponent', () => {
-  let component: UserUploadHomepageComponent;
-  let fixture: ComponentFixture<UserUploadHomepageComponent>;
+describe('LoadingMenuComponent', () => {
+  let component: LoadingMenuComponent;
+  let fixture: ComponentFixture<LoadingMenuComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserUploadHomepageComponent ]
+      declarations: [ LoadingMenuComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserUploadHomepageComponent);
+    fixture = TestBed.createComponent(LoadingMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

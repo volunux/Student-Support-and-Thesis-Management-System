@@ -1,3 +1,4 @@
+<div @fadeAnimation *ngIf ='true'>
 
 	<h2 *ngIf ='title'> {{title}} </h2>
 
@@ -18,3 +19,7 @@
 </div>
 
 </ng-container>
+
+</div>
+
+<app-loading-menu [is-loading] ='isLoading'> </app-loading-menu>

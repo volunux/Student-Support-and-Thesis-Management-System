@@ -11,6 +11,7 @@ import { GeneralRequestFormService } from '../gr-form.service';
 import { ErrorMessagesService } from '../../../shared/services/error-messages.service';
 import { NotificationService } from '../../../shared/services/notification.service';
 import { canUpdate } from '../roles';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -20,7 +21,9 @@ import { canUpdate } from '../roles';
 
   'styleUrls' : ['./gr-entry-transfer.component.css'] ,
 
-  'providers' : [NotificationService , ErrorMessagesService]
+  'providers' : [NotificationService , ErrorMessagesService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -64,6 +67,8 @@ export class GeneralRequestEntryTransferComponent implements OnInit {
 
   public entryForm : FormGroup;
 
+  public isLoading : boolean = false;
+
   ngOnInit() : void {
 
     let data = this.route.snapshot.data;
@@ -94,15 +99,23 @@ export class GeneralRequestEntryTransferComponent implements OnInit {
 
             this.rslug = $r;
 
+            this.isLoading = true;
+
           	return this.grs.transferEntry($r , $e); })
         )
 		      .subscribe((result : { [key : string] : any }) => {
 
-							if (result == null) { this.isError = true;
+							if (result == null) { 
+
+                this.isLoading = false;
+
+                this.isError = true;
 
                 this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); }
 
               else if (result != null && result.permitted == true) {
+
+              this.isLoading = false;
 
 							this.entry = result.$data.Entry;
 

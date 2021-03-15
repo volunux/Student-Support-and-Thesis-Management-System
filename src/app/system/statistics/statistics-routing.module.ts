@@ -10,7 +10,7 @@ import { StatisticsEntriesComponent } from './statistics-entries/statistics-entr
 import { StatisticsDashboardComponent } from './statistics-dashboard/statistics-dashboard.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 
-import { SData } from './statistics-route-data';
+import { RouteConfigData } from './statistics-route-data';
 
 const routes : Routes = [
 
@@ -32,21 +32,19 @@ const routes : Routes = [
 
 					{'path' : '' , 'component' : StatisticsDashboardComponent } ,
 
-					{'path' : 'entries/comment-reply' , 'component' : StatisticsEntriesComponent , 
+					{'path' : 'entries/user-entries' , 'component' : StatisticsEntriesComponent , 'data' : {'entries' : RouteConfigData.userEntries } } ,
 
-						'data' : {'entries' : {...SData.entries , 'title' : 'General Request , Refund Comment & Reply'} , 'entryType' : 'comment-reply' } } ,
+					{'path' : 'entries/user' , 'component' : StatisticsEntriesComponent , 'data' : {'entries' : RouteConfigData.user } } ,
 
-					{'path' : 'entries/internal' , 'component' : StatisticsEntriesComponent , 'data' : {'entries' : {...SData.entries , 'title' : 'Internal'} , 'entryType' : 'internal' } } ,
+					{'path' : 'entries/internal-one' , 'component' : StatisticsEntriesComponent , 'data' : {'entries' : RouteConfigData.internalOne } } ,
 
-					{'path' : 'entries/payment' , 'component' : StatisticsEntriesComponent , 'data' : {'entries' : {...SData.entries , 'title' : 'Payment' } , 'entryType' : 'payment' }  } ,
+					{'path' : 'entries/internal-two' , 'component' : StatisticsEntriesComponent , 'data' : {'entries' : RouteConfigData.internalTwo } } ,
 
-					{'path' : 'entries/comment' , 'component' : StatisticsEntriesComponent , 'data' : {'entries' : {...SData.entries , 'title' : 'Comment' } , 'entryType' : 'comment' }  } ,
+					{'path' : 'entries/internal-three' , 'component' : StatisticsEntriesComponent , 'data' : {'entries' : RouteConfigData.internalThree } } ,
 
-					{'path' : 'entries/reply' , 'component' : StatisticsEntriesComponent , 'data' : {'entries' : {...SData.entries , 'title' : 'Reply' } , 'entryType' : 'reply' }  } ,
+					{'path' : 'entries/internal-four' , 'component' : StatisticsEntriesComponent , 'data' : {'entries' : RouteConfigData.internalFour } } ,
 
-					{'path' : 'entries/request' , 'component' : StatisticsEntriesComponent , 'data' : {'entries' : {...SData.entries , 'title' : 'General Request' } , 'entryType' : 'request' }  } ,
-
-					{'path' : 'entries/user' , 'component' : StatisticsEntriesComponent , 'data' : {'entries' : {...SData.entries , 'title' : 'User' } , 'entryType' : 'user' }  } ,
+					{'path' : 'entries/other' , 'component' : StatisticsEntriesComponent , 'data' : {'entries' : RouteConfigData.other } }
 
 				]}
 	] 

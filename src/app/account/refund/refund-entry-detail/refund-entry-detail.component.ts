@@ -10,6 +10,7 @@ import { AuthenticationService } from '../../../authentication/authentication.se
 import { ErrorMessagesService } from '../../../shared/services/error-messages.service';
 import { NotificationService } from '../../../shared/services/notification.service';
 import { canUpdate } from '../roles';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -19,7 +20,9 @@ import { canUpdate } from '../roles';
 
   'styleUrls' : ['./refund-entry-detail.component.css'] ,
 
-  'providers' : [NotificationService , ErrorMessagesService]
+  'providers' : [NotificationService , ErrorMessagesService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -43,6 +46,8 @@ export class RefundEntryDetailComponent implements OnInit {
 
   public link : string;
 
+  public $link : string;
+
   public entry : Refund;
 
   public error : { [key : string] : any };
@@ -65,6 +70,8 @@ export class RefundEntryDetailComponent implements OnInit {
 
   public eother : { [key : string] : any };
 
+  public isLoading : boolean = false;
+
   ngOnInit() : void {
 
     let data = this.route.snapshot.data;
@@ -79,6 +86,8 @@ export class RefundEntryDetailComponent implements OnInit {
 
     this.link = data.detail.link;
 
+    this.$link = data.detail.$link;
+
     this.rfs.$systemType = this.systemType;
 
     this.route.paramMap
@@ -91,15 +100,23 @@ export class RefundEntryDetailComponent implements OnInit {
 
             this.eslug = $e;
 
+            this.isLoading = true;
+
           	return this.rfs.getEntry($e); })
         )
           .subscribe((result : Refund) => {
 
-    					if (result == null) { this.isError = true;
+    					if (result == null) {
+
+                this.isLoading = false;
+
+                this.isError = true;
 
                 this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); }
 
               else if (result != null) {
+
+              this.isLoading = false;
 
     					this.entry = result;
 
@@ -192,9 +209,7 @@ export class RefundEntryDetailComponent implements OnInit {
 
           this.isOtherColAvailable = true;
 
-          this.eother = {'Status' : result.Status }; 
-
-          this.rffs.createPermanent(this.eother , this.entryForm); } });
+          this.eother = result; } });
 
   }
 

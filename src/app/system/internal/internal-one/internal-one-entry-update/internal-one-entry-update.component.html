@@ -1,4 +1,4 @@
-<div id ='entry-create'>
+<div @fadeAnimation id ='entry-create'>
 
 	<h2 *ngIf ='title'> {{title}} </h2>
 
@@ -14,7 +14,6 @@
 
 		<app-internal-one-form-input [system-type] ='systemType' [entry-form] ='entryForm' [placeholder] ='placeholder' [no-edit] = 'noEdit' > </app-internal-one-form-input>
 
-
 	</app-gi-entry-update>
 
 </div>
@@ -23,3 +22,4 @@
 
 </div>
 
+<app-loading-menu [is-loading] ='isLoading'> </app-loading-menu>

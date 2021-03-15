@@ -9,6 +9,7 @@ import { AuthenticationService } from '../authentication.service';
 import { AuthenticationFormService } from '../authentication-form.service';
 import { ErrorMessagesService1 } from '../error-messages.service1';
 import { NotificationService } from '../../shared/services/notification.service';
+import { fadeAnimation } from '../../animations';
 
 @Component({
 
@@ -18,9 +19,12 @@ import { NotificationService } from '../../shared/services/notification.service'
 
   'styleUrls' : ['./reset-password.component.css'] ,
 
-  'providers' : [NotificationService , ErrorMessagesService1]
+  'providers' : [NotificationService , ErrorMessagesService1] ,
+
+  'animations' : [fadeAnimation]
 
 })
+
 export class ResetPasswordComponent implements OnInit {
 
 
@@ -62,6 +66,8 @@ export class ResetPasswordComponent implements OnInit {
 
   public entryChangesT : any;
 
+  public isLoading : boolean = false;
+
   ngOnInit() : void {
 
     let data = this.route.snapshot.data;
@@ -94,17 +100,23 @@ export class ResetPasswordComponent implements OnInit {
 
           this.passwordToken = $e;
 
+          this.isLoading = true;
+
            return this.ds.resetPassword($e); }) )
 
       .subscribe((result : General) => {
 
           if (result == null) { 
 
+            this.isLoading = false;
+
             this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); 
 
             this.isError = true; }
 
           else if (result != null) {
+
+            this.isLoading = false;
 
             this.entryForm = this.afs.resetPassword(); } });
 

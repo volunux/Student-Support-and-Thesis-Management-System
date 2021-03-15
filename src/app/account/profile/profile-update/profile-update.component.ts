@@ -10,6 +10,7 @@ import { ProfileFormService } from '../profile-form.service';
 import { AuthenticationService } from '../../../authentication/authentication.service';
 import { ErrorMessagesService } from '../../../shared/services/error-messages.service';
 import { NotificationService } from '../../../shared/services/notification.service';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -19,7 +20,9 @@ import { NotificationService } from '../../../shared/services/notification.servi
 
   'styleUrls' : ['./profile-update.component.css'] ,
 
-  'providers' : [NotificationService , ErrorMessagesService]
+  'providers' : [NotificationService , ErrorMessagesService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -32,7 +35,7 @@ export class ProfileUpdateComponent implements OnInit {
 
   }
 
-  public systemType : string = 'User';
+  public systemType : string = 'Profile';
 
   public entryOthers : UserOther = null;
 
@@ -60,6 +63,8 @@ export class ProfileUpdateComponent implements OnInit {
 
   public entryChangesT : any;
 
+  public isLoading : boolean = false;
+
   ngOnInit() : void {
 
     this.entryForm = this.pfs.profileUpdate();
@@ -68,12 +73,18 @@ export class ProfileUpdateComponent implements OnInit {
 
       .pipe(
 
-          switchMap((params : ParamMap) => { return this.ps.profileUpdate(); })        
+          switchMap((params : ParamMap) => {
+
+            this.isLoading = true;
+
+            return this.ps.profileUpdate(); })
         )
 
       .subscribe((result : { [key : string] : any}) => {
 
 					if (result == null) { 
+
+            this.isLoading = false;
 
             this.error = Object.assign({'resource' : 'User Entry'} , this.ems.message); 
 
@@ -81,15 +92,17 @@ export class ProfileUpdateComponent implements OnInit {
 
           else if (result != null) {
 
-					this.entry = result.User;
+            this.isLoading = false;
 
-					this.eidx = this.entry._id;
+  					this.entry = result.User;
 
-          this.entryOthers = new UserOther(result);
+  					this.eidx = this.entry._id;
 
-          this.pfs.createPermanent(result , this.entryForm);
+            this.entryOthers = new UserOther(result);
 
-					this.entryForm.patchValue(this.entry); } });
+            this.pfs.createPermanent(result , this.entryForm);
+
+  					this.entryForm.patchValue(this.entry); } });
 	}
 
   ngOnDestroy() : void {

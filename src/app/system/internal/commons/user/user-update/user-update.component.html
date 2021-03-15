@@ -1,3 +1,5 @@
+<div @fadeAnimation *ngIf ='true'>
+
 <h2 *ngIf ='title' > {{title}} </h2>
 
 <app-view-description *ngIf ='view' [view-type] ='view' [system-type] ='systemType' > </app-view-description>
@@ -39,3 +41,7 @@
 </div>
 
 </div>
+
+</div>
+
+<app-loading-menu [is-loading] ='isLoading'> </app-loading-menu>

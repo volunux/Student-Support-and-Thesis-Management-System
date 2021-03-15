@@ -31,6 +31,21 @@
 
 </ng-container>
 
+<ng-container *ngIf ='request_message_template'>
+
+<div @fadeAnimation *ngIf ='request_message_template.invalid && (request_message_template.touched || request_message_template.dirty)' class ='validation-error'>
+
+	<ul>
+
+		<li *ngIf ='request_message_template.errors?.max'> Message Template of {{systemType}} cannot be greater than specified length </li>
+		<li *ngIf ='request_message_template.errors?.MessageTemplate'> Message Template of {{systemType}} should be available from existing record before it can be considered valid </li>
+
+	</ul>
+
+</div>
+
+</ng-container>
+
 <ng-container *ngIf ='stage'>
 
 	<div @fadeAnimation *ngIf ='stage.invalid && (stage.touched || stage.dirty)' class ='validation-error'>

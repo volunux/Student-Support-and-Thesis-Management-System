@@ -1,0 +1,27 @@
+<div @fadeAnimation [formGroup] ='entryForm'>
+
+<div class ='form-group' *ngIf ='status'>
+
+	<label for ='status' class ='form-label bold'> Entry Status </label>
+
+	<select name ='status' id ='status' class ='form-control' formControlName ='status'>
+
+		<ng-container *ngIf ='estatuses != null'>
+
+			<ng-container *ngIf ='entry?.status'>
+
+				<option [value] =''> </option> 
+
+				<option *ngFor ='let status of estatuses' [value] ='status._id'> {{status.name}} </option> 
+
+			</ng-container>
+
+		</ng-container>
+
+	</select>
+
+	<app-request-entry-update-validator *ngIf ='status' [system-type] ='systemType' [status] ='status'> </app-request-entry-update-validator>
+
+</div>
+
+</div>

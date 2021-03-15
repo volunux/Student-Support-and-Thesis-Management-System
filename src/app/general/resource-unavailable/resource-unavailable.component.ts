@@ -1,4 +1,5 @@
 import { Component , ChangeDetectionStrategy , Input , OnInit } from '@angular/core';
+import { fadeAnimation } from '../../animations';
 
 @Component({
 
@@ -8,7 +9,9 @@ import { Component , ChangeDetectionStrategy , Input , OnInit } from '@angular/c
 
   'styleUrls' : ['./resource-unavailable.component.css'] ,
 
-  'changeDetection' : ChangeDetectionStrategy.OnPush
+  'changeDetection' : ChangeDetectionStrategy.OnPush ,
+
+  'animations' : [fadeAnimation]
 
 })
 

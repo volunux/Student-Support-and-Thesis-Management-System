@@ -1,5 +1,6 @@
 import { Component , Input , OnInit } from '@angular/core';
 import { Refund } from '../refund';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -7,7 +8,9 @@ import { Refund } from '../refund';
 
   'templateUrl' : './refund-entry-user-signature.component.html',
 
-  'styleUrls' : ['./refund-entry-user-signature.component.css']
+  'styleUrls' : ['./refund-entry-user-signature.component.css'] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

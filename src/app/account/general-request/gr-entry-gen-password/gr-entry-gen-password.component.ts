@@ -3,6 +3,7 @@ import { FormControl , FormGroup } from '@angular/forms';
 import { GeneralRequest } from '../general-request';
 import { GeneralRequestFormService } from '../gr-form.service';
 import { GenerateUsernamePasswordService } from '../generate-username-password.service';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -10,7 +11,9 @@ import { GenerateUsernamePasswordService } from '../generate-username-password.s
 
   'templateUrl' : './gr-entry-gen-password.component.html',
 
-  'styleUrls' : ['./gr-entry-gen-password.component.css']
+  'styleUrls' : ['./gr-entry-gen-password.component.css'] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

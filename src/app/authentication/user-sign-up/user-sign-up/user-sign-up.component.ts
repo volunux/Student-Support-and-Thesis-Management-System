@@ -12,6 +12,7 @@ import { AuthenticationFormService } from '../../authentication-form.service';
 import { UserAccountFormService } from '../../../shared/user-account/user-account-form.service';
 import { ErrorMessagesService } from '../../../shared/services/error-messages.service';
 import { NotificationService } from '../../../shared/services/notification.service';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -21,7 +22,10 @@ import { NotificationService } from '../../../shared/services/notification.servi
 
   'styleUrls' : ['./user-sign-up.component.css'] ,
 
-  'providers' : [ErrorMessagesService , NotificationService]
+  'providers' : [ErrorMessagesService , NotificationService] ,
+
+  'animations' : [fadeAnimation]
+
 })
 
 export class UserSignUpComponent extends UserAccountFormService implements OnInit {
@@ -62,6 +66,8 @@ export class UserSignUpComponent extends UserAccountFormService implements OnIni
 
   public entryChangesT : any;
 
+  public isLoading : boolean = false;
+
   ngOnInit() : void {
 
     let data = this.route.snapshot.data;
@@ -86,17 +92,23 @@ export class UserSignUpComponent extends UserAccountFormService implements OnIni
 
     this.ds.$systemType = this.systemType;
 
+    this.isLoading = true;
+
       this.ds.addUser()
 
     .subscribe((result : General) => {
 
       if (result == null) {
 
+        this.isLoading = false;
+
       	this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message);
 
       	this.isError = true; }
 
-      if (result != null) { 
+      else if (result != null) { 
+
+        this.isLoading = false;
 
         let data = result;
 

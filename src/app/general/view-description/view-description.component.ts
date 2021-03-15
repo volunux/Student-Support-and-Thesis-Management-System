@@ -1,4 +1,5 @@
 import { Component , OnInit , Input , ChangeDetectionStrategy } from '@angular/core';
+import { fadeAnimation } from '../../animations';
 
 @Component({
 
@@ -7,6 +8,8 @@ import { Component , OnInit , Input , ChangeDetectionStrategy } from '@angular/c
   'templateUrl' : './view-description.component.html',
 
   'styleUrls': ['./view-description.component.css'] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

@@ -6,6 +6,7 @@ import { ProfileService } from '../profile.service';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { ErrorMessagesService } from '../../../shared/services/error-messages.service';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -15,7 +16,9 @@ import { ErrorMessagesService } from '../../../shared/services/error-messages.se
   
   'styleUrls' : ['./profile-detail.component.css'] ,
 
-  'providers' : [ErrorMessagesService]
+  'providers' : [ErrorMessagesService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -25,7 +28,7 @@ export class ProfileDetailComponent implements OnInit {
 
   }
 
-  public systemType : string = 'User';
+  public systemType : string = 'Profile';
 
   public title : string = `${this.systemType} Detail`;
 
@@ -35,7 +38,9 @@ export class ProfileDetailComponent implements OnInit {
 
   public error : General;
 
-  public isError : boolean = false
+  public isError : boolean = false;
+
+  public isLoading : boolean = false;
 
   ngOnInit(): void {
 
@@ -43,18 +48,26 @@ export class ProfileDetailComponent implements OnInit {
 
       .pipe(
 
-          switchMap((params : ParamMap) => { return this.ps.profileDetail(); })
+          switchMap((params : ParamMap) => { 
+
+            this.isLoading = true;
+
+            return this.ps.profileDetail(); })
         )
 
       .subscribe((result : User) => {
 
-					if (result == null) { 
+					if (result == null) {
+
+            this.isLoading = false;
 
             this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); 
 
             this.isError = true; }
 
           else if (result != null) {
+
+            this.isLoading = false;
 
             this.entry = result; } });
   }

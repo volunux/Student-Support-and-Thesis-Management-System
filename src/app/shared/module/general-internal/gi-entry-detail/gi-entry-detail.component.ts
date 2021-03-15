@@ -1,4 +1,5 @@
 import { Component , Input , OnInit } from '@angular/core';
+import { fadeAnimation } from '../../../../animations';
 
 @Component({
 
@@ -6,7 +7,9 @@ import { Component , Input , OnInit } from '@angular/core';
 
   'templateUrl' : './gi-entry-detail.component.html',
 
-  'styleUrls' : ['./gi-entry-detail.component.css']
+  'styleUrls' : ['./gi-entry-detail.component.css'] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

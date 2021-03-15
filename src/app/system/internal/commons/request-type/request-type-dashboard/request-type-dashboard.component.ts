@@ -1,5 +1,6 @@
 import { Component , OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { fadeAnimation } from '../../../../../animations';
 
 @Component({
 
@@ -7,7 +8,9 @@ import { ActivatedRoute } from '@angular/router';
 
   'templateUrl' : './request-type-dashboard.component.html',
 
-  'styleUrls' : ['./request-type-dashboard.component.css']
+  'styleUrls' : ['./request-type-dashboard.component.css'] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

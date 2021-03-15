@@ -5,6 +5,7 @@ import { InternalTwo } from '../internal-two';
 import { General } from '../general';
 import { InternalTwoService } from '../internal-two.service';
 import { ErrorMessagesService } from '../../../../shared/services/error-messages.service';
+import { fadeAnimation } from '../../../../animations';
 
 
 @Component({
@@ -15,7 +16,9 @@ import { ErrorMessagesService } from '../../../../shared/services/error-messages
 
   'styleUrls' : ['./internal-two-entry-detail.component.css'] ,
 
-  'providers' : [ErrorMessagesService]
+  'providers' : [ErrorMessagesService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -43,6 +46,8 @@ export class InternalTwoEntryDetailComponent implements OnInit {
 
   public isError : boolean = false;
 
+  public isLoading : boolean = false;
+
   ngOnInit() : void {
 
   	let data = this.route.snapshot.data;
@@ -69,17 +74,23 @@ export class InternalTwoEntryDetailComponent implements OnInit {
 
           let $e = params.get('entry');
 
+          this.isLoading = true;
+
     			return this.its.getEntry($e);	})
     	)
         .subscribe((result) => { 
 
-        if (result == null) { 
+        if (result == null) {
+
+          this.isLoading = false;
 
           this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); 
 
           this.isError = true; }
 
         else if (result != null) {
+
+          this.isLoading = false;
 
           this.entry = result; } });
   }

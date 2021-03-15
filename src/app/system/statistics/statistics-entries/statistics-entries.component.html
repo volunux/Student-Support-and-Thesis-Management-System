@@ -1,11 +1,19 @@
+<div @fadeAnimation>
+
 <h2 *ngIf ='title' > {{title}} Statistics </h2>
 
 <app-view-description *ngIf ='view' [view-description] ='view'> </app-view-description>
 
-<div class ='item stat-items' *ngFor ='let entry of entries | keyvalue'>
+<app-resource-unavailable *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
 
-	<h3> {{$records[entry.key]}} </h3>
+<div class ='item stat-items' *ngFor ='let entry of entries'>
 
-	<p> {{entry.value}}</p>
+	<h3> {{entry.name}} </h3>
+
+	<p> {{entry.total}}</p>
 
 </div>
+
+</div>
+
+<app-loading-menu [is-loading] ='isLoading'> </app-loading-menu>

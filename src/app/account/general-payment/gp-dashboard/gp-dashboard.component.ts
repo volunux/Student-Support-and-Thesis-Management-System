@@ -4,6 +4,7 @@ import { GeneralPaymentService } from '../general-payment.service';
 import { ErrorMessagesService } from '../../../shared/services/error-messages.service';
 import { AuthenticationService } from '../../../authentication/authentication.service';
 import { General } from '../general';
+import { listAnimation } from '../../../animations';
 
 @Component({
 
@@ -13,7 +14,9 @@ import { General } from '../general';
 
   'styleUrls' : ['./gp-dashboard.component.css'] ,
 
-  'providers' : [ErrorMessagesService]
+  'providers' : [ErrorMessagesService] ,
+
+  'animations' : [listAnimation]
 
 })
 
@@ -35,7 +38,9 @@ export class GeneralPaymentDashboardComponent implements OnInit {
 
   public error : { [key : string] : any };
 
-  public isError : boolean = false
+  public isError : boolean = false;
+
+  public isLoading : boolean = false;
 
   ngOnInit() : void {
 
@@ -47,17 +52,23 @@ export class GeneralPaymentDashboardComponent implements OnInit {
 
     this.view = data.dashboard.view;
 
+    this.isLoading = true;
+
   	this.gps.managePayment()
 
   		.subscribe((result) => {
 
         if (result == null) {
 
+          this.isLoading = false;
+
           this.isError = true;
 
           this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); }
 
         else if (result != null && result.length > 0) {
+
+          this.isLoading = false;
 
          this.entries = result; } });
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../../../authentication/authentication.service';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -8,7 +9,9 @@ import { AuthenticationService } from '../../../authentication/authentication.se
 
   'templateUrl' : './refund-dashboard.component.html',
 
-  'styleUrls' : ['./refund-dashboard.component.css']
+  'styleUrls' : ['./refund-dashboard.component.css'] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

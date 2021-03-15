@@ -31,9 +31,7 @@ const routes: Routes = [
 
 					{'path' : 'internal' , 'loadChildren' : () => import('./internal/internal.module').then(m => m.InternalModule) } ,
 
-					// {'path' : 'statistics' , 'loadChildren' : () => import('./statistics/statistics.module').then(m => m.StatisticsModule) } ,
-
-					// {'path' : 'thesis' , 'loadChildren' : () => import('./internal-thesis/internal-thesis.module').then(m => m.InternalThesisModule) } ,
+					{'path' : 'statistics' , 'loadChildren' : () => import('./statistics/statistics.module').then(m => m.StatisticsModule) } ,
 
 				]
 

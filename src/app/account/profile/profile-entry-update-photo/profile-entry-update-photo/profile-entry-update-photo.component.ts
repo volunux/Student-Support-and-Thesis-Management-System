@@ -4,6 +4,7 @@ import { FormControl , FormGroup , Validators } from '@angular/forms';
 import { General } from '../../general';
 import { ProfileEntryUpdatePhotoFileControlService } from '../profile-entry-update-photo-file-control.service';
 import { AttachmentUploadComponent } from '../../../../shared/module/attachment/attachment-upload/attachment-upload.component';
+import { fadeAnimation } from '../../../../animations';
 
 @Component({
 
@@ -11,7 +12,9 @@ import { AttachmentUploadComponent } from '../../../../shared/module/attachment/
 
   'templateUrl' : './profile-entry-update-photo.component.html',
 
-  'styleUrls' : ['./profile-entry-update-photo.component.css'],
+  'styleUrls' : ['./profile-entry-update-photo.component.css'], 
+
+  'animations' : [fadeAnimation]
 
 })
 

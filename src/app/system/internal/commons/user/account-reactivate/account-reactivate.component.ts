@@ -6,7 +6,7 @@ import { General } from '../general';
 import { UserService } from '../user.service';
 import { ErrorMessagesService } from '../../../../../shared/services/error-messages.service';
 import { NotificationService } from '../../../../../shared/services/notification.service';
-
+import { fadeAnimation } from '../../../../../animations';
 
 @Component({
 
@@ -16,7 +16,9 @@ import { NotificationService } from '../../../../../shared/services/notification
 
   'styleUrls' : ['./account-reactivate.component.css'] ,
 
-  'providers' : [NotificationService , ErrorMessagesService]
+  'providers' : [NotificationService , ErrorMessagesService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -60,6 +62,8 @@ export class AccountReactivateComponent implements OnInit {
 
   public entryChangesT : any;
 
+  public isLoading : boolean = false;
+
 	ngOnInit() : void {
 
     let data = this.route.snapshot.data;
@@ -92,6 +96,8 @@ export class AccountReactivateComponent implements OnInit {
 
           this.eslug = $e;
 
+          this.isLoading = true;
+
           return this.us.updateStatus($e , this.link2) })
         )
 
@@ -99,11 +105,15 @@ export class AccountReactivateComponent implements OnInit {
 
 					if (result == null) { 
 
+            this.isLoading = false;
+
             this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); 
 
             this.isError = true; }
 
           else if (result != null) {
+
+          this.isLoading = false;
 
 					this.entry = result; } });
 	}

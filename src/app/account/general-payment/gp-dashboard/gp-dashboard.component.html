@@ -6,17 +6,13 @@
 
 <div *ngIf ='systemType' id ='dashboard'>
 
-<ul>
-
-	<ng-container *ngIf ='entries != null && entries?.length > 0'>
+<ul *ngIf ='entries != null && entries.length > 0' [@listAnimation] ='entries.length'>
 
 		<li *ngFor ='let entry of entries'> 
 
 		<a [routerLink] ='["./" , "t" , entry?.slug]' class ='center'> {{entry?.name}} </a>
 
 		</li>
-
-	</ng-container>
 
 	<li *ngIf ='canVerify'>
 
@@ -32,4 +28,7 @@
 
 </ul>
 
+
 </div>
+
+<app-loading-menu [is-loading] ='isLoading'> </app-loading-menu>

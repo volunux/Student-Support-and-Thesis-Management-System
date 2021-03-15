@@ -34,13 +34,13 @@ import { environment } from '../environments/environment';
   ],
 
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule.withServerTransition({ 'appId' : 'serverApp' }),
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatProgressBarModule,
     AppRoutingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', { 'enabled' : environment.production }),
   ],
   
   providers: [ {'provide' : Api_Token , 'useValue' : Api_Config , 'multi' : false } ,

@@ -1,6 +1,6 @@
 import { Component , OnInit } from '@angular/core';
 import { RouterOutlet , Router , RouterEvent , RouteConfigLoadEnd , RouteConfigLoadStart } from '@angular/router';
-import { slideInAnimation , fader , stepper } from './animations';
+import { fadeAnimation } from './animations';
 import { FormControl , FormGroup } from '@angular/forms';
 import { AuthenticationService } from './authentication/authentication.service';
 
@@ -13,7 +13,7 @@ import { AuthenticationService } from './authentication/authentication.service';
   
   'styleUrls' : ['./app.component.css'] ,
 
-  'animations' : [slideInAnimation , fader , stepper] ,
+  'animations' : [fadeAnimation] ,
 
 })
 

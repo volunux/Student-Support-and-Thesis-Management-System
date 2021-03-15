@@ -8,6 +8,7 @@ import { ProfileService } from '../profile.service';
 import { ProfileFormService } from '../profile-form.service';
 import { ErrorMessagesService } from '../../../shared/services/error-messages.service';
 import { NotificationService } from '../../../shared/services/notification.service';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -17,7 +18,9 @@ import { NotificationService } from '../../../shared/services/notification.servi
 
   'styleUrls' : ['./profile-reactivate.component.css'] ,
 
-  'providers' : [NotificationService , ErrorMessagesService]
+  'providers' : [NotificationService , ErrorMessagesService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -29,9 +32,9 @@ export class ProfileReactivateComponent implements OnInit {
 
   }
 
-  public systemType : string = 'User';
+  public systemType : string = 'Profile';
 
-  public title : string = `${this.systemType} Account Reactivate`;
+  public title : string = `${this.systemType} Reactivate`;
 
   public entry : User;
 
@@ -49,6 +52,8 @@ export class ProfileReactivateComponent implements OnInit {
 
   public entryChangesT : any;
 
+  public isLoading : boolean = false;
+
   ngOnInit(): void {
 
     this.route.paramMap
@@ -56,6 +61,8 @@ export class ProfileReactivateComponent implements OnInit {
       .pipe(
 
           switchMap((params : ParamMap) => {
+
+            this.isLoading = true;
 
             return this.ps.reactivateProfile(); })
         
@@ -65,17 +72,21 @@ export class ProfileReactivateComponent implements OnInit {
 
           if (result == null) {
 
+            this.isLoading = false;
+
             this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); 
 
             this.isError = true; }
 
           else if (result != null) {
 
-          this.entryForm = this.pfs.statusProfile();
+            this.isLoading = false;
 
-          this.entry = result;
+            this.entryForm = this.pfs.statusProfile();
 
-          this.entryForm.patchValue(this.entry); } });
+            this.entry = result;
+
+            this.entryForm.patchValue(this.entry); } });
   }
 
   public reactivateEntry() : void {

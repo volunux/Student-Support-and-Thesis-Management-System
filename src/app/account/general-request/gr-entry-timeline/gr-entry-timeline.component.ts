@@ -8,6 +8,7 @@ import { GeneralRequestService } from '../general-request.service';
 import { ErrorMessagesService } from '../../../shared/services/error-messages.service';
 import { NotificationService } from '../../../shared/services/notification.service';
 import { canUpdate } from '../roles';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -17,7 +18,9 @@ import { canUpdate } from '../roles';
 
   'styleUrls' : ['./gr-entry-timeline.component.css'],
 
-  'providers' : [NotificationService , ErrorMessagesService]
+  'providers' : [NotificationService , ErrorMessagesService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -51,6 +54,8 @@ export class GeneralRequestEntryTimelineComponent implements OnInit {
 
   public rslug : string;
 
+  public isLoading : boolean = false;
+
   ngOnInit() : void {
 
     let data = this.route.snapshot.data;
@@ -81,6 +86,8 @@ export class GeneralRequestEntryTimelineComponent implements OnInit {
 
             this.eslug = $e;
 
+            this.isLoading = true;
+
           	return this.grs.getTimeline($r , $e); })
         )
 
@@ -88,11 +95,15 @@ export class GeneralRequestEntryTimelineComponent implements OnInit {
 
 					if (result == null) {
 
+            this.isLoading = false;
+
             this.isError = true;
 
             this.error = Object.assign({'resource' : `${this.systemType} Entry Timeline`} , this.ems.message); }
 
           else if (result != null) {
+
+          this.isLoading = false;
 
 					this.entry = result;
 

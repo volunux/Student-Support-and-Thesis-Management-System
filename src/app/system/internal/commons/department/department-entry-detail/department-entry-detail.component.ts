@@ -5,6 +5,7 @@ import { Department } from '../department';
 import { General } from '../general';
 import { DepartmentService } from '../department.service';
 import { ErrorMessagesService } from '../../../../../shared/services/error-messages.service';
+import { fadeAnimation } from '../../../../../animations';
 
 
 @Component({
@@ -15,7 +16,9 @@ import { ErrorMessagesService } from '../../../../../shared/services/error-messa
 
   'styleUrls' : ['./department-entry-detail.component.css'] ,
 
-  'providers' : [ErrorMessagesService]
+  'providers' : [ErrorMessagesService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -43,6 +46,8 @@ export class DepartmentEntryDetailComponent implements OnInit {
 
   public isError : boolean = false;
 
+  public isLoading : boolean = false;
+
   ngOnInit() : void {
 
   	let data = this.route.snapshot.data;
@@ -69,17 +74,23 @@ export class DepartmentEntryDetailComponent implements OnInit {
 
           let $e = params.get('entry');
 
+          this.isLoading = false;
+
     			return this.dps.getEntry($e);	})
     	)
         .subscribe((result) => { 
 
-        if (result == null) { 
+        if (result == null) {
+
+          this.isLoading = false;
 
           this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); 
 
           this.isError = true; }
 
         else if (result != null) {
+
+          this.isLoading = false;
 
           this.entry = result; } });
   }

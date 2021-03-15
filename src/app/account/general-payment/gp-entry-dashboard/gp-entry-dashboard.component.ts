@@ -7,6 +7,7 @@ import { GeneralPayment } from '../general-payment';
 import { AuthenticationService } from '../../../authentication/authentication.service';
 import { GeneralPaymentService } from '../general-payment.service';
 import { ErrorMessagesService } from '../../../shared/services/error-messages.service';
+import { fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -16,7 +17,9 @@ import { ErrorMessagesService } from '../../../shared/services/error-messages.se
 
   'styleUrls' : ['./gp-entry-dashboard.component.css'] ,
 
-  'providers' : [ErrorMessagesService]
+  'providers' : [ErrorMessagesService] ,
+
+  'animations' : [fadeAnimation]
 
 })
 
@@ -44,6 +47,8 @@ export class GeneralPaymentEntryDashboardComponent implements OnInit {
 
   private pslug : string;
 
+  public isLoading : boolean = false;
+
   ngOnInit() : void {
 
     let data = this.route.snapshot.data;
@@ -68,6 +73,8 @@ export class GeneralPaymentEntryDashboardComponent implements OnInit {
 
           this.pslug = $p;
 
+          this.isLoading = true;
+
         	return this.gps.managePaymentEntry($p); })
         )
 
@@ -75,11 +82,15 @@ export class GeneralPaymentEntryDashboardComponent implements OnInit {
 
 				if (result == null) {
 
+          this.isLoading = false;
+
           this.isError = true;
 
           this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); }
 
         else if (result != null) {
+
+          this.isLoading = false;
 
           this.entry = result;
 

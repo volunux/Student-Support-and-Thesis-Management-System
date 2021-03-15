@@ -19,7 +19,7 @@ export class DepartmentEntryDeleteAllComponent implements OnInit {
 
   public systemType : string;
 
-  public viewAbbreviation : string;
+  public viewWord : string;
 
   public title : string;
 
@@ -35,7 +35,7 @@ export class DepartmentEntryDeleteAllComponent implements OnInit {
 
   	this.systemType = data.deleteAll.systemType;
 
-  	this.viewAbbreviation = data.deleteAll.viewAbbreviation;
+  	this.viewWord = data.deleteAll.viewWord;
 
   	this.title = data.deleteAll.title;
 

@@ -31,6 +31,8 @@ export class InternalOneService {
       .pipe(
               tap((value : InternalOne[]) => console.log(value)) ,
 
+              delay(3000) ,
+
               catchError(this.handleError<InternalOne[]>(`${this.$systemType} Entries` , null))
         )
 
@@ -46,6 +48,8 @@ export class InternalOneService {
 
           tap((entry : InternalOne) => console.log(entry)) ,
 
+          delay(3000) ,
+
           catchError(this.handleError<InternalOne>(`${this.$systemType} Entry` , null))
         )
   }
@@ -59,6 +63,8 @@ export class InternalOneService {
       .pipe(
 
           tap((entry : General) => console.log(entry)) ,
+
+          delay(3000) ,
 
           map((data : General) => { return { 'permitted' : true , '$data' : data }; }) ,
 
@@ -90,6 +96,8 @@ export class InternalOneService {
 
       .pipe(
 
+        delay(3000) ,
+
          map((entry : General) => { return { 'permitted' : true , '$data' : entry }; }) ,
 
         catchError(this.handleError<InternalOne>(`${this.$systemType} Entry` , null))
@@ -119,6 +127,8 @@ export class InternalOneService {
     return this.http.get<InternalOne>(link)
 
       .pipe(
+
+        delay(3000) ,
 
          map((entry : General) => { return { 'permitted' : true , '$data' : entry }; }) ,
 
@@ -166,6 +176,8 @@ export class InternalOneService {
     return this.http.get(link)
 
       .pipe(
+
+        delay(3000) ,
 
         catchError(this.handleError<InternalOne[]>(`${this.$systemType} Entry or Entries Delete` , null))
 

@@ -115,6 +115,8 @@ export class GeneralPaymentEntriesComponent implements OnInit {
 
   public entriesSearchedOb : Subscription;
 
+  public isLoading : boolean = false;
+
   public searchErr$(err) {
 
     this.error = null;
@@ -170,6 +172,8 @@ export class GeneralPaymentEntriesComponent implements OnInit {
 
        this.gps.ptype = this.pslug;
 
+       this.isLoading = true;
+
         return this.getAllEntry($q); });
 
   }
@@ -191,6 +195,8 @@ export class GeneralPaymentEntriesComponent implements OnInit {
 
       if (result == null) {
 
+        this.isLoading = false;
+
         this.entries = [];
 
         this.$entriesLength = 0;
@@ -200,6 +206,8 @@ export class GeneralPaymentEntriesComponent implements OnInit {
         this.error = Object.assign({'resource' : `${this.systemType} Entry or Entries`} , this.ems.message); }
 
       else if (result != null && result.length > 0) {
+
+        this.isLoading = false;
 
          this.error = null;
 

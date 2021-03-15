@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GeneralModule } from '../../general/general.module';
+import { GeneralServicesModule } from '../../shared/services/general-services.module';
 
 import { StatisticsRoutingModule } from './statistics-routing.module';
 import { StatisticsEntriesComponent } from './statistics-entries/statistics-entries.component';
@@ -23,6 +24,7 @@ import { StatisticsService } from './statistics.service';
   imports: [
     CommonModule,
     GeneralModule,
+    GeneralServicesModule,
     StatisticsRoutingModule
   ] ,
 

@@ -1,0 +1,41 @@
+<div *ngIf ='entryForm' [formGroup] ='entryForm'>
+
+	<ng-container *ngIf ='entry'>
+
+		<div id ='entry-detail-options'>
+
+			<a *ngIf ='!isOtherColAvailable' (click) ='otherCol()' class ='center'> Get Request Message Templates </a>
+
+			<p *ngIf ='templateNotAvailable'> Message Template Not Available. </p>
+
+	</div>
+
+	</ng-container>
+
+<ng-container *ngIf ='isOtherColAvailable == true'>
+
+<div @fadeAnimation class ='form-group'>
+
+	<label for ='messagetemplate' class ='form-label bold'> Entry Message Templates : </label>
+
+	<select name ='messagetemplate' id ='messagetemplate' class ='form-control' (change) ='getMessageTemplate($event.target)' formControlName ='messagetemplate' >
+
+		<ng-container *ngIf ='etemplates != null'>
+
+				<option [value] =''> </option> 
+
+				<option *ngFor ='let template of etemplates' [value] ='template._id'> {{template.title}} </option> 
+
+		</ng-container>
+
+	</select>
+
+	<app-request-entry-update-validator *ngIf ='request_message_template' [system-type] ='systemType' [request-message-template] ='request_message_template'> </app-request-entry-update-validator>
+
+</div>
+
+</ng-container>
+
+</div>
+
+<app-loading-menu [is-loading] ='isLoading'> </app-loading-menu>
