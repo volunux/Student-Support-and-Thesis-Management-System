@@ -126,9 +126,27 @@ export class GeneralPaymentEntryDetailComponent implements OnInit {
     clearTimeout(this.entryChangesT);
   }
 
-  public refundEntry(result : GeneralPayment) : void {
+  public refundEntry() : void {
 
+    this.gps.createRefund$(this.eslug , {'transaction' : this.entry.payment_reference})
 
+      .subscribe((result : GeneralPayment) => {
+
+            if (result == null) {
+
+              this.ns.setNotificationStatus(true);
+
+              this.ns.addNotification(`Operation is unsuccessful and ${this.systemType} is not refunded.`); }
+
+            else if (result != null && result.refunded == true) {
+
+          this.isLoading = true;
+
+          this.ns.setNotificationStatus(true);
+
+          this.ns.addNotification(`Operation is successful and ${this.systemType} is refunded.`); 
+
+          this.$entryChanges(result.$data) } });
   }
 
   public $entryChanges(data) {
@@ -151,6 +169,16 @@ export class GeneralPaymentEntryDetailComponent implements OnInit {
   get userRole() : string {
 
   	return this.aus.userRole;
+  }
+
+  get userDepartment() : string {
+
+    return this.aus.userDepartment;
+  }
+
+  get userFaculty() : string {
+
+    return this.aus.userFaculty;
   }
 
   get canUpdateEntry() : boolean {

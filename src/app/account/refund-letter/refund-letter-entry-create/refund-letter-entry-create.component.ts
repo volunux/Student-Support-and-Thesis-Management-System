@@ -170,7 +170,11 @@ export class RefundLetterEntryCreateComponent implements OnInit {
 
           this.ns.addNotification(`Operation is unsuccessful and ${this.systemType} Entry is not updated.`); }
 
-				if (result != null && result.updated == true) { this.isFormSubmitted = false;
+				if (result != null && result.updated == true) {
+
+          this.isLoading = true;
+
+          this.isFormSubmitted = false;
 
           this.ns.setNotificationStatus(true);
 

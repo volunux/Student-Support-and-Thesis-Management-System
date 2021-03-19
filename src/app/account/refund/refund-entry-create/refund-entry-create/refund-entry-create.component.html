@@ -6,9 +6,13 @@
 
 <ng-container *ngIf ='entryCreateForm'>
 
+	<ng-container *ngIf ='!isLoading'>
+
 	<app-request-entry-create [system-type] ='systemType' [system-guideline] ='systemGuideline' [view] ='view' [input-file-control] ='fileControl' [attachment-config] ='attachmentConfig' 
 
 	[entry-create-form] ='entryCreateForm' [upload-config-u] ='uploadConfig' (processEntry) ='createEntry($event)' > </app-request-entry-create>
+
+</ng-container>
 
 </ng-container>
 

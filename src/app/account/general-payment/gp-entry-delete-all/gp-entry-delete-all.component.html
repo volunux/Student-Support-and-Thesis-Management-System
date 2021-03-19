@@ -10,11 +10,15 @@
 
 	<div @fadeAnimation id ='entry-detail' *ngIf ='canDelete'>
 
+		<ng-container *ngIf ='!isLoading'>
+
 		<app-delete-all-entry *ngIf ='systemType' [system-type] ='systemType' > </app-delete-all-entry>
 
 			<button *ngIf ='!isFormProcessing' class ='btn-submit' type ='submit' (click) ='deleteAllEntry()'> Confirm </button>
 
 			<p *ngIf ='isFormSubmitted'> Your form is being processed. Please kindly be patient and wait while it completes. </p>
+
+		</ng-container>
 
 </div>
 

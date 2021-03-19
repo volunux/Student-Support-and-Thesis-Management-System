@@ -177,7 +177,9 @@ export class UserDeleteComponent extends UserAccountFormService implements OnIni
 
        else if (result != null && result.deleted == true) {
 
-         this.isFormSubmitted = false;
+          this.isLoading = true;
+
+          this.isFormSubmitted = false;
 
           this.ns.setNotificationStatus(true);
 

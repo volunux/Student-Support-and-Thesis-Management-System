@@ -102,7 +102,7 @@ hr {
 	padding : 0.3735050460531722%;
 }
 
-#logo-sris , .loading-bar {
+#logo-sris , .sris-loading-icon {
 
 	width : 100%;
 	display : block;
@@ -234,7 +234,7 @@ hr {
 	padding : 0px 5px;
 }
 
-.loading-bar {
+.sris-loading-icon {
 
 	display : block;
 	width : 100%;

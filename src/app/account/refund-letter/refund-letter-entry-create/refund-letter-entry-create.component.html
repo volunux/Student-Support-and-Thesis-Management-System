@@ -12,6 +12,8 @@
 
 	<ng-container *ngIf ='canUpdateEntry3'>
 
+		<ng-container *ngIf ='!isLoading'>
+
 		<div id ='entry-detail-form'>			
 
 			<form method ='post' [formGroup] ='entryForm' (ngSubmit) ='updateEntry(entryForm.value)'>
@@ -43,6 +45,8 @@
 			</form>
 
 		</div>
+
+	</ng-container>
 
 	</ng-container>
 

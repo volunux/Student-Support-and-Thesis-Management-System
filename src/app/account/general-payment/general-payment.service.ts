@@ -207,23 +207,7 @@ export class GeneralPaymentService {
         )
   }
 
-  public $refundEntry(entry : string , payment : GeneralPayment) : Observable<General> {
-
-    let link = `${this.apiConfig.host}/general-payment/refund-transaction?reference=${entry}`;
-
-    return this.http.post<GeneralPayment>(link , payment)
-
-      .pipe(
-
-          tap((entry : General) => console.log(entry)) ,
-
-          map((entry : GeneralPayment) => { return {'created' : true , '$data' : entry}; }) ,
-
-          catchError(this.handleError<GeneralPayment>(`${this.$systemType} Entry` , null))
-        )
-  }
-
-  public $createRefund(entry : string , payment : GeneralPayment) : Observable<General> {
+  public createRefund$(entry : string , payment : GeneralPayment) : Observable<General> {
 
     let link = `${this.apiConfig.host}/${this.$sa}/entry/${entry}/refund`;
 
@@ -233,7 +217,7 @@ export class GeneralPaymentService {
 
           tap((entry : General) => console.log(entry)) ,
 
-          map((entry : GeneralPayment) => { return {'updated' : true , '$data' : entry}; }) ,
+          map((entry : GeneralPayment) => { return {'refunded' : true , '$data' : entry}; }) ,
 
           catchError(this.handleError<GeneralPayment>(`${this.$systemType} Entry` , null))
         )

@@ -6,11 +6,15 @@
 
 <ng-container *ngIf ='entryCreateForm'>
 
+	<ng-container *ngIf ='!isLoading'>
+
 	<app-entry-reply-create [system-type] ='systemType' [view] ='view' [entry] ='entry' [comment] ='comment' [entry-create-form] ='entryCreateForm' (processEntry) ='createEntry($event)' >
 
 	</app-entry-reply-create>
 
 </ng-container>
+
+	</ng-container>
 
 </div>
 

@@ -8,6 +8,7 @@ import { ErrorMessagesService } from '../../../shared/services/error-messages.se
 import { NotificationService } from '../../../shared/services/notification.service';
 import { GeneralPaymentService } from '../general-payment.service';
 import { GeneralPaymentFormService } from '../gp-form.service';
+import { authorizationSettings } from './payment-authorization';
 import { fadeAnimation } from '../../../animations';
 
 @Component({
@@ -178,7 +179,7 @@ export class GeneralPaymentEntryCreateComponent implements OnInit {
 
 		body.email = body.payerEmail;
 
-		body.callback_url = `https://volunux.github.io/Student-Support-and-Thesis-Management-System/general-payment/t/${this.pslug}/validation`;
+		body.callback_url = authorizationSettings(this);
 
   	body.metadata = {
 
@@ -215,6 +216,8 @@ export class GeneralPaymentEntryCreateComponent implements OnInit {
           this.ns.addNotification(`Network error has occured. Payment is only a possiblity when there is Internet connection.`); }
 
        else if (result != null && result.created == true) {
+
+           this.isLoading = true;
 
            this.isFormSubmitted = false;
 

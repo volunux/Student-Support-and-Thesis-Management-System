@@ -8,7 +8,6 @@
 
 <app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
 
-
 <div id ='gp-details' *ngIf ='entry'>
 
 	<table>
@@ -41,6 +40,18 @@
 					<th class ='left bold' > Paid Date : </th>
 
 					<td> {{entry?.paid_on | date : 'fullDate'}} </td>
+
+				</tr>
+
+			</ng-container>
+
+			<ng-container *ngIf ='entry?.payment_session'>
+
+				<tr>
+
+					<th class ='left bold' > Payment Session </th>
+
+					<td> {{entry?.payment_session}} </td>
 
 				</tr>
 
@@ -229,7 +240,7 @@
 
 		</tbody>
 
-			<ng-container *ngIf ='canRefundDepartmentPayment && entry.paymentType == "department_name" && !entry.refunded && userDepartment == entry?.department_name'>
+			<ng-container *ngIf ='userRole == "departmentPresident" && entry.department == userDepartment && entry.status == "Success"'>
 
 				<tfoot class ='refund option'>
 
@@ -243,7 +254,7 @@
 
 			</ng-container>
 
-			<ng-container *ngIf ='canRefundFacultyPayment && entry.paymentType == "faculty_name" && !entry.refunded && userFaculty == entry?.faculty_name'>
+			<ng-container *ngIf ='userRole == "facultyPresident" && entry.faculty == userFaculty && entry.status == "Success"'>
 
 				<tfoot class ='refund option'>
 

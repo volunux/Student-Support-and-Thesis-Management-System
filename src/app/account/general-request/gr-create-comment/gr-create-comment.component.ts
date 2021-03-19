@@ -123,7 +123,11 @@ export class GeneralRequestCreateCommentComponent implements OnInit {
 
         if (result == null) { this.ccs.isEntryCreated.next(false); }
 
-        if (result != null && result.updated == true) { this.ccs.isEntryCreated.next(true);
+        if (result != null && result.updated == true) {
+
+          this.isLoading = true;
+
+          this.ccs.isEntryCreated.next(true);
 
          this.entryChanges(result.$data); } });
   }

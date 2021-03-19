@@ -165,6 +165,8 @@ export class UserSignUpComponent extends UserAccountFormService implements OnIni
 
           this.ns.addNotification(`Operation is successful and ${this.systemType} is added.`);
 
+          this.isLoading = true;
+
           this.entryChanges(result); } });
   }
 

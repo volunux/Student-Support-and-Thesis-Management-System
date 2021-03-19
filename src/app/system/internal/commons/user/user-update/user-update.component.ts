@@ -194,6 +194,8 @@ export class UserUpdateComponent extends UserAccountFormService implements OnIni
 
 				if (result != null && result.updated == true) {
 
+					this.isLoading = true;
+
 					this.isFormSubmitted = false;
 
           this.ns.setNotificationStatus(true);

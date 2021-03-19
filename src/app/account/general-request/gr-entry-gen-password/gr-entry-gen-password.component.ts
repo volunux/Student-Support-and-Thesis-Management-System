@@ -47,7 +47,7 @@ export class GeneralRequestEntryGeneratePasswordComponent implements OnInit {
 
 		this.entryForm.patchValue({'password' : newPassword });
 
-    this.gups.createPassword$({'password' : newPassword})
+    this.gups.createPassword$({'password' : newPassword , 'user' : this.entry.author._id , 'entry' : this.entry._id})
 
       .subscribe();
 

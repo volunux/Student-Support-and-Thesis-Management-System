@@ -10,6 +10,8 @@
 
 <app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
 
+<ng-container *ngIf ='!isLoading'>
+
 			<ng-container *ngIf ='paymentSession != null && paymentSession?.length > 0'>
 
 			<div class ='form-group'>
@@ -101,6 +103,8 @@
 		</div>
 
 	</ng-container>
+
+</ng-container>
 
 </div>
 

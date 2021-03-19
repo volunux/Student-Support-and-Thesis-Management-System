@@ -152,6 +152,8 @@ export class UserCreateComponent extends UserAccountFormService implements OnIni
 
        else if (result != null && result.created == true) {
 
+          this.isLoading = true;
+
           this.isFormSubmitted = false;
 
           this.ns.setNotificationStatus(true);

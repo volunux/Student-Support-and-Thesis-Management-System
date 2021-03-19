@@ -57,7 +57,7 @@ export class UserSignInComponent implements OnInit {
 
   public entryChangesT : any;
 
-  public haveResetForm : boolean = false;
+  public isLoading : boolean = false;
 
   ngOnInit() : void {
 
@@ -123,6 +123,8 @@ export class UserSignInComponent implements OnInit {
           this.ns.setNotificationStatus(true);
 
           this.ns.addNotification(`Operation is successful and ${this.systemType} is logged in.`);
+
+          this.isLoading = true;
 
           this.entryChanges(result); } });
 

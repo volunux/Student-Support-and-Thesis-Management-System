@@ -6,7 +6,7 @@
 
 <ng-container *ngIf ='entryForm'>
 
-		<div [formGroup] ='entryForm'>
+		<div *ngIf ='!isLoading' [formGroup] ='entryForm'>
 
 	<app-gi-chat-entry-update [system-type] ='systemType' [view] ='view' [entry] ='entry' [entry-form] ='entryForm' [e-others] = 'eothers' [placeholder] ='placeholder' [no-edit] ='noEdit'
 

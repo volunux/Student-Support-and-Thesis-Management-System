@@ -12,7 +12,7 @@
 
 <app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
 
-		<form method ='post' [formGroup] ='entryForm' (ngSubmit) ='confirmAuth(entryForm.value)'>
+		<form *ngIf ='!isLoading' method ='post' [formGroup] ='entryForm' (ngSubmit) ='confirmAuth(entryForm.value)'>
 
 		<ng-container *ngIf ='email_address'>
 
@@ -51,3 +51,5 @@
 		</form>
 
 	</div>
+
+	<app-loading-menu [is-loading] ='isLoading'> </app-loading-menu>

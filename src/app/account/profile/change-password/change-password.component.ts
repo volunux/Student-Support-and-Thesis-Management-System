@@ -119,6 +119,8 @@ export class ChangePasswordComponent implements OnInit {
 
          else if (result != null && result.updated == true) { 
 
+          this.isLoading = true;
+
           this.isFormSubmitted = false;
 
           this.ns.setNotificationStatus(true);

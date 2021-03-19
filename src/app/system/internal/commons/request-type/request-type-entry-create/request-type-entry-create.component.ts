@@ -147,6 +147,8 @@ export class RequestTypeEntryCreateComponent implements OnInit {
 
        else if (result != null && result.created == true) { 
 
+        this.isLoading = true;
+
         this.giecs.isEntryChanged.next(true);
 
        	this.entryChanges(result); } });

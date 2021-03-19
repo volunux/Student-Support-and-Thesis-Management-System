@@ -6,7 +6,7 @@
 
 <ng-container *ngIf ='entryForm'>
 
-		<div [formGroup] ='entryForm'>
+		<div *ngIf ='!isLoading' [formGroup] ='entryForm'>
 
 	<app-gi-chat-entry-delete [system-type] ='systemType' [view] ='view' [entry] ='entry' [entry-form] ='entryForm' [placeholder] ='placeholder' [no-edit] ='noEdit'
 

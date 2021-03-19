@@ -145,7 +145,9 @@ export class DepartmentEntryCreateComponent implements OnInit {
 
          this.giecs.isEntryChanged.next(false); }
 
-       else if (result != null && result.created == true) { 
+       else if (result != null && result.created == true) {
+
+        this.isLoading = true;
 
         this.giecs.isEntryChanged.next(true);
 

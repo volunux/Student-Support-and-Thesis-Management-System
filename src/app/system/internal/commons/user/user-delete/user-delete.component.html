@@ -10,7 +10,7 @@
 
 <div *ngIf ='entry' id ='entry-delete'>
 
-	<div id ='entry-detail'>
+	<div *ngIf ='!isLoading' id ='entry-detail'>
 
 		<form method ='post' autocomplete ='off' [formGroup] ='entryForm' (ngSubmit) ='deleteEntry(entryForm.value)'>
 

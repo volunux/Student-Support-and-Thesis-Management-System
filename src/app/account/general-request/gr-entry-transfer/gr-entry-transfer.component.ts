@@ -153,7 +153,11 @@ export class GeneralRequestEntryTransferComponent implements OnInit {
 
           this.ns.addNotification(`Operation is unsuccessful and ${this.systemType} Entry is not updated.`); }
 
-				else if (result != null && result.updated) { this.isFormSubmitted = false;
+				else if (result != null && result.updated) {
+
+          this.isLoading = true;
+
+          this.isFormSubmitted = false;
 
           this.ns.setNotificationStatus(true);
 

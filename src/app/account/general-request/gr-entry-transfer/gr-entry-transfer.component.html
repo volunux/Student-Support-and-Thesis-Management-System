@@ -10,6 +10,8 @@
 
 	<div @fadeAnimation *ngIf ='entry' id ='request-entry-detail'>
 
+		<ng-container *ngIf ='!isLoading'>
+
 		<app-request-entry-detail *ngIf ='entry' [entry] ='entry'> </app-request-entry-detail>
 
 		<ng-container *ngIf ="entry && entry?.status != 'Pending' && entry?.status != 'Fulfilled' && entry?.status != 'Rejected'">
@@ -63,6 +65,8 @@
 			</ng-container>
 
 	</ng-container>
+
+</ng-container>
 
 
 </div>

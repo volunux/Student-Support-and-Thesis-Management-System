@@ -12,7 +12,7 @@ export class LowercaseDirective {
 
   }
 
-  @HostListener('input') public lowercase(field : string) : void { let i = 0;
+  @HostListener('blur') public lowercase(field : string) : void { let i = 0;
 
   	let $entry = this.el.nativeElement.value.replace(/\s+/g , '').toLowerCase();
 

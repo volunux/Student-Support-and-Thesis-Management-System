@@ -10,6 +10,8 @@
 
 	<div *ngIf ='entry' id ='entry-detail'>
 
+		<ng-container *ngIf ='!isLoading'>
+
 		<form method ='post' autocomplete ='off' [formGroup] ='entryForm' (ngSubmit) ='deactivateEntry(entryForm.value)'>
 
 			<app-profile-input-fields *ngIf ='systemType' [system-type] ='systemType' [entry] ='entry' [entry-form] ='entryForm'> </app-profile-input-fields>
@@ -19,6 +21,8 @@
 			<p *ngIf ='isFormSubmitted'> Your form is being processed. Please kindly be patient and wait while it completes. </p>
 
 		</form>
+
+	</ng-container>
 
 	</div>
 

@@ -8,7 +8,7 @@
 
 <app-resource-unavailable id ='error' *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
 
-	<div id ='entry-detail'>
+	<div *ngIf ='!isLoading' id ='entry-detail'>
 
 		<app-delete-all-entry *ngIf ='systemType' [system-type] ='systemType' ></app-delete-all-entry>
 

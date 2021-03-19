@@ -10,6 +10,8 @@
 
 	<div @fadeAnimation *ngIf ='entry' id ='request-entry-detail'>
 
+		<ng-container *ngIf ='!isLoading'>
+
 		<app-request-entry-detail *ngIf ='entry' [entry] ='entry' [view] ='view' > </app-request-entry-detail>
 
 		<app-request-entry-student-detail *ngIf ='entry' [entry] ='entry' > </app-request-entry-student-detail>
@@ -43,6 +45,8 @@
 			</ng-container>
 
 	</ng-container>
+
+</ng-container>
 
 </div>
 

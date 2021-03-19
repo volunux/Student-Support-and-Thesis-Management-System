@@ -135,7 +135,11 @@ export class GeneralRequestEntryDeleteAllComponent implements OnInit {
 
           return this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); }
 
-         else { this.isFormSubmitted = false;
+         else { 
+
+          this.isLoading = true;
+
+          this.isFormSubmitted = false;
 
           this.ns.setNotificationStatus(true);
 

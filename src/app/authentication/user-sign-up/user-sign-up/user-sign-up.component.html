@@ -10,7 +10,7 @@
 
 	<div *ngIf ='generalOthers' id ='entry-detail'>
 
-		<form [formGroup] ='entryForm' method ='post' (ngSubmit) ='addEntry(entryForm.value)'>
+		<form *ngIf ='!isLoading' [formGroup] ='entryForm' method ='post' (ngSubmit) ='addEntry(entryForm.value)'>
 
 			<div *ngIf ='(entryForm.touched || entryForm.dirty)'>
 

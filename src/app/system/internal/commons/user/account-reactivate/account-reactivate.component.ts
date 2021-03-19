@@ -157,6 +157,8 @@ export class AccountReactivateComponent implements OnInit {
 
         if (result != null && result.updated == true) {
 
+          this.isLoading = true;
+
           this.isFormSubmitted = false;
 
           this.ns.setNotificationStatus(true);

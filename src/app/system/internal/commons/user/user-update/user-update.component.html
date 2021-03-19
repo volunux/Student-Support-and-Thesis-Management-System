@@ -12,7 +12,7 @@
 
 <p *ngIf ='!isFormModified'> <b class ='bold'> Form Message : </b> {{formMessage}} </p>
 
-	<div id ='entry-detail'>
+	<div *ngIf ='!isLoading' id ='entry-detail'>
 
 		<form method ='post' autocomplete ='off' [formGroup] ='entryForm' (ngSubmit) ='updateEntry(entryForm.value)'>
 

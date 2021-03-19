@@ -156,6 +156,8 @@ export class InternalThreeEntryDeleteComponent implements OnInit {
 
        else if (result != null && result.deleted == true) {
 
+         this.isLoading = true;
+
         this.giecs.isEntryChanged.next(true);
 
        	this.entryChanges(result); } });

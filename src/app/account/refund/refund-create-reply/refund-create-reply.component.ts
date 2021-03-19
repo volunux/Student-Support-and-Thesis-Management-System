@@ -133,7 +133,11 @@ export class RefundCreateReplyComponent implements OnInit {
 
         if (result == null) { this.rcs.isEntryCreated.next(false); }
 
-        if (result != null && result.updated == true) { this.rcs.isEntryCreated.next(true);
+        if (result != null && result.updated == true) { 
+
+          this.isLoading = true;
+
+          this.rcs.isEntryCreated.next(true);
 
        	this.entryChanges(result.$data); } });
   }

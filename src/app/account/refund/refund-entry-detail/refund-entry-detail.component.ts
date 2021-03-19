@@ -172,7 +172,11 @@ export class RefundEntryDetailComponent implements OnInit {
 
 					this.error = Object.assign({'resource' : `${this.systemType} Entry`} , this.ems.message); }
 
-				else if (result != null && result.updated == true) { this.isFormSubmitted = false;
+				else if (result != null && result.updated == true) {
+
+          this.isLoading = true;
+
+          this.isFormSubmitted = false;
 
           this.ns.setNotificationStatus(true);
 

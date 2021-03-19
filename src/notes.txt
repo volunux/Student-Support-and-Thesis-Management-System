@@ -1,1 +1,9 @@
 forgot to handle the statistics route;
+
+User email address is correct but form says its incorrect and when user wants to type from the middle it jumps to the end.
+
+uPDATE reset password and forgott password to use real domain urls and names
+
+Create table for user_photos and user_signatures
+
+Resolve queries for request credentils and password

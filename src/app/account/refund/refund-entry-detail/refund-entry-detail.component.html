@@ -38,7 +38,7 @@
 
 		</div>
 
-			<form method ='post' [formGroup] ='entryForm' (ngSubmit) ='updateEntry(entryForm.value)'>
+			<form *ngIf ='!isLoading' method ='post' [formGroup] ='entryForm' (ngSubmit) ='updateEntry(entryForm.value)'>
 
 				<ng-container *ngIf ='eother != null'>
 
@@ -75,7 +75,7 @@
 
 		</div>
 
-			<form method ='post' [formGroup] ='entryForm' (ngSubmit) ='updateEntry(entryForm.value)'>
+			<form *ngIf ='!isLoading' method ='post' [formGroup] ='entryForm' (ngSubmit) ='updateEntry(entryForm.value)'>
 
 				<ng-container *ngIf ='eother != null'>
 
@@ -112,7 +112,7 @@
 
 		<div id ='entry-detail-form'>
 
-			<form method ='post' [formGroup] ='entryForm' (ngSubmit) ='updateEntry(entryForm.value)'>
+			<form *ngIf ='!isLoading' method ='post' [formGroup] ='entryForm' (ngSubmit) ='updateEntry(entryForm.value)'>
 
 					<app-stage-four *ngIf ='entry' [entry] ='entry' [entry-form] ='entryForm' [current-stage] ='currentStage' [system-type] ='systemType'> </app-stage-four>
 
@@ -137,7 +137,7 @@
 
 				<div id ='entry-detail-form'>
 
-			<form method ='post' [formGroup] ='entryForm' (ngSubmit) ='updateEntry(entryForm.value)'>
+			<form *ngIf ='!isLoading' method ='post' [formGroup] ='entryForm' (ngSubmit) ='updateEntry(entryForm.value)'>
 
 					<app-stage-four *ngIf ='entry' [entry] ='entry' [entry-form] ='entryForm' [current-stage] ='currentStage' [system-type] ='systemType'> </app-stage-four>
 
@@ -173,7 +173,7 @@
 
 		</div>
 
-			<form method ='post' [formGroup] ='entryForm' (ngSubmit) ='updateEntry(entryForm.value)'>
+			<form *ngIf ='!isLoading' method ='post' [formGroup] ='entryForm' (ngSubmit) ='updateEntry(entryForm.value)'>
 
 			<ng-container *ngIf ='eother != null'>
 

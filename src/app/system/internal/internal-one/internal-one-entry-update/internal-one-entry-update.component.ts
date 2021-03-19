@@ -164,6 +164,8 @@ export class InternalOneEntryUpdateComponent implements OnInit {
 
        else if (result != null && result.updated == true) {
 
+         this.isLoading = true;
+
         this.giecs.isEntryChanged.next(true);
 
        	this.entryChanges(result); } });
