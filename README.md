@@ -1,6 +1,10 @@
-# Bes
+# Student Help Desk Support and Electronic Management System 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.0.
+
+## Website Address
+
+https://volunux.github.io/Student-Support-and-Thesis-Management-System/
 
 ## Development server
 
