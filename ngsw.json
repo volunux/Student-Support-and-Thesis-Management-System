@@ -163,7 +163,20 @@
       "patterns": []
     }
   ],
-  "dataGroups": [],
+  "dataGroups": [
+      {
+      "name": "api",
+      "urls": ["/api","https://fierce-stream-53909.herokuapp.com/api"],
+      "cacheConfig": {
+        "maxSize": 0,
+        "maxAge": "0u",
+        "strategy": "freshness"
+      },
+    "cacheQueryOptions": {
+    "ignoreSearch": true 
+        }
+    }
+],
   "hashTable": {
     "https://volunux.github.io/Student-Support-and-Thesis-Management-System/0.4ac68453fa6fa5d4e7fe.js": "82487eade7c5c66b9b8753b4c77dc085e4c9a1e8",
     "https://volunux.github.io/Student-Support-and-Thesis-Management-System/1.4fd69edd4653430a7a9e.js": "fe64e8a98212929080f8b71c20aca18680b709b6",
