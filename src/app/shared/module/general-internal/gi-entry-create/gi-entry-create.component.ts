@@ -2,7 +2,6 @@ import { Component , EventEmitter , Input , OnInit , Output } from '@angular/cor
 import { FormControl , FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { GeneralInternalEntryChangeService } from '../gi-entry-change.service';
-import { NotificationMessageService } from '../../../component/notification/notification-message.service';
 import { fadeAnimation } from '../../../../animations';
 
 @Component({
@@ -13,15 +12,13 @@ import { fadeAnimation } from '../../../../animations';
 
   'styleUrls' : ['./gi-entry-create.component.css'] ,
 
-  'providers' : [NotificationMessageService] ,
-
   'animations' : [fadeAnimation]
 
 })
 
 export class GeneralInternalEntryCreateComponent implements OnInit {
 
-  constructor(private giecs : GeneralInternalEntryChangeService , private ns : NotificationMessageService) { 
+  constructor(private giecs : GeneralInternalEntryChangeService) { 
 
   	this.entryChangesOb = this.giecs.isEntryChanged$
 
@@ -31,19 +28,11 @@ export class GeneralInternalEntryCreateComponent implements OnInit {
 
  					this.isFormSubmitted = false;
 
- 					this.isFormProcessing = false;
-
-          this.ns.setNotificationStatus(true);
-
-          this.ns.addNotification(`Operation is unsuccessful and ${this.systemType} is not added.`); }
+ 					this.isFormProcessing = false; }
 
   				else if (created == true) {
 
- 					this.isFormSubmitted = false;
-
-          this.ns.setNotificationStatus(true);
-
-          this.ns.addNotification(`Operation is successful and ${this.systemType} is added.`); } });
+ 					this.isFormSubmitted = false; } });
   }
 
   ngOnInit() : void {
@@ -93,21 +82,6 @@ export class GeneralInternalEntryCreateComponent implements OnInit {
   get isFormValid() : boolean {
 
     return this.entryForm.valid;
-  }
-
-  get notificationAvailable() : boolean {
-
-    return this.ns.notificationStatus();
-  }
-
-  get notificationMessage() : string {
-
-    return this.ns.getNotificationMessage();
-  }
-
-  public removeNotification() : void {
-
-    this.ns.removeNotification();
   }
 
 

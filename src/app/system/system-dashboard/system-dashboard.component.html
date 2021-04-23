@@ -14,37 +14,37 @@ decision making to drive the system development and entries that have been made 
 
 	<li>
 
-		<a [routerLink] ='["internal" , "user"]' class ='center'>Manage Users</a>
+		<a (click) ="loadLink(['/' , 'system' , 'internal' , 'user'])" class ='center'>Manage Users</a>
 
 	</li>
 
 	<li>
 
-		<a [routerLink] ='["/general-request"]' class ='center'>Manage Request</a>
+		<a (click) ="loadLink(['/' , 'general-request'])" class ='center'>Manage Request</a>
 
 	</li>
 
 	<li>
 
-		<a [routerLink] ='["/general-payment"]' class ='center'>Manage Payment</a>
+		<a (click) ="loadLink(['/' , 'general-payment'])" class ='center'>Manage Payment</a>
 
 	</li>
 
 	<li>
 
-		<a [routerLink] ='["/refund"]' class ='center'>Manage Refund</a>
+		<a (click) ="loadLink(['/' , 'refund'])" class ='center'>Manage Refund</a>
 
 	</li>
 
 	<li>
 
-		<a [routerLink] ='["internal"]' class ='center'>Manage Internals</a>
+		<a (click) ="loadLink(['/' , 'system' , 'internal'])" class ='center'>Manage Internals</a>
 
 	</li>
 
 	<li>
 
-		<a [routerLink] ='["statistic"]' class ='center'>Manage Statistics</a>
+		<a (click) ="loadLink(['/' , 'system' , 'statistics'])" class ='center'>Manage Statistics</a>
 
 	</li>	
 

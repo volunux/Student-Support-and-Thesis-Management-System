@@ -4,6 +4,8 @@
 
 <app-resource-unavailable *ngIf ='isError' [error] ='error'> </app-resource-unavailable>
 
+<app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
+
 <ng-container *ngIf ='entryForm'>
 
 		<div *ngIf ='!isLoading' [formGroup] ='entryForm'>

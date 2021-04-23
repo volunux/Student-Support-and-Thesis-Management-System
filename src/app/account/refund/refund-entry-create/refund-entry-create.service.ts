@@ -30,7 +30,7 @@ export class RefundEntryCreateService {
 
           tap((entry : General) => console.log(entry)) ,
 
-          delay(3000) ,
+          delay(2000) ,
 
           map((permitted : General) => { return { 'permitted' : true }; }) ,
 

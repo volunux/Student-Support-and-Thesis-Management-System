@@ -149,11 +149,44 @@ export class GeneralPaymentEntryDetailComponent implements OnInit {
           this.$entryChanges(result.$data) } });
   }
 
+  public requeryTransaction() : void {
+
+    this.isLoading = true;
+
+    this.gps.$verifyPayment(this.entry.payment_reference)
+
+      .subscribe((result : GeneralPayment) => {
+
+            if (result == null) {
+
+              this.isLoading = false;
+
+              this.ns.setNotificationStatus(true);
+
+              this.ns.addNotification(`Operation is unsuccessful and ${this.systemType} is not updated.`); }
+
+            else if (result != null && result.verified == true) {
+
+          this.ns.setNotificationStatus(true);
+
+          this.ns.addNotification(`Operation is successful and ${this.systemType} is updated.`);
+
+          this.$entryDetail(result.$data) } });
+  }
+
+  public $entryDetail(data) {
+
+    this.entryChangesT = setTimeout(() => {
+
+    return window.location.href = `${window.location.origin}/general-payment/t/${this.pslug}/entry/${this.eslug}/detail`; } , 3000);
+
+  }
+
   public $entryChanges(data) {
 
     this.entryChangesT = setTimeout(() => {
 
-      return this.router.navigate(['general-payment' , 't' , this.pslug , 'entries']); } , 5000) 
+      return this.router.navigate(['general-payment' , 't' , this.pslug , 'entries']); } , 5000);
   }
 
   get notificationAvailable() : boolean {

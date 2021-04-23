@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { FormControl , FormGroup , FormBuilder , Validators } from '@angular/forms';
-import { dynamicDataValidator } from '../../../shared/services/dynamic-control-validator';
 import { General } from './general';
 import { DynamicFormValidators } from '../../../shared/misc/dynamic-form-validators';
 
@@ -16,7 +15,7 @@ export class InternalTwoFormService {
 
   public permanentProps : { [key : string] : any[] } = {
 
-    'status' : [Validators.required , Validators.max(90000000)]
+  'status' : [Validators.required , Validators.max(90000000)]
 
   };
 

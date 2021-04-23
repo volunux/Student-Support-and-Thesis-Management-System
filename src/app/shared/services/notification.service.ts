@@ -20,7 +20,7 @@ export class NotificationService {
 
      this.notificationAvailable = false;
 
-     this.notificationMessage = null
+     this.notificationMessage = null;
   }
 
   addNotification(message : string) : void {

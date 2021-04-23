@@ -12,10 +12,6 @@ export interface Unit {
 
 	abbreviation : string;
 
-	secondaryKey : string;
-
-	num : number;
-
 }
 
 export class UnitInstance {
@@ -36,9 +32,6 @@ export class UnitInstance {
 
 			this.abbreviation = abbreviation || '';
 
-			this.secondaryKey = secondaryKey || '';
-
-			this.num = num || 0;
 	}
 
 }

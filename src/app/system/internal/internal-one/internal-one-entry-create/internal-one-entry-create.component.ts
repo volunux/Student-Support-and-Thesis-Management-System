@@ -12,6 +12,7 @@ import { InternalOneFormService } from '../internal-one-form.service';
 import { GeneralInternalFormService } from '../../../../shared/module/general-internal/gi-form.service';
 import { GeneralInternalEntryChangeService } from '../../../../shared/module/general-internal/gi-entry-change.service';
 import { ErrorMessagesService } from '../../../../shared/services/error-messages.service';
+import { NotificationService } from '../../../../shared/services/notification.service';
 import { fadeAnimation } from '../../../../animations';
 
 @Component({
@@ -22,7 +23,7 @@ import { fadeAnimation } from '../../../../animations';
 
   'styleUrls' : ['./internal-one-entry-create.component.css'] ,
 
-  'providers' : [ErrorMessagesService] ,
+  'providers' : [ErrorMessagesService , NotificationService] ,
 
   'animations' : [fadeAnimation]
 
@@ -32,7 +33,7 @@ export class InternalOneEntryCreateComponent implements OnInit {
 
   constructor(private route : ActivatedRoute , private router : Router , private ios : InternalOneService , private iofs : InternalOneFormService ,
 
-  						private gifs : GeneralInternalFormService , private giecs : GeneralInternalEntryChangeService , private ems : ErrorMessagesService) {
+  						private gifs : GeneralInternalFormService , private giecs : GeneralInternalEntryChangeService , private ems : ErrorMessagesService , private ns : NotificationService) {
 
   }
 
@@ -116,9 +117,9 @@ export class InternalOneEntryCreateComponent implements OnInit {
 
         this.iofs.createPermanent(data , this.entryForm);
 
-        this.iofs.removeControls(this.controlFilters , this.entryForm);
-
         this.entryForm.addControl('abbreviation' , new FormControl('' , this.iofs.otherCtrls.abbreviation));
+
+        this.iofs.removeControls(this.controlFilters , this.entryForm);
 
         this.entryForm.updateValueAndValidity(); } });
    }
@@ -141,9 +142,17 @@ export class InternalOneEntryCreateComponent implements OnInit {
 
        if (result == null) { 
 
-         this.giecs.isEntryChanged.next(false); }
+          this.ns.setNotificationStatus(true);
+
+          this.ns.addNotification(`Operation is unsuccessful and ${this.systemType} is not added.`); 
+
+          this.giecs.isEntryChanged.next(false); }
 
        else if (result != null && result.created == true) { 
+
+        this.ns.setNotificationStatus(true);
+
+        this.ns.addNotification(`Operation is successful and ${this.systemType} is added.`); 
 
         this.isLoading = true;
 
@@ -168,5 +177,19 @@ export class InternalOneEntryCreateComponent implements OnInit {
     return this.entryForm.get('abbreviation') as FormControl;
   }
 
+  get notificationAvailable() : boolean {
+
+    return this.ns.notificationStatus();
+  }
+
+  get notificationMessage() : string {
+
+    return this.ns.getNotificationMessage();
+  }
+
+  public removeNotification() : void {
+
+    this.ns.removeNotification();
+  }
 
 }

@@ -23,6 +23,13 @@ export class LoadingMenuComponent implements OnInit {
   
   }
 
+  public loadingBars : string[] = ['spin-1.gif' , 'spin-2.gif' , 'spin-3.gif' , 'spin-4.gif' , 'spin-5.gif'];
+
+  get loadBar() : string {
+
+  	return this.loadingBars[Math.floor(Math.random() * this.loadingBars.length)];
+  }
+
   @Input('is-loading') public isLoading : boolean;
 
 }

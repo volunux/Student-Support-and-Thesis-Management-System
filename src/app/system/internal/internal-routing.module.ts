@@ -7,8 +7,6 @@ import { AccountStatusGuard } from '../../shared/guards/account-status.guard';
 import { InternalDashboardComponent } from './internal-dashboard/internal-dashboard.component';
 import { InternalComponent } from './internal/internal.component';
 
-// Stage ID and Name must be given serious consideration
-
 const routes : Routes = [
 
 	{'path' : '' , 
@@ -37,8 +35,6 @@ const routes : Routes = [
 
 					{'path' : 'level' , 'loadChildren' : () => import('./internal-one/module/level/level.module').then(m => m.LevelModule) } ,
 
-					{'path' : 'payment-session' , 'loadChildren' : () => import('./internal-one/module/payment-session/payment-session.module').then(m => m.PaymentSessionModule) } ,
-
 					{'path' : 'payment-type' , 'loadChildren' : () => import('./internal-one/module/payment-type/payment-type.module').then(m => m.PaymentTypeModule) } ,
 
 					{'path' : 'refund-stage' , 'loadChildren' : () => import('./internal-one/module/refund-stage/refund-stage.module').then(m => m.RefundStageModule) } ,
@@ -49,7 +45,7 @@ const routes : Routes = [
 
 /** Internal Two **/
 
-					{'path' : 'general-request-status' , 'loadChildren' : () => import('./internal-two/module/general-request-status/general-request-status.module').then(m => m.GeneralRequestStatusModule) } ,
+					{'path' : 'general-request-status' , 'loadChildren' : () => import('./others/general-request-status/grs.module').then(m => m.GeneralRequestStatusModule) } ,
 
 					{'path' : 'payment-status' , 'loadChildren' : () => import('./internal-two/module/payment-status/payment-status.module').then(m => m.PaymentStatusModule) } ,
 
@@ -65,6 +61,8 @@ const routes : Routes = [
 
 					{'path' : 'general-request-comment' , 'loadChildren' : () => import('./internal-three/module/general-request-comment/general-request-comment.module').then(m => m.GeneralRequestCommentModule) } ,
 
+					{'path' : 'account-change-request-comment' , 'loadChildren' : () => import('./internal-three/module/account-change-request-comment/account-change-request-comment.module').then(m => m.AccountChangeRequestCommentModule) } ,
+
 					{'path' : 'refund-comment' , 'loadChildren' : () => import('./internal-three/module/refund-comment/refund-comment.module').then(m => m.RefundCommentModule) } ,
 
 					{'path' : 'reply' , 'loadChildren' : () => import('./internal-three/module/reply/reply.module').then(m => m.ReplyModule) } ,
@@ -73,21 +71,33 @@ const routes : Routes = [
 
 /** Internal Others **/
 
-					{'path' : 'department' , 'loadChildren' : () => import('./commons/department/department.module').then(m => m.DepartmentModule) } ,
+					{'path' : 'department' , 'loadChildren' : () => import('./others/department/department.module').then(m => m.DepartmentModule) } ,
 
-					{'path' : 'refund-signature' , 'loadChildren' : () => import('./commons/refund-signature/refund-signature.module').then(m => m.RefundSignatureModule) } ,
+					{'path' : 'payment-session' , 'loadChildren' : () => import('./others/payment-session/payment-session.module').then(m => m.PaymentSessionModule) } ,
 
-					{'path' : 'request-type' , 'loadChildren' : () => import('./commons/request-type/request-type.module').then(m => m.RequestTypeModule) } ,
+					{'path' : 'account-change-message-template' , 'loadChildren' : () => import('./others/account-change-message-template/acmt.module').then(m => m.AccountChangeMessageTemplateModule) } ,
 
-					{'path' : 'request-credential' , 'loadChildren' : () => import('./commons/request-credential/request-credential.module').then(m => m.RequestCredentialModule) } ,
+					{'path' : 'account-change-message-template-type' , 'loadChildren' : () => import('./others/account-change-message-template-type/acmtt.module').then(m => m.AccountChangeMessageTemplateTypeModule) } ,
 
-					{'path' : 'user' , 'loadChildren' : () => import('./commons/user/user.module').then(m => m.UserModule) } ,
+					{'path' : 'request-change-message-template-type' , 'loadChildren' : () => import('./others/request-change-message-template-type/rcmtt.module').then(m => m.RequestChangeMessageTemplateTypeModule) } ,
+
+					{'path' : 'refund-signature' , 'loadChildren' : () => import('./others/refund-signature/refund-signature.module').then(m => m.RefundSignatureModule) } ,
+
+					{'path' : 'request-type' , 'loadChildren' : () => import('./others/request-type/request-type.module').then(m => m.RequestTypeModule) } ,
+
+					{'path' : 'request-credential' , 'loadChildren' : () => import('./others/request-credential/module/request-username-password/request-username-password.module').then(m => m.RequestUsernamePasswordModule) } ,
+
+					{'path' : 'request-password' , 'loadChildren' : () => import('./others/request-credential/module/request-password/request-password.module').then(m => m.RequestPasswordModule) } ,
+
+					{'path' : 'user' , 'loadChildren' : () => import('./others/user/user.module').then(m => m.UserModule) } ,
 
 					{'path' : 'user-upload' , 'loadChildren' : () => import('./internal-four/module/user-upload/user-upload.module').then(m => m.UserUploadModule) } ,
 
-/** Internal Others **/
+					{'path' : 'user-signature' , 'loadChildren' : () => import('./internal-four/module/user-signature/user-signature.module').then(m => m.UserSignatureModule) } ,
 
-					// {'path' : 'upload' , 'loadChildren' : () => import('./upload/upload.module').then(m => m.UploadModule) } ,
+					{'path' : 'user-photo' , 'loadChildren' : () => import('./internal-four/module/user-photo/user-photo.module').then(m => m.UserPhotoModule) } ,
+
+/** Internal Others **/
 
 					// {'path' : 'request-limit' , 'loadChildren' : () => import('./request-limit/request-limit.module').then(m => m.RequestLimitModule) } ,
 

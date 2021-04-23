@@ -1,6 +1,6 @@
-<div id ='entry-main'>
+<div @fadeAnimation id ='entry-main'>
 
-<h2 *ngIf ='title'> {{title}}</h2>
+<h2 *ngIf ='title'> {{title}} </h2>
 
 <app-view-description *ngIf ='view' [system-type] ='systemType' [view-type] ='view'> </app-view-description>
 
@@ -12,26 +12,26 @@
 
 			<app-search *ngIf ='systemType' [system-type] ='systemType' [$link] ='$link' [search-filters] ='searchFilters'> </app-search>
 
-		<a class ='entry-option entry-option-small center' [class.hide] ='esdl.length < 2' (click) ='deleteManyEntry()'> Delete Many </a>
+		<a class ='entry-option-delete entry-option-small center' [class.hide] ='esdl.length < 2' (click) ='deleteManyEntry()'> Delete Many </a>
 
 </div>
 
-<div *ngIf ='$entriesLength > 0'>
+<div @fadeAnimation class ='entries' *ngIf ='$entriesLength > 0'>
 
-<table class ='entries'>
+<table *ngIf ='!isLoading'>
 
 	<caption class ='bold left'> Entries </caption>
 
 	<colgroup>
 
-		<col class ='index'>
-		<col class ='app-number'>
-		<col class ='full-name'>
-		<col class ='date'>
-		<col class ='level'>
-		<col class ='stdid'>		
-		<col class ='status'>
-		<col class ='changes'>
+		<col class =''>
+		<col class =''>
+		<col class =''>
+		<col class =''>
+		<col class =''>
+		<col class =''>		
+		<col class =''>
+		<col class =''>
 
 	</colgroup>
 
@@ -39,13 +39,13 @@
 
 		<tr>
 			<th class ='bold center'> Index </th>
-			<th class ='bold center'> Application Unique ID </th>
+			<th class ='bold center'> Req. Unique ID </th>
 			<th class ='bold center'> Full Name </th>
-			<th class ='bold center'> Date Created </th>
+			<th class ='bold center'> Updated On </th>
 			<th class ='bold center'> Level </th>
-			<th class ='bold center'> Student Identity No. </th>
+			<th class ='bold center'> Identity Number </th>
 			<th class ='bold center'> Status </th>
-			<th class ='bold center'> Changes </th>
+			<th class ='bold left changes-head'> Changes </th>
 		</tr>
 
 	</thead>
@@ -58,7 +58,7 @@
 
 			<ng-template #nilValue>
 
-				<td class ='center'> Nil </td>
+				<td class ='center'> N/A </td>
 
 			</ng-template>
 			
@@ -122,8 +122,6 @@
 
 			<tr>
 
-			<app-pagination *ngIf ='pageNumber' [entries-length] ='$entriesLength' [entry-ref] ='$entryRef' [page-number] ='pageNumber'> </app-pagination>
-
 			</tr>
 
 		</tfoot>
@@ -131,6 +129,8 @@
 	</table>
 
 </div>
+
+<app-pagination *ngIf ='pageNumber' [entries-length] ='$entriesLength' [entry-ref] ='$entryRef' [page-number] ='pageNumber' [is-loading] ='!isLoading' > </app-pagination>
 
 <app-resource-unavailable *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
 

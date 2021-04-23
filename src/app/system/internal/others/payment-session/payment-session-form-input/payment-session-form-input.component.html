@@ -1,0 +1,39 @@
+		<div @fadeAnimation [formGroup] ='entryForm'>
+
+			<ng-container *ngIf ='amount'>
+
+			<div class ='form-group'>
+
+				<label for ='amount' class ='form-label bold'> Amount * : </label>
+
+			<input type ='text' id ='amount' required ='required' name ='amount' [placeholder] ='placeholder?.amount' formControlName ='amount' class ='form-control' [readOnly] ='noEdit'>
+
+				<app-payment-session-entry-validator *ngIf ='amount' [system-type] ='systemType' [amount] ='amount'> </app-payment-session-entry-validator>
+
+			</div>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry_type && eothers && eothers.EntryType != null && eothers.EntryType.length > 0'>
+
+			<div class ='form-group'>
+
+				<label for ='entry_type' class ='form-label bold'> Payment Type * : </label>
+
+				<select name ='entry_type' id ='entry_type' required ='required' class ='form-control' formControlName ='entry_type'
+
+				 [readOnly] ='noEdit' >
+
+					<option [value] =''> </option> 
+
+					<option *ngFor ='let type of eothers.EntryType' [value] ='type._id'> {{type.name}} </option> 
+
+				</select>
+
+		<app-payment-session-entry-validator *ngIf ='entry_type' [system-type] ='systemType' [entry-type] ='entry_type'> </app-payment-session-entry-validator>
+
+			</div>
+
+		</ng-container>
+
+			</div>

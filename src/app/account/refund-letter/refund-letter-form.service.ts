@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormControl , FormGroup , FormBuilder , Validators , ValidatorFn } from '@angular/forms';
 import { searchValidator } from '../../shared/services/form-validators.service';
 import { dynamicDataValidator } from '../../shared/services/dynamic-control-validator';
+import { DynamicFormValidators } from '../../shared/misc/dynamic-form-validators';
 import { General } from './general';
 
 @Injectable()
@@ -13,15 +14,6 @@ export class RefundLetterFormService {
   }
 
   public permanentData : any = {};
-
-  public removeControls(controls : string[] , form) : void {
-
-    if (controls != null && controls.length > 0) {
-
-    controls.forEach((control) => { let ctrl = form.get(control);
-
-      return ctrl ? form.removeControl(control) : null; }); }
-  }
 
   public permanentProps : General = {
 
@@ -54,6 +46,11 @@ export class RefundLetterFormService {
   public getPermanentProp(prop : string) : any {
 
     return this.permanentProps[prop];
+  }
+
+  public removeControls(controls : string[] , form) : void {
+
+    DynamicFormValidators.removeControls(controls , form);
   }
 
 

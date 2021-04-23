@@ -11,11 +11,6 @@ export interface PaymentType {
 	author? : string;
 
 	abbreviation : string;
-
-	secondaryKey : string;
-
-	num : number;
-
 }
 
 export class PaymentTypeInstance {
@@ -36,9 +31,6 @@ export class PaymentTypeInstance {
 
 			this.abbreviation = abbreviation || '';
 
-			this.secondaryKey = secondaryKey || '';
-
-			this.num = num || 0;
 	}
 
 }

@@ -34,7 +34,7 @@ import { GeneralPaymentEntryReceiptComponent } from './gp-entry-receipt/gp-entry
   	GeneralPaymentEntryCreateValidatorComponent,
   	GeneralPaymentEntryVerificationComponent,
   	GeneralPaymentEntryReceiptComponent,
-    GeneralPaymentEntryDeleteAllComponent
+    GeneralPaymentEntryDeleteAllComponent,
 
   	],
   

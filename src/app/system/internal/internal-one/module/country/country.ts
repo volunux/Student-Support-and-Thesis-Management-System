@@ -12,10 +12,6 @@ export interface Country {
 
 	abbreviation : string;
 
-	secondaryKey : string;
-
-	num : number;
-
 }
 
 export class CountryInstance {
@@ -35,10 +31,6 @@ export class CountryInstance {
 			this.updated_on = updated_on || new Date();
 
 			this.abbreviation = abbreviation || '';
-
-			this.secondaryKey = secondaryKey || '';
-
-			this.num = num || 0;
 	}
 
 }

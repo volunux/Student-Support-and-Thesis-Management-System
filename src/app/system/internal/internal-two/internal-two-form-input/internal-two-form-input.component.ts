@@ -8,7 +8,9 @@ import { fadeAnimation } from '../../../../animations';
 
   'templateUrl' : './internal-two-form-input.component.html',
 
-  'styleUrls' : ['./internal-two-form-input.component.css']
+  'styleUrls' : ['./internal-two-form-input.component.css'] ,
+
+  'animations' : [fadeAnimation]
 
 })
 

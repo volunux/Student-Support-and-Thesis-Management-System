@@ -12,6 +12,7 @@ import { InternalTwoFormService } from '../internal-two-form.service';
 import { GeneralInternalFormService } from '../../../../shared/module/general-internal/gi-form.service';
 import { GeneralInternalEntryChangeService } from '../../../../shared/module/general-internal/gi-entry-change.service';
 import { ErrorMessagesService } from '../../../../shared/services/error-messages.service';
+import { NotificationService } from '../../../../shared/services/notification.service';
 import { fadeAnimation } from '../../../../animations';
 
 @Component({
@@ -22,7 +23,7 @@ import { fadeAnimation } from '../../../../animations';
 
   'styleUrls' : ['./internal-two-entry-create.component.css'] ,
 
-  'providers' : [ErrorMessagesService] ,
+  'providers' : [ErrorMessagesService , NotificationService] ,
 
   'animations' : [fadeAnimation]
 
@@ -32,7 +33,7 @@ export class InternalTwoEntryCreateComponent implements OnInit {
 
   constructor(private route : ActivatedRoute , private router : Router , private its : InternalTwoService , private iots : InternalTwoFormService ,
 
-  						private gifs : GeneralInternalFormService , private giecs : GeneralInternalEntryChangeService , private ems : ErrorMessagesService) {
+  						private gifs : GeneralInternalFormService , private giecs : GeneralInternalEntryChangeService , private ems : ErrorMessagesService , private ns : NotificationService) {
 
   }
 
@@ -116,9 +117,9 @@ export class InternalTwoEntryCreateComponent implements OnInit {
 
         this.iots.createPermanent(data , this.entryForm);
 
-        this.iots.removeControls(this.controlFilters , this.entryForm);
-
         this.entryForm.addControl('word' , new FormControl('' , this.iots.otherCtrls.word));
+
+        this.iots.removeControls(this.controlFilters , this.entryForm);
 
         this.entryForm.updateValueAndValidity(); } });
    }
@@ -139,13 +140,21 @@ export class InternalTwoEntryCreateComponent implements OnInit {
 
       .subscribe((result : InternalTwo) => {
 
-       if (result == null) { 
+       if (result == null) {
+
+         this.ns.setNotificationStatus(true);
+
+         this.ns.addNotification(`Operation is unsuccessful and ${this.systemType} is not created.`); 
 
          this.giecs.isEntryChanged.next(false); }
 
-       else if (result != null && result.created == true) { 
+       else if (result != null && result.created == true) {
 
-         this.isLoading = true;
+        this.ns.setNotificationStatus(true);
+
+        this.ns.addNotification(`Operation is successful and ${this.systemType} is created.`); 
+
+        this.isLoading = true;
 
         this.giecs.isEntryChanged.next(true);
 
@@ -168,5 +177,19 @@ export class InternalTwoEntryCreateComponent implements OnInit {
     return this.entryForm.get('word') as FormControl;
   }
 
+  get notificationAvailable() : boolean {
+
+    return this.ns.notificationStatus();
+  }
+
+  get notificationMessage() : string {
+
+    return this.ns.getNotificationMessage();
+  }
+
+  public removeNotification() : void {
+
+    this.ns.removeNotification();
+  }
 
 }

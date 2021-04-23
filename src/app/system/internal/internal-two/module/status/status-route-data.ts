@@ -15,7 +15,7 @@ let $$ : { [key : string] : any } = {
 		'systemGuideline' : 'gen-internal'
 };
 
-const placeholder = {'name' : 'active' , 'description' : 'An entry that is currently in use' , 'word' : 'Active' };
+const placeholder = {'name' : 'active' , 'description' : 'An entry that is currently active and available' , 'word' : 'Active' };
 
 export const RouteConfigData : { [key : string] : any } = {
 
@@ -31,6 +31,6 @@ export const RouteConfigData : { [key : string] : any } = {
 
 	'deleteAll' : {...$$ , 'title' : `${$$.systemType} Entries : Delete All` } ,
 
-	'entries' : {...$$ , 'title' : `${$$.systemType} Entries` , 'searchFilters' : { 'word' : 'Word' , 'name' : 'Name' , 'status' : 'Status'} } ,
+	'entries' : {...$$ , 'title' : `${$$.systemType} Entries` , 'searchFilters' : { 'name' : 'Name' } } ,
 
 };

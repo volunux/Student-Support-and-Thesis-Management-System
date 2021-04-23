@@ -54,6 +54,8 @@ export class ProfileDeactivateComponent implements OnInit {
 
   public isLoading : boolean = false;
 
+  public noEdit : boolean = true;
+
   ngOnInit(): void {
 
     this.route.paramMap

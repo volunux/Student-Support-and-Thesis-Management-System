@@ -23,7 +23,7 @@ export class CommentEntryStatusComponent implements OnInit {
   
   }
 
-  @Input() public entry : { [key : string] : any } ;
+  @Input() public entry : { [key : string] : any };
 
   @Input('system-type') public systemType : string;
 

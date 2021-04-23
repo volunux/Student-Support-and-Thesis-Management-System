@@ -1,6 +1,8 @@
 import { Component , OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../../authentication/authentication.service';
 import { fadeAnimation } from '../../animations';
+import { LoadingBarService } from '../../general/loading-bar.service';
 
 @Component({
 
@@ -16,7 +18,7 @@ import { fadeAnimation } from '../../animations';
 
 export class GetStartedComponent implements OnInit {
 
-  constructor(private auth : AuthenticationService) { 
+  constructor(private auth : AuthenticationService , private router : Router , private lbs : LoadingBarService) { 
 
   }
 
@@ -27,6 +29,11 @@ export class GetStartedComponent implements OnInit {
   get isLoggedIn() : boolean {
 
 		return this.auth.isLoggedIn();  	
+  }
+
+  public loadLink(link) : void {
+
+    this.lbs.loadLink(link);
   }
 
 }

@@ -1,19 +1,11 @@
 import { Injectable , Inject } from '@angular/core';
-
 import { Api_Token , Api  } from '../../configuration';
-
 import { HttpClient , HttpParams , HttpErrorResponse } from '@angular/common/http';
-
 import { Observable , of , Subject } from 'rxjs';
-
 import { map } from 'rxjs/operators';
-
 import { catchError } from 'rxjs/operators';
-
 import { ErrorMessagesService } from './error-messages.service';
-
 import { SearchQuery } from '../interfaces/search-query';
-
 import { General } from '../interfaces/general';
 
 @Injectable()

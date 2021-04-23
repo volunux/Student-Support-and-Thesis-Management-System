@@ -29,9 +29,15 @@ const routes: Routes = [
 
 	{'path' : 'general-request' , 'loadChildren' : () => import('./account/general-request/general-request.module').then(m => m.GeneralRequestModule) } ,
 
+	{'path' : 'misc-request' , 'loadChildren' : () => import('./account/misc-request/misc-request.module').then(m => m.MiscRequestModule) } ,
+
 	{'path' : 'refund' , 'loadChildren' : () => import('./account/refund/refund.module').then((m) => m.RefundModule) } ,
 
+	{'path' : 'account-change-request' , 'loadChildren' : () => import('./account/account-change-request/account-change-request.module').then((m) => m.AccountChangeRequestModule) } ,
+
 	{'path' : 'refund-letter' , 'loadChildren' : () => import('./account/refund-letter/refund-letter.module').then((m) => m.RefundLetterModule) } ,
+
+	{'path' : 'request-change-message-template' , 'loadChildren' : () => import('./system/internal/others/request-change-message-template/rcmt.module').then(m => m.RequestChangeMessageTemplateModule) } ,
 
 	{'path' : 'general-payment' , 'loadChildren' : () => import('./account/general-payment/general-payment.module').then(m => m.GeneralPaymentModule) } ,
 

@@ -1,6 +1,8 @@
 import { Component , OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../../../authentication/authentication.service';
 import { fadeAnimation } from '../../../animations';
+import { LoadingBarService } from '../../../general/loading-bar.service';
 
 @Component({
 
@@ -16,11 +18,11 @@ import { fadeAnimation } from '../../../animations';
 
 export class ProfileDashboardComponent implements OnInit {
 
-  constructor(private aus : AuthenticationService) { 
+  constructor(private aus : AuthenticationService , private router : Router , private lbs : LoadingBarService) { 
 
   }
 
-  ngOnInit(): void {
+  ngOnInit() : void {
   
   }
 
@@ -33,6 +35,11 @@ export class ProfileDashboardComponent implements OnInit {
   get canManage() : boolean {
 
     return ['moderator' , 'administrator' , 'superAdministrator'].indexOf(this.aus.userRole) > 0; 
+  }
+
+  public loadLink(link) : void {
+
+    this.lbs.loadLink(link);
   }
 
 }

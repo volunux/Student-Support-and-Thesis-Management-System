@@ -1,0 +1,23 @@
+<div @fadeAnimation *ngIf ='true'>
+
+		<div [formGroup] ='entryForm'>
+
+			<ng-container *ngIf ='title'>
+
+			<div class ='form-group'>
+
+				<label for ='title' class ='form-label bold'> Title * : </label>
+
+				<input type ='text' id ='title' required ='required' name ='title' [placeholder] ='placeholder?.title' formControlName ='title' class ='form-control' [readOnly] ='noEdit'>
+
+				<app-request-entry-form-input-validator *ngIf ='title' [system-type] ='systemType' [title] ='title'> </app-request-entry-form-input-validator>
+
+			</div>
+
+		</ng-container>
+
+		<ng-content> </ng-content>
+
+		</div>
+
+</div>

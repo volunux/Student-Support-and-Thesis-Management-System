@@ -29,7 +29,7 @@ export class StatisticsService {
 			.pipe(
 							tap((value) => console.log(value)) ,
 
-							delay(3000) ,
+							delay(2000) ,
 
 							catchError(this.handleError<Statistics[]>(`${this.$systemType} Entries` , null))
 				)

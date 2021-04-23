@@ -16,7 +16,7 @@ decision making to drive the development of the system and entries that have bee
 
 		<li *ngFor ='let entry of entries | keyvalue'> 
 
-		<a [routerLink] ='["./" , entry.key]' class ='center'> {{entry.value}} </a>
+		<a (click) ="loadLink(['/' , 'system' , 'internal' , entry.key])" class ='center'> {{entry.value}} </a>
 
 		</li>
 
@@ -24,7 +24,7 @@ decision making to drive the development of the system and entries that have bee
 
 	<li>
 
-		<a [routerLink] ='["/account/" , "profile"]' class ='center'> Profile </a>
+		<a (click) ="loadLink(['/' , 'account' , 'profile'])" class ='center'> Profile </a>
 
 	</li>
 

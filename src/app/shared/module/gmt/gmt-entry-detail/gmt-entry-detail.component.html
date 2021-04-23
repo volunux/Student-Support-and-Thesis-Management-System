@@ -1,0 +1,98 @@
+<div @fadeAnimation id ='entry-view'>
+
+	<p> <b class ='bold'> Message Body : </b> </p>
+
+	<div #datacontainer> </div>
+
+	<div @fadeAnimation *ngIf ='entry' id ='entry-detail'>
+
+	<table>
+
+		<colgroup>
+
+			<col class ='parameter'>
+			<col class ='data'>
+
+		</colgroup>
+
+		<tbody>
+
+			<ng-container *ngIf ='entry?.title'>
+
+			<tr>
+
+				<th class ='bold left'> Title : </th>
+				<td> {{entry?.title}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.created_on'>
+
+			<tr>
+
+				<th class ='bold left'> Created At : </th>
+				<td> {{entry?.created_on | date : 'fullDate'}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.type'>
+
+			<tr>
+
+				<th class ='bold left'> Type : </th>
+				<td> {{entry?.type}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.updated_on'>
+
+			<tr>
+
+				<th class ='bold left'> Updated At : </th>
+				<td> {{entry?.updated_on | date : 'fullDate'}} </td>
+
+			</tr>
+
+		</ng-container>
+
+
+
+
+		<ng-content> </ng-content>
+
+
+			<ng-container *ngIf ='entry?.status'>
+
+			<tr>
+
+				<th class ='bold left'> Status : </th>
+				<td> {{entry?.status}} </td>
+
+			</tr>
+
+		</ng-container>
+
+		</tbody>
+
+	</table>
+
+			<div class ='entry-options'>
+
+				<h3> Entry Options </h3>
+
+			<a [routerLink] ="['../../../' , 'entry' , entry?.slug , 'update']" class ='entry-option center'> {{systemType}} Update </a>
+
+			<a [routerLink] ="['../../../' , 'entry' , entry?.slug , 'delete']" class ='entry-option center'> {{systemType}} Delete </a>
+
+		</div>
+
+</div>
+
+</div>
+

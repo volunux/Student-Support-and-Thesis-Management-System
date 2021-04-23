@@ -1,7 +1,5 @@
 <div @fadeAnimation *ngIf ='true'>
 
-<app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
-
 <app-view-description *ngIf ='view' [view-type] ='view' [system-type] ='systemType' > </app-view-description>
 
 <p *ngIf ='!isFormModified'> <b class ='bold'> Form Message : </b> {{formMessage}} </p>

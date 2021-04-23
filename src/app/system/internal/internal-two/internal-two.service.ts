@@ -31,7 +31,7 @@ export class InternalTwoService {
       .pipe(
               tap((value : InternalTwo[]) => console.log(value)) ,
 
-              delay(3000) ,
+              delay(2000) ,
 
               catchError(this.handleError<InternalTwo[]>(`${this.$systemType} Entries` , null))
         )
@@ -48,7 +48,7 @@ export class InternalTwoService {
 
           tap((entry : InternalTwo) => console.log(entry)) ,
 
-          delay(3000) ,
+          delay(2000) ,
 
           catchError(this.handleError<InternalTwo>(`${this.$systemType} Entry` , null))
         )
@@ -64,7 +64,7 @@ export class InternalTwoService {
 
           tap((entry : General) => console.log(entry)) ,
 
-          delay(3000) ,
+          delay(2000) ,
 
           map((data : General) => { return { 'permitted' : true , '$data' : data }; }) ,
 
@@ -96,7 +96,7 @@ export class InternalTwoService {
 
       .pipe(
 
-        delay(3000) ,
+        delay(2000) ,
 
          map((entry : General) => { return { 'permitted' : true , '$data' : entry }; }) ,
 
@@ -128,7 +128,7 @@ export class InternalTwoService {
 
       .pipe(
 
-        delay(3000) ,
+        delay(2000) ,
 
          map((entry : General) => { return { 'permitted' : true , '$data' : entry }; }) ,
 
@@ -177,7 +177,7 @@ export class InternalTwoService {
 
       .pipe(
 
-        delay(3000) ,
+        delay(2000) ,
 
         catchError(this.handleError<InternalTwo[]>(`${this.$systemType} Entry or Entries Delete` , null))
 

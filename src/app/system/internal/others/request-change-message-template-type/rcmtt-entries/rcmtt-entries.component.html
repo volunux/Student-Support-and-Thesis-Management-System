@@ -1,0 +1,135 @@
+<div @fadeAnimation id ='entry-main'>
+
+<h2 *ngIf ='title' > {{title}} </h2>
+
+<app-view-description *ngIf ='view' [view-type] ='view' [system-type] ='systemType' > </app-view-description>
+
+<app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
+
+<app-list-entry-options *ngIf ='$entriesLength > 0'> </app-list-entry-options>
+
+		<div class ='search-bar'>
+
+			<app-search *ngIf ='systemType' [system-type] ='systemType' [$link] ='$link' [search-filters] ='searchFilters'> </app-search>
+
+		<a class ='entry-option-delete entry-option-small center' [class.hide] ='esdl.length < 2' (click) ='deleteManyEntry()'> Delete Many </a>
+
+</div>
+
+<div @fadeAnimation class ='entries' *ngIf ='$entriesLength > 0'>
+
+<table *ngIf ='!isLoading'>
+
+	<caption class ='bold left'> Entries </caption>
+
+	<colgroup>
+
+		<col class =''>
+		<col class =''>
+		<col class =''>
+		<col class =''>
+		<col class =''>
+		<col class =''>		
+		<col class =''>
+		<col class =''>
+
+	</colgroup>
+
+	<thead>
+
+		<tr>
+			<th class ='bold center'> Index </th>
+			<th class ='bold center'> Title </th>
+			<th class ='bold center'> Updated On </th>
+			<th class ='bold center'> Other Number </th>
+			<th class ='bold center'> Status </th>
+			<th class ='bold left'> Changes </th>
+		</tr>
+
+	</thead>
+
+	<tbody [@listAnimation] ='entries.length'>
+
+		<tr *ngFor ='let entry of entries , let i = index , trackBy : trackByNum'>
+
+			<td class ='center'> {{i + 1}}. </td>
+
+			<ng-template #nilValue>
+
+				<td class ='center'> N/A </td>
+
+			</ng-template>
+			
+			<td class ='left' *ngIf ='entry?.title; else nilValue'> {{entry?.title}} </td>
+
+			<td class ='center' *ngIf ='entry?.updated_on; else nilValue'> {{entry?.updated_on | date : 'longDate'}} </td>
+
+			<td class ='center' *ngIf ='entry?.num; else nilValue'> {{entry?.num}} </td>
+
+			<td class ='center' *ngIf ='entry?.status; else nilValue'> {{entry?.status}} </td>
+						
+			<td class =''>
+
+				<a class ='center changes-option' [routerLink] ="['../' , 'entry' , entry?.slug , 'detail']">View</a>
+
+				<a class ='center changes-option' [routerLink] ="['../' , 'entry' , entry?.slug , 'update']">Update</a>
+				
+				<a class ='center changes-option'  [routerLink] ="['../' , 'entry' , entry?.slug , 'delete']">Delete</a>
+
+				<label *ngIf ='true' class='changes-mark'>
+
+					<ng-container *ngIf ='esdl.length; else normalChecks' >
+
+					<ng-container *ngFor ='let $ed of esdl'>
+
+						<input [checked] ='$ed == entry?.num' type ='checkbox' #checked (click) ='addEntryToDeleteList(entry?.num , checked.checked , i)'>
+
+				  	<span class='checkmark'> </span>
+
+					</ng-container>
+
+				</ng-container>
+
+				<ng-template #normalChecks>
+
+				  <input type ='checkbox' #checked  (click) ='addEntryToDeleteList(entry?.num , checked.checked , i)'>
+
+				  <span class ='checkmark'> </span>
+
+				 </ng-template>
+
+				</label>
+			
+			</td>
+
+		</tr>
+
+		</tbody>
+
+		<tfoot>
+
+			<tr>
+				<td></td>
+			</tr>
+
+			<tr>
+				<td></td>
+			</tr>
+
+			<tr>
+
+			</tr>
+
+		</tfoot>
+
+	</table>
+
+</div>
+
+<app-pagination *ngIf ='pageNumber' [entries-length] ='$entriesLength' [entry-ref] ='$entryRef' [page-number] ='pageNumber' [is-loading] ='!isLoading' > </app-pagination>
+
+<app-resource-unavailable id ='error' *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
+
+</div>
+
+<app-loading-menu [is-loading] ='isLoading'> </app-loading-menu>

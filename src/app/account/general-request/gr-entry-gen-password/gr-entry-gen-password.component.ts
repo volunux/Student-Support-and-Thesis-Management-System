@@ -50,7 +50,6 @@ export class GeneralRequestEntryGeneratePasswordComponent implements OnInit {
     this.gups.createPassword$({'password' : newPassword , 'user' : this.entry.author._id , 'entry' : this.entry._id})
 
       .subscribe();
-
   }
 
   get password() : FormControl {

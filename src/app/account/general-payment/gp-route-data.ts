@@ -23,7 +23,7 @@ export const RouteConfigData : { [key : string] : any } = {
 
 	'create' : {...$$ , 'title' : `Make ${$$.systemType} Payment` , 'paymentRule' : { 'amount' : '1000' , 'description' : 'Departmental Fee Payment' , 'type' : 'department' ,
 
-    'callback' : 'http://localhost:4200/payment/department/validation/' } } ,
+    'callback' : '' } } ,
 
 	'detail' : {...$$ , 'title' : `${$$.systemType} Entry` } ,
 

@@ -67,7 +67,7 @@ export class NotificationScreenComponent implements OnInit {
     } , 4000)
   }
 
-  ngOnInit(): void {
+  ngOnInit() : void {
   
   }
 

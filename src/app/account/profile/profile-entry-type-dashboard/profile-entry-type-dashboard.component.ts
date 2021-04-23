@@ -1,5 +1,7 @@
 import { Component , OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../../../authentication/authentication.service';
+import { LoadingBarService } from '../../../general/loading-bar.service';
 
 @Component({
 
@@ -13,7 +15,7 @@ import { AuthenticationService } from '../../../authentication/authentication.se
 
 export class ProfileEntryTypeDashboardComponent implements OnInit {
 
-  constructor(private aus : AuthenticationService) { 
+  constructor(private aus : AuthenticationService , private router : Router , private lbs : LoadingBarService) { 
 
   }
 
@@ -30,6 +32,11 @@ export class ProfileEntryTypeDashboardComponent implements OnInit {
   get canManage() : boolean {
 
     return ['moderator' , 'administrator' , 'superAdministrator'].indexOf(this.aus.userRole) > 0; 
+  }
+
+  public loadLink(link) : void {
+
+    this.lbs.loadLink(link);
   }
 
 }

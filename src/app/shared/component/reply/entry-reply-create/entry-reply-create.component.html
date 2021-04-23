@@ -1,7 +1,5 @@
 <app-view-description *ngIf ='view' [view-type] ='view' [system-type] ='systemType' > </app-view-description>
 
-<app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
-
 	<div id ='reply-comment-entry' *ngIf ='entry'>
 
 		<app-reply-comment-detail *ngIf ='comment' [system-type] ='systemType' [comment] ='comment'> </app-reply-comment-detail>

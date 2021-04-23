@@ -1,0 +1,49 @@
+<div class='entry-update'>
+
+<h2 *ngIf ='title'> {{title}} </h2>
+
+<app-view-description *ngIf ='view' [view-type] ='view'> </app-view-description>
+
+<app-resource-unavailable *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
+
+<div *ngIf ='entry'>
+
+		<div class ='form-group'>
+
+		<label for ='addition-options' class ='form-label bold'> Additional Input </label>
+
+	<select name ='other-options' id ='addition-option' class ='form-control' [formControl] ='otherOptions'>
+
+				<option value = ''> </option>
+
+				<option value ='1'> Change User Role </option> 
+
+				<option value ='2'> Change User Unit </option> 
+
+	</select>
+
+</div>
+
+
+	<ng-container [ngSwitch] ='otherOptions.value'>
+
+		<ng-container *ngSwitchCase ='1'>
+
+			<app-acr-update-role *ngIf ='entry' [system-type] ='systemType' [entry] ='entry'> </app-acr-update-role>
+
+	</ng-container>
+
+		<ng-container *ngSwitchCase ='2'>
+
+			<app-acr-update-unit *ngIf ='entry' [system-type] ='systemType' [entry] ='entry'> </app-acr-update-unit>
+
+	</ng-container>
+
+</ng-container>
+
+
+</div>
+
+</div>
+
+<app-loading-menu [is-loading] ='isLoading'> </app-loading-menu>

@@ -8,6 +8,7 @@ import { GeneralRequestService } from '../general-request.service';
 import { CommentCreateFormService } from '../../../shared/component/comment/comment-create-form.service';
 import { CommentCreateService } from '../../../shared/component/comment/comment-create.service';
 import { ErrorMessagesService } from '../../../shared/services/error-messages.service';
+import { NotificationService } from '../../../shared/services/notification.service';
 
 @Component({
 
@@ -17,7 +18,7 @@ import { ErrorMessagesService } from '../../../shared/services/error-messages.se
 
   'styleUrls' : ['./gr-create-comment.component.css'],
 
-  'providers' : [ErrorMessagesService] ,
+  'providers' : [ErrorMessagesService , NotificationService]
 
 })
 
@@ -25,7 +26,7 @@ export class GeneralRequestCreateCommentComponent implements OnInit {
 
   constructor(private route : ActivatedRoute , private router : Router , private grs : GeneralRequestService ,
 
-              private ccfs : CommentCreateFormService , private ccs : CommentCreateService , private ems : ErrorMessagesService) {
+              private ccfs : CommentCreateFormService , private ccs : CommentCreateService , private ems : ErrorMessagesService , private ns : NotificationService) {
 
   }
 
@@ -121,9 +122,19 @@ export class GeneralRequestCreateCommentComponent implements OnInit {
 
       .subscribe((result : General) => {
 
-        if (result == null) { this.ccs.isEntryCreated.next(false); }
+        if (result == null) { 
+
+          this.ns.setNotificationStatus(true);
+
+          this.ns.addNotification(`Operation is unsuccessful and ${this.systemType} comment is not added.`); 
+
+          this.ccs.isEntryCreated.next(false); }
 
         if (result != null && result.updated == true) {
+
+          this.ns.setNotificationStatus(true);
+
+          this.ns.addNotification(`Operation is successful and ${this.systemType} comment is added.`); 
 
           this.isLoading = true;
 
@@ -138,4 +149,21 @@ export class GeneralRequestCreateCommentComponent implements OnInit {
 
       return this.router.navigate(['general-request' , 't' , this.rslug , 'entries']);  } , 5000) 
   }
+
+  get notificationAvailable() : boolean {
+
+    return this.ns.notificationStatus();
+  }
+
+  get notificationMessage() : string {
+
+    return this.ns.getNotificationMessage();
+  }
+
+  public removeNotification() : void {
+
+    this.ns.removeNotification();
+  }
+
+
 }

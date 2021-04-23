@@ -4,17 +4,19 @@
 
 <app-resource-unavailable *ngIf ='isError' [error] ='error'> </app-resource-unavailable>
 
+<app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
+
 <ng-container *ngIf ='entryForm'>
 
 		<div *ngIf ='!isLoading' [formGroup] ='entryForm'>
 
-	<app-gi-entry-delete [system-type] ='systemType' [view] ='view' [entry-form] ='entryForm' [e-others] = 'eothers' [placeholder] ='placeholder' [no-edit] ='noEdit'
+	<app-gi-entry-create [system-type] ='systemType' [view] ='view' [entry-form] ='entryForm' [e-others] = 'eothers' [placeholder] ='placeholder' [no-edit] ='noEdit'
 
 	[system-guideline] ='systemGuideline' (processEntry) ='changeEntry($event)' > 
 
 		<app-internal-two-form-input [system-type] ='systemType' [entry-form] ='entryForm' [placeholder] ='placeholder' [no-edit] = 'noEdit' > </app-internal-two-form-input>
 
-	</app-gi-entry-delete>
+	</app-gi-entry-create>
 
 </div>
 

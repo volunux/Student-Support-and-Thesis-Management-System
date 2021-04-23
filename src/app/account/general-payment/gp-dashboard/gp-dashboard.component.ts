@@ -1,10 +1,11 @@
 import { Component , Input , OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute , Router } from '@angular/router';
 import { GeneralPaymentService } from '../general-payment.service';
 import { ErrorMessagesService } from '../../../shared/services/error-messages.service';
 import { AuthenticationService } from '../../../authentication/authentication.service';
 import { General } from '../general';
 import { listAnimation } from '../../../animations';
+import { LoadingBarService } from '../../../general/loading-bar.service';
 
 @Component({
 
@@ -24,7 +25,7 @@ export class GeneralPaymentDashboardComponent implements OnInit {
 
   constructor(private route : ActivatedRoute , private gps : GeneralPaymentService , public ems : ErrorMessagesService ,
 
-              private aus : AuthenticationService) { 
+              private aus : AuthenticationService , private router : Router , private lbs : LoadingBarService) { 
 
   }
 
@@ -78,4 +79,10 @@ export class GeneralPaymentDashboardComponent implements OnInit {
 
     return ['student' , 'departmentPresident' , 'facultyPresident'].indexOf(this.aus.userRole) < 0;
   }
+
+  public loadLink(link) : void {
+
+    this.lbs.loadLink(link);
+  }
+
 }

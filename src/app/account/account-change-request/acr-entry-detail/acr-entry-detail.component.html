@@ -1,0 +1,53 @@
+<div id ='entry-view'>
+
+	<h2 *ngIf ='title'> {{title}} </h2>
+
+<app-view-description *ngIf ='view' [view-type] ='view' [system-type] ='systemType' > </app-view-description>
+
+<app-resource-unavailable *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
+
+<app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
+
+	<div @fadeAnimation *ngIf ='entry' id ='request-entry-detail'>
+
+		<ng-container *ngIf ='!isLoading'>
+
+		<app-other-detail *ngIf ='entry' [entry] ='entry' [view] ='view' > </app-other-detail>
+
+		<app-acr-entry-option *ngIf ='entry' [view] ='view' [entry] ='entry' [link] ='link' [system-type] ='systemType'> </app-acr-entry-option>
+
+		<ng-container *ngIf ="entry != null && entry?.status != 'Fulfilled' && entry?.status != 'Rejected'">
+
+				<ng-container *ngIf ="canUpdateEntry"> 
+
+					<div id ='entry-detail-form'>
+
+						<form method ='post' [formGroup] ='entryForm' (ngSubmit) ='updateEntry(entryForm.value)'>
+
+		<app-acr-entry-update-field *ngIf ='entry' (on-submit-btn) ='openSubBtn($event)' [entry] ='entry' [entry-form] ='entryForm' [system-type] ='systemType' [$link] ='$link' > 
+
+		</app-acr-entry-update-field>
+
+		<ng-container *ngIf ='readyToSubmit == true'>
+
+			<button *ngIf ='!isFormProcessing' type ='submit' class ='btn-submit' [class] ='{"disabled" : !isFormValid }' [disabled] ='!isFormValid'> Submit </button> 
+
+			<p *ngIf ='isFormSubmitted'> Your form is being processed. Please kindly be patient and wait while it completes. </p>
+
+		</ng-container>
+
+						</form>
+
+					</div>
+
+			</ng-container>
+
+	</ng-container>
+
+</ng-container>
+
+</div>
+
+</div>
+
+<app-loading-menu [is-loading] ='isLoading'> </app-loading-menu>

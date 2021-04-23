@@ -6,7 +6,7 @@
 
 <app-resource-unavailable *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
 
-<div *ngIf ='entry' id ='entry-view'>
+<div @fadeAnimation *ngIf ='entry' id ='entry-view'>
 
 	<div id ='entry-detail'>
 

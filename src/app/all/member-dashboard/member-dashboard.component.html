@@ -14,13 +14,25 @@
 
 		<li *ngFor ='let entry of entries'> 
 
-		<a [routerLink] ='[entry.slug]' class ='center'> {{entry.title}} </a>
+		<a (click) ="loadLink([entry.slug])" class ='center'> {{entry.title}} </a>
 
 		</li>
 
+	<li *ngIf ='notStudent'>
+
+		<a [routerLink] ='["/request-change-message-template"]' class ='center'> Manage Request Template </a>
+
+	</li>
+
+	<li *ngIf ='canManageAcctReq'>
+
+		<a [routerLink] ='["/account-change-request"]' class ='center'> Manage Account Change Request </a>
+
+	</li>
+
 	<li>
 
-		<a [routerLink] ="['/account' , 'profile']" class ='center'> Manage Profile </a>
+		<a (click) ="loadLink(['/' , 'account' , 'profile'])" class ='center'> Manage Profile </a>
 
 	</li>
 

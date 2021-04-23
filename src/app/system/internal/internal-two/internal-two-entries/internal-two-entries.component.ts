@@ -132,6 +132,8 @@ export class InternalTwoEntriesComponent implements OnInit {
 
     this.gss.searchCleared.next(true);
 
+    this.isLoading = true;
+
     this.getAllEntry({}); }
 
 

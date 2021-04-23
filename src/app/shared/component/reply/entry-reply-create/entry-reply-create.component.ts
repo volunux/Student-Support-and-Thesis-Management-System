@@ -2,7 +2,6 @@ import { Component , EventEmitter , Input , OnInit , Output } from '@angular/cor
 import { FormControl , FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ReplyCreateService } from '../reply-create.service';
-import { NotificationMessageService } from '../../../component/notification/notification-message.service';
 import { fadeAnimation } from '../../../../animations';
 
 @Component({
@@ -13,15 +12,13 @@ import { fadeAnimation } from '../../../../animations';
 
   'styleUrls' : ['./entry-reply-create.component.css'] ,
 
-  'providers' : [NotificationMessageService] ,
-
   'animations' : [fadeAnimation]
 
 })
 
 export class EntryReplyCreateComponent implements OnInit {
 
-  constructor(private rcs : ReplyCreateService , private ns : NotificationMessageService) { 
+  constructor(private rcs : ReplyCreateService) { 
 
   	this.entryCreatedOb = this.rcs.isEntryCreated$
 
@@ -31,19 +28,11 @@ export class EntryReplyCreateComponent implements OnInit {
 
  					this.isFormSubmitted = false;
 
- 					this.isFormProcessing = false;
-
-          this.ns.setNotificationStatus(true);
-
-          this.ns.addNotification(`Operation is unsuccessful and ${this.systemType} reply is not added.`); }
+ 					this.isFormProcessing = false; }
 
   				else if (created == true) {
 
- 					this.isFormSubmitted = false;
-
-          this.ns.setNotificationStatus(true);
-
-          this.ns.addNotification(`Operation is successful and ${this.systemType} reply is added.`); } });
+ 					this.isFormSubmitted = false; } });
 
   }
 
@@ -99,21 +88,6 @@ export class EntryReplyCreateComponent implements OnInit {
   get isFormValid() : boolean {
 
     return this.entryCreateForm.valid;
-  }
-
-  get notificationAvailable() : boolean {
-
-    return this.ns.notificationStatus();
-  }
-
-  get notificationMessage() : string {
-
-    return this.ns.getNotificationMessage();
-  }
-
-  public removeNotification() : void {
-
-     this.ns.removeNotification();
   }
 
 }

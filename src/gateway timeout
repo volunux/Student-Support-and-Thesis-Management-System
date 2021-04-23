@@ -1,0 +1,9 @@
+error: null
+headers: d {normalizedNames: Map(0), lazyUpdate: null, headers: Map(0)}
+message: "Http failure response for https://fierce-stream-53909.herokuapp.com/api/general-request/t/pxddno1281m5qgiupp9iui65nyfom/entry/n1rkd3tbfrhcdrzaii6o50fzprn2e/detail: 504 Gateway Timeout"
+name: "HttpErrorResponse"
+ok: false
+status: 504
+statusText: "Gateway Timeout"
+url: "https://fierce-stream-53909.herokuapp.com/api/general-request/t/pxddno1281m5qgiupp9iui65nyfom/entry/n1rkd3tbfrhcdrzaii6o50fzprn2e/detail"
+__proto__: w

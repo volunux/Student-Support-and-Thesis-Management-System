@@ -4,9 +4,9 @@
 
 	<h3> Get Started </h3>
 
-	<a [routerLink] ='["sign-in"]'><img src ='/assets/images/in.png' class ='authentication' ></a>
+	<a (click) ="loadLink(['/' , 'sign-in'])" ><img src ='/assets/images/in.png' class ='authentication' ></a>
 
-	<a [routerLink] ='["sign-up"]' [routerLinkActiveOptions] = '{"exact" : true}' [routerLinkActive] ='"auth"' ><img src ='/assets/images/out.png' class ='authentication' ></a>
+	<a (click) ="loadLink(['/' , 'sign-up'])" ><img src ='/assets/images/out.png' class ='authentication' ></a>
 
 </div>
 
@@ -20,7 +20,7 @@
 
 	<li class ='center'>
 
-		<a [routerLink] ='["/account/" , "profile"]' class ='center'> View Profile </a>
+		<a (click) ="loadLink(['/' , 'account' , 'profile'])" class ='center'> View Profile </a>
 
 	</li>
 

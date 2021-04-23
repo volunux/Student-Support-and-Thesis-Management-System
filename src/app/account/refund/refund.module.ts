@@ -48,7 +48,7 @@ import { RefundEntryOptionComponent } from './refund-entry-option/refund-entry-o
   	RefundEntryDetailComponent,
   	RefundHomepageComponent,
   	RefundEntryUserSignatureComponent,
-  	RefundEntryOptionComponent
+  	RefundEntryOptionComponent,
 
 	],
 

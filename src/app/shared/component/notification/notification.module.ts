@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NotificationMessageComponent } from './notification-message/notification-message.component';
-
+import { NotificationMessageService } from './notification-message.service';
 
 
 @NgModule({
@@ -20,6 +20,11 @@ import { NotificationMessageComponent } from './notification-message/notificatio
   exports : [
 
 		NotificationMessageComponent
+  ],
+
+  providers : [
+
+		NotificationMessageService
   ]
 
 })

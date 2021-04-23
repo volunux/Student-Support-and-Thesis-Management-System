@@ -154,6 +154,8 @@ export class ResetPasswordComponent implements OnInit {
 
           this.changesSuccess = true;
 
+          this.isLoading = true;
+
           this.ns.setNotificationStatus(true);
 
           this.ns.addNotification(`Operation is successful and ${this.systemType} entry is updated.`);
@@ -167,7 +169,7 @@ export class ResetPasswordComponent implements OnInit {
 
     this.entryChangesT = setTimeout(() => {
 
-      return this.router.navigateByUrl('/');  } , 15000) 
+      return this.router.navigateByUrl('/');  } , 5000) 
   }
   
   get new_password() : FormControl {

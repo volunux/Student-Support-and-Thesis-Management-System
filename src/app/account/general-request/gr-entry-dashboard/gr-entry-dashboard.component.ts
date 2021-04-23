@@ -1,6 +1,5 @@
 import { Component , Input , OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { ActivatedRoute , ParamMap } from '@angular/router';
+import { ActivatedRoute , Router , ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { General } from '../general';
 import { GeneralRequest } from '../general-request';
@@ -8,6 +7,7 @@ import { AuthenticationService } from '../../../authentication/authentication.se
 import { GeneralRequestService } from '../general-request.service';
 import { ErrorMessagesService } from '../../../shared/services/error-messages.service';
 import { fadeAnimation } from '../../../animations';
+import { LoadingBarService } from '../../../general/loading-bar.service';
 
 @Component({
 
@@ -25,9 +25,9 @@ import { fadeAnimation } from '../../../animations';
 
 export class GeneralRequestEntryDashboardComponent implements OnInit {
 
-  constructor(private route : ActivatedRoute , private ts : Title , private grs : GeneralRequestService , private ems : ErrorMessagesService ,
+  constructor(private route : ActivatedRoute , private grs : GeneralRequestService , private ems : ErrorMessagesService ,
 
-  						private aus : AuthenticationService) {
+  						private aus : AuthenticationService , private router : Router , private lbs : LoadingBarService) {
 
   }
 
@@ -91,9 +91,7 @@ export class GeneralRequestEntryDashboardComponent implements OnInit {
 
           this.isLoading = false;
 
-          this.entry = result;
-
-          this.ts.setTitle(result.name + ` Request`); } });
+          this.entry = result; } });
   }
 
   get canCreate() : boolean {
@@ -104,6 +102,11 @@ export class GeneralRequestEntryDashboardComponent implements OnInit {
   get canDeleteAll() : boolean {
 
     return this.aus.isSuperAdministrator;
+  }
+
+  public loadLink(link) : void {
+
+    this.lbs.loadLink(link);
   }
 
 }

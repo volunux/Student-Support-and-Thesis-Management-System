@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { GeneralServicesModule } from '../../shared/services/general-services.module';
 import { GeneralModule } from '../../general/general.module';
 import { GeneralDirectivesModule } from '../../shared/directives/general-directives/general-directives.module';
+import { UserOtherFieldModule } from '../../shared/component/user-other-field/user-other-field.module';
 import { ProfileRoutingModule } from './profile-routing.module';
 
 
@@ -47,6 +48,7 @@ import { ProfileEntryTypeDashboardComponent } from './profile-entry-type-dashboa
     GeneralModule,
     GeneralDirectivesModule,
     GeneralServicesModule,
+    UserOtherFieldModule,
     ProfileRoutingModule,
   ] ,
 

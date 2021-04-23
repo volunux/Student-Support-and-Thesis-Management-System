@@ -4,8 +4,8 @@ import { FacultyRoutingModule } from './faculty-routing.module';
 import { InternalOneModule } from '../../internal-one.module';
 
 @NgModule({
-  declarations: [
 
+  declarations: [
 
 ],
 

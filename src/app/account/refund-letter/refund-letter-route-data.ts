@@ -12,7 +12,7 @@ let config : { [key : string] : any } = {
 
 		'$link' : 'refund' ,
 
-		'systemGuideline' : 'request' ,
+		'systemGuideline' : 'general' ,
 
 		'base' : 'refund'
 };

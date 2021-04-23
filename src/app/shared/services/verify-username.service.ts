@@ -25,7 +25,7 @@ export function usernameVerification(authService , http , httpHeaders , apiConfi
 
           take(1) ,
 
-          delay(3000) ,
+          delay(2000) ,
 
           switchMap((username) => { lastUsername = username;
 

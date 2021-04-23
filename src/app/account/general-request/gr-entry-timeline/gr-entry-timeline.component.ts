@@ -6,7 +6,6 @@ import { GeneralRequest } from '../general-request';
 import { AuthenticationService } from '../../../authentication/authentication.service';
 import { GeneralRequestService } from '../general-request.service';
 import { ErrorMessagesService } from '../../../shared/services/error-messages.service';
-import { NotificationService } from '../../../shared/services/notification.service';
 import { canUpdate } from '../roles';
 import { fadeAnimation } from '../../../animations';
 
@@ -18,7 +17,7 @@ import { fadeAnimation } from '../../../animations';
 
   'styleUrls' : ['./gr-entry-timeline.component.css'],
 
-  'providers' : [NotificationService , ErrorMessagesService] ,
+  'providers' : [ErrorMessagesService] ,
 
   'animations' : [fadeAnimation]
 
@@ -28,7 +27,7 @@ export class GeneralRequestEntryTimelineComponent implements OnInit {
 
   constructor(public router : Router , private route : ActivatedRoute , public grs : GeneralRequestService , 
 
-  						public ns : NotificationService , public ems : ErrorMessagesService , private aus : AuthenticationService) {
+  						public ems : ErrorMessagesService , private aus : AuthenticationService) {
 
   }
 

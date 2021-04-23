@@ -1,0 +1,83 @@
+<div @fadeAnimation *ngIf ='true'>
+
+		<div [formGroup] ='entryForm'>
+
+			<ng-container *ngIf ='title'>
+
+			<div class ='form-group'>
+
+				<label for ='title' class ='form-label bold'> Title * : </label>
+
+				<input type ='text' id ='title' required ='required' name ='title' [placeholder] ='placeholder?.title' formControlName ='title' class ='form-control' [readOnly] ='noEdit'>
+
+				<app-gmt-form-input-validator *ngIf ='title' [system-type] ='systemType' [title] ='title'> </app-gmt-form-input-validator>
+
+			</div>
+
+		</ng-container>
+
+		<ng-container *ngIf ='body'>
+
+				<div id ='' class ='form-group'>
+
+						<label for ='text' class ='form-label bold'> Main Body * : </label>
+
+				<div [froalaEditor] formControlName ='body' appFroalaInitializer> </div>
+
+					<app-gmt-form-input-validator *ngIf ='body' [system-type] ='systemType' [body] ='body'> </app-gmt-form-input-validator>
+
+				</div>
+
+		</ng-container>
+
+
+		<ng-content> </ng-content>
+
+
+			<ng-container *ngIf ='status && eothers && eothers.Status && eothers.Status.length > 0'>
+
+			<div class ='form-group'>
+
+				<label for ='status' class ='form-label bold'> Status * : </label>
+
+				<select name ='status' id ='status' required ='required' class ='form-control' formControlName ='status' [readOnly] ='noEdit' >
+
+					<option [value] =''> </option> 
+
+					<option *ngFor ='let status of eothers.Status' [value] ='status._id'> {{status.word}} </option> 
+
+				</select>
+
+				<app-gmt-form-input-validator *ngIf ='status' [system-type] = 'systemType' [status] ='status'> </app-gmt-form-input-validator>
+
+			</div>
+
+		</ng-container>
+
+
+			<ng-container *ngIf ='entry_type && eothers && eothers.EntryType != null && eothers.EntryType.length > 0'>
+
+			<div class ='form-group'>
+
+				<label for ='entry_type' class ='form-label bold'> Entry Type * : </label>
+
+				<select name ='entry_type' id ='entry_type' required ='required' class ='form-control' formControlName ='entry_type'
+
+				 [readOnly] ='noEdit' >
+
+					<option [value] =''> </option> 
+
+					<option *ngFor ='let type of eothers.EntryType' [value] ='type._id'> {{type.title}} </option> 
+
+				</select>
+
+		<app-gmt-form-input-validator *ngIf ='entry_type' [system-type] ='systemType' [entry-type] ='entry_type'> </app-gmt-form-input-validator>
+
+			</div>
+
+		</ng-container>
+
+
+		</div>
+
+</div>

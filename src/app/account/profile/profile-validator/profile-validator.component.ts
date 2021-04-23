@@ -32,8 +32,6 @@ export class ProfileValidatorComponent implements OnInit {
 
   @Input('email-address') email_address : FormControl;
 
-  @Input('identity-number') identity_number : FormControl;
-
   @Input('new-password') new_password : FormControl;
 
   @Input('confirm-password') confirm_password : FormControl;

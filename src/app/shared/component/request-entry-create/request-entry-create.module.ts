@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AttachmentModule } from '../../module/attachment/attachment.module';
 import { GuidelineModule } from '../../module/guideline/guideline.module';
 import { GeneralModule } from '../../../general/general.module';
+import { GeneralServicesModule } from '../../services/general-services.module';
 
 import { RequestEntryCreateComponent } from './request-entry-create/request-entry-create.component';
 import { RequestEntryCreateValidatorComponent } from './request-entry-create-validator/request-entry-create-validator.component';
@@ -25,7 +26,8 @@ import { RequestEntryCreateService } from './request-entry-create.service';
     ReactiveFormsModule,
     AttachmentModule,
     GuidelineModule,
-    GeneralModule
+    GeneralModule,
+    GeneralServicesModule
   ] ,
 
   providers : [

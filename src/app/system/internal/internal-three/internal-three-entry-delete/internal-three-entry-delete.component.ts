@@ -12,6 +12,7 @@ import { InternalThreeFormService } from '../internal-three-form.service';
 import { GeneralInternalConversationFormService } from '../../../../shared/module/gi-chat/gi-chat-form.service';
 import { GeneralInternalConversationEntryChangeService } from '../../../../shared/module/gi-chat/gi-chat-entry-change.service';
 import { ErrorMessagesService } from '../../../../shared/services/error-messages.service';
+import { NotificationService } from '../../../../shared/services/notification.service';
 import { fadeAnimation } from '../../../../animations';
 
 @Component({
@@ -22,7 +23,7 @@ import { fadeAnimation } from '../../../../animations';
 
   'styleUrls' : ['./internal-three-entry-delete.component.css'] ,
 
-  'providers' : [ErrorMessagesService] ,
+  'providers' : [ErrorMessagesService , NotificationService] ,
 
   'animations' : [fadeAnimation]
 
@@ -30,7 +31,7 @@ import { fadeAnimation } from '../../../../animations';
 
 export class InternalThreeEntryDeleteComponent implements OnInit {
 
-  constructor(private route : ActivatedRoute , private router : Router , private its : InternalThreeService , private iots : InternalThreeFormService ,
+  constructor(private route : ActivatedRoute , private router : Router , private its : InternalThreeService , private iots : InternalThreeFormService , private ns : NotificationService ,
 
   						private gifs : GeneralInternalConversationFormService , private giecs : GeneralInternalConversationEntryChangeService , private ems : ErrorMessagesService) {
 
@@ -127,8 +128,6 @@ export class InternalThreeEntryDeleteComponent implements OnInit {
 
         this.entryForm = this.gifs.entryForm();
 
-        this.entryForm.addControl('abbreviation' , new FormControl('' , this.iots.otherCtrls.abbreviation));
-
         this.entryForm.patchValue(this.entry);
 
         this.iots.removeControls(this.controlFilters , this.entryForm); } });
@@ -150,13 +149,21 @@ export class InternalThreeEntryDeleteComponent implements OnInit {
 
       .subscribe((result : InternalThree) => {
 
-       if (result == null) { 
+       if (result == null) {
+
+         this.ns.setNotificationStatus(true);
+
+         this.ns.addNotification(`Operation is unsuccessful and ${this.systemType} is not deleted.`); 
 
          this.giecs.isEntryChanged.next(false); }
 
        else if (result != null && result.deleted == true) {
 
-         this.isLoading = true;
+        this.ns.setNotificationStatus(true);
+
+        this.ns.addNotification(`Operation is successful and ${this.systemType} is deleted.`); 
+
+        this.isLoading = true;
 
         this.giecs.isEntryChanged.next(true);
 
@@ -173,11 +180,20 @@ export class InternalThreeEntryDeleteComponent implements OnInit {
 
       , 5000) 
   }
-  
-  get abbreviation() : FormControl {
 
-    return this.entryForm.get('abbreviation') as FormControl;
+  get notificationAvailable() : boolean {
+
+    return this.ns.notificationStatus();
   }
 
+  get notificationMessage() : string {
+
+    return this.ns.getNotificationMessage();
+  }
+
+  public removeNotification() : void {
+
+    this.ns.removeNotification();
+  }
 
 }

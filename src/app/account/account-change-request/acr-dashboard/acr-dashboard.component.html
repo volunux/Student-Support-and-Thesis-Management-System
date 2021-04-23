@@ -1,0 +1,35 @@
+<h2 *ngIf ='title'> {{title}} </h2>
+
+<app-view-description *ngIf ='view' [system-type] ='systemType' [view-type] ='view'> </app-view-description>
+
+<div @fadeAnimation *ngIf ='systemType' id ='dashboard'>
+
+<ul>
+
+	<li>
+
+		<a [routerLink] ="['entries']" class ='center'> Manage {{systemType}} Entry </a>
+
+	</li>
+
+	<li>
+
+		<a (click) ="loadLink(['/' , link , 'entry' , 'create'])" class ='center'> Create {{systemType}} Entry </a>
+
+	</li>
+
+	<li *ngIf ='canDeleteAll'>
+
+		<a [routerLink] ="['entry' , 'delete' , 'all']" class ='center'> Delete All {{systemType}} Entry </a>
+
+	</li>
+
+	<li>
+
+		<a (click) ="loadLink(['/' , 'account' , 'profile'])" class ='center'> Profile </a>
+
+	</li>
+
+</ul>
+
+</div>

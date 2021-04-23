@@ -2,11 +2,11 @@ import { Component , Output , EventEmitter , Input , OnInit } from '@angular/cor
 import { ActivatedRoute , ParamMap , Router } from '@angular/router';
 import { Refund } from '../refund';
 import { canUpdate } from '../roles';
-
 import { RefundService } from '../refund.service';
 import { AuthenticationService } from '../../../authentication/authentication.service';
 import { NotificationService } from '../../../shared/services/notification.service';
 import { fadeAnimation } from '../../../animations';
+import { LoadingBarService } from '../../../general/loading-bar.service';
 
 @Component({
 
@@ -26,7 +26,7 @@ export class RefundEntryOptionComponent implements OnInit {
 
   constructor(private route : ActivatedRoute , private router : Router , private auth : AuthenticationService , private rs : RefundService ,
 
-  						private ns : NotificationService) {
+  						private ns : NotificationService , private lbs : LoadingBarService) {
 
   }
 
@@ -102,9 +102,11 @@ export class RefundEntryOptionComponent implements OnInit {
 
       this.router.navigate(['refund-letter' , 'entry' , this.entry.slug , 'write' ])
 
-        .then((result) => { console.log(result) })
+        .then((result) => { })
 
-        .catch(() => { this.isLazyLoading = false; }); } , 0); }
+        .catch(() => { this.isLazyLoading = false; 
+
+          this.lbs.isShowingRouteLoadIndicator = false; }); } , 0); }
 
   }
 
@@ -118,9 +120,11 @@ export class RefundEntryOptionComponent implements OnInit {
 
       this.router.navigate(['refund-letter' , 'entry' , this.entry.slug , 'detail' ])
 
-        .then((result) => { console.log(result) })
+        .then((result) => { })
 
-        .catch(() => { this.isLazyLoading = false; }); } , 0); }
+        .catch(() => { this.isLazyLoading = false; 
+
+          this.lbs.isShowingRouteLoadIndicator = false; }); } , 0); }
 
   }
 

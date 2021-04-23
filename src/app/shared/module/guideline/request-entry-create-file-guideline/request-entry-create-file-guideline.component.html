@@ -6,11 +6,11 @@
 
 	<ul *ngIf ='systemGuideline == "payment"'>
 
-		<li> A Student is only allowed to enter a valid email address </li>
+		<li> A Student is only allowed to enter a valid email address. </li>
 
-		<li> The payment will be only valid if the student have the amount required to fulfill the request </li>
+		<li> The payment will only be valid if the student have the paid amount required to fulfill the request. </li>
 
-		<li> Any attempt to circumvent the process or distort or modify pre-defined values which are read-only will not be allowed </li>
+		<li> Any attempt to circumvent the process or breach or modify pre-defined system rules is prohibited. </li>
 
 	</ul>
 
@@ -37,5 +37,11 @@
 		<li> Multiple {{fileType}} documents upload for each field are not allowed. </li> 
 
 	</ul>
+
+		<ul *ngIf ='systemGuideline == "general"'>
+
+			<li> Only valid input are allowed in the form fields. </li>
+
+		</ul>
 
 </div>

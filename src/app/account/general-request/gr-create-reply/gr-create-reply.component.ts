@@ -9,6 +9,7 @@ import { GeneralRequestService } from '../general-request.service';
 import { ReplyCreateFormService } from '../../../shared/component/reply/reply-create-form.service';
 import { ReplyCreateService } from '../../../shared/component/reply/reply-create.service';
 import { ErrorMessagesService } from '../../../shared/services/error-messages.service';
+import { NotificationService } from '../../../shared/services/notification.service';
 
 @Component({
 
@@ -18,7 +19,7 @@ import { ErrorMessagesService } from '../../../shared/services/error-messages.se
 
   'styleUrls' : ['./gr-create-reply.component.css'],
 
-  'providers' : [ErrorMessagesService]
+  'providers' : [ErrorMessagesService , NotificationService]
 
 })
 
@@ -26,7 +27,7 @@ export class GeneralRequestCreateReplyComponent implements OnInit {
 
   constructor(private route : ActivatedRoute , private router : Router , private grs : GeneralRequestService ,
 
-              private rcfs : ReplyCreateFormService , private rcs : ReplyCreateService , private ems : ErrorMessagesService) {
+              private rcfs : ReplyCreateFormService , private rcs : ReplyCreateService , private ems : ErrorMessagesService , private ns : NotificationService) {
 
   }
 
@@ -135,9 +136,19 @@ export class GeneralRequestCreateReplyComponent implements OnInit {
 
       .subscribe((result : General) => {
 
-        if (result == null) { this.rcs.isEntryCreated.next(false); }
+        if (result == null) { 
 
-        if (result != null && result.updated == true) { 
+          this.ns.setNotificationStatus(true);
+
+          this.ns.addNotification(`Operation is unsuccessful and ${this.systemType} reply is not added.`); 
+
+          this.rcs.isEntryCreated.next(false); }
+
+        if (result != null && result.updated == true) {
+
+          this.ns.setNotificationStatus(true);
+
+          this.ns.addNotification(`Operation is successful and ${this.systemType} reply is added.`);
 
           this.isLoading = true;
 
@@ -152,6 +163,21 @@ export class GeneralRequestCreateReplyComponent implements OnInit {
    this.entryCreatedT = setTimeout(() => {
 
       return this.router.navigate(['general-request' , 't' , this.rslug , 'entries']); } , 5000) 
+  }
+
+  get notificationAvailable() : boolean {
+
+    return this.ns.notificationStatus();
+  }
+
+  get notificationMessage() : string {
+
+    return this.ns.getNotificationMessage();
+  }
+
+  public removeNotification() : void {
+
+     this.ns.removeNotification();
   }
 
 }

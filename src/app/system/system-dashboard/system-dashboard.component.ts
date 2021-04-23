@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { fadeAnimation } from '../../animations';
+import { LoadingBarService } from '../../general/loading-bar.service';
 
 @Component({
 
@@ -15,16 +17,22 @@ import { fadeAnimation } from '../../animations';
 
 export class SystemDashboardComponent implements OnInit {
 
-  constructor() { 
+  constructor(private router : Router , private lbs : LoadingBarService) { 
 
-  }
-
-  ngOnInit(): void {
-  
   }
 
   public title : string = 'System Dashboard';
 
   public view : string = 'upr';
+
+  ngOnInit(): void {
+  
+  }
+
+  public loadLink(link) : void {
+
+    this.lbs.loadLink(link);
+
+  }
 
 }

@@ -85,23 +85,6 @@
 </ng-container>
 
 
-<ng-container *ngIf ='identity_number'>
-
-	<div @fadeAnimation *ngIf ='identity_number.invalid && (identity_number.touched || identity_number.dirty)' class ='validation-error'>
-
-		<ul>
-
-			<li *ngIf ='identity_number.errors?.required'> Identity Number of {{systemType}} should be provided and cannot be empty </li>			
-			<li *ngIf ='identity_number.errors?.required || identity_number.errors?.minlength'> Identity Number of {{systemType}} cannot be less than 2 characters in length </li>
-			<li *ngIf ='identity_number.errors?.required || identity_number.errors?.maxlength'> Identity Number of {{systemType}} cannot be greater than 30 characters in length </li>
-
-		</ul>
-
-	</div>
-
-</ng-container>
-
-
 <ng-container *ngIf ='password'>
 
 	<div @fadeAnimation *ngIf ='password.invalid && (password.touched || password.dirty)' class ='validation-error'>

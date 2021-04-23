@@ -4,7 +4,6 @@ import { Subscription } from 'rxjs';
 import { General } from '../general';
 import { GeneralInternalConversation } from '../gi-chat';
 import { GeneralInternalConversationEntryChangeService } from '../gi-chat-entry-change.service';
-import { NotificationMessageService } from '../../../component/notification/notification-message.service';
 import { fadeAnimation } from '../../../../animations';
 
 @Component({
@@ -15,15 +14,13 @@ import { fadeAnimation } from '../../../../animations';
 
   'styleUrls' : ['./gi-chat-entry-delete.component.css'] ,
 
-  'providers' : [NotificationMessageService] ,
-
   'animations' : [fadeAnimation]
 
 })
 
 export class GeneralInternalConversationEntryDeleteComponent implements OnInit {
 
-  constructor(private giecs : GeneralInternalConversationEntryChangeService , private ns : NotificationMessageService) { 
+  constructor(private giecs : GeneralInternalConversationEntryChangeService) { 
 
   	this.entryChangesOb = this.giecs.isEntryChanged$
 
@@ -33,19 +30,11 @@ export class GeneralInternalConversationEntryDeleteComponent implements OnInit {
 
  					this.isFormSubmitted = false;
 
- 					this.isFormProcessing = false;
-
-          this.ns.setNotificationStatus(true);
-
-          this.ns.addNotification(`Operation is unsuccessful and ${this.systemType} is not deleted.`); }
+ 					this.isFormProcessing = false; }
 
   				else if (deleted == true) {
 
- 					this.isFormSubmitted = false;
-
-          this.ns.setNotificationStatus(true);
-
-          this.ns.addNotification(`Operation is successful and ${this.systemType} is deleted.`); } });
+ 					this.isFormSubmitted = false; } });
   }
 
   ngOnInit() : void {
@@ -106,21 +95,5 @@ export class GeneralInternalConversationEntryDeleteComponent implements OnInit {
 
     return this.entryForm.valid;
   }
-
-  get notificationAvailable() : boolean {
-
-    return this.ns.notificationStatus();
-  }
-
-  get notificationMessage() : string {
-
-    return this.ns.getNotificationMessage();
-  }
-
-  public removeNotification() : void {
-
-    this.ns.removeNotification();
-  }
-
 
 }

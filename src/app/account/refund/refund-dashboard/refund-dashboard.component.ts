@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute , Router } from '@angular/router';
 import { AuthenticationService } from '../../../authentication/authentication.service';
 import { fadeAnimation } from '../../../animations';
+import { LoadingBarService } from '../../../general/loading-bar.service';
 
 @Component({
 
@@ -17,7 +18,7 @@ import { fadeAnimation } from '../../../animations';
 
 export class RefundDashboardComponent implements OnInit {
 
-  constructor(private route : ActivatedRoute , private auth : AuthenticationService) { 
+  constructor(private route : ActivatedRoute , private auth : AuthenticationService , private router : Router , private lbs : LoadingBarService) { 
 
   }
 
@@ -26,6 +27,8 @@ export class RefundDashboardComponent implements OnInit {
   public title : string;
   
   public view : string;
+
+  public link : string;
 
   ngOnInit() : void {
 
@@ -36,7 +39,9 @@ export class RefundDashboardComponent implements OnInit {
     this.title = data.dashboard.title;
 
     this.view = data.dashboard.view;
-  
+
+    this.link = data.dashboard.link;
+
   }
 
   get canCreate() : boolean {
@@ -47,6 +52,11 @@ export class RefundDashboardComponent implements OnInit {
   get canDeleteAll() : boolean {
 
     return this.auth.isSuperAdministrator;
+  }
+
+  public loadLink(link) : void {
+
+    this.lbs.loadLink(link);
   }
 
 }

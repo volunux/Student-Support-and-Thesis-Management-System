@@ -29,7 +29,7 @@ export class GeneralRequestEntryCreateService {
 
           tap((entry : General) => console.log(entry)) ,
 
-          delay(3000) ,
+          delay(2000) ,
 
           map((entry : General) => { return { 'permitted' : true , '$data' : entry }; }) ,
 
@@ -40,8 +40,6 @@ export class GeneralRequestEntryCreateService {
   public addEntry$(rtype : string , request : GeneralRequest) : Observable<General> {
 
     let link = `${this.apiConfig.host}/${this.$sa}/t/${rtype}/entry/create`;
-
-    console.log(request);
 
     return this.http.post<GeneralRequest>(link , request)
 
@@ -59,7 +57,7 @@ export class GeneralRequestEntryCreateService {
 
       return (error : HttpErrorResponse) : Observable<T> => { this.ems.message = error;
 
-                return of(result as T);
+        return of(result as T);
 
       }
   }

@@ -1,0 +1,136 @@
+<div @fadeAnimation  id ='entry-main'>
+
+<h2 *ngIf ='title'> {{title}}</h2>
+
+<app-view-description *ngIf ='view' [system-type] ='systemType' [view-type] ='view'> </app-view-description>
+
+<app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
+
+<app-list-entry-options *ngIf ='$entriesLength > 0'> </app-list-entry-options>
+
+		<div class ='search-bar'>
+
+			<app-search *ngIf ='systemType' [system-type] ='systemType' [$link] ='$link' [search-filters] ='searchFilters'> </app-search>
+
+		<a class ='entry-option-delete entry-option-small center' [class.hide] ='esdl.length < 2' (click) ='deleteManyEntry()'> Delete Many </a>
+
+</div>
+
+<div @fadeAnimation class ='entries' *ngIf ='$entriesLength > 0'>
+
+<table *ngIf ='!isLoading'>
+
+	<caption class ='bold left'> Entries </caption>
+
+	<colgroup>
+
+		<col class =''>
+		<col class =''>
+		<col class =''>
+		<col class =''>
+		<col class =''>
+		<col class =''>		
+		<col class =''>
+		<col class =''>
+
+	</colgroup>
+
+	<thead>
+
+		<tr>
+			<th class ='bold center'> Index </th>
+			<th class ='bold center'> Req. Unique ID </th>
+			<th class ='bold center'> Full Name </th>
+			<th class ='bold center'> Updated On </th>
+			<th class ='bold center'> Other Number </th>
+			<th class ='bold center'> Status </th>
+			<th class ='bold left changes-head'> Changes </th>
+		</tr>
+
+	</thead>
+
+	<tbody [@listAnimation] ='entries.length'>
+
+		<tr *ngFor ='let entry of entries , let i = index , trackBy : trackByAppNumber'>
+
+			<td class ='center'> {{i + 1}}. </td>
+
+			<ng-template #nilValue>
+
+				<td class ='center'> N/A </td>
+
+			</ng-template>
+			
+			<td class ='center bold app-number' *ngIf ='entry?.application_number; else nilValue'> {{entry?.application_number}} </td>
+
+			<td class ='center' *ngIf ='entry?.author?.full_name; else nilValue'> {{entry?.author?.full_name}} </td>
+
+			<td class ='center' *ngIf ='entry?.updated_on; else nilValue'> {{entry?.updated_on | date : 'longDate'}} </td>
+
+			<td class ='center' *ngIf ='entry?.num; else nilValue'> {{entry?.num}} </td>
+
+<td class ='center' *ngIf ='entry?.status; else nilValue' [ngClass] ="{'rejected' : entry?.status == 'Rejected' , 'fulfilled' : entry?.status == 'Fulfilled' , 'update' : entry?.status == 
+
+'Update'}"> {{entry?.status}} </td>
+
+			<td class =''>
+
+				<a class ='center changes-option changes-option-full' [routerLink] ="['../' , 'entry' , entry?.slug , 'detail']"> View </a>
+
+				<label *ngIf ='canUpdateEntry' class='changes-mark'>
+
+					<ng-container *ngIf ='esdl.length; else normalChecks' >
+
+					<ng-container *ngFor ='let $ed of esdl'>
+
+						<input [checked] ='$ed == entry?.num' type ='checkbox' #checked (click) ='addEntryToDeleteList(entry?.num , checked.checked , i)'>
+
+				  	<span class='checkmark'> </span>
+
+					</ng-container>
+
+				</ng-container>
+
+				<ng-template #normalChecks>
+
+				  <input type ='checkbox' #checked  (click) ='addEntryToDeleteList(entry?.num , checked.checked , i)'>
+
+				  <span class ='checkmark'> </span>
+
+				 </ng-template>
+
+				</label>
+			
+			</td>
+
+		</tr>
+
+		</tbody>
+
+		<tfoot>
+
+			<tr>
+				<td></td>
+			</tr>
+
+			<tr>
+				<td></td>
+			</tr>
+
+			<tr>
+
+			</tr>
+
+		</tfoot>
+
+	</table>
+
+</div>
+
+<app-pagination *ngIf ='pageNumber' [entries-length] ='$entriesLength' [entry-ref] ='$entryRef' [page-number] ='pageNumber' [is-loading] ='!isLoading' > </app-pagination>
+
+<app-resource-unavailable *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
+
+</div>
+
+<app-loading-menu [is-loading] ='isLoading'> </app-loading-menu>

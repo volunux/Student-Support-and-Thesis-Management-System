@@ -4,10 +4,10 @@ import { LevelRoutingModule } from './level-routing.module';
 import { InternalOneModule } from '../../internal-one.module';
 
 @NgModule({
+
   declarations: [
 
-
-],
+  ],
 
   imports: [
     CommonModule,

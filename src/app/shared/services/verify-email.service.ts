@@ -28,7 +28,7 @@ export function emailAddressVerification(authenticationService , http , httpHead
 
           take(1) ,
 
-          delay(3000) ,
+          delay(2000) ,
 
           switchMap((emailAddress) => { lastEmailAddress = emailAddress;
 

@@ -8,7 +8,7 @@ import { ActivatedRoute , Router } from '@angular/router';
 
   'templateUrl' : './pagination.component.html',
 
-  'styleUrls' : ['./pagination.component.css']
+  'styleUrls' : ['./pagination.component.css'] ,
 
 })
 
@@ -27,6 +27,8 @@ export class PaginationComponent implements OnInit {
   @Input('page-number') public pageNumber : number;
 
   @Input('entry-ref') public $entryRef : string;
+
+  @Input('is-loading') public isLoading : boolean = false;
 
   public homePage(num) : void {
 

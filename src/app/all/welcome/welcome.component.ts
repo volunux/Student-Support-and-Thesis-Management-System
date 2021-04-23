@@ -20,7 +20,7 @@ export class WelcomeComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  ngOnInit() : void {
   
   }
 

@@ -41,7 +41,7 @@ export class DataService {
 
       .pipe(
 
-            delay(3000) ,
+            delay(2000) ,
 
               catchError(this.handleError<AuthResponse>(`${this.$systemType} Entry` , null))
           )
@@ -87,7 +87,7 @@ export class DataService {
     return this.http.get<General>(link)
 
       .pipe(
-            delay(3000) ,
+            delay(2000) ,
 
               catchError(this.handleError<General>(`${this.$systemType} Entry` , null))
             )

@@ -1,9 +1,10 @@
 import { Component , Input , OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute , Router } from '@angular/router';
 import { GeneralRequestService } from '../general-request.service';
 import { ErrorMessagesService } from '../../../shared/services/error-messages.service';
 import { General } from '../general';
 import { listAnimation } from '../../../animations';
+import { LoadingBarService } from '../../../general/loading-bar.service';
 
 @Component({
 
@@ -21,7 +22,7 @@ import { listAnimation } from '../../../animations';
 
 export class GeneralRequestDashboardComponent implements OnInit {
 
-  constructor(private route : ActivatedRoute , private grs : GeneralRequestService , public ems : ErrorMessagesService) { 
+  constructor(private route : ActivatedRoute , private grs : GeneralRequestService , public ems : ErrorMessagesService , private router : Router , private lbs : LoadingBarService) { 
 
   }
 
@@ -68,4 +69,10 @@ export class GeneralRequestDashboardComponent implements OnInit {
          this.isLoading = false;
 
          this.entries = result; } }); }
+
+  public loadLink(link) : void {
+
+    this.lbs.loadLink(link);
+  }
+
 }

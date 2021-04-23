@@ -132,6 +132,8 @@ export class InternalThreeEntriesComponent implements OnInit {
 
     this.gss.searchCleared.next(true);
 
+    this.isLoading = true;
+
     this.getAllEntry({}); }
 
 

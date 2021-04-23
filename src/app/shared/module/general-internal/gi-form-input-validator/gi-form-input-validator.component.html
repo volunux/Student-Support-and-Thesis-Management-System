@@ -16,6 +16,23 @@
 </ng-container>
 
 
+<ng-container *ngIf ='title'>
+
+	<div @fadeAnimation *ngIf ='title.invalid && (title.touched || title.dirty)' class ='validation-error'>
+
+		<ul>
+
+			<li *ngIf ='title.errors?.required'> Title of {{systemType}} should be provided and cannot be empty </li>			
+			<li *ngIf ='title.errors?.required || title.errors?.minlength'> Title of {{systemType}} cannot be less than 3 characters in length </li>
+			<li *ngIf ='title.errors?.required || title.errors?.maxlength'> Title of {{systemType}} cannot be greater than 150 characters in length </li>
+
+		</ul>
+
+	</div>
+
+</ng-container>
+
+
 <ng-container *ngIf ='status'>
 
 	<div @fadeAnimation *ngIf ='status.invalid && (status.touched || status.dirty)' class ='validation-error'>

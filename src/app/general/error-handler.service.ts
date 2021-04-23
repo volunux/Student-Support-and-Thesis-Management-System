@@ -1,8 +1,8 @@
 import { Injectable , ErrorHandler } from '@angular/core';
-
+import { Router , Event , NavigationError } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-
-import { throwError , Observable } from 'rxjs';
+import { throwError , Observable , Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Injectable({
 
@@ -12,41 +12,24 @@ import { throwError , Observable } from 'rxjs';
 
 export class ErrorHandlerService implements ErrorHandler {
 
-  constructor() { 
+  private subscription: Subscription;
+
+  constructor(private router : Router) { 
+
+    this.subscription = router
+          .events  
+          .pipe(filter(event => event instanceof NavigationError))
+          .subscribe((event) => { this.handleError(event as NavigationError); });
 
   }
 
-  handleError(error : any) : void {
+  public handleError(event : NavigationError) : void {
 
-    console.log('Here I am');
+    if (event.error != null && event.error.name != null && event.error.name === 'ChunkLoadError') { window.location.href = `${window.location.origin}${event.url}`; } 
   }
 
-/*  public handleError<T>(operation = 'operation' , result? : T) {
-
-    console.log('Hey Hey Hey');
-
-  return (error : HttpErrorResponse) : Observable<T> => { let errArr = [];
-
-    console.log('Hello Hello Hello');
-
-    if (error) {
-
-      if (error.error.message) { let compiledError = Object.assign({'resource' : operation } , errArr); 
-
-              return throwError(compiledError);}
-
-      else if (error.error && !error.error.message) {
-
-       for (let prop in error.error) { errArr.push(error.error[prop]); }  
-
-          let compiledError = Object.assign({'resource' : operation } , {'errors' : errArr} , error);  
-
-              return throwError(compiledError);	}
-
-      else { let compiledError = Object.assign({'resource' : operation } , error); 
-
-              return throwError(compiledError);	}
-  		}  }
-  }*/
-
+  ngOnDestroy() {
+    
+    this.subscription.unsubscribe();
+  }
 }

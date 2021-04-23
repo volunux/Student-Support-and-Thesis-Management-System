@@ -9,6 +9,7 @@ import { RefundEntryCreateService } from '../refund-entry-create.service';
 import { RequestEntryCreateService } from '../../../../shared/component/request-entry-create/request-entry-create.service';
 import { RequestEntryCreateFormService } from '../../../../shared/component/request-entry-create/request-entry-create-form.service';
 import { ErrorMessagesService } from '../../../../shared/services/error-messages.service';
+import { NotificationService } from '../../../../shared/services/notification.service';
 
 @Component({
 
@@ -18,13 +19,13 @@ import { ErrorMessagesService } from '../../../../shared/services/error-messages
 
   'styleUrls' : ['./refund-entry-create.component.css'] ,
 
-  'providers' : [ErrorMessagesService]
+  'providers' : [ErrorMessagesService , NotificationService]
 
 })
 
 export class RefundEntryCreateComponent implements OnInit {
 
-  constructor(private route : ActivatedRoute , private router : Router , private rfecs : RefundEntryCreateService ,
+  constructor(private route : ActivatedRoute , private router : Router , private rfecs : RefundEntryCreateService , private ns : NotificationService ,
 
   						private recfs : RequestEntryCreateFormService , private recs : RequestEntryCreateService , private ems : ErrorMessagesService) {
 
@@ -115,15 +116,25 @@ export class RefundEntryCreateComponent implements OnInit {
 
       .subscribe((result : Refund) => {
 
-       if (result == null) { this.recs.isEntryCreated.next(false); }
+       if (result == null) { 
 
-       else if (result != null && result.created == true) { 
+         this.ns.setNotificationStatus(true);
+
+         this.ns.addNotification(`Operation is unsuccessful and ${this.systemType} Entry is not created.`); 
+
+         this.recs.isEntryCreated.next(false); }
+
+       else if (result != null && result.created == true) {
+
+         this.ns.setNotificationStatus(true);
+
+         this.ns.addNotification(`Operation is successful and ${this.systemType} Entry is created.`);
 
          this.isLoading = true;
 
          this.recs.isEntryCreated.next(true);
 
-       	this.entryChanges(result); } });
+         this.entryChanges(result); } });
   }
 
   public entryChanges(data) : void {
@@ -137,5 +148,19 @@ export class RefundEntryCreateComponent implements OnInit {
       , 5000);
   }
 
+  get notificationAvailable() : boolean {
+
+    return this.ns.notificationStatus();
+  }
+
+  get notificationMessage() : string {
+
+    return this.ns.getNotificationMessage();
+  }
+
+   public removeNotification() : void {
+
+     this.ns.removeNotification();
+   }
 
 }

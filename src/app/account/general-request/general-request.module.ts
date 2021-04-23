@@ -52,7 +52,7 @@ import { GeneralRequestFormService } from './gr-form.service';
   GeneralRequestEntryGeneratePasswordComponent,
   GeneralRequestEntryGenerateUsernamePasswordComponent,
   GeneralRequestEntryCredentialValidatorComponent,
-  GeneralRequestEntryTransferValidatorComponent
+  GeneralRequestEntryTransferValidatorComponent,
 
   ],
 

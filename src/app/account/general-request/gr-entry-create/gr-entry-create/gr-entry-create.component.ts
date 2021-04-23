@@ -1,7 +1,6 @@
 import { Component , OnInit } from '@angular/core';
 import { ActivatedRoute , ParamMap , Router } from '@angular/router';
 import { FormGroup , FormControl } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
 import { switchMap } from 'rxjs/operators';
 
 import { inputFileControl , uploadConfigUrl } from './gr-entry-create-file-control.';
@@ -13,6 +12,7 @@ import { GeneralRequestEntryCreateFormService } from '../gr-entry-create-form.se
 import { RequestEntryCreateFormService } from '../../../../shared/component/request-entry-create/request-entry-create-form.service';
 import { RequestEntryCreateService } from '../../../../shared/component/request-entry-create/request-entry-create.service';
 import { ErrorMessagesService } from '../../../../shared/services/error-messages.service';
+import { NotificationService } from '../../../../shared/services/notification.service';
 
 @Component({
 
@@ -22,15 +22,15 @@ import { ErrorMessagesService } from '../../../../shared/services/error-messages
 
   'styleUrls' : ['./gr-entry-create.component.css'] ,
 
-  'providers' : [ErrorMessagesService]
+  'providers' : [ErrorMessagesService , NotificationService]
 
 })
 
 export class GeneralRequestEntryCreateComponent implements OnInit {
 
-  constructor(private route : ActivatedRoute , private ts : Title , private router : Router , private grs : GeneralRequestEntryCreateService , private grfs : GeneralRequestEntryCreateFormService ,
+  constructor(private route : ActivatedRoute , private router : Router , private grs : GeneralRequestEntryCreateService , private grfs : GeneralRequestEntryCreateFormService ,
 
-  						private recfs : RequestEntryCreateFormService , private recs : RequestEntryCreateService , private ems : ErrorMessagesService) {
+  						private recfs : RequestEntryCreateFormService , private recs : RequestEntryCreateService , private ems : ErrorMessagesService , private ns : NotificationService) {
 
   }
 
@@ -115,8 +115,6 @@ export class GeneralRequestEntryCreateComponent implements OnInit {
 
         let data = result.$data;
 
-        this.ts.setTitle(data.title);
-
         this.title = data.title;
 
         this.entryCreateForm = this.recfs.entryCreateForm(); 
@@ -142,15 +140,25 @@ export class GeneralRequestEntryCreateComponent implements OnInit {
 
     this.isError = false;
 
-    this.grs.addEntry$(this.rslug ,body)
+    this.grs.addEntry$(this.rslug , body)
 
       .subscribe((result : GeneralRequest) => {
 
-       if (result == null) { this.recs.isEntryCreated.next(false); }
+       if (result == null) { 
+
+          this.ns.setNotificationStatus(true);
+
+          this.ns.addNotification(`Operation is unsuccessful and ${this.systemType} is not added.`); 
+
+         this.recs.isEntryCreated.next(false); }
 
        else if (result != null && result.created == true) {
 
         this.isLoading = true;
+
+          this.ns.setNotificationStatus(true);
+
+          this.ns.addNotification(`Operation is successful and ${this.systemType} is added.`);
 
         this.recs.isEntryCreated.next(true);
 
@@ -166,6 +174,22 @@ export class GeneralRequestEntryCreateComponent implements OnInit {
        ['general-request' , 't' , this.rslug ] : ['general-request' , 't' , this.rslug , 'entries' ] ); } 
 
       , 5000);
+  }
+
+
+  get notificationAvailable() : boolean {
+
+    return this.ns.notificationStatus();
+  }
+
+  get notificationMessage() : string {
+
+    return this.ns.getNotificationMessage();
+  }
+
+  public removeNotification() : void {
+
+    this.ns.removeNotification();
   }
 
 

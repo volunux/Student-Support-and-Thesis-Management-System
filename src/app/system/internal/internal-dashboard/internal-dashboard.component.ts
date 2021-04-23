@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { fadeAnimation } from '../../../animations';
+import { Router } from '@angular/router';
+import { LoadingBarService } from '../../../general/loading-bar.service';
 
 @Component({
 
@@ -15,7 +17,7 @@ import { fadeAnimation } from '../../../animations';
 
 export class InternalDashboardComponent implements OnInit {
 
-  constructor() { 
+  constructor(private router : Router , private lbs : LoadingBarService) { 
 
   }
 
@@ -24,7 +26,6 @@ export class InternalDashboardComponent implements OnInit {
   }
 
   public title : string = 'Internal Dashboard';
-
 
   public entries : { [key : string] : string } = {
 
@@ -56,7 +57,11 @@ export class InternalDashboardComponent implements OnInit {
 
   'general-request-comment' : 'General Request Comment' ,
 
+  'account-change-request-comment' : 'Account Change Request Comment' ,
+
   'request-credential' : 'Request Credential' ,
+
+  'request-password' : 'Request Password' ,
 
   'reply' : 'Reply' ,
 
@@ -74,6 +79,19 @@ export class InternalDashboardComponent implements OnInit {
 
   'user-status' : 'User Status' ,
 
+  'account-change-message-template' : 'Account Change Message Template' ,
+
+  'account-change-message-template-type' : 'Account Change Message Template Type' ,
+
+  'request-change-message-template' : 'Request Change Message Template' ,
+
+  'request-change-message-template-type' : 'Request Change Message Template Type'
+
 	};
+
+  public loadLink(link) : void {
+
+    this.lbs.loadLink(link);
+  }
 
 }

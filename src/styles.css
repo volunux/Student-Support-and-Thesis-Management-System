@@ -93,6 +93,11 @@ hr {
 	border : 0.5px solid #512d67;
 }
 
+a:hover {
+
+	cursor : pointer;
+}
+
 /** General Styles and Styling **/
 
 #container-sris {
@@ -275,13 +280,6 @@ hr {
 
 /** Table Styles and Styling**/
 
-.entries {
-
-	width : 1290px;
-	overflow : auto;
-	margin : 15px auto;
-}
-
 tr:hover {
 
 	background-color : #f7f7f7;
@@ -292,67 +290,14 @@ td , th {
 	padding : 5px;
 }
 
-.index {
-
-	width : 60px;
-}
-
-.index-2 {
-
-	width : 90px;
-}
-
 .app-number , .secondary-key {
 
 	width : 270px;
 }
 
-.name-internal {
+.changes-head {
 
-	width : 300px;
-}
-
-.full-name , .short-code {
-
-	width : 220px;
-}
-
-.short-full-name {
-
-	width : 190px;
-}
-
-.date {
-
-	width : 140px;
-}
-
-.level {
-
-	width : 90px;
-}
-
-.stdid {
-
-	width : 150px;
-}
-
-.stage {
-
-	width : 180px;
-	overflow : hidden;
-	white-space: nowrap;
-	text-overflow : ellipsis;
-}
-
-.status {
-
-	width : 110px;
-}
-
-.changes {
-
-	width : 240px;
+	padding-left : 80px;
 }
 
 .changes-option-full {
@@ -505,35 +450,6 @@ td , th {
     border-radius: 4px;	
 }
 
-
-
-.rolling {
-
-  display : inline-block;
-  animation-name: rotated;
-  animation-duration: 0.8s;
-  animation-direction: all;
-  animation-iteration-count: infinite;
-}
-
-.rolling:hover {
-
-  transform : rotate(360deg);
-}
-
-@keyframes rotated {
-
-0%  {
-
-transform : rotate(0deg);
-}
-
-100% {
-
-transform : rotate(360deg);
-}
-}
-
 /** Layout Styles and Styling **/
 
 
@@ -596,7 +512,7 @@ label.form-label-file , label.form-label-file {
 }
 
 
-.btn-submit , .entry-option {
+.btn-submit , .entry-option , .entry-option-delete {
 
 	display : block;
 	width : 100%;
@@ -613,6 +529,18 @@ label.form-label-file , label.form-label-file {
 	height : 40px;
 	line-height : 40px;
 	border-radius : 8px;
+}
+
+.entry-option-delete {
+
+	height : 30px;
+	line-height : 30px;
+	border-radius : 8px;
+}
+
+.entry-option-delete:hover {
+
+	color : white;
 }
 
 .btn-submit:hover , .entry-option:hover , .small-menu-item {
@@ -633,93 +561,7 @@ label.form-label-file , label.form-label-file {
 
 /** Form Styles and Styling **/
 
-/** Search & Pagination Styles and Styling **/
 
-button.btn-search {
-
-	display : block;
-	width : 70%;
-	margin : 15px auto 0px;
-	padding : 0% 2.9340879234504911474798498165083%;
-	background-color : #290140;
-	color : #a0a7a0;
-	border : 2px solid #ac4bd8;
-	border-radius : 6px;
-}
-
-button.btn-search:hover {
-
-	color : #fff;
-	background-color : #210140;
-}
-
-.search-bar button:focus , .search-bar input:focus {
-
-		border : 2px double #0e0023;
-		outline : none !important;
-}
-
-.search-bar input , .search-bar select {
-
-	width : 50%;
-	display : block;
-	padding : 5px 10px;
-	border : 2px solid #3d0398;
-	border-radius : 5px;
-	height : 30px;
-	margin: 10px auto;
-}
-
-.search-bar select {
-
-	width : 40%;
-}
-
-.search-bar h4 {
-
-	text-align : center;
-	font-size : 13px;
-}
-
-.pagination {
-
-	border : 2px solid #ac4bd8;
-	border-radius : 10px;
-	background-color : #290140;
-	color : #a0a7a0;
-	width : 100px;
-	padding : 2px 0px;
-	display : block;
-	margin : 0px auto;
-}
-
-.pagination-end {
-
-	border : 2px solid #ac4bd8;
-	border-radius : 10px;
-	background-color : #171417;
-	color : white;
-	width : 100px;
-	padding : 2px 0px;
-	display : block;
-	margin : 0px auto;
-}
-
-.next {
-
-	float : right;
-}
-
-.prev {
-
-	float : left;
-}
-
-a.prev:hover , a.next:hover {
-
-	color : #fff;
-	background-color : #210140;
-}
 
 tfoot {
 
@@ -945,4 +787,68 @@ td.signature img {
 .fr-box {
 
 	margin-bottom : 40px;
+}
+
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 12px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f3f3f3;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  left: 2px;
+  bottom: -1px;
+  background-color: #901b9e;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }

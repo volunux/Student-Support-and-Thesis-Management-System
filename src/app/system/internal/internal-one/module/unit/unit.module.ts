@@ -6,8 +6,7 @@ import { InternalOneModule } from '../../internal-one.module';
 @NgModule({
   declarations: [
 
-
-],
+  ],
 
   imports: [
     CommonModule,

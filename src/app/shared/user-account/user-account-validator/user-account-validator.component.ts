@@ -34,27 +34,6 @@ export class UserAccountValidatorComponent implements OnInit {
 
   @Input('email-address') public email_address : FormControl;
 
-  @Input() public about : FormControl;
-
-  @Input() public faculty : FormControl;
-
-  @Input() public department : FormControl;
-
-  @Input() public level : FormControl;
-
-  @Input() public unit : FormControl;
-
-  @Input() public country : FormControl;
-
-  @Input() public role : FormControl;
-
-  @Input() public status : FormControl;
-
-  @Input('matriculation-number') public matriculation_number : FormControl;
-
-  @Input('identity-number') public identity_number : FormControl;
-
-  @Input('jamb-registration-number') public jamb_registration_number : FormControl;
 
   @Input() public password : FormControl;
 

@@ -20,5 +20,4 @@ export class RequestEntryCreateFormService {
   	return form;
   }
 
-
 }

@@ -8,7 +8,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 import { RefundLetterEntryCreateComponent } from './refund-letter-entry-create/refund-letter-entry-create.component';
 import { RefundLetterHomepageComponent } from './refund-letter-homepage/refund-letter-homepage.component';
-import { FroalaInitializerDirective } from './froala-initializer.directive';
+
 
 import { RefundLetterFormService } from './refund-letter-form.service';
 import { RefundLetterService } from './refund-letter.service';
@@ -20,7 +20,6 @@ import { RefundLetterValidatorComponent } from './refund-letter-validator/refund
 
   RefundLetterEntryCreateComponent ,
   RefundLetterHomepageComponent,
-  FroalaInitializerDirective,
   RefundLetterEntryDetailComponent,
   RefundLetterValidatorComponent,
 

@@ -31,7 +31,7 @@ export class GeneralRequestService {
       .pipe(
             tap((value : General[]) => console.log(value)) ,
 
-            delay(3000) ,
+            delay(2000) ,
 
             catchError(this.handleError<General[]>(`Request Type Entries` , null))
         )
@@ -47,7 +47,7 @@ export class GeneralRequestService {
       .pipe(
             tap((value : General) => console.log(value)) ,
 
-            delay(3000) ,
+            delay(2000) ,
 
             catchError(this.handleError<General>(`Request Type Entry` , null))
         )
@@ -65,7 +65,7 @@ export class GeneralRequestService {
       .pipe(
               tap((value : GeneralRequest[]) => console.log(value)) ,
 
-              delay(3000) ,
+              delay(2000) ,
 
               catchError(this.handleError<GeneralRequest[]>(`${this.$systemType} Entries` , null))
         )
@@ -82,7 +82,7 @@ export class GeneralRequestService {
 
           tap((entry : GeneralRequest) => console.log(entry)) ,
 
-          delay(3000) ,
+          delay(2000) ,
 
           catchError(this.handleError<GeneralRequest>(`${this.$systemType} Entry` , null))
         )
@@ -98,7 +98,7 @@ export class GeneralRequestService {
 
         tap((entry : GeneralRequest) => console.log(entry)) ,
 
-        delay(3000) ,
+        delay(2000) ,
 
         map((entry : GeneralRequest) => { return {'permitted' : true , '$data' : entry }; }) ,
 
@@ -134,7 +134,7 @@ export class GeneralRequestService {
 
         tap((value) => {console.log(value)}),
 
-        delay(3000) ,
+        delay(2000) ,
 
         map((entry : General) => { return {'permitted' : true , '$data' : entry }; }) ,
 
@@ -170,7 +170,7 @@ export class GeneralRequestService {
 
             tap((value : GeneralRequest[]) => console.log(value)) ,
 
-            delay(3000) ,
+            delay(2000) ,
 
             catchError(this.handleError<GeneralRequest>(`${this.$systemType} Entry Timeline` , null))
         )
@@ -199,7 +199,7 @@ export class GeneralRequestService {
 
       .pipe(
 
-        delay(5000) ,
+        delay(2000) ,
 
         map((entry : GeneralRequest) => { return { 'onReview' : true , '$data' : entry }; }) ,
 
@@ -216,7 +216,7 @@ export class GeneralRequestService {
 
       .pipe(
 
-        delay(3000) ,
+        delay(2000) ,
 
         catchError(this.handleError<General[]>(`${this.$systemType} Entry` , null))
 
@@ -236,7 +236,7 @@ export class GeneralRequestService {
 
         map((entry : General) => { return {'permitted' : true , '$data' : entry }; }) ,
 
-        delay(3000) ,
+        delay(2000) ,
 
         catchError(this.handleError<General>(`${this.$systemType} Entry` , null))
 
@@ -260,7 +260,7 @@ export class GeneralRequestService {
         );
   }
 
-  public deleteManyEntry$(rtype : string , arrayIdx : number[]) : Observable<any> {
+  public $deleteManyEntry(rtype : string , arrayIdx : number[]) : Observable<any> {
 
     let link : string = `${this.apiConfig.host}/${this.$sa}/t/${this.rtype}/delete/entry/many`;
 
@@ -285,7 +285,7 @@ export class GeneralRequestService {
 
       .pipe(
 
-        delay(3000) ,
+        delay(2000) ,
 
         catchError(this.handleError<GeneralRequest[]>(`${this.$systemType} Entry or Entries Delete` , null))
 
@@ -294,7 +294,7 @@ export class GeneralRequestService {
 
   public deleteAllEntry$(rtype : string) : Observable<General> {
 
-    let link : string = `${this.apiConfig.host}/${this.$sa}/t/$rtype/delete/entry/all/`;
+    let link : string = `${this.apiConfig.host}/${this.$sa}/t/${rtype}/delete/entry/all/`;
 
     return this.http.delete(link)
 
@@ -309,11 +309,9 @@ export class GeneralRequestService {
 
   private handleError<T>(operation = 'operation' , result? : T) {
 
-      return (error : any) : Observable<T> => { this.ems.message = error;
+     return (error : any) : Observable<T> => { this.ems.message = error;
 
-        console.log(error);
-
-                return of(result as T);
+       return of(result as T);
 
       }
   }

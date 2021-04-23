@@ -12,7 +12,7 @@ import { ErrorMessagesService } from '../../../shared/services/error-messages.se
 import { NotificationService } from '../../../shared/services/notification.service';
 import { AuthenticationService } from '../../../authentication/authentication.service';
 import { canUpdate } from '../roles';
-import { listAnimation } from '../../../animations';
+import { listAnimation , fadeAnimation } from '../../../animations';
 
 @Component({
 
@@ -24,7 +24,7 @@ import { listAnimation } from '../../../animations';
 
   'providers' : [NotificationService , ErrorMessagesService , GeneralSearchService] ,
 
-  'animations' : [listAnimation] ,
+  'animations' : [listAnimation , fadeAnimation] ,
 
 })
 
@@ -132,6 +132,8 @@ export class RefundEntriesComponent implements OnInit {
     this.location.replaceState(`/${this.link}/entries`);
 
     this.gss.searchCleared.next(true);
+
+    this.isLoading = true;
 
     this.getAllEntry({}); }
 

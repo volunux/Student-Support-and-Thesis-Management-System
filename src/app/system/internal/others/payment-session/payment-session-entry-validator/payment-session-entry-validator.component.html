@@ -1,0 +1,32 @@
+<ng-container *ngIf ='amount'>
+
+<div @fadeAnimation *ngIf ='amount.invalid && (amount.touched || amount.dirty)' class ='validation-error'>
+
+	<ul>
+
+		<li *ngIf ='amount.errors?.required'> Amount of {{systemType}} should be provided and cannot be empty </li>
+		<li *ngIf ='amount.errors?.required || amount.errors?.minlength'> Amount of {{systemType}} cannot be less than 1 characters in length </li>
+		<li *ngIf ='amount.errors?.required || amount.errors?.maxLength'> Amount of {{systemType}} cannot be greater than 90000000 characters in length </li>
+
+	</ul>
+
+</div>
+
+	</ng-container>
+
+
+<ng-container *ngIf ='entry_type'>
+
+<div @fadeAnimation *ngIf ='entry_type.invalid && (entry_type.touched || entry_type.dirty)' class ='validation-error'>
+
+	<ul>
+
+			<li *ngIf ='entry_type.errors?.required'> Entry Type of {{systemType}} should be provided and cannot be empty </li>
+			<li *ngIf ='entry_type.errors?.max'> Entry Type of {{systemType}} cannot be greater than specified length </li>
+			<li *ngIf ='entry_type.errors?.EntryType'> Entry Type of {{systemType}} should be available from existing record before it can be considered valid </li>
+
+	</ul>
+
+</div>
+
+</ng-container>

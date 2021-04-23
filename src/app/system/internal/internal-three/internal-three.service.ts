@@ -31,7 +31,7 @@ export class InternalThreeService {
       .pipe(
               tap((value : InternalThree[]) => console.log(value)) ,
 
-              delay(3000) ,
+              delay(2000) ,
 
               catchError(this.handleError<InternalThree[]>(`${this.$systemType} Entries` , null))
         )
@@ -48,7 +48,7 @@ export class InternalThreeService {
 
           tap((entry : InternalThree) => console.log(entry)) ,
 
-          delay(3000) ,
+          delay(2000) ,
 
           catchError(this.handleError<InternalThree>(`${this.$systemType} Entry` , null))
         )
@@ -64,7 +64,7 @@ export class InternalThreeService {
 
           tap((entry : General) => console.log(entry)) ,
 
-          delay(3000) ,
+          delay(2000) ,
 
           map((data : General) => { return { 'permitted' : true , '$data' : data }; }) ,
 
@@ -96,7 +96,7 @@ export class InternalThreeService {
 
       .pipe(
 
-        delay(3000) ,
+        delay(2000) ,
 
          map((entry : General) => { return { 'permitted' : true , '$data' : entry }; }) ,
 
@@ -128,7 +128,7 @@ export class InternalThreeService {
 
       .pipe(
 
-        delay(3000) ,
+        delay(2000) ,
 
          map((entry : General) => { return { 'permitted' : true , '$data' : entry }; }) ,
 
@@ -177,7 +177,7 @@ export class InternalThreeService {
 
       .pipe(
 
-        delay(3000) ,
+        delay(2000) ,
 
         catchError(this.handleError<InternalThree[]>(`${this.$systemType} Entry or Entries Delete` , null))
 

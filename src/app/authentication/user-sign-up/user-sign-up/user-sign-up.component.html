@@ -8,7 +8,7 @@
 
 <app-resource-unavailable id ='error' *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
 
-	<div *ngIf ='generalOthers' id ='entry-detail'>
+	<div @fadeAnimation *ngIf ='generalOthers' id ='entry-detail'>
 
 		<form *ngIf ='!isLoading' [formGroup] ='entryForm' method ='post' (ngSubmit) ='addEntry(entryForm.value)'>
 

@@ -31,7 +31,7 @@ export class GeneralPaymentService {
 
             tap((value : General[]) => console.log(value)) ,
 
-            delay(3000) ,
+            delay(2000) ,
 
             catchError(this.handleError<General[]>(`Payment Type Entries` , null))
         )
@@ -47,7 +47,7 @@ export class GeneralPaymentService {
       .pipe(
             tap((value : General) => console.log(value)) ,
 
-            delay(3000) ,
+            delay(2000) ,
 
             catchError(this.handleError<General>(`Payment Type Entry` , null))
         )
@@ -65,7 +65,7 @@ export class GeneralPaymentService {
       .pipe(
             tap((value : GeneralPayment[]) => console.log(value)) ,
 
-            delay(3000) ,
+            delay(2000) ,
 
             catchError(this.handleError<GeneralPayment[]>(`${this.$systemType} Entries` , null))
         )
@@ -82,7 +82,7 @@ export class GeneralPaymentService {
 
             tap((entry : GeneralPayment) => console.log(entry)) ,
 
-            delay(3000) ,
+            delay(2000) ,
 
             catchError(this.handleError<GeneralPayment>(`${this.$systemType} Entry` , null))
         )
@@ -98,7 +98,7 @@ export class GeneralPaymentService {
 
             tap((entry : GeneralPayment) => console.log(entry)) ,
 
-            delay(3000) ,
+            delay(2000) ,
 
             catchError(this.handleError<GeneralPayment>(`${this.$systemType} Entry` , null))
         )
@@ -114,7 +114,7 @@ export class GeneralPaymentService {
 
             tap((entry : GeneralPayment) => console.log(entry)) ,
 
-            delay(3000) ,
+            delay(2000) ,
 
             catchError(this.handleError<GeneralPayment>(`${this.$systemType} Entry` , null))
         )
@@ -131,7 +131,7 @@ export class GeneralPaymentService {
 
           tap((entry : General) => console.log(entry)) ,
 
-          delay(3000) ,
+          delay(2000) ,
 
           map((entry : General) => { return { 'permitted' : true , '$data' : entry }; }) ,
 
@@ -165,7 +165,7 @@ export class GeneralPaymentService {
 
           tap((entry : General) => console.log(entry)) ,
 
-          delay(3000) ,
+          delay(2000) ,
 
           map((entry : General) => { return { 'permitted' : true , '$data' : entry }; }) ,
 
@@ -238,7 +238,7 @@ export class GeneralPaymentService {
           );
   }
 
-  public deleteManyEntry$(ptype : string , arrayIdx : number[]) : Observable<any> {
+  public $deleteManyEntry(ptype : string , arrayIdx : number[]) : Observable<any> {
 
     let link : string = `${this.apiConfig.host}/${this.$sa}/t/${this.ptype}/delete/entry/many`;
 
@@ -263,7 +263,7 @@ export class GeneralPaymentService {
 
       .pipe(
 
-        delay(3000) ,
+        delay(2000) ,
 
         catchError(this.handleError<GeneralPayment[]>(`${this.$systemType} Entry or Entries Delete` , null))
 
@@ -287,9 +287,9 @@ export class GeneralPaymentService {
 
   private handleError<T>(operation = 'operation' , result? : T) {
 
-      return (error : HttpErrorResponse) : Observable<T> => { this.ems.message = error;
+    return (error : HttpErrorResponse) : Observable<T> => { this.ems.message = error;
 
-                return of(result as T);
+      return of(result as T);
 
       }
   }

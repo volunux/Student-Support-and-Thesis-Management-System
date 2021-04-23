@@ -2,7 +2,6 @@ export class ReplyOther {
 
 	constructor() {
 
-
 	}
 
 }

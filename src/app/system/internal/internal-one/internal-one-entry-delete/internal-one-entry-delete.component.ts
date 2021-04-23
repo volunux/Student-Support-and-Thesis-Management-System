@@ -11,6 +11,7 @@ import { InternalOneFormService } from '../internal-one-form.service';
 
 import { GeneralInternalFormService } from '../../../../shared/module/general-internal/gi-form.service';
 import { GeneralInternalEntryChangeService } from '../../../../shared/module/general-internal/gi-entry-change.service';
+import { NotificationService } from '../../../../shared/services/notification.service';
 import { ErrorMessagesService } from '../../../../shared/services/error-messages.service';
 import { fadeAnimation } from '../../../../animations';
 
@@ -22,7 +23,7 @@ import { fadeAnimation } from '../../../../animations';
 
   'styleUrls' : ['./internal-one-entry-delete.component.css'] ,
 
-  'providers' : [ErrorMessagesService] ,
+  'providers' : [ErrorMessagesService , NotificationService] ,
 
   'animations' : [fadeAnimation]
 
@@ -32,7 +33,7 @@ export class InternalOneEntryDeleteComponent implements OnInit {
 
   constructor(private route : ActivatedRoute , private router : Router , private ios : InternalOneService , private iofs : InternalOneFormService ,
 
-  						private gifs : GeneralInternalFormService , private giecs : GeneralInternalEntryChangeService , private ems : ErrorMessagesService) {
+  						private gifs : GeneralInternalFormService , private giecs : GeneralInternalEntryChangeService , private ems : ErrorMessagesService , private ns : NotificationService) {
 
   }
 
@@ -150,11 +151,19 @@ export class InternalOneEntryDeleteComponent implements OnInit {
 
       .subscribe((result : InternalOne) => {
 
-       if (result == null) { 
+       if (result == null) {
+
+         this.ns.setNotificationStatus(true);
+
+         this.ns.addNotification(`Operation is unsuccessful and ${this.systemType} is not deleted.`); 
 
          this.giecs.isEntryChanged.next(false); }
 
        else if (result != null && result.deleted == true) {
+
+         this.ns.setNotificationStatus(true);
+
+         this.ns.addNotification(`Operation is successful and ${this.systemType} is deleted.`); 
 
          this.isLoading = true;
 
@@ -177,6 +186,21 @@ export class InternalOneEntryDeleteComponent implements OnInit {
   get abbreviation() : FormControl {
 
     return this.entryForm.get('abbreviation') as FormControl;
+  }
+
+  get notificationAvailable() : boolean {
+
+    return this.ns.notificationStatus();
+  }
+
+  get notificationMessage() : string {
+
+    return this.ns.getNotificationMessage();
+  }
+
+  public removeNotification() : void {
+
+    this.ns.removeNotification();
   }
 
 

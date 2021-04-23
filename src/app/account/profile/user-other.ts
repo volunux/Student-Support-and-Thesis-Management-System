@@ -10,6 +10,10 @@ export class UserOther {
 
 	public countries : string[];
 
+	public roles : string[];
+
+	public statuses : string[];
+
 	constructor(data) {
 
 		this.faculties = data.Faculty ? data.Faculty : [];
@@ -21,6 +25,10 @@ export class UserOther {
 		this.levels = data.Level ? data.Level : [];
 
 		this.countries = data.Country ? data.Country : [];
+
+		this.roles = data.Role ? data.Role : [];
+
+		this.statuses = data.Status ? data.Status : [];
 
 	}
 

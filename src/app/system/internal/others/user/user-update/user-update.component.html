@@ -1,0 +1,47 @@
+<div>
+
+<h2 *ngIf ='title' > {{title}} </h2>
+
+<app-view-description *ngIf ='view' [view-type] ='view' [system-type] ='systemType' > </app-view-description>
+
+<app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
+
+<app-resource-unavailable id ='isError' *ngIf ='error' [error] ='error' > </app-resource-unavailable>
+
+<div @fadeAnimation *ngIf ='entry' id ='entry-update'>
+
+<p *ngIf ='!isFormModified'> <b class ='bold'> Form Message : </b> {{formMessage}} </p>
+
+	<div *ngIf ='!isLoading' id ='entry-detail'>
+
+		<form method ='post' autocomplete ='off' [formGroup] ='entryForm' (ngSubmit) ='updateEntry(entryForm.value)'>
+
+	<app-user-account-form-inputs *ngIf ='systemType' [system-type] ='systemType' [entry-form] ='entryForm' [general-others] ='generalOthers' [no-edit] ='noEdit' > </app-user-account-form-inputs>
+
+			<button *ngIf ='!isFormProcessing' type ='submit' class ='btn-submit' [class] ='{"disabled" : !isFormValid }' [disabled] ='!isFormValid' > Submit </button> 
+
+			<p *ngIf ='isFormSubmitted'> Your form is being processed. Please kindly be patient and wait while it completes. </p>
+
+		</form>
+
+		<div class ='entry-options'>
+
+			<h3> Entry Options </h3>
+
+			<a [routerLink] ='["../../../" , "entry" , entry?.slug , "detail"]' class ='entry-option center'> {{systemType}} Detail </a>
+
+			<a [routerLink] ='["../../../" , "entry" , entry?.slug , "delete"]' class ='entry-option center'> {{systemType}} Delete </a>
+
+			<a *ngIf ='entry?.status_name == "Deactivated"' [routerLink] ='["../../../" , "entry" , entry?.slug , "reactivate"]' class ='entry-option center'> {{systemType}} Reactivate </a>
+
+			<a *ngIf ='entry?.status_name == "Active"' [routerLink] ='["../../../" , "entry" , entry?.slug , "deactivate"]' class ='entry-option center'> {{systemType}} Deactivate </a>
+
+		</div>
+
+</div>
+
+</div>
+
+</div>
+
+<app-loading-menu [is-loading] ='isLoading'> </app-loading-menu>

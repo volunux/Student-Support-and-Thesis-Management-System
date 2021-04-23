@@ -1,6 +1,6 @@
-<ng-container *ngIf ='pageNumber'>
+<div *ngIf ='isLoading' id ='entry-paginate'>
 
-<td colspan ='3'>
+<ng-container *ngIf ='pageNumber'>
 
 <ng-container *ngIf ='pageNumber && pageNumber > 1'>
 
@@ -14,9 +14,6 @@
 
 </ng-template>
 
-</td>
-
-<td colspan ='9'>
 
 <ng-container *ngIf ='!($entryRef) && $entriesLength > 10; else entriesEnd'>
 
@@ -26,10 +23,10 @@
 
 <ng-template #entriesEnd>
 
-<button *ngIf ='$entriesLength >= 1' class ='pagination-end float-right center' [disabled] ='true' [class.disabled] ='true' > End of Entries </button>
+<button *ngIf ='$entriesLength >= 1' class ='pagination pagination-end float-right center' [disabled] ='true' [class.disabled] ='true' > End of Entries </button>
 
 </ng-template>
 
-</td>
-
 </ng-container>
+
+</div>

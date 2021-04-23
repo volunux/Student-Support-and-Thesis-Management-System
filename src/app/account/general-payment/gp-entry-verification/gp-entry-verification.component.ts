@@ -109,7 +109,7 @@ export class GeneralPaymentEntryVerificationComponent implements OnInit {
 
         ['general-payment' , 't' , this.pslug , 'entry' , data.slug , 'detail'] : ['general-payment' , 't' , this.pslug] , {'replaceUrl' : true} ); } 
 
-      , 5000); 
+      , 1000); 
   }
 
   get notificationAvailable() : boolean {

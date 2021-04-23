@@ -1,0 +1,43 @@
+<div @fadeAnimation *ngIf ='true'>
+
+		<div [formGroup] ='entryForm'>
+
+			<ng-container *ngIf ='word'>
+
+			<div class ='form-group'>
+
+				<label for ='word' class ='form-label bold'> Word * : </label>
+
+			<input type ='text' id ='word' required ='required' name ='word' [placeholder] ='placeholder?.word' formControlName ='word' class ='form-control' [readOnly] ='noEdit'>
+
+				<app-general-request-status-entry-validator *ngIf ='word' [system-type] ='systemType' [word] ='word'> </app-general-request-status-entry-validator>
+
+			</div>
+
+		</ng-container>
+
+			</div>
+
+</div>
+
+<div @fadeAnimation *ngIf ='true'>
+
+		<div [formGroup] ='entryForm'>
+
+			<ng-container *ngIf ='other_name'>
+
+			<div class ='form-group'>
+
+				<label for ='other_name' class ='form-label bold'> Other name * : </label>
+
+			<input type ='text' id ='other_name' required ='required' name ='other_name' [placeholder] ='placeholder?.other_name' formControlName ='other_name' class ='form-control' [readOnly] ='noEdit'>
+
+				<app-general-request-status-entry-validator *ngIf ='other_name' [system-type] ='systemType' [other-name] ='other_name'> </app-general-request-status-entry-validator>
+
+			</div>
+
+		</ng-container>
+
+			</div>
+
+</div>

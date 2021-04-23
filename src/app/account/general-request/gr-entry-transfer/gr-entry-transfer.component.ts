@@ -173,17 +173,6 @@ export class GeneralRequestEntryTransferComponent implements OnInit {
       return this.router.navigate(['general-request' , 't' , this.rslug , 'entries']);  } , 5000) 
   }
 
-
-  get notificationAvailable() : boolean {
-
-    return this.ns.notificationStatus();
-  }
-
-  get notificationMessage() : string {
-
-    return this.ns.getNotificationMessage();
-  }
-
   get userRole() : string {
 
   	return this.aus.userRole;
@@ -207,6 +196,16 @@ export class GeneralRequestEntryTransferComponent implements OnInit {
   get unit() : FormControl {
 
   	return this.entryForm.get('unit') as FormControl;
+  }
+
+  get notificationAvailable() : boolean {
+
+    return this.ns.notificationStatus();
+  }
+
+  get notificationMessage() : string {
+
+    return this.ns.getNotificationMessage();
   }
 
    public removeNotification() : void {

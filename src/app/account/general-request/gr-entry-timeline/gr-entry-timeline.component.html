@@ -10,7 +10,7 @@
 
 <app-request-entry-status *ngIf ='entry' [system-type] ='systemType' [entry] ='entry'> </app-request-entry-status>
 
-	<ng-container *ngIf ='comments != null && comments?.length > 0; else noComments'>
+	<ng-container *ngIf ='comments != null && comments?.length > 0'>
 
 		<div @fadeAnimation class ='comments'>
 
@@ -104,7 +104,7 @@
 
 	</ng-container>
 
-	<ng-template #noComments>
+	<ng-container *ngIf ='comments != null && comments?.length < 1'>
 
 		<div class ='comments'>
 
@@ -112,7 +112,7 @@
 
 		</div>
 
-	</ng-template>
+	</ng-container>
 
 </div>
 

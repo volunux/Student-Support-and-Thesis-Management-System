@@ -40,7 +40,7 @@
 
 		</ng-container>
 
-	<ng-container *ngIf ='entry?.stage; else noStage'>
+	<ng-container *ngIf ='entry?.stage'>
 
 		<h2> Stage Detail </h2>
 
@@ -48,13 +48,13 @@
 
 		<ng-container *ngIf ='entry?.stage?._id'>
 
-			<p> <b class ='bold'> Number </b> : {{entry?.stage?._id}} </p>
+			<p> <b class ='bold'> Number : </b> {{entry?.stage?._id}} </p>
 
 		</ng-container>
 
 		<ng-container *ngIf ='entry?.stage?.name'>
 
-			<p> <b class ='bold'> Name </b> : {{entry?.stage?.name}} </p>
+			<p> <b class ='bold'> Name : </b> {{entry?.stage?.name}} </p>
 
 		</ng-container>
 
@@ -62,11 +62,11 @@
 
 	<ng-template #noStage>
 
-			<p> <b class ='bold'> Stage </b> : "Not yet in Stage" </p>
+			<p> <b class ='bold'> Stage : </b> "Not yet in Stage" </p>
 
 	</ng-template> 
 
-		<ng-container *ngIf ='entry?.username || entry?.password'>
+		<ng-container *ngIf ='entry?.username || entry?.password || entry?.other_password'>
 
 		<h3> Request Credential </h3>
 
@@ -81,6 +81,12 @@
 		<ng-container *ngIf ='entry?.password'>
 
 			<p> <b class ='bold'> Password : </b> {{entry?.password}} </p>
+
+		</ng-container>
+
+		<ng-container *ngIf ='entry?.other_password'>
+
+			<p> <b class ='bold'> Other Password : </b> {{entry?.password}} </p>
 
 		</ng-container>
 

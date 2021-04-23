@@ -15,7 +15,7 @@ let $$ : { [key : string] : any } = {
 		'systemGuideline' : 'gen-internal'
 };
 
-const placeholder = {'name' : '500 Level' , 'description' : 'The final level' , 'abbreviation' : '500'};
+const placeholder = {'name' : '500 Level' , 'description' : 'The Final Level' , 'abbreviation' : '500'};
 
 export const RouteConfigData : { [key : string] : any } = {
 

@@ -16,7 +16,7 @@
 		</li>
 
 		<li>
-				<a [routerLink] ="['/account' , 'profile']"> Profile </a>
+				<a (click) ="loadLink(['/' , 'account' , 'profile'])"> Profile </a>
 
 			</li>
 
@@ -45,17 +45,17 @@
 
 		<li>
 				
-				<a [routerLink] ="['/authentication' , 'forgot-password']"> Recovery </a>
+				<a (click) ="loadLink(['/' , 'authentication' , 'forgot-password'])"> Recovery </a>
 
 		</li>
 
 		<li> 
-				<a [routerLink] ="['/sign-in']"> Sign In </a>
+				<a (click) ="loadLink(['/' , 'sign-in'])"> Sign In </a>
 
 		</li>
 
 		<li> 
-				<a [routerLink] ="['/sign-up']"> Sign Up </a>
+				<a (click) ="loadLink(['/' , 'sign-up'])" > Sign Up </a>
 
 		</li>
 

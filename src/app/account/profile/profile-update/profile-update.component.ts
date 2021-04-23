@@ -65,6 +65,8 @@ export class ProfileUpdateComponent implements OnInit {
 
   public isLoading : boolean = false;
 
+  public noEdit : boolean = false;
+
   ngOnInit() : void {
 
     this.entryForm = this.pfs.profileUpdate();
@@ -118,13 +120,25 @@ export class ProfileUpdateComponent implements OnInit {
 
 		this.isFormProcessing = true;
 
+    let shoudCheckLength = true;
+
 		for (let chrs in this.entry) { 
+
+      if (shoudCheckLength) {
+
+      if (Object.keys(body).length > Object.keys(this.entry).length) {
+
+          this.isFormModified = true;
+
+          shoudCheckLength = false;
+
+        break; } }
 
 				if((this.entry[chrs] != body[chrs] && (body[chrs] !== null && body[chrs] !== undefined))) { 
 
 					this.isFormModified = true;
 
-					break;	}	}
+					break; }	}
 
 		if (this.isFormModified == true) {
 
@@ -194,21 +208,6 @@ export class ProfileUpdateComponent implements OnInit {
   get last_name() : FormControl {
 
       return this.entryForm.get('last_name') as FormControl;
-  }
-
-  get about() : FormControl {
-
-      return this.entryForm.get('about') as FormControl;
-  }
-
-  get country() : FormControl {
-
-      return this.entryForm.get('country') as FormControl;
-  }
-
-  get level() : FormControl {
-
-      return this.entryForm.get('level') as FormControl;
   }
 
   get isFormValid() : boolean {

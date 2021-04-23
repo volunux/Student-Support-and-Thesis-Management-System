@@ -16,13 +16,13 @@ export class ProfileService {
 
   }
 
-  public sa : string = 'user';
+  public $sa : string = 'user';
 
-  public systemType : string = 'User';
+  public $systemType : string = 'User';
 
   public entryExist() : Observable<User> {
 
-  	let link = `${this.apiConfig.host}/${this.sa}/entry/change-password`;
+  	let link = `${this.apiConfig.host}/${this.$sa}/entry/change-password`;
 
   	return this.http.get<User>(link)
 
@@ -30,16 +30,16 @@ export class ProfileService {
 
   				tap((value) => console.log(value)) ,
 
-          delay(3000) ,
+          delay(2000) ,
 
-  				catchError(this.handleError<User>(`${this.systemType} Entry` , null))
+  				catchError(this.handleError<User>(`${this.$systemType} Entry` , null))
   			)
 
   }
 
   public profileDetail() : Observable<User> {
 
-  	let link = `${this.apiConfig.host}/${this.sa}/entry/detail`;
+  	let link = `${this.apiConfig.host}/${this.$sa}/entry/detail`;
 
   	return this.http.get<User>(link)
 
@@ -47,16 +47,16 @@ export class ProfileService {
 
   				tap((value) => console.log(value)) ,
 
-          delay(3000) ,
+          delay(2000) ,
 
-  				catchError(this.handleError<User>(`${this.systemType} Entry` , null))
+  				catchError(this.handleError<User>(`${this.$systemType} Entry` , null))
   			)
 
   }
 
   public profileUpdate() : Observable<User> {
 
-  	let link = `${this.apiConfig.host}/${this.sa}/entry/update`;
+  	let link = `${this.apiConfig.host}/${this.$sa}/entry/update`;
 
   	return this.http.get<User>(link)
 
@@ -64,16 +64,16 @@ export class ProfileService {
 
   				tap((value) => console.log(value)) ,
 
-          delay(3000) ,
+          delay(2000) ,
 
-  				catchError(this.handleError<User>(`${this.systemType} Entry` , null))
+  				catchError(this.handleError<User>(`${this.$systemType} Entry` , null))
   			)
 
   }
 
   public profileUpdate$(idx : number , user : User) : Observable<any> {
 
-  	let link = `${this.apiConfig.host}/${this.sa}/entry/update`;
+  	let link = `${this.apiConfig.host}/${this.$sa}/entry/update`;
 
   	return this.http.put<User>(link , user)
 
@@ -83,14 +83,14 @@ export class ProfileService {
 
 					map((entry : User) => { return {'updated' : true , '$data' : entry}; }) ,
 
-  				catchError(this.handleError<User>(`${this.systemType} Entry` , null))
+  				catchError(this.handleError<User>(`${this.$systemType} Entry` , null))
   			)
 
   }
 
   public changePassword(passcode : General) : Observable<General> {
 
-  	let link = `${this.apiConfig.host}/${this.sa}/entry/change-password`;
+  	let link = `${this.apiConfig.host}/${this.$sa}/entry/change-password`;
 
   	return this.http.put<User>(link , passcode)
 
@@ -100,14 +100,14 @@ export class ProfileService {
 
           map((entry : User) => { return {'updated' : true , '$data' : entry}; }) ,
 
-  				catchError(this.handleError<User>(`${this.systemType} Entry` , null))
+  				catchError(this.handleError<User>(`${this.$systemType} Entry` , null))
   			)
 
   }
 
   public deactivateProfile() : Observable<User> {
 
-  	let link = `${this.apiConfig.host}/${this.sa}/entry/deactivate`;
+  	let link = `${this.apiConfig.host}/${this.$sa}/entry/deactivate`;
 
   	return this.http.get<User>(link)
 
@@ -115,16 +115,16 @@ export class ProfileService {
 
   				tap((value) => console.log(value)) ,
 
-          delay(3000) ,
+          delay(2000) ,
 
-  				catchError(this.handleError<User>(`${this.systemType} Entry` , null))
+  				catchError(this.handleError<User>(`${this.$systemType} Entry` , null))
   			)
 
   }
 
   public deactivateProfile$(user : User) : Observable<General> {
 
-  	let link = `${this.apiConfig.host}/${this.sa}/entry/deactivate`;
+  	let link = `${this.apiConfig.host}/${this.$sa}/entry/deactivate`;
 
   	return this.http.put<User>(link , user)
 
@@ -134,7 +134,7 @@ export class ProfileService {
 
           map((entry : User) => { return {'updated' : true , '$data' : entry}; }) ,
 
-  				catchError(this.handleError<User>(`${this.systemType} Entry` , null))
+  				catchError(this.handleError<User>(`${this.$systemType} Entry` , null))
   			)
 
   }
@@ -142,7 +142,7 @@ export class ProfileService {
 
   public reactivateProfile() : Observable<User> {
 
-  	let link = `${this.apiConfig.host}/${this.sa}/entry/reactivate`;
+  	let link = `${this.apiConfig.host}/${this.$sa}/entry/reactivate`;
 
   	return this.http.get<User>(link)
 
@@ -150,16 +150,16 @@ export class ProfileService {
 
   				tap((value) => console.log(value)) ,
 
-          delay(3000) ,
+          delay(2000) ,
 
-  				catchError(this.handleError<User>(`${this.systemType} Entry` , null))
+  				catchError(this.handleError<User>(`${this.$systemType} Entry` , null))
   			)
 
   }
 
   public reactivateProfile$(user : User) : Observable<General> {
 
-  	let link = `${this.apiConfig.host}/${this.sa}/entry/reactivate`;
+  	let link = `${this.apiConfig.host}/${this.$sa}/entry/reactivate`;
 
   	return this.http.put<User>(link , user)
 
@@ -169,14 +169,14 @@ export class ProfileService {
 
           map((entry : User) => { return {'updated' : true , '$data' : entry}; }) ,
 
-  				catchError(this.handleError<User>(`${this.systemType} Entry` , null))
+  				catchError(this.handleError<User>(`${this.$systemType} Entry` , null))
   			)
 
   }
 
   public $updateDisplay(user : User) : Observable<General> {
 
-  	let link = `${this.apiConfig.host}/${this.sa}/entry/change-signature-picture`;
+  	let link = `${this.apiConfig.host}/${this.$sa}/entry/change-signature-picture`;
 
   	return this.http.put<User>(link , user)
 
@@ -186,7 +186,7 @@ export class ProfileService {
 
           map((entry : User) => { return {'updated' : true , '$data' : entry}; }) ,
 
-  				catchError(this.handleError<User>(`${this.systemType} Entry` , null))
+  				catchError(this.handleError<User>(`${this.$systemType} Entry` , null))
   			)
 
   }

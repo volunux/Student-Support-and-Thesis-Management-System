@@ -49,9 +49,7 @@ const route : Routes = [
 export class StatusRoutingModule {
 
 	constructor() {
-
 		
 	}
-
 
 }

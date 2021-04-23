@@ -13,7 +13,7 @@ import { ErrorMessagesService } from '../../../shared/services/error-messages.se
 import { NotificationService } from '../../../shared/services/notification.service';
 import { AuthenticationService } from '../../../authentication/authentication.service';
 import { canUpdate } from '../roles';
-import { listAnimation } from '../../../animations';
+import { fadeAnimation , listAnimation } from '../../../animations';
 
 @Component({
 
@@ -25,7 +25,7 @@ import { listAnimation } from '../../../animations';
 
   'providers' : [NotificationService , ErrorMessagesService , GeneralSearchService , GeneralAllService] ,
 
-  'animations' : [listAnimation]
+  'animations' : [listAnimation , fadeAnimation]
 
 })
 

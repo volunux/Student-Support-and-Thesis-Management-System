@@ -16,7 +16,7 @@
 
 	<li *ngIf ='canCreate'>
 
-		<a [routerLink] ="['entry' , 'create']" class ='center'> Create {{entry.name}} Entry </a>
+		<a (click) ="loadLink(['/' , link , 't' , entry.slug , 'entry' , 'create'])" class ='center'> Create {{entry.name}} Entry </a>
 
 	</li>
 
@@ -34,7 +34,7 @@
 
 	<li>
 
-		<a [routerLink] ="['/account' , 'profile']" class ='center'> Profile </a>
+		<a (click) ="loadLink(['/' , 'account' , 'profile'])" class ='center'> Profile </a>
 
 	</li>
 

@@ -8,13 +8,13 @@
 
 <app-view-description *ngIf ='view' [view-type] ='view'> </app-view-description>
 
-	<div *ngIf ='entry' id ='entry-detail'>
+	<div @fadeAnimation *ngIf ='entry' id ='entry-detail'>
 
 		<ng-container *ngIf ='!isLoading'>
 
 		<form method ='post' autocomplete ='off' [formGroup] ='entryForm' (ngSubmit) ='reactivateEntry(entryForm.value)'>
 
-			<app-profile-input-fields *ngIf ='systemType' [system-type] ='systemType' [entry] ='entry' [entry-form] ='entryForm'> </app-profile-input-fields>
+			<app-profile-input-fields *ngIf ='systemType' [system-type] ='systemType' [entry] ='entry' [entry-form] ='entryForm' [no-edit] ='noEdit' > </app-profile-input-fields>
 
 			<button *ngIf ='!isFormProcessing' type ='submit' class ='btn-submit' [class] ='{"disabled" : !isFormValid }' [disabled] ='!isFormValid' > Submit </button> 
 

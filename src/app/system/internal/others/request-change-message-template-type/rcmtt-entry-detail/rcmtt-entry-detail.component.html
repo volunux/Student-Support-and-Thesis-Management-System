@@ -1,0 +1,37 @@
+<div @fadeAnimation *ngIf ='true'>
+
+<h2 *ngIf ='title' > {{title}} </h2>
+
+<app-view-description *ngIf ='view' [view-type] ='view' [system-type] ='systemType' > </app-view-description>
+
+<app-resource-unavailable *ngIf ='isError' [error] ='error' > </app-resource-unavailable>
+
+<app-gi-entry-detail [entry] ='entry'> 
+
+			<ng-container *ngIf ='entry?.title;'>
+
+			<tr>
+
+				<th class ='bold left'> Title : </th>
+				<td> {{entry?.title}} </td>
+
+			</tr>
+
+		</ng-container>
+
+			<ng-container *ngIf ='entry?.unit;'>
+
+			<tr>
+
+				<th class ='bold left'> Unit : </th>
+				<td> {{entry?.unit}} </td>
+
+			</tr>
+
+		</ng-container>
+
+</app-gi-entry-detail>
+
+</div>
+
+<app-loading-menu [is-loading] ='isLoading'> </app-loading-menu>

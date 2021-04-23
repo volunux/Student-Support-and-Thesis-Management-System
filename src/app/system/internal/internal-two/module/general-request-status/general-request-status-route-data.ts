@@ -31,6 +31,6 @@ export const RouteConfigData : { [key : string] : any } = {
 
 	'deleteAll' : {...$$ , 'title' : `${$$.systemType} Entries : Delete All` } ,
 
-	'entries' : {...$$ , 'title' : `${$$.systemType} Entries` , 'searchFilters' : { 'word' : 'Word' , 'name' : 'Name' , 'status' : 'Status'} } ,
+	'entries' : {...$$ , 'title' : `${$$.systemType} Entries` , 'searchFilters' : {'name' : 'Name' , 'status' : 'Status'} } ,
 
 };

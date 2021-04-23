@@ -1,6 +1,4 @@
 
-<app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
-
 <app-view-description *ngIf ='view' [view-type] ='view' [system-type] ='systemType' > </app-view-description>
 
 <ng-container *ngIf ='entryCreateForm'>
@@ -14,6 +12,8 @@
 	<div @fadeAnimation id ='request-form-max'>
 
 		<div [formGroup] ='entryCreateForm'>
+
+			<ng-content> </ng-content>
 
 			<div *ngIf ='message' class ='form-group'>
 

@@ -50,4 +50,9 @@ export class GeneralInternalFormInputComponent implements OnInit {
     return this.entryForm.get('status') as FormControl;
   }
 
+  get title() : FormControl {
+
+    return this.entryForm.get('title') as FormControl;
+  }
+
 }

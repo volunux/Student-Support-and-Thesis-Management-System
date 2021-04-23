@@ -1,7 +1,5 @@
 
-<app-view-description *ngIf ='view' [view-type] ='view' [system-type] ='systemType' > </app-view-description>
-
-<app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
+<app-view-description *ngIf ='view' [view-type] ='view' [system-type] ='systemType'> </app-view-description>
 
 <app-comment-entry-status *ngIf ='entry' [entry] ='entry' [system-type] ='systemType'> </app-comment-entry-status>
 
@@ -11,7 +9,7 @@
 
 				<div class ='form-group'>
 
-				<label for ='text' class ='form-label bold'> Message </label>
+				<label for ='text' class ='form-label bold'> Message : </label>
 
 				<textarea name ='text' id ='text' required ='required' autocomplete ='new-text' formControlName ='text'> </textarea>
 

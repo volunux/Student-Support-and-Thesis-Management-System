@@ -1,6 +1,6 @@
 <div @fadeAnimation>
 
-<mat-progress-bar class ='sris-loading-bar' [color] ='"purple"' [mode] ='"buffer"' *ngIf='isShowingRouteLoadIndicator'> </mat-progress-bar>
+<mat-progress-bar class ='sris-loading-bar' [color] ='"purple"' [mode] ='"buffer"' *ngIf='lbs.isShowingRouteLoadIndicator'> </mat-progress-bar>
 
 <h1> <img src ='/assets/images/logo.png' id ='logo-sris'> </h1>
 
@@ -10,5 +10,11 @@
 
 </div>
 
-<div *ngIf='isShowingRouteLoadIndicator' class='router-load-indicator'> Please wait </div>
+<div *ngIf='lbs.isShowingRouteLoadIndicator' class='router-load-indicator'> Please wait </div>
 
+
+
+<!-- <label (click) ='changeView()' class="switch">
+  <input type="checkbox">
+  <span class="slider round"></span>
+</label> -->

@@ -1,0 +1,15 @@
+		<div @fadeAnimation *ngIf ='entry' id ='entry-detail-options'>
+
+<!-- 		<ng-container *ngIf ="canUpdateEntry">
+
+			<a (click) ="loadLink([isAdmin , 'entry' , entry?.slug , 'send-mail'])" class ='center'> Send Email Message </a>
+
+		</ng-container> -->
+
+		<ng-container *ngIf ="entry?.status != 'Fulfilled' || entry?.status != 'Rejected'">
+
+			<a [routerLink] =" [isAdmin , 'entry' , entry?.slug , 'comment' , 'add'] " class ='center'> Add a Comment </a>				
+
+		</ng-container>
+
+	</div>

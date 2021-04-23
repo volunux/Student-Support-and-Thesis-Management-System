@@ -12,7 +12,7 @@ export class CapitalizeDirective {
 
   }
 
-  @HostListener('input') public capitalize(field : string) : void { let i = 0;
+  @HostListener('blur') public capitalize(field : string) : void { let i = 0;
 
   	let $entry = this.el.nativeElement.value.replace(/\s+/g , ' ').split(' ')
 

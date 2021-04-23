@@ -2,7 +2,6 @@ import { Component , ElementRef , EventEmitter , Input , OnInit , Output , Query
 import { FormControl , FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { RequestEntryCreateService } from '../request-entry-create.service';
-import { NotificationMessageService } from '../../../component/notification/notification-message.service';
 import { AttachmentUploadComponent } from '../../../module/attachment/attachment-upload/attachment-upload.component';
 import { fadeAnimation } from '../../../../animations';
 
@@ -14,41 +13,31 @@ import { fadeAnimation } from '../../../../animations';
 
   'styleUrls' : ['./request-entry-create.component.css'] ,
 
-  'providers' : [NotificationMessageService] ,
-
   'animations' : [fadeAnimation]
 
 })
 
 export class RequestEntryCreateComponent implements OnInit {
 
-  constructor(private recs : RequestEntryCreateService , private ns : NotificationMessageService) { 
+  constructor(private recs : RequestEntryCreateService) { 
 
-  	this.entryCreatedOb = this.recs.isEntryCreated$
+    this.entryCreatedOb = this.recs.isEntryCreated$
 
-  		.subscribe((created : boolean) => {
+      .subscribe((created : boolean) => {
 
-  				if (created == false) {
+          if (created == false) {
 
- 					this.isFormSubmitted = false;
+           this.isFormSubmitted = false;
 
- 					this.isFormProcessing = false;
+           this.isFormProcessing = false; }
 
-          this.ns.setNotificationStatus(true);
+          else if (created == true) {
 
-          this.ns.addNotification(`Operation is unsuccessful and ${this.systemType} is not added.`); }
-
-  				else if (created == true) {
-
- 					this.isFormSubmitted = false;
-
-          this.ns.setNotificationStatus(true);
-
-          this.ns.addNotification(`Operation is successful and ${this.systemType} is added.`);
+           this.isFormSubmitted = false;
 
           if (this.attachments != null && this.attachments.length > 0) {
 
-    			this.attachments.forEach((item : AttachmentUploadComponent) => {
+          this.attachments.forEach((item : AttachmentUploadComponent) => {
 
       if (item.currentlyUploading == true && item.cancelFile != null) { item.cancelFile.unsubscribe(); 
 
@@ -125,28 +114,12 @@ export class RequestEntryCreateComponent implements OnInit {
 
   get message() : FormControl {
 
-  	return this.entryCreateForm.get('message') as FormControl;
+    return this.entryCreateForm.get('message') as FormControl;
   }
 
   get isFormValid() : boolean {
 
     return this.entryCreateForm.valid;
   }
-
-  get notificationAvailable() : boolean {
-
-    return this.ns.notificationStatus();
-  }
-
-  get notificationMessage() : string {
-
-    return this.ns.getNotificationMessage();
-  }
-
-  public removeNotification() : void {
-
-    this.ns.removeNotification();
-  }
-
 
 }

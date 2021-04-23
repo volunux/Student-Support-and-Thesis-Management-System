@@ -8,7 +8,7 @@
 
 <app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
 
-<div *ngIf ='entry' id ='entry-update'>
+<div @fadeAnimation *ngIf ='entry' id ='entry-update'>
 
 <p *ngIf ='!isFormModified'> <b class ='bold'> Form Message : </b> {{formMessage}} </p>
 
@@ -40,56 +40,7 @@
 
 			</div>
 
-			<div *ngIf ='about' class ='form-group'>
-
-				<label for ='about' class ='form-label bold'> About * : </label>
-
-				<textarea id ='about' name ='about' placeholder ='I am me' required ='required' formControlName ='about' class ='form-control form-textarea'> </textarea>
-
-				<app-profile-validator *ngIf ='about' [system-type] ='systemType' [about] ='about'> </app-profile-validator>
-
-			</div>
-		
-			<ng-container *ngIf ='entryOthers && entryOthers?.levels != null && entryOthers?.levels?.length > 0'>
-
-			<div class ='form-group'>
-
-				<label for ='level' class ='form-label bold'> Level * : </label>
-
-				<select name ='level' id ='level' class ='form-control' required ='required' formControlName ='level'>
-
-					<option [value] =''> </option> 
-
-					<option *ngFor ='let level of entryOthers.levels' [value] ='level._id'> {{level.name}} </option> 
-
-				</select>
-
-				<app-profile-validator *ngIf ='level' [system-type] ='systemType' [level] ='level'> </app-profile-validator>
-
-			</div>
-
-		</ng-container>
-
-		
-			<ng-container *ngIf ='entryOthers && entryOthers?.countries != null && entryOthers?.countries?.length > 0'>
-
-			<div class ='form-group'>
-
-				<label for ='country' class ='form-label bold'> Country * : </label>
-
-				<select name ='country' id ='country' class ='form-control' required ='required' formControlName ='country'>
-
-					<option [value] =''> </option> 
-
-					<option *ngFor ='let country of entryOthers.countries' [value] ='country._id'> {{country.name}} </option> 
-
-				</select>
-
-				<app-profile-validator *ngIf ='country' [system-type] ='systemType' [country] ='country'> </app-profile-validator>
-
-			</div>
-
-		</ng-container>
+			<app-user-other-field *ngIf ='systemType' [system-type] ='systemType' [entry] ='entry' [entry-form] ='entryForm' [general-others] ='entryOthers' [no-edit] ='noEdit' > </app-user-other-field>
 
 			<button *ngIf ='!isFormProcessing' type ='submit' class ='btn-submit' [class] ='{"disabled" : !isFormValid }' [disabled] ='!isFormValid' > Submit </button> 
 

@@ -1,0 +1,31 @@
+<ng-container *ngIf ='word'>
+
+<div @fadeAnimation *ngIf ='word.invalid && (word.touched || word.dirty)' class ='validation-error'>
+
+	<ul>
+
+		<li *ngIf ='word.errors?.required'> Word of {{systemType}} should be provided and cannot be empty </li>
+		<li *ngIf ='word.errors?.required || word.errors?.minlength'> Word of {{systemType}} cannot be less than 3 characters in length </li>
+		<li *ngIf ='word.errors?.required || word.errors?.maxLength'> Word of {{systemType}} cannot be greater than 20 characters in length </li>
+
+	</ul>
+
+</div>
+
+	</ng-container>
+
+<ng-container *ngIf ='other_name'>
+
+<div @fadeAnimation *ngIf ='other_name.invalid && (other_name.touched || other_name.dirty)' class ='validation-error'>
+
+	<ul>
+
+		<li *ngIf ='other_name.errors?.required'> Other Name of {{systemType}} should be provided and cannot be empty </li>
+		<li *ngIf ='other_name.errors?.required || other_name.errors?.minlength'> Other Name of {{systemType}} cannot be less than 3 characters in length </li>
+		<li *ngIf ='other_name.errors?.required || other_name.errors?.maxLength'> Other Name of {{systemType}} cannot be greater than 20 characters in length </li>
+
+	</ul>
+
+</div>
+
+	</ng-container>

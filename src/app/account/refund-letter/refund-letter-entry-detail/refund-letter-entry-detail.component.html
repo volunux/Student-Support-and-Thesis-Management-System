@@ -12,7 +12,7 @@
 
 				<p> Yours faithfully , </p>
 
-				<p> <img [src] ='entry.signature' title ='User Signature' alt ='User Signature' /> </p>
+				<p> <img *ngIf ='entry.signature' [src] ='entry.signature' title ='User Signature' alt ='User Signature' /> </p>
 
 				<p> {{entry?.full_name}} </p>
 

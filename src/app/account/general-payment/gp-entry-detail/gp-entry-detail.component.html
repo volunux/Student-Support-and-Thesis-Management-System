@@ -10,7 +10,7 @@
 
 <div id ='gp-details' *ngIf ='entry'>
 
-	<table>
+	<table *ngIf ='!isLoading'>
 
 		<colgroup>
 
@@ -20,6 +20,17 @@
 		</colgroup>
 
 		<tbody>
+
+			<ng-container *ngIf ='entry?.profile_photo'>
+
+			<tr>
+
+				<th class ='bold left'> Profile Photo : </th>
+				<td class ='profilePhoto'> <img src ='{{entry?.profile_photo}}' alt ='{{systemType}}' [title] ='systemType' > </td>
+
+			</tr>
+
+		</ng-container>
 
 			<ng-container *ngIf ='entry?.payment_reference'>
 
@@ -228,6 +239,17 @@
 
 			</ng-container>
 
+			<ng-container *ngIf ='entry?.signature'>
+
+			<tr>
+
+				<th class ='bold left'> Signature : </th>
+				<td class ='signature' > <img src ='{{entry?.signature}}' alt ='{{systemType}}' [title] ='systemType' > </td>
+
+			</tr>
+
+		</ng-container>
+
 			<ng-container *ngIf ='true'>
 
 				<td colspan ='2'>
@@ -240,33 +262,30 @@
 
 		</tbody>
 
-			<ng-container *ngIf ='userRole == "departmentPresident" && entry.department == userDepartment && entry.status == "Success"'>
+				<tfoot>
 
-				<tfoot class ='refund option'>
-
-					<td colspan ='2'>
-
-							<button class ='entry-option center' (click) ='refundEntry()' > Refund </button>
-
-					</td>
-
-				</tfoot>
-
-			</ng-container>
-
-			<ng-container *ngIf ='userRole == "facultyPresident" && entry.faculty == userFaculty && entry.status == "Success"'>
-
-				<tfoot class ='refund option'>
-
-					<td colspan ='2'>
+					<td *ngIf ='userRole == "facultyPresident" && entry.faculty == userFaculty && entry.status == "Success"' colspan ='2' class ='refund option'>
 
 							<button class ='entry-option center' (click) ='refundEntry()'> Refund </button>
 
 					</td>
 
-				</tfoot>
+					<td *ngIf ='userRole == "departmentPresident" && entry.department == userDepartment && entry.status == "Success"' colspan ='2' class ='refund option'>
+
+							<button class ='entry-option center' (click) ='refundEntry()'> Refund </button>
+
+					</td>
+
+			<ng-container *ngIf ="entry.status == 'Failed' || entry.status == 'Pending'">
+
+				<td colspan ='2'>
+					<button href ='#' class ='entry-option center' (click) ='requeryTransaction()'> Requery Transaction </button>
+
+				</td>
 
 			</ng-container>
+
+				</tfoot>
 
 	</table>
 

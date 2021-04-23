@@ -1,0 +1,48 @@
+<ng-container *ngIf ='unit'>
+
+<div @fadeAnimation *ngIf ='unit.invalid && (unit.touched || unit.dirty)' class ='validation-error'>
+
+	<ul>
+
+			<li *ngIf ='unit.errors?.required'> Unit of {{systemType}} should be provided and cannot be empty </li>
+			<li *ngIf ='unit.errors?.max'> Unit of {{systemType}} cannot be greater than specified length </li>
+			<li *ngIf ='unit.errors?.Unit'> Unit of {{systemType}} should be available from existing record before it can be considered valid </li>
+
+	</ul>
+
+</div>
+
+</ng-container>
+
+
+<ng-container *ngIf ='entry_type'>
+
+<div @fadeAnimation *ngIf ='entry_type.invalid && (entry_type.touched || entry_type.dirty)' class ='validation-error'>
+
+	<ul>
+
+			<li *ngIf ='entry_type.errors?.required'> Entry Type of {{systemType}} should be provided and cannot be empty </li>
+			<li *ngIf ='entry_type.errors?.max'> Entry Type of {{systemType}} cannot be greater than specified length </li>
+			<li *ngIf ='entry_type.errors?.EntryType'> Entry Type of {{systemType}} should be available from existing record before it can be considered valid </li>
+
+	</ul>
+
+</div>
+
+</ng-container>
+
+<ng-container *ngIf ='body'>
+
+<div @fadeAnimation *ngIf ='body.invalid && (body.touched || body.dirty)' class ='validation-error'>
+
+	<ul>
+
+		<li *ngIf ='body.errors?.required'> Description of {{systemType}} should be provided and cannot be empty </li>
+		<li *ngIf ='body.errors?.required || body.errors?.minlength'> Description of {{systemType}} cannot be less than 10 characters in length </li>
+		<li *ngIf ='body.errors?.required || body.errors?.maxlength'> Description of {{systemType}} cannot be greater than 1000 characters in length </li>
+
+	</ul>
+
+</div>
+
+</ng-container>

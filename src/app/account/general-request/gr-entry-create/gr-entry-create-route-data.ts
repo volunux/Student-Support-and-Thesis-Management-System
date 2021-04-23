@@ -19,6 +19,6 @@ let $$ : { [key : string] : any } = {
 
 export const RouteConfigData : { [key : string] : any } = {
 
-	'create' : {...$$ , 'title' : `Request review of your semester ${$$.systemType}` } ,
+	'create' : {...$$ , 'title' : `${$$.systemType}` } ,
 
 };

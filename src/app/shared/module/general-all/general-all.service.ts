@@ -28,7 +28,7 @@ export class GeneralAllService {
 
       .pipe(
 
-        delay(3000) ,
+        delay(2000) ,
 
         catchError(this.handleError<GeneralAll[]>(`${this.$systemType} Entry or Entries Delete` , null))
 

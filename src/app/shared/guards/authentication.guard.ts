@@ -41,7 +41,7 @@ export class AuthenticationGuard implements CanActivate , CanActivateChild , Can
 
       else { this.aus.redirectAddress = url;
 
-        return this.router.parseUrl('/signin');
+        return this.router.parseUrl('/sign-in');
 
       }
   }

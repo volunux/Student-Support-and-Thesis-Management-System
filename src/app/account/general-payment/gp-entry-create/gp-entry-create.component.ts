@@ -225,6 +225,8 @@ export class GeneralPaymentEntryCreateComponent implements OnInit {
 
           this.ns.addNotification(`Operation is successful and ${this.systemType} is added.`);
 
+          console.log(result.$data);
+
           return location.href = result.$data.data.authorization_url; } });
   }
 

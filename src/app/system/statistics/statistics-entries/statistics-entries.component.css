@@ -6,27 +6,45 @@
 
 .item {
 
-	width : 30%;
+	width : 20%;
 	float : left;
 	margin-right : 2%;
+  padding : 2%;
 }
 
 .item h3 {
 
-	text-align : left;
+	text-align : center;
+  text-overflow: ellipsis; 
 }
 
 .item p {
 
-	height: 200px;
-	width: 200px;	
+	height: 100px;
+	width: 100px;	
   background-color: #250848;
-  border: 15px solid #663fde;
+  border: 3px solid #663fde;
   text-align: center;
   vertical-align: bottom;
-  border-radius: 50%;
-  line-height: 180px;
+  line-height: 100px;
   color: white;
   font-size: 22px;
+  margin : 0px auto;
 }
 
+
+@media screen and (max-width : 800px) {
+
+  .item {
+
+    width : 90%;
+    float : none;
+    margin : 0px auto;
+  }
+
+  .item p {
+
+    width : 90%;
+    margin : 0px auto;
+  }
+}

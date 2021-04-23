@@ -3,9 +3,11 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule , HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { Api_Token , Api_Config} from './configuration';
+import { GeneralModule } from './general/general.module';
 import { appInterceptors } from './general/all-interceptors';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -39,7 +41,9 @@ import { environment } from '../environments/environment';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatProgressBarModule,
+    MatSlideToggleModule,
     AppRoutingModule,
+    GeneralModule,
     ServiceWorkerModule.register('ngsw-worker.js', { 'enabled' : environment.production }),
   ],
   

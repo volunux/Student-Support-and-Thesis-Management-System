@@ -40,6 +40,10 @@ export class ProfileFormService {
 
   public permanentProps : General = {
 
+    'department' : [Validators.required , Validators.max(90000000)] ,
+
+    'faculty' : [Validators.required , Validators.max(90000000)] ,
+
     'level' : [Validators.required , Validators.max(90000000)] ,
 
     'country' : [Validators.required , Validators.max(90000000)]
@@ -68,9 +72,19 @@ export class ProfileFormService {
 
       'about' : ['' , {'validators' : this.entryValidators.about } ] ,
 
+      'department' : ['' , {'validators' : [...this.getPermanentProp('department')] } ] ,
+
+      'faculty' : ['' , {'validators' : [...this.getPermanentProp('faculty')] }]  ,
+
       'country' : ['' , {'validators' : [...this.getPermanentProp('country')] } ] ,
 
-      'level' : ['' , {'validators' : [...this.getPermanentProp('level')] }] } );
+      'level' : ['' , {'validators' : [...this.getPermanentProp('level')] }] ,
+
+      'matriculation_number' : ['' , {'validators' : this.entryValidators.jamb$matric$identity } ] ,
+
+      'jamb_registration_number' : ['' , {'validators' : this.entryValidators.jamb$matric$identity } ] ,
+
+      'identity_number' : ['' , {'validators' : this.entryValidators.jamb$matric$identity } ] });
 
   }
 

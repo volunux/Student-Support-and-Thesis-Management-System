@@ -10,6 +10,7 @@ import { RefundService } from '../refund.service';
 import { CommentCreateFormService } from '../../../shared/component/comment/comment-create-form.service';
 import { CommentCreateService } from '../../../shared/component/comment/comment-create.service';
 import { ErrorMessagesService } from '../../../shared/services/error-messages.service';
+import { NotificationService } from '../../../shared/services/notification.service';
 
 
 @Component({
@@ -20,13 +21,13 @@ import { ErrorMessagesService } from '../../../shared/services/error-messages.se
 
   'styleUrls' : ['./refund-create-comment.component.css'] ,
 
-  'providers' : [ErrorMessagesService]
+  'providers' : [ErrorMessagesService , NotificationService]
 
 })
 
 export class RefundCreateCommentComponent implements OnInit {
 
-  constructor(private route : ActivatedRoute , private router : Router , private rfs : RefundService ,
+  constructor(private route : ActivatedRoute , private router : Router , private rfs : RefundService , private ns : NotificationService ,
 
   						private ccfs : CommentCreateFormService , private ccs : CommentCreateService , private ems : ErrorMessagesService) {
 
@@ -117,9 +118,19 @@ export class RefundCreateCommentComponent implements OnInit {
 
       .subscribe((result : General) => {
 
-        if (result == null) { this.ccs.isEntryCreated.next(false); }
+        if (result == null) {
 
-        if (result != null && result.updated == true) { 
+          this.ns.setNotificationStatus(true);
+
+          this.ns.addNotification(`Operation is unsuccessful and ${this.systemType} Entry is not created.`); 
+
+          this.ccs.isEntryCreated.next(false); }
+
+        if (result != null && result.updated == true) {
+
+          this.ns.setNotificationStatus(true);
+
+          this.ns.addNotification(`Operation is successful and ${this.systemType} Entry is created.`);
 
           this.isLoading = true;
 
@@ -134,10 +145,25 @@ export class RefundCreateCommentComponent implements OnInit {
 
       return this.router.navigate(data && data.slug ? 
 
-       [this.link ] : [this.link , 'entries' ] ); } 
+       [this.link , 'entries'] : [this.link , 'entries' ] ); } 
 
       , 5000); 
   }
+
+  get notificationAvailable() : boolean {
+
+    return this.ns.notificationStatus();
+  }
+
+  get notificationMessage() : string {
+
+    return this.ns.getNotificationMessage();
+  }
+
+   public removeNotification() : void {
+
+     this.ns.removeNotification();
+   }
 
 
 }

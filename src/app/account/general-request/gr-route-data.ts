@@ -21,7 +21,7 @@ export const RouteConfigData : { [key : string] : any } = {
 
 	'dashboard' : {...$$} ,
 
-	'create' : {...$$ , 'title' : `Request review of your semester ${$$.systemType}` } ,
+	'create' : {...$$ , 'title' : `${$$.systemType}` } ,
 
 	'comment' : {...$$ , 'title' : `Add a Comment : ${$$.systemType} Entry` } ,
 
@@ -29,7 +29,7 @@ export const RouteConfigData : { [key : string] : any } = {
 
 	'timeline' : {...$$ , 'title' : `${$$.systemType} Entry Timeline` } ,
 
-	'transfer' : {...$$ , 'title' : `Transfer and Move ${$$.systemType} Entry` } ,
+	'transfer' : {...$$ , 'title' : `Transfer ${$$.systemType} Entry` } ,
 
 	'entries' : {...$$ , 'title' : `${$$.systemType} Entries` , 'searchFilters' : {'application_number' : 'Application Number' , 'status' : 'Status'} } ,
 

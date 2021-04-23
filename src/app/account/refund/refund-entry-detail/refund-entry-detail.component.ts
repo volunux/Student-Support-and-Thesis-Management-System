@@ -205,11 +205,19 @@ export class RefundEntryDetailComponent implements OnInit {
 
   public otherCol() : void {
 
+    this.isLoading = true;
+
     this.rfs.status()
 
       .subscribe((result : {[key : string] : any}) => {
 
+        if (result == null) {
+
+          this.isLoading = false; }
+
         if (result != null) {
+
+          this.isLoading = false;
 
           this.isOtherColAvailable = true;
 

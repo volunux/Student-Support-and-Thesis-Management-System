@@ -12,6 +12,7 @@ import { GeneralSearchService } from './general-search.service';
   ],
   
   imports: [
+  
     CommonModule,
   ] ,
 

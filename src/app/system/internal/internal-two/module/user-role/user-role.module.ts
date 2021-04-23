@@ -6,8 +6,7 @@ import { InternalTwoModule } from '../../internal-two.module';
 @NgModule({
   declarations: [
 
-
-],
+  ],
 
   imports: [
     CommonModule,

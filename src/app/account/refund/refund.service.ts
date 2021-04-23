@@ -19,11 +19,11 @@ export class RefundService {
 
   public $systemType : string = 'Refund';
 
-  public aurl : string = 'refund'
+  public $sa : string = 'refund'
 
   public getAllEntry(params : SearchQuery) : Observable<Refund[]> {
 
-  	let	link = `${this.apiConfig.host}/${this.aurl}/entries`;
+  	let	link = `${this.apiConfig.host}/${this.$sa}/entries`;
 
     let httpOptions = {'params' : params};
 
@@ -32,6 +32,8 @@ export class RefundService {
       .pipe(
               tap((value : Refund[]) => console.log(value)) ,
 
+              delay(2000) ,
+
               catchError(this.handleError<Refund[]>(`${this.$systemType} Entries` , null))
         )
 
@@ -39,7 +41,7 @@ export class RefundService {
 
   public getEntry(entry : string) : Observable<Refund> {
 
-  	let	link = `${this.apiConfig.host}/${this.aurl}/entry/${entry}/detail`;
+  	let	link = `${this.apiConfig.host}/${this.$sa}/entry/${entry}/detail`;
 
   	return this.http.get<Refund>(link)
        
@@ -47,13 +49,15 @@ export class RefundService {
 
           tap((entry : Refund) => console.log(entry)) ,
 
+          delay(2000) ,
+
           catchError(this.handleError<Refund>(`${this.$systemType} Entry` , null))
         )
   }
 
   public getEntryLetter(entry : string) : Observable<Refund> {
 
-    let  link = `${this.apiConfig.host}/${this.aurl}/entry/${entry}/letter`;
+    let  link = `${this.apiConfig.host}/${this.$sa}/entry/${entry}/letter`;
 
     return this.http.get<Refund>(link)
        
@@ -61,19 +65,23 @@ export class RefundService {
 
           tap((entry : Refund) => console.log(entry)) ,
 
+          delay(2000) ,
+
           catchError(this.handleError<Refund>(`${this.$systemType} Entry` , null))
         )
   }
  
   public addEntry() : Observable<General> {
 
-    let link = `${this.apiConfig.host}/${this.aurl}/entry/create`;
+    let link = `${this.apiConfig.host}/${this.$sa}/entry/create`;
 
     return this.http.get<General>(link)
 
       .pipe(
 
           tap((entry : General) => console.log(entry)) ,
+
+          delay(2000) ,
 
           map((permitted : General) => { return { 'permitted' : true }; }) ,
 
@@ -83,7 +91,7 @@ export class RefundService {
 
   public addEntry$(request : Refund) : Observable<General> {
 
-    let  link = `${this.apiConfig.host}/${this.aurl}/entry/create`;
+    let  link = `${this.apiConfig.host}/${this.$sa}/entry/create`;
 
     return this.http.post<Refund>(link , request)
 
@@ -99,13 +107,15 @@ export class RefundService {
 
   public addComment(entry : string) : Observable<General> {
 
-    let link = `${this.apiConfig.host}/${this.aurl}/entry/${entry}/comment`;
+    let link = `${this.apiConfig.host}/${this.$sa}/entry/${entry}/comment`;
 
     return this.http.get<Refund>(link)
 
       .pipe(
 
         tap((entry : Refund) => console.log(entry)) ,
+
+        delay(2000) ,
 
         map((entry : Refund) => { return {'permitted' : true , '$data' : entry }; }) ,
 
@@ -116,7 +126,7 @@ export class RefundService {
 
   public addComment$(entry : string , comment : General) : Observable<General> {
 
-    let  link = `${this.apiConfig.host}/${this.aurl}/entry/${entry}/comment`;
+    let  link = `${this.apiConfig.host}/${this.$sa}/entry/${entry}/comment`;
 
     return this.http.post<General>(link , comment)
 
@@ -133,13 +143,15 @@ export class RefundService {
 
   public addReply(entry : string , comment : string) : Observable<General> {
 
-    let  link = `${this.apiConfig.host}/${this.aurl}/entry/${entry}/comment/${comment}/reply`;
+    let  link = `${this.apiConfig.host}/${this.$sa}/entry/${entry}/comment/${comment}/reply`;
 
     return this.http.get<General>(link)
 
       .pipe(
 
         tap((value) => {console.log(value)}),
+
+        delay(2000) ,
 
         map((entry : General) => { return {'permitted' : true , '$data' : entry }; }) ,
 
@@ -150,7 +162,7 @@ export class RefundService {
 
   public addReply$(entry : string , comment : string , reply : General) : Observable<General> {
 
-    let  link = `${this.apiConfig.host}/${this.aurl}/entry/${entry}/comment/${comment}/reply`;
+    let  link = `${this.apiConfig.host}/${this.$sa}/entry/${entry}/comment/${comment}/reply`;
 
     return this.http.post<Refund>(link , reply)
 
@@ -167,21 +179,23 @@ export class RefundService {
 
   public getTimeline(entry : string) : Observable<Refund> {
 
-    let link = `${this.apiConfig.host}/${this.aurl}/entry/${entry}/timeline`;
+    let link = `${this.apiConfig.host}/${this.$sa}/entry/${entry}/timeline`;
 
     return this.http.get<Refund>(link)
 
       .pipe(
 
-              tap((value : Refund[]) => console.log(value)) ,
+            tap((value : Refund[]) => console.log(value)) ,
 
-              catchError(this.handleError<Refund>(`${this.$systemType} Entry Timeline` , null))
+            delay(2000) ,
+
+            catchError(this.handleError<Refund>(`${this.$systemType} Entry Timeline` , null))
         )
   }
 
   public updateEntry$(entry : string , body : Refund) : Observable<General> {
 
-    let link = `${this.apiConfig.host}/${this.aurl}/entry/${entry}/detail`;
+    let link = `${this.apiConfig.host}/${this.$sa}/entry/${entry}/detail`;
 
     return this.http.put<Refund>(link , body)
 
@@ -196,13 +210,13 @@ export class RefundService {
 
   public confirmEntryOnReview$(entry : string) : Observable<General> {
 
-    let  link = `${this.apiConfig.host}/${this.aurl}/entry/${entry}/review`;
+    let  link = `${this.apiConfig.host}/${this.$sa}/entry/${entry}/review`;
 
     return this.http.put<Refund>(link , {entry})
 
       .pipe(
 
-        delay(5000) ,
+        delay(2000) ,
 
         map((entry : Refund) => { return { 'onReview' : true , '$data' : entry }; }) ,
 
@@ -213,7 +227,7 @@ export class RefundService {
 
   public $deleteManyEntry(arrayIdx : number[]) : Observable<any> {
 
-    let link : string = `${this.apiConfig.host}/${this.aurl}/delete/entry/many`;
+    let link : string = `${this.apiConfig.host}/${this.$sa}/delete/entry/many`;
 
     let body = {'entries' : arrayIdx};
 
@@ -230,13 +244,15 @@ export class RefundService {
 
   public status() : Observable<any> {
 
-    let link : string = `${this.apiConfig.host}/${this.aurl}/status`;
+    let link : string = `${this.apiConfig.host}/${this.$sa}/status`;
 
     return this.http.get(link)
 
       .pipe(
 
         tap((val) => console.log(val)) ,
+
+        delay(2000) ,
 
         catchError(this.handleError<General>(`Status Entries` , null))
 
@@ -245,9 +261,9 @@ export class RefundService {
 
   private handleError<T>(operation = 'operation' , result? : T) {
 
-      return (error : HttpErrorResponse) : Observable<T> => { this.ems.message = error;
+    return (error : HttpErrorResponse) : Observable<T> => { this.ems.message = error;
 
-                return of(result as T);
+      return of(result as T);
 
       }
   }

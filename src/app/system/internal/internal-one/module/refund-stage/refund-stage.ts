@@ -12,10 +12,6 @@ export interface RefundStage {
 
 	abbreviation : string;
 
-	secondaryKey : string;
-
-	num : number;
-
 }
 
 export class RefundStageInstance {
@@ -35,10 +31,6 @@ export class RefundStageInstance {
 			this.updated_on = updated_on || new Date();
 
 			this.abbreviation = abbreviation || '';
-
-			this.secondaryKey = secondaryKey || '';
-
-			this.num = num || 0;
 	}
 
 }

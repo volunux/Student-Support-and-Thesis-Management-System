@@ -1,0 +1,43 @@
+		<div @fadeAnimation [formGroup] ='entryForm'>
+
+			<ng-container *ngIf ='entry_type && eothers && eothers.EntryType != null && eothers.EntryType.length > 0'>
+
+			<div class ='form-group'>
+
+				<label for ='entry_type' class ='form-label bold'> Entry Type * : </label>
+
+				<select name ='entry_type' id ='entry_type' required ='required' class ='form-control' formControlName ='entry_type'
+
+				 [readOnly] ='noEdit' >
+
+					<option [value] =''> </option> 
+
+					<option *ngFor ='let type of eothers.EntryType' [value] ='type._id'> {{type.title}} </option> 
+
+				</select>
+
+		<app-rcmt-entry-validator *ngIf ='entry_type' [system-type] ='systemType' [entry-type] ='entry_type'> </app-rcmt-entry-validator>
+
+			</div>
+
+		</ng-container>
+
+		<ng-container *ngIf ='body'>
+
+			<div class ='form-group'>
+
+				<label for ='body' class ='form-label bold'> Description * : </label>
+
+				<textarea id ='body' name ='body' [placeholder] ='placeholder?.body' required ='required' formControlName ='body' class ='form-control form-textarea' [readOnly] ='noEdit' >
+					
+				</textarea>
+
+				<app-rcmt-entry-validator *ngIf ='body' [system-type] = 'systemType' [body] ='body'> </app-rcmt-entry-validator>
+
+			</div>
+
+		</ng-container>
+
+</div>
+
+	

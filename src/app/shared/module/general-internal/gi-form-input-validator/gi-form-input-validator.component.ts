@@ -28,6 +28,8 @@ export class GeneralInternalFormInputValidatorComponent implements OnInit {
 
   @Input() public name : FormControl;
 
+  @Input() public title : FormControl;
+
   @Input() public status : FormControl;
 
   @Input() public description : FormControl;

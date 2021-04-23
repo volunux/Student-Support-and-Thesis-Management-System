@@ -1,0 +1,23 @@
+<div id ='entry-create'>
+
+	<h2 *ngIf ='title'> {{title}} </h2>
+
+<app-resource-unavailable *ngIf ='isError' [error] ='error'> </app-resource-unavailable>
+
+<app-notification-screen *ngIf ='notificationAvailable' [notified] ='notificationAvailable' [message] ='notificationMessage' (finished) ='removeNotification()'> </app-notification-screen>
+
+<ng-container *ngIf ='entryCreateForm'>
+
+	<ng-container *ngIf ='!isLoading'>
+
+	<app-request-entry-create [system-type] ='systemType' [system-guideline] ='systemGuideline' [view] ='view' [entry-create-form] ='entryCreateForm' (processEntry) ='createEntry($event)' >
+		
+	</app-request-entry-create>
+
+</ng-container>
+
+</ng-container>
+
+</div>
+
+<app-loading-menu [is-loading] ='isLoading'> </app-loading-menu>

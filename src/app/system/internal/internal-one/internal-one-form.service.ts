@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { FormControl , FormGroup , FormBuilder , Validators } from '@angular/forms';
-import { dynamicDataValidator } from '../../../shared/services/dynamic-control-validator';
 import { General } from './general';
 import { DynamicFormValidators } from '../../../shared/misc/dynamic-form-validators';
 

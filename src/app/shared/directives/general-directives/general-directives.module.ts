@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { LowercaseDirective } from './lowercase.directive';
 import { CapitalizeDirective } from './capitalize.directive';
-
+import { FroalaInitializerDirective } from './froala-initializer.directive';
 
 @NgModule({
   declarations: [
 
   	LowercaseDirective,
-  	CapitalizeDirective
+  	CapitalizeDirective,
+    FroalaInitializerDirective
   ],
 
 
@@ -21,7 +22,8 @@ import { CapitalizeDirective } from './capitalize.directive';
   exports : [
 
   	LowercaseDirective,
-  	CapitalizeDirective
+  	CapitalizeDirective,
+    FroalaInitializerDirective
   ]
 
 })

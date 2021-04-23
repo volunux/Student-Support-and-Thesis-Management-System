@@ -1,4 +1,53 @@
-:host {
+/*:host {
 
 	display : contents;
 };
+*/
+.pagination {
+
+	border : 2px solid #ac4bd8;
+	border-radius : 10px;
+	background-color : #290140;
+	color : #a0a7a0;
+	width : 100px;
+	padding : 2px 0px;
+	display : block;
+	margin : 0px auto;
+}
+
+.pagination-end {
+
+	background-color : #171417;
+	color : white;
+}
+
+.next {
+
+	float : right;
+}
+
+.prev {
+
+	float : left;
+}
+
+a.prev:hover , a.next:hover {
+
+	color : #fff;
+	background-color : #210140;
+}
+
+#entry-paginate {
+
+	margin : 12px 0px 8px 0px;
+	overflow : hidden;
+}
+
+@media screen and (max-width : 360px) {
+
+	.next , .prev {
+
+		float : none;
+		margin-bottom : 5px;
+	}
+}

@@ -1,9 +1,54 @@
-forgot to handle the statistics route;
 
-User email address is correct but form says its incorrect and when user wants to type from the middle it jumps to the end.
 
 uPDATE reset password and forgott password to use real domain urls and names
 
-Create table for user_photos and user_signatures
+Add a box showing the officers that sign and endorse your application for refund and their signature.
+Buttons for printing receipt and refunding money should be refined.
 
+
+
+Handle token expiration and logout
+
+
+
+
+
+
+
+check payment id it is very important
+
+
+student should be able to requery and get a refund
+
+
+
+
+
+
+
+
+
+
+only administrator should see payment and account change request
+Layout for payment details is too narrow and should be exercises.
+Users should be able to create their own request template
+we have to add the route for request-password and test all major students features
+test refund and makes sure all is working fine. and create other miscealleanous request.
+forgot to handle the statistics route;
+User email address is correct but form says its incorrect and when user wants to type from the middle it jumps to the end.
+Create table for user_photos and user_signatures
 Resolve queries for request credentils and password
+Users should be able to update their matriculation number later and other related details so that outsiders can send request for support.
+Users can submit upgrade requests so that they can perform other functions.
+The sql queries should be updated to make room for this services.
+Forms Input should be refactor
+There should be mobile view for student and that the settings can be saved in the local storage.
+after clicking statistic link, navigation is not working
+height too high
+Notification gone wrong for so many components.
+statistics element overlapping each other	
+can't add user because list of countries, departments , faculty are empty and not displaying.
+What to do if letter have already existed.
+Two bugs, after setting application on review, comment first is undefined.
+What will happen if I decide to search for a refund entry by some criterias like department , faculty and others.
+need to adjust clear button so that it will be the same size as submit  Buttons
